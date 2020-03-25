@@ -1,6 +1,6 @@
 name: Gradle Check&Build + Image Push on GitHub Packages
 
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 jobs:
 
@@ -11,8 +11,6 @@ jobs:
   gradleTasksAndDockerPush:
     
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: ingsw1920 # must be lowercase
     
     steps:
 
@@ -28,10 +26,6 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-
-      # Gradle check task
-    - name: Invoke gradle task - CHECK
-      run: ./gradlew check
 
       # Gradle build task
     - name: Invoke gradle task - BUILD
@@ -49,31 +43,20 @@ jobs:
 
       # Build Docker image
     - name: Build image
-      run: docker build . --file Dockerfile --tag image
+      run: docker image build . --file Dockerfile --tag image
 
       # Log into registry (DockerHub)
     - name: Log into registry
-      run: echo "${{ secrets.GITHUB_ACCESS_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      run: echo "${{ secrets.GITHUB_ACCESS_TOKEN }}" | docker login docker.pkg.github.com -u ${{ secrets.GITHUB_USERNAME }} --password-stdin
 
       # Build Docker image and push it to DockerHub
     - name: Push image
       run: |
-        IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+        IMAGE_NAME="$(echo $GITHUB_REPOSITORY | cut -d'/' -f 2 | cut -d'-' -f 2)"
+        IMAGE_ID=docker.pkg.github.com/softeng1920-inf-uniba/docker_1920/$IMAGE_NAME
         
-        # Strip git ref prefix from version
-        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-        
-        # Strip "v" prefix from tag name
-        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        
-        # Use Docker `latest` tag convention
-        [ "$VERSION" == "master" ] && VERSION=latest
+        # Convert IMAGE_ID to lowercase (repository name must be lowercase)
+        IMAGE_ID=$(echo "$IMAGE_ID" | tr "[:upper:]" "[:lower:]")
 
-        # Convert IMAGE_ID and VERSION to lowercase (repository name must be lowercase)
-        IMAGE_ID=$(echo "$IMAGE_ID" | awk '{print tolower($0)}')
-        VERSION=$(echo "$VERSION" | awk '{print tolower($0)}')
-
-        echo IMAGE_ID=$IMAGE_ID
-        echo VERSION=$VERSION
-        docker tag image $IMAGE_ID:$VERSION
-        docker push $IMAGE_ID:$VERSION
+        docker tag image $IMAGE_ID:latest
+        docker push $IMAGE_ID:latest
