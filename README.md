@@ -2,7 +2,6 @@
 
 # scacchi ![Gradle Check&Build + Image Push on GitHub Packages](https://github.com/softeng1920-inf-uniba/progetto1920-diffie/workflows/Gradle%20Check&Build%20+%20Image%20Push%20on%20GitHub%20Packages/badge.svg)
 
-
 La struttura della repository si presenta nel seguente modo:
 ```
 |-- .github
