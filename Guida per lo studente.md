@@ -76,14 +76,14 @@ In particolare, in `.github/workflows`, trovate un file di configurazione di Git
 2. la costruzione di un eseguibile (build) a partire dai sorgenti che svilupperete;
 3. la costruzione di un'immagine Docker con la vostra applicazione e il caricamento della stessa su [GitHub Packages](https://github.com/features/packages).
 
-Il workflow predisposto in `ingsw1920.yml` delega i primi due step a [Gradle](https://gradle.org/) - sistema di build-automation adottato per questo progetto - invocando i task corrispondenti: `gradle check` e `gradle build`; in seguito, il workflow si occupa di realizzare autonomamente il terzo step, costruendo e caricando su GitHub Packages un'immagine Docker con l'eseguibile appena assemblato. 
+Il workflow predisposto in `ingsw1920.yml` delega i primi due step a [Gradle](https://gradle.org/) - sistema di build-automation adottato per questo progetto - attraverso l'invocazione del task `gradle build`; in seguito, il workflow si occupa di realizzare autonomamente il terzo step, costruendo e caricando su GitHub Packages un'immagine Docker con l'eseguibile appena assemblato. 
 
 Affinché vada a buon fine, quest'ultimo passaggio necessita di un piccolo intervento da parte vostra, da svolgere soltanto una volta, nella fase di impostazione iniziale del progetto. Dal momento che ciascuna nuova esecuzione del workflow avviene in una macchina virtuale Ubuntu costruita ex-novo da GitHub Actions, è necessario che - ad ogni run - il processo preposto al caricamento dell'immagine Docker su Packages si autentichi al servizio (effettuando un login). Al posto della classica coppia di credenziali (username e password) è possibile usare, a questo scopo, un Personal Access Token di GitHub, da passare in input al comando che effettua la connessione a Packages. Tuttaiva, dal momento che tale comando viene riportato in chiaro nel file di workflow (`ingsw1920.yml`), passargli in input il token in modo esplicito significherebbe memorizzarne una copia che resti visibile a chiunque abbia accesso al repository; ciò non è affatto sicuro e andrebbe assolutamente evitato (un token appartiene ad uno specifico utente di GitHub e deve restare noto soltanto a lui). Per questo genere di esigenze, GitHub offre ai suoi utenti un'ulteriore funzionalità: i cosiddetti Secrets (valori crittografati associati ai repository e accessibili come variabili d'ambiente all'interno dei workflow). Una volta generato, il Personal Access può essere memorizzato in tutta sicurezza in un Secret. Al momento opportuno, il valore ivi contenuto verrà passato al comando di accesso a Packages che ne ha bisogno.
 
-L'intervento iniziale a voi richiesto deve essere svolto da *un solo membro del team*, e in particolare da colui cui sono stati forniti i diritti di amministratore sul repository. Egli dovrà:
+L'intervento iniziale a voi richiesto deve essere svolto da *un solo membro del team*. Egli dovrà:
 
-- creare un Personal Access Token (dalle impostazioni del proprio account);
-- generare un GitHub Secret contenente il token (dalle impostazioni del repository del team).
+- [dalle impostazioni del proprio account] creare un Personal Access Token;
+- [dalle impostazioni del repository del team] generare un GitHub Secret contenente il token e un ulteriore Secret contenente il proprio GitHub username.
 
 
 
@@ -116,9 +116,9 @@ Il membro del team con i diritti di amministratore sul repository deve:
 
 
 
-#### Impostazione del GitHub Secret
+#### Impostazione dei GitHub Secret
 
-A questo punto, il membro del team con i diritti di amministratore dovrà:
+A questo punto, il membro del team che ha generato il token dovrà:
 
 - recarsi sulla pagina principale del repository e fare click sull'icona *"Settings"* (ultima tab in alto a destra);
   **N.B.**: solo l'amministratore visualizza questa tab!
@@ -129,8 +129,12 @@ A questo punto, il membro del team con i diritti di amministratore dovrà:
   - inserire la stringa `GITHUB_ACCESS_TOKEN` nella textbox con l'etichetta *"Name"*;
   - inserire il Personal Access Token precedentemente generato nella textarea con l'etichetta *"Value"*;
   - concludere l'operazione cliccando sul pulsante *"Add secret"*.
+- ripetere l'operazione per l'aggiunta di un secret col proprio username: fare click sul link *"Add a new secret"*;
+  - inserire la stringa `GITHUB_USERNAME` nella textbox con l'etichetta *"Name"*;
+  - inserire il proprio username GitHub nella textarea con l'etichetta *"Value"*;
+  - concludere l'operazione cliccando sul pulsante *"Add secret"*.
 
-**N.B.:** È fondamentale che il nome del GitHub Secret venga scritto esattamente come è riportato in questa guida: `GITHUB_ACCESS_TOKEN` (rispettando le maiuscole e gli underscore).
+**N.B.:** È fondamentale che i nomi dei due GitHub Secret vengano scritti esattamente come sono riportati in questa guida: `GITHUB_ACCESS_TOKEN` e `GITHUB_USERNAME`(rispettando le maiuscole e gli underscore).
 
 
 
@@ -365,11 +369,11 @@ Si svolgano le seguenti operazioni:
 
 - se si utilizza Windows selezionare `Switch to Linux containers` nel menu di Docker;
 
-- recarsi alla pagina principale del repository su GitHub e fare click sul link *"package"*, nella barra evidenziata in figura;
-   **N.B.**: se i Secret menzionati in questa guida sono stati impostati correttamente e se almeno un'esecuzione del workflow di GitHub Actions è andata a buon fine, il numero a sinistra del link dovrebbe indicare la presenza di 1 package nel repository.
+- recarsi alla pagina principale del repository [softeng1920-inf-uniba/docker_1920](https://github.com/softeng1920-inf-uniba/docker_1920) su GitHub e fare click sul link *"package"*, nella barra evidenziata in figura;
+   **N.B.**: se i Secret menzionati in questa guida sono stati impostati correttamente e se almeno un'esecuzione del workflow di GitHub Actions è andata a buon fine, la vostra immagine Docker (nella sua ultima versione) dovrebbe essere disponibile tra quelle elencate alla pagina successiva.
    ![ExecuteDockerImage_1](./res/img/guida-studente/ExecuteDockerImage_1.png)
 
-- nella pagina successiva, fare click sul link all'unico package disponibile;
+- nella pagina successiva, fare click sul link del package che riporta il nome del vostro team;
 
 - nella pagina dedicata al package è indicato il comando da copiare ed eseguire nel terminale per scaricare l'immagine Docker in locale.
    ![ExecuteDockerImage_2](./res/img/guida-studente/ExecuteDockerImage_2.png)
