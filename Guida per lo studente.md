@@ -13,7 +13,7 @@
 - Configurazione Coveralls
   - Aggiunta del badge di Coveralls nel README
 - Configurazione locale del progetto
-- Eseguire l'applicazione
+<!-- - Eseguire l'applicazione -->
 - Lavoro sul codice dell’applicazione
 - Test automatici e Controlli di Qualità
 - Esecuzione immagine docker
@@ -254,7 +254,7 @@ La cartella di default per la generazione di *javadoc* è la cartella `doc`. Per
 - Tramite il pulsante *Browse*, selezionare il percorso `doc/javadoc` all’interno della cartella di progetto.
 - Chiudere la finestra con *Apply and Close*.
 
-###### Verifica setup librerie
+<!-- ###### Verifica setup librerie
 
 Verificate la presenza delle librerie nel build path di Java.
 
@@ -262,7 +262,7 @@ Come prima, premere il tasto destro sulla cartella di progetto di Eclipse. Scegl
 
 ![](res/img/guida-studente/eclipseproperties.png)
 
-Quindi, selezionate la voce `Java Build Path` e verificate le seguenti librerie siano presenti come in figura. Qualora mancassero, procedete ad aggiungerle premendo il bottone `Add JARs…`. I file `jar` richiesti sono salvati nella cartella `<nomeprogetto>/libs`.
+Quindi, selezionate la voce `Java Build Path` e verificate le seguenti librerie 
 
 ![](res/img/guida-studente/eclipsejavabuildpath.png)
 
@@ -318,7 +318,7 @@ Questi passi devono essere eseguiti da un solo componente del gruppo di progetto
 
 12. È possibile che alcuni metodi dell'API richiedano l'ID del progetto: è quello annotato nel passo 7.
 
-13. Posizionatevi sul file `AppMain.java` ed eseguite come Java application da Eclipse.
+13. Posizionatevi sul file `AppMain.java` ed eseguite come Java application da Eclipse. -->
 
 
 
