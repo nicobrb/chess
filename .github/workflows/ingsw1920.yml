@@ -1,6 +1,10 @@
 name: Gradle Check&Build + Image Push on GitHub Packages
 
-on: [ pull_request ]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
 
 jobs:
 
