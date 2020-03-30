@@ -1,4 +1,4 @@
-name: Gradle Check&Build + Image Push on GitHub Packages
+name: CI/CD
 
 on:
   pull_request:
