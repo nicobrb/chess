@@ -1,6 +1,6 @@
 
 
-# scacchi ![Gradle Check&Build + Image Push on GitHub Packages](https://github.com/softeng1920-inf-uniba/progetto1920-diffie/workflows/Gradle%20Check&Build%20+%20Image%20Push%20on%20GitHub%20Packages/badge.svg) ![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-diffie/badge.svg?branch=issue%231&t=ahjYQD)
+# scacchi ![CI/CD](https://github.com/softeng1920-inf-uniba/progetto1920-diffie/workflows/CI/CD/badge.svg) ![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-diffie/badge.svg?branch=issue%231&t=ahjYQD)
 
 La struttura della repository si presenta nel seguente modo:
 ```
