@@ -150,7 +150,7 @@ Per aggiungere il badge che riporta l'ultimo esito dell'esecuzione del workflow 
 
 Il titolo del README.md dovrà apparire come nella seguente figura:
 
-![actions-badge](./res/img/guida-studente/scacchisinglebadge.png)
+![actions-badge](./res/img/guida-studente/aggiornatissimo1.png)
 
 Il colore e lo stato del badge potranno cambiare dopo ogni build, riflettendo lo stato del progetto.
 
@@ -190,7 +190,7 @@ I passi per ottenere il badge di Coveralls sono i seguenti:
   ![CoverallsBadge_2](./res/img/guida-studente/coverallsmarkdown.png)
 - La modifica del file Markdown `README.md`sarà fatta come parte dei task dello *Sprint 0* incollando il codice markdown per la costruzione del badge in cima al `README.md`, accanto al titolo del repository.
 - Alla fine, il file `README.md` dovrà mostrare due badge, simili a quelli riportati nella figura sottostante:
-![actions+coveralls-badges](./res/img/guida-studente/scacchidoublebadge.png)
+![actions+coveralls-badges](./res/img/guida-studente/aggiornatissimo2.png)
 
 #### Troubleshooting
 
