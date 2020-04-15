@@ -1,5 +1,8 @@
 package it.uniba.chess;
 
+import java.util.ArrayList;
+
+import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
 
 
@@ -11,7 +14,17 @@ public class Game{
 	public static String lastmove;
 	public static ChessColor turn;
 	public static GameStatus status;
-
+	
+	
+	public static ArrayList<Piece> captures =  new ArrayList<Piece>(30); //can't capture kings
+	
+	//each semi-move adds to both this list respectively
+	public static ArrayList<Square> startingsquares = new ArrayList<Square>();
+	public static ArrayList<Square> destinationsquares = new ArrayList<Square>();
+	
+	//each semi-move will be added by the parser to this list for ease of printing
+	public static ArrayList<String> printableMovesList = new ArrayList<String>(30); //can't capture kings
+	
 	public static void startGame() {
 		//initialization function to be called on "play"
 		
@@ -29,6 +42,7 @@ public class Game{
 		return movescounter;
 	}
 	
+	
 	public void printBoard() {
 		board.print();
 	}
@@ -43,5 +57,13 @@ public class Game{
 	
 	public static Board getBoard() {
 		return board;
+	}
+	
+	public static void nextTurn() {
+		if(turn == ChessColor.WHITE) {
+			turn = ChessColor.BLACK;
+		} else {
+			turn = ChessColor.WHITE;
+		}
 	}
 }
