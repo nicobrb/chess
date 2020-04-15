@@ -1,14 +1,14 @@
 package it.uniba.main;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.security.GeneralSecurityException;
+
 import java.util.Scanner;
 
-import it.uniba.sotorrent.GoogleDocsUtils;
+import it.uniba.chess.IllegalMoveException;
+import it.uniba.chess.Parser;
+
 
 /**
  * The main class for the project. It must be customized to meet the project
@@ -42,11 +42,11 @@ public final class AppMain {
 		String command;
 		do {
 			command = sc.nextLine();
-			/*try {
+			try {
 			Parser.parseCommand(command.toLowerCase());
 			} catch(IllegalMoveException ex) {
 				System.out.println(ex.getMessage());
-			}*/
+			}
 			
 		} while (!command.equals("quit"));
 		System.out.println("Sei sicuro di voler uscire? S/N (default: N)");
