@@ -66,4 +66,21 @@ public class Game{
 			turn = ChessColor.WHITE;
 		}
 	}
+	
+	public static void capturedMaterial(){
+
+		System.out.print("Materiale del bianco: ");
+		for(int i=0; i<captures.size(); i++) {
+			if(captures.get(i).getColor() == ChessColor.BLACK) {
+				System.out.print(captures.get(i).getUnicode());
+			}
+		}
+		System.out.print("\nMateriale del nero: ");
+		for(int i=0; i<captures.size(); i++) {
+			if(captures.get(i).getColor() == ChessColor.WHITE) {
+				System.out.print(captures.get(i).getUnicode());
+			}
+		}
+		System.out.println();
+	}
 }

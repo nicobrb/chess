@@ -7,7 +7,7 @@ public class Move {
 	
 	public static void pawnMove(Square initialsquare, Square finalsquare) throws IllegalMoveException {
 		
-		if(finalsquare.isOcsscupied()) {
+		if(finalsquare.isOccupied()) {
 			throw new IllegalMoveException();
 		}
 		
