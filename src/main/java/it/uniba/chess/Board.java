@@ -20,9 +20,9 @@ public class Board{
 		
 	}
 	
-	public Square getSquare(int x, int y) {
+	public Square getSquare(int x, int y) throws IllegalMoveException {
 		if(x<0 || x>7 || y<0 || y>7) {
-			//throw new IllegalMoveException();
+			throw new IllegalMoveException();
 		}
 		
 		return(chessboard[x][y]);
@@ -43,7 +43,7 @@ public class Board{
 		}
 		
 		//ROOK
-		/*this.chessboard[valueRow][0] = new Square(valueRow, 0, new Rook(c));
+		this.chessboard[valueRow][0] = new Square(valueRow, 0, new Rook(c));
 		this.chessboard[valueRow][7] = new Square(valueRow, 7, new Rook(c));
 		//KNIGHTS
 		this.chessboard[valueRow][1] = new Square(valueRow, 1, new Knight(c));
@@ -57,7 +57,7 @@ public class Board{
 		this.chessboard[valueRow][4] = new Square(valueRow, 3, new Queen(c));
 		
 		//KING
-		this.chessboard[valueRow][3] = new Square(valueRow, 4, new King(c));*/
+		this.chessboard[valueRow][3] = new Square(valueRow, 4, new King(c));
 		
 		
 		//PAWNS
