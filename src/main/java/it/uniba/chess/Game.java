@@ -42,6 +42,54 @@ public class Game{
 		return movescounter;
 	}
 	
+	public static void capturedMaterial(){
+		//Note that material is the list of pieces captured by the opposite colour
+		
+		System.out.print("Materiale del bianco: ");
+		for(int i=0; i<captures.size(); i++) {
+			if(captures.get(i).getColor() == ChessColor.BLACK) {
+				System.out.print(captures.get(i).getUnicode());
+			}
+		}
+		System.out.print("\nMateriale del nero: ");
+		for(int i=0; i<captures.size(); i++) {
+			if(captures.get(i).getColor() == ChessColor.WHITE) {
+				System.out.print(captures.get(i).getUnicode());
+			}
+		}
+		System.out.println();
+	}
+
+
+
+	public static  void printListOfMoves(){
+		
+		/* we created move_counter to control the number of the actual move counter. WARNING: this is not
+		 * a SEMIMOVES counter (which are the actual number of moves made (e4 is a semimove, 1.e4 e5 is a MOVE))
+		 */
+		
+		int move_counter = 0;
+
+		for (int i = 0; i < printableMovesList.size(); i++) {
+			if(i%2 == 0) {
+				System.out.print("\n");
+				move_counter++;
+				System.out.print(move_counter + ". ");
+			}
+			System.out.print(printableMovesList.get(i) + " ");
+		}
+		
+		System.out.println();
+
+	}
+	
+	public static void printHelp() {
+		System.out.print("help: questo menu\n");
+		System.out.print("board: mostra la scacchiera alla posizione attuale\n");
+		System.out.print("quit: termina l'applicazione\n");
+		System.out.print("captures: mostra il materiale catturato da ogni colore\n");
+		System.out.print("moves: mostra la lista delle mosse giocate durante la partita\n");
+	}
 	
 	public void printBoard() {
 		board.print();
@@ -65,43 +113,5 @@ public class Game{
 		} else {
 			turn = ChessColor.WHITE;
 		}
-	}
-	
-	public static void capturedMaterial(){
-
-		System.out.print("Materiale del bianco: ");
-		for(int i=0; i<captures.size(); i++) {
-			if(captures.get(i).getColor() == ChessColor.BLACK) {
-				System.out.print(captures.get(i).getUnicode());
-			}
-		}
-		System.out.print("\nMateriale del nero: ");
-		for(int i=0; i<captures.size(); i++) {
-			if(captures.get(i).getColor() == ChessColor.WHITE) {
-				System.out.print(captures.get(i).getUnicode());
-			}
-		}
-		System.out.println();
-	}
-	
-	public static  void printListOfMoves(){
-		
-		/* we created move_counter to control the number of the actual move counter. WARNING: this is not
-		 * a SEMIMOVES counter (which are the actual number of moves made (e4 is a semimove, 1.e4 e5 is a MOVE))
-		 */
-		
-		int move_counter = 0;
-
-		for (int i = 0; i < printableMovesList.size(); i++) {
-			if(i%2 == 0) {
-				System.out.print("\n");
-				move_counter++;
-				System.out.print(move_counter + ". ");
-			}
-			System.out.print(printableMovesList.get(i) + " ");
-		}
-		
-		System.out.println();
-
 	}
 }
