@@ -25,7 +25,7 @@ public class Parser {
 			return;
 			
 		case "help":
-			//Game.printHelp();
+			Game.printHelp();
 			return;
 			
 		case "captures":
@@ -33,7 +33,7 @@ public class Parser {
 			return;
 			
 		case "moves":
-			//Game.printListOfMoves();
+			Game.printListOfMoves();
 			return;
 			
 		case "play":
