@@ -29,7 +29,7 @@ public class Parser {
 			return;
 			
 		case "captures":
-		//Game.capturedMaterial();
+		Game.capturedMaterial();
 			return;
 			
 		case "moves":
