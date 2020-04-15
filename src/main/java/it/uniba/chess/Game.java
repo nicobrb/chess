@@ -83,4 +83,25 @@ public class Game{
 		}
 		System.out.println();
 	}
+	
+	public static  void printListOfMoves(){
+		
+		/* we created move_counter to control the number of the actual move counter. WARNING: this is not
+		 * a SEMIMOVES counter (which are the actual number of moves made (e4 is a semimove, 1.e4 e5 is a MOVE))
+		 */
+		
+		int move_counter = 0;
+
+		for (int i = 0; i < printableMovesList.size(); i++) {
+			if(i%2 == 0) {
+				System.out.print("\n");
+				move_counter++;
+				System.out.print(move_counter + ". ");
+			}
+			System.out.print(printableMovesList.get(i) + " ");
+		}
+		
+		System.out.println();
+
+	}
 }
