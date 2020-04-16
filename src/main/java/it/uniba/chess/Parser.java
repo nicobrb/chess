@@ -1,6 +1,7 @@
 package it.uniba.chess;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +38,17 @@ public class Parser {
 			return;
 			
 		case "play":
-		Game.startGame();
+			if(Game.getStatus() != GameStatus.ACTIVE) {
+				Game.startGame();	
+			} else {
+				Scanner input2 = new Scanner(System.in);
+				System.out.println("Sei sicuro di voler ricominciare il gioco? S/[N]");
+				String confirmation = input2.nextLine().toLowerCase();
+				if(confirmation.equals("s")) {
+					Game.startGame();
+				}
+			}
+					
 			return;
 			 
 		default:
@@ -105,7 +116,7 @@ public class Parser {
 			}
 			
 			//if nothing did return until now, it's an invalid command (not exclusively an Illegal move)
-			
+			System.out.println("Comando non riconosciuto. Scrivi help per la lista dei comandi.");
 			throw new IllegalMoveException();
 		}
 	}
@@ -160,7 +171,6 @@ public class Parser {
 			}
 			
 			//if the method hasn't returned by now, it must be an illegal move
-			//System.out.println("error 6");
 			throw new IllegalMoveException();
 			
 		}catch(IllegalMoveException illegalmove) {
@@ -171,7 +181,6 @@ public class Parser {
 			 * for a pawn in a0, which doesn't exist and will produce this exception
 			 *
 			*/
-			//System.out.println("error 7");
 			throw illegalmove;
 		}
 	}

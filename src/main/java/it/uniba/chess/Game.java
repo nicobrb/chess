@@ -27,7 +27,10 @@ public class Game{
 	
 	public static void startGame() {
 		//initialization function to be called on "play"
-		
+		captures.clear();
+		startingsquares.clear();
+		destinationsquares.clear();
+		printableMovesList.clear();
 		board = new Board();
 		status =  GameStatus.ACTIVE;
 		turn = ChessColor.WHITE;
