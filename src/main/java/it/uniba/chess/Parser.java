@@ -117,7 +117,7 @@ public class Parser {
 			
 			//if nothing did return until now, it's an invalid command (not exclusively an Illegal move)
 			System.out.println("Comando non riconosciuto. Scrivi help per la lista dei comandi.");
-			throw new IllegalMoveException();
+			//throw new IllegalMoveException();
 		}
 	}
 	
