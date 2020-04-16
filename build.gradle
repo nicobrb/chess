@@ -152,11 +152,15 @@ test {
     finalizedBy jacocoTestReport
 }
 
-tasks.register("initialize") {
-    doLast {
-        println "\nGradle initialized.\n"
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'it.uniba.main/AppMain'
     }
+    archiveBaseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
+project.tasks.getByName('build').dependsOn fatJar
 
 // Main class
 mainClassName = 'it.uniba.main/AppMain'
