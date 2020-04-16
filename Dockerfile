@@ -1,5 +1,5 @@
 FROM openjdk:8-alpine
-COPY . /app
+RUN mkdir /app
+COPY ./build/libs/scacchi-all.jar /app
 WORKDIR /app
-RUN ./gradlew initialize
-ENTRYPOINT ["./gradlew", "run"]
+ENTRYPOINT ["java", "-jar", "scacchi-all.jar"]

@@ -383,8 +383,9 @@ Si svolgano le seguenti operazioni:
 
 - digitare infine il comando:
 
-		`docker run --rm <nome_immagine>`
-		dove per `<nome_immagine>` si intende l'url riportato nel comando precedente, immediatamente dopo le prime due parole (`docker pull`).
+	`docker run -it --rm <nome_immagine>`
+
+	dove per `<nome_immagine>` si intende l'url riportato nel comando precedente, immediatamente dopo le prime due parole (`docker pull`).
 	
 
 Ad esempio, se il comando precedente (copiato da GitHub dal riquadro mostrato in figura), è:
@@ -395,13 +396,19 @@ docker pull docker.pkg.github.com/softeng1920-inf-uniba/provaprogetto1920-prova/
 il comando per eseguire il container sarà:
 
 ```
-docker run --rm docker.pkg.github.com/softeng1920-inf-uniba/provaprogetto1920-prova/prova:latest
+docker run -it --rm docker.pkg.github.com/softeng1920-inf-uniba/provaprogetto1920-prova/prova:latest
 ```
 
-(in altre parole, il secondo comando si ottiene dal primo sostituendo a `docker pull` le parole `docker run --rm`).
+(in altre parole, il secondo comando si ottiene dal primo sostituendo a `docker pull` le parole `docker run -it --rm`).
 
 **N.B.**: in caso di necessità, avete la possibilità di passare parametri alla vostra applicazione aggiungendo stringhe in coda al comando `run`. Per esempio:
 
-		docker run --rm <nome_immagine> help
+		docker run -it --rm <nome_immagine> help
 
-**N.B.:** l’opzione `—-rm` serve per far sì che Docker interrompa l’esecuzione del container nel momento in cui l’applicazione eseguita al suo interno termina.
+**N.B.:** l’opzione `—-rm` serve per far sì che Docker interrompa l’esecuzione del container nel momento in cui l’applicazione eseguita al suo interno termina;
+
+le opzioni `-i` e `-t` hanno invece, rispettivamente, le seguenti funzioni:
+- `-i` (abbreviazione di `--interactive`) serve a richiedere un’esecuzione interattiva del container;
+- `-t` (abbreviazione di `--tty`) serve ad allocare uno pseudo-tty (una sorta di terminale virtuale) connesso allo standard input (genericamente, la tastiera del computer).
+
+In sostanza si richiede a Docker di eseguire interattivamente il container, specificando la sorgente di input per la sessione interattiva.
