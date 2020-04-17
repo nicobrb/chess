@@ -70,19 +70,19 @@ public class Board{
 	
 	public void print() {
 		System.out.print("   a   b   c   d   e   f   g   h \n");
-		System.out.println("   -------------------------------");
+		System.out.println("  --------------------------------");
 		for(int i=7; i>=0; --i) {
-			System.out.print((i+1) + " |");
+			System.out.print((i+1) + " | ");
 			for (int j=7; j>=0; --j) {
 				if(chessboard[i][j].isOccupied()) {
-					System.out.print(""+ chessboard[i][j].getPiece().getUnicode() + " | ");
+					System.out.print(chessboard[i][j].getPiece().getUnicode() + " | ");
 				}else {
 					System.out.print("  | ");
 				}
 			}
-			System.out.print(" "+ (i+1));
+			System.out.print(i+1);
 			System.out.print("\n");
-			System.out.println("   -------------------------------");
+			System.out.println("  --------------------------------");
 		}
 		System.out.print("   a   b   c   d   e   f   g   h \n");
 	}
