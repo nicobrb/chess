@@ -68,8 +68,12 @@ public class Parser {
 				 *In java the pattern for "check" and "mate" (the + and # sign) generates an invalid escape error because
 				 * it tries to escape this symbols with the " \ " character much like printf(). We apply the solution given in the link above and we get the following
 				*/
+				//^([a-h]?)(x?)([a-h][1-8])((e[.]p[.])?)$
+				//n
 				
-				String RegExp_of_pawn_moves= "^([a-h]?)(x?)([a-h][1-8])$";
+				//String RegExp_of_pawn_moves= "^([a-h]?)(x?)([a-h][1-8])$";
+				String RegExp_of_pawn_moves = "^([a-h]?)(x?)([a-h][1-8])((e[.]p[.])?)$";
+				
 				
 				//followed this tutorial http://tutorials.jenkov.com/java-regex/matcher.html#group-method
 				//the pattern is the actual regexp, the matcher expects the keyboard command as input
@@ -89,7 +93,7 @@ public class Parser {
 						//we must always have a starting square too
 						Square starting_square;
 						
-						if((regExpMatcher.group(1).isEmpty()) && regExpMatcher.group(2).isEmpty()){
+						if((regExpMatcher.group(1).isEmpty()) && regExpMatcher.group(2).isEmpty() && regExpMatcher.group(4).isEmpty()){
 							//this is a pawn move
 							starting_square = getPawnStartingSquare_Move(destination_square);
 							Move.pawnMove(starting_square, destination_square);
@@ -98,7 +102,10 @@ public class Parser {
 						} else if ( !regExpMatcher.group(1).isEmpty() && !regExpMatcher.group(2).isEmpty()) {
 							//this is a pawn capture (either simple or en-passant)
 							starting_square = getPawnStartingSquare_Capture(regExpMatcher.group(1), destination_square);
-							Move.pawnCapture(starting_square, destination_square);
+							if(regExpMatcher.group(4).isEmpty())
+								Move.pawnCapture(starting_square, destination_square, false);
+							else
+								Move.pawnCapture(starting_square, destination_square, true);
 							Game.printableMovesList.add(lastmove);
 						} else {
 							throw new IllegalMoveException();

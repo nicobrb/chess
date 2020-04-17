@@ -47,11 +47,16 @@ public class Move {
 
 	}
 	
-	public static void pawnCapture(Square initialsquare, Square finalsquare) throws IllegalMoveException {
+	public static void pawnCapture(Square initialsquare, Square finalsquare, boolean enPassantFlag) throws IllegalMoveException {
 		try{
 			//if we can capture en-passant we are done
-			if(captureEnPassant(initialsquare, finalsquare))
+			if(captureEnPassant(initialsquare, finalsquare)) {
 				return;
+			} else {
+				if(enPassantFlag) {
+					throw new IllegalMoveException();
+				}
+			}
 		} catch (IllegalMoveException ex) {
 			throw ex;
 		}
