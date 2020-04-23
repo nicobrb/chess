@@ -89,6 +89,7 @@ public class Game{
 	public static void printHelp() {
 		System.out.print("help: questo menu\n");
 		System.out.print("board: mostra la scacchiera alla posizione attuale\n");
+		System.out.print("play: inizia una nuova partita (anche a partità già iniziata)\n");
 		System.out.print("quit: termina l'applicazione\n");
 		System.out.print("captures: mostra il materiale catturato da ogni colore\n");
 		System.out.print("moves: mostra la lista delle mosse giocate durante la partita\n");
