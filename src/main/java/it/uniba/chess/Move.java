@@ -63,39 +63,40 @@ public class Move {
 
 		//otherwise we check for a normal capture
 		if(initialsquare.getPiece().getClass() == Pawn.class) {
-			if(finalsquare.getX() > initialsquare.getX() && initialsquare.getPiece().getColor() == ChessColor.WHITE) {	
-				if(finalsquare.getPiece() != null && finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor())//&&!initialsquare.piece.pinned must be added in the future
-				{
-					Game.captures.add(finalsquare.getPiece());
-					finalsquare.setPiece(initialsquare.getPiece());
-					finalsquare.setOccupied(true);
-					
-					initialsquare.setOccupied(false);
-					//initialsquare.setPiece(null);
-					
-					//if this does not throw IllegalMove
-					Game.startingsquares.add(initialsquare);
-					Game.destinationsquares.add(finalsquare);
-					return;
-				} //else {there is no piece inside the final square or there is but is not capturable due to a pin or due to being the same color as the pawn in initial square
-			}else if (finalsquare.getX() < initialsquare.getX() && initialsquare.getPiece().getColor() == ChessColor.BLACK) {
-				if(finalsquare.getPiece() != null && finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor()) {//&&!initialsquare.piece.pinned must be added in the future			
-					
-					Game.captures.add(finalsquare.getPiece());
-					finalsquare.setPiece(initialsquare.getPiece());
-					finalsquare.setOccupied(true);
-					
-					initialsquare.setOccupied(false);
-					//initialsquare.setPiece(null);
-					
-					//if this does not throw IllegalMove
-					Game.startingsquares.add(initialsquare);
-					Game.destinationsquares.add(finalsquare);
-					return;
-				}//there is no piece inside the final square or there is but is not capturable due to a pin or due to being the same color as the pawn in initial square
-			} //there is a discrepancy between initial-final square and actual pawn movement
-		} //exit the function with break because there is no pawn inside the initial square, thus the capture can't fisically happen
-
+			if(Math.abs(finalsquare.getY()-initialsquare.getX()) == 1) { 
+				if(finalsquare.getX() > initialsquare.getX() && initialsquare.getPiece().getColor() == ChessColor.WHITE) {	
+					if(finalsquare.getPiece() != null && finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor())//&&!initialsquare.piece.pinned must be added in the future
+					{
+						Game.captures.add(finalsquare.getPiece());
+						finalsquare.setPiece(initialsquare.getPiece());
+						finalsquare.setOccupied(true);
+						
+						initialsquare.setOccupied(false);
+						//initialsquare.setPiece(null);
+						
+						//if this does not throw IllegalMove
+						Game.startingsquares.add(initialsquare);
+						Game.destinationsquares.add(finalsquare);
+						return;
+					} //else {there is no piece inside the final square or there is but is not capturable due to a pin or due to being the same color as the pawn in initial square
+				}else if (finalsquare.getX() < initialsquare.getX() && initialsquare.getPiece().getColor() == ChessColor.BLACK) {
+					if(finalsquare.getPiece() != null && finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor()) {//&&!initialsquare.piece.pinned must be added in the future			
+						
+						Game.captures.add(finalsquare.getPiece());
+						finalsquare.setPiece(initialsquare.getPiece());
+						finalsquare.setOccupied(true);
+						
+						initialsquare.setOccupied(false);
+						//initialsquare.setPiece(null);
+						
+						//if this does not throw IllegalMove
+						Game.startingsquares.add(initialsquare);
+						Game.destinationsquares.add(finalsquare);
+						return;
+					}//there is no piece inside the final square or there is but is not capturable due to a pin or due to being the same color as the pawn in initial square
+				} //there is a discrepancy between initial-final square and actual pawn movement
+			} //exit the function with break because there is no pawn inside the initial square, thus the capture can't fisically happen
+		}
 		throw new IllegalMoveException();
 	}
 	
