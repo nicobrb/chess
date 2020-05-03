@@ -9,9 +9,11 @@
 buildscript {
   repositories {
     mavenCentral()
+    jcenter()
   }
   dependencies {
     classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
+    classpath 'net.sf.proguard:proguard-gradle:6.2.2'
   }
 }
 
@@ -64,10 +66,10 @@ dependencies {
     implementation('com.google.guava:guava:21.0')
     
     // JUnit Jupiter API and TestEngine implementation
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.1.0')
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.1.0')
-    testImplementation('junit:junit:4.12')
-    testRuntimeOnly('org.junit.vintage:junit-vintage-engine:5.1.0')
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.5.1')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.5.1')
+    testImplementation('junit:junit:4.13')
+    testRuntimeOnly('org.junit.vintage:junit-vintage-engine:5.5.1')
 
 }
 
@@ -160,7 +162,36 @@ task fatJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
-project.tasks.getByName('build').dependsOn fatJar
+
+task proguardTask(type: proguard.gradle.ProGuardTask) {
+
+    dependsOn 'fatJar'
+
+    injars './build/libs/scacchi-all.jar'
+    outjars './build/libs/scacchi-all-obf.jar'
+
+    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
+        libraryjars(System.getProperty("java.home") + "/jmods")
+    } else {
+        libraryjars(System.getProperty("java.home") + "/lib/rt.jar")
+    }
+
+    // Allow methods with the same signature, except for the return type,
+    // to get the same obfuscation name.
+    overloadaggressively
+
+    // Put all obfuscated classes into the nameless root package.
+    repackageclasses ''
+    
+    // Allow classes and class members to be made public.
+    allowaccessmodification
+
+    // The entry point
+    keep 'public class it.uniba.main.AppMain { \
+        public static void main(java.lang.String[]); \
+    }'
+}
+project.tasks.getByName('build').dependsOn proguardTask
 
 // Main class
 mainClassName = 'it.uniba.main/AppMain'
