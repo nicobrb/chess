@@ -56,8 +56,8 @@ jobs:
       # Build Docker image and push it to DockerHub
     - name: Push image
       run: |
-        IMAGE_NAME="$(echo $GITHUB_REPOSITORY | cut -d'/' -f 2 | cut -d'-' -f 2)"
-        IMAGE_ID=docker.pkg.github.com/softeng1920-inf-uniba/docker_1920/$IMAGE_NAME
+        TEAM_NAME="$(echo $GITHUB_REPOSITORY | cut -d'/' -f 2 | cut -d'-' -f 2)"
+        IMAGE_ID=docker.pkg.github.com/softeng1920-inf-uniba/docker_1920/${TEAM_NAME}
         
         # Convert IMAGE_ID to lowercase (repository name must be lowercase)
         IMAGE_ID=$(echo "$IMAGE_ID" | tr "[:upper:]" "[:lower:]")
