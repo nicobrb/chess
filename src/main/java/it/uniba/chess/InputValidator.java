@@ -149,6 +149,16 @@ public class InputValidator {
 							}
 							break;
 						case "D":
+							if(isEnpassant_string.isEmpty()) {
+							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
+							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+							    starting_square = queenIntersectionControl(destination_square, startRow, startColumn, Queen.class, Game.turn);
+							    Move.queenMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
+							    Game.printableMovesList.add(lastmove);
+							} else {
+								throw new IllegalMoveException();
+							}
+							break;
 						case "R":
 						case "":
 							if(startingRowOrColumn_string.isEmpty() && isCapture_string.isEmpty() && isEnpassant_string.isEmpty()){
@@ -694,7 +704,23 @@ public class InputValidator {
 	      }
 	      else if(counter == 0)
 	        return null;
-	      //System.out.println("rook from " + onlyPieceFound.getX() + onlyPieceFound.getY());
+	      
 	      return onlyPieceFound;   
+	}
+	
+	private static Square queenIntersectionControl(Square finalsquare, int startX, int startY, Class<? extends Piece> pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
+		Square plusSquare = plusMovement(finalsquare, startX, startY, pieceClassToSearch, wantedColor);
+		Square crossSquare = checkCross(finalsquare, startX, startY, pieceClassToSearch, wantedColor);
+
+		if(plusSquare == null && crossSquare == null)
+			return null;
+		else if(plusSquare != null && crossSquare != null)
+			throw new IllegalMoveException();
+		else {
+			if(plusSquare != null)
+				return plusSquare;
+			else return crossSquare;
+			
+		}
 	}
 }
