@@ -316,5 +316,127 @@ public static void kingMoveOrCapture(Square startingsquare, Square finalsquare, 
 		}
 		throw new IllegalMoveException();
 	}
+
+	public static boolean longCastle(ChessColor wantedColor) throws IllegalMoveException {
+		if(wantedColor == ChessColor.WHITE) {
+			Square king_initial_square = Game.getBoard().getSquare(0, 3);
+			
+			if(king_initial_square.isOccupied() && king_initial_square.getPiece().getClass() == King.class && king_initial_square.getPiece().getColor() == wantedColor) {
+				if( ! ((King) king_initial_square.getPiece()).getHasMoved()) {
+				//make the king disappear	
+				
+				king_initial_square.setOccupied(false);
+				
+				if(InputValidator.canTheKingMoveToThatSquare(king_initial_square)) {
+				//there is an unmoved white king and it's not under check
+			 		king_initial_square.setOccupied(true);
+			 		king_initial_square.setPiece(new King(wantedColor));
+			 		
+			 		Square rook_initial_square = Game.getBoard().getSquare(0, 7);
+			 		
+					if(rook_initial_square.isOccupied() && rook_initial_square.getPiece().getClass() == Rook.class 
+						&& rook_initial_square.getPiece().getColor() == wantedColor) {
+						
+						if( ! ((Rook) rook_initial_square.getPiece()).getHasMoved()) {
+						//there is an unmoved white rook		
+							
+							
+							if(!Game.getBoard().getSquare(0, 4).isOccupied() && InputValidator.canTheKingMoveToThatSquare(Game.getBoard().getSquare(0, 4))) {
+								if(!Game.getBoard().getSquare(0, 5).isOccupied() && InputValidator.canTheKingMoveToThatSquare(Game.getBoard().getSquare(0, 5))){
+									if(!Game.getBoard().getSquare(0, 6).isOccupied()) {
+										
+										( (King) king_initial_square.getPiece()).setHasMoved();
+										( (Rook) rook_initial_square.getPiece()).setHasMoved();
+										
+										Game.getBoard().getSquare(0, 4).setOccupied(true);
+										Game.getBoard().getSquare(0, 4).setPiece(rook_initial_square.getPiece());
+										rook_initial_square.setOccupied(false);
+										
+										//startingsquare.setPiece(NULL);
+										
+										Game.getBoard().getSquare(0, 5).setOccupied(true);
+										Game.getBoard().getSquare(0, 5).setPiece(king_initial_square.getPiece());
+										king_initial_square.setOccupied(false);
+										//startingsquare.setPiece(NULL);
+										
+										Game.startingsquares.add(Game.getBoard().getSquare(0, 3));
+										Game.destinationsquares.add(Game.getBoard().getSquare(0, 5));
+										
+										Game.nextTurn();
+										return true;
+									}
+								}
+							}
+						}		
+					}	
+				 	} else {
+				 		//make the piece appear again if we can't castle
+				 		king_initial_square.setOccupied(true);
+				 		king_initial_square.setPiece(new King(wantedColor));
+				 	}
+				}
+			}
+		} else {
+			Square king_initial_square = Game.getBoard().getSquare(7, 3);
+			
+			if(king_initial_square.isOccupied() && king_initial_square.getPiece().getClass() == King.class && king_initial_square.getPiece().getColor() == wantedColor) {
+				if( ! ((King) king_initial_square.getPiece()).getHasMoved()) {
+				//make the king disappear	
+				
+				king_initial_square.setOccupied(false);
+				
+				if(InputValidator.canTheKingMoveToThatSquare(king_initial_square)) {
+				//there is an unmoved white king and it's not under check
+			 		king_initial_square.setOccupied(true);
+			 		king_initial_square.setPiece(new King(wantedColor));
+			 		
+			 		Square rook_initial_square = Game.getBoard().getSquare(7, 7);
+			 		
+					if(rook_initial_square.isOccupied() && rook_initial_square.getPiece().getClass() == Rook.class 
+						&& rook_initial_square.getPiece().getColor() == wantedColor) {
+						
+						if( ! ((Rook) rook_initial_square.getPiece()).getHasMoved()) {
+						//there is an unmoved white rook		
+							
+							
+							if(!Game.getBoard().getSquare(7, 4).isOccupied() && InputValidator.canTheKingMoveToThatSquare(Game.getBoard().getSquare(7, 4))) {
+								if(!Game.getBoard().getSquare(7, 5).isOccupied() && InputValidator.canTheKingMoveToThatSquare(Game.getBoard().getSquare(7, 5))){
+									if(!Game.getBoard().getSquare(7, 6).isOccupied()) {
+										
+										( (King) king_initial_square.getPiece()).setHasMoved();
+										( (Rook) rook_initial_square.getPiece()).setHasMoved();
+										
+										Game.getBoard().getSquare(7, 4).setOccupied(true);
+										Game.getBoard().getSquare(7, 4).setPiece(rook_initial_square.getPiece());
+										rook_initial_square.setOccupied(false);
+										
+										//startingsquare.setPiece(NULL);
+										
+										Game.getBoard().getSquare(7, 5).setOccupied(true);
+										Game.getBoard().getSquare(7, 5).setPiece(king_initial_square.getPiece());
+										king_initial_square.setOccupied(false);
+										//startingsquare.setPiece(NULL);
+										
+										Game.startingsquares.add(Game.getBoard().getSquare(7, 3));
+										Game.destinationsquares.add(Game.getBoard().getSquare(7, 5));
+										
+										Game.nextTurn();
+										return true;
+									}
+								}
+							}
+						}		
+					}	
+				 	} else {
+				 		//make the piece appear again if we can't castle
+				 		king_initial_square.setOccupied(true);
+				 		king_initial_square.setPiece(new King(wantedColor));
+				 	}
+			}
+		}
+	}	
+	 //can't castle
+	return false;
+	}
 	
 }
