@@ -2,6 +2,7 @@ package it.uniba.chess;
 
 import it.uniba.chess.pieces.Pawn;
 import it.uniba.chess.utils.ChessColor;
+import it.uniba.chess.utils.IllegalMoveException;
 
 public class Move {
 	
@@ -13,11 +14,11 @@ public class Move {
 		
 		if(Math.abs( finalsquare.getX() - initialsquare.getX() ) == 2){
 			//explicitly cast to Pawn to check for moved
-			if(  ! ((Pawn) initialsquare.getPiece()).hasMoved() ){
+			if( ! ((Pawn) initialsquare.getPiece()).getHasMoved() ){
 				finalsquare.setPiece(initialsquare.getPiece());
 				
 				//remember to set moved after moving the piece
-				( (Pawn) finalsquare.getPiece()).setMoved();
+				((Pawn) finalsquare.getPiece()).setHasMoved();
 				initialsquare.setPiece(null);
 				finalsquare.setOccupied(true);
 				initialsquare.setOccupied(false);
@@ -30,7 +31,7 @@ public class Move {
 		} else if (Math.abs( finalsquare.getX() -  initialsquare.getX() ) == 1) {
 			finalsquare.setPiece( initialsquare.getPiece());
 				//remember to set moved after moving the piece
-				( (Pawn) finalsquare.getPiece()).setMoved();
+				( (Pawn) finalsquare.getPiece()).setHasMoved();
 				initialsquare.setPiece(null);
 				finalsquare.setOccupied(true);
 				initialsquare.setOccupied(false);
@@ -48,6 +49,9 @@ public class Move {
 	}
 	
 	public static void pawnCapture(Square initialsquare, Square finalsquare, boolean enPassantFlag) throws IllegalMoveException {
+		if(initialsquare == null) 
+			throw new IllegalMoveException();
+		
 		try{
 			//if we can capture en-passant we are done
 			if(captureEnPassant(initialsquare, finalsquare)) {
@@ -63,7 +67,7 @@ public class Move {
 
 		//otherwise we check for a normal capture
 		if(initialsquare.getPiece().getClass() == Pawn.class) {
-			if(Math.abs(finalsquare.getY()-initialsquare.getX()) == 1) { 
+			if(Math.abs(finalsquare.getY()-initialsquare.getY()) == 1) { 
 				if(finalsquare.getX() > initialsquare.getX() && initialsquare.getPiece().getColor() == ChessColor.WHITE) {	
 					if(finalsquare.getPiece() != null && finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor())//&&!initialsquare.piece.pinned must be added in the future
 					{
@@ -145,6 +149,37 @@ public class Move {
 		}
 		
 		return false;
+	}
+	
+	public static void knightMoveOrCapture(Square startingsquare, Square finalsquare, boolean isCapture) throws IllegalMoveException {
+		if(startingsquare == null) 
+			throw new IllegalMoveException();
+		if(finalsquare.isOccupied()) {
+			if(finalsquare.getPiece().getColor() != Game.turn && isCapture) {
+				Game.captures.add(finalsquare.getPiece());
+				finalsquare.setOccupied(true);
+				finalsquare.setPiece(startingsquare.getPiece());
+				startingsquare.setOccupied(false);				
+				
+				Game.startingsquares.add(startingsquare);
+				Game.destinationsquares.add(finalsquare);
+				//startingsquare.setPiece(NULL);
+				return;
+			}
+		}
+		else {
+			if(!isCapture) {
+				finalsquare.setOccupied(true);
+				finalsquare.setPiece(startingsquare.getPiece());
+				startingsquare.setOccupied(false);
+				//startingsquare.setPiece(NULL);
+				
+				Game.startingsquares.add(startingsquare);
+				Game.destinationsquares.add(finalsquare);
+				return;
+			}
+		}
+		throw new IllegalMoveException();
 	}
 	
 }

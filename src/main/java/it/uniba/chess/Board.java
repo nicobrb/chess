@@ -3,6 +3,11 @@ package it.uniba.chess;
 import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
 
+/**
+ * Definisce ed istanzia una matrice 8x8 di oggetti di tipo Square, che rappresenterà la nostra scacchiera
+ *
+ * <<Entity>>
+ */
 public class Board{
 	public Square[][] chessboard;
 	
@@ -22,6 +27,7 @@ public class Board{
 	
 	public Square getSquare(int x, int y) throws IllegalMoveException {
 		if(x<0 || x>7 || y<0 || y>7) {
+			System.out.println("Error square: " + x + "," + y);
 			throw new IllegalMoveException();
 		}
 		
@@ -54,10 +60,10 @@ public class Board{
 		this.chessboard[valueRow][5] = new Square(valueRow, 5, new Bishop(c));
 		
 		//QUEEN
-		this.chessboard[valueRow][4] = new Square(valueRow, 3, new Queen(c));
+		this.chessboard[valueRow][4] = new Square(valueRow, 4, new Queen(c));
 		
 		//KING
-		this.chessboard[valueRow][3] = new Square(valueRow, 4, new King(c));
+		this.chessboard[valueRow][3] = new Square(valueRow, 3, new King(c));
 		
 		
 		//PAWNS

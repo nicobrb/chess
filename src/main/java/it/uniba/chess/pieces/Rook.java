@@ -2,28 +2,31 @@ package it.uniba.chess.pieces;
 
 import it.uniba.chess.utils.ChessColor;
 
-
-
+/**
+ * Rappresenta ed istanzia una torre di un determinato colore con il rispettivo codice unicode
+ *
+ * <<Entity>>
+ */
 public class Rook extends Piece{
 	
-	private boolean moved;
+	private boolean hasMoved;
 	
-	public Rook(ChessColor color) {
-		if(color == ChessColor.WHITE) {
+	public Rook(ChessColor colorPiece) {
+		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2656';
 		}
 		else{
 			unicode = '\u265c';
 		}
-			this.c = color;
-			moved = false;
+			this.colorPiece = colorPiece;
+			hasMoved = false;
 	}
 
 
-	public void setMoved() {
-		moved = true;
+	public void setHasMoved() {
+		this.hasMoved = true;
 	}
-	public boolean getMoved() {
-		return moved;
+	public boolean getHasMoved() {
+		return hasMoved;
 	}
 }
