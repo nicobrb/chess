@@ -19,7 +19,7 @@ public class Game{
 	public static GameStatus status;
 	
 	
-	public static ArrayList<Piece> captures =  new ArrayList<Piece>(30); //can't capture kings
+	public static ArrayList<Piece> captures =  new ArrayList<Piece>(32); //can't capture kings
 	
 	
 	//each semi-move adds to both this list respectively
