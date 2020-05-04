@@ -160,6 +160,28 @@ public class InputValidator {
 							}
 							break;
 						case "R":
+							if(isEnpassant_string.isEmpty() && startingRowOrColumn_string.isEmpty()) {
+								/*if((lastmove.equals("Rg1") ) || (lastmove.equals("Rg8"))){
+								
+									if(Move.shortCastle(Game.turn)) {
+										Game.printableMovesList.add(lastmove);
+										return;
+									}
+								} else if ( (lastmove.equals("Rc1")) || (lastmove.equals("Rc8")) ) {
+								
+									if(Move.longCastle(Game.turn)) {
+										Game.printableMovesList.add(lastmove);
+										return;
+									}
+								}*/
+								starting_square = isThereAKingAroundThisSquare(destination_square, Game.turn);
+								if(canTheKingMoveToThatSquare(destination_square)) {
+									Move.kingMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
+									Game.printableMovesList.add(lastmove);
+									break;
+								}
+							}
+							throw new IllegalMoveException();
 						case "":
 							if(startingRowOrColumn_string.isEmpty() && isCapture_string.isEmpty() && isEnpassant_string.isEmpty()){
 								//this is a pawn move
@@ -722,5 +744,48 @@ public class InputValidator {
 			else return crossSquare;
 			
 		}
+	}
+	
+	public static Square isThereAKingAroundThisSquare(Square destination_square, ChessColor wantedColor) throws IllegalMoveException{
+		
+
+        ArrayList<Square> squares_to_check = new ArrayList<Square>();
+        offsetMovement(destination_square, +1, 0, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, +1, -1, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, 0, -1, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, -1, -1, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, -1, 0, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, -1, +1, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, 0, +1, King.class, wantedColor, squares_to_check);
+        offsetMovement(destination_square, +1, +1, King.class, wantedColor, squares_to_check);
+
+        if(squares_to_check.size() > 1) {
+        	
+            throw new IllegalMoveException();
+        }
+        else if(squares_to_check.size() == 0) {
+            return null;
+        }
+        else {
+            return squares_to_check.get(0);
+        }
+ }
+	
+	public static boolean canTheKingMoveToThatSquare(Square finalsquare) throws IllegalMoveException {
+		if(finalsquare.isOccupied() && finalsquare.getPiece().getColor() == Game.turn) {
+
+			throw new IllegalMoveException();
+		}
+			
+		if(checkFlower(finalsquare,-1,-1,Knight.class, Game.getEnemyTurn()) == null && queenIntersectionControl(finalsquare, -1, -1, Queen.class, Game.getEnemyTurn()) == null 
+			&& plusMovement(finalsquare, -1,-1,Rook.class, Game.getEnemyTurn()) == null && checkCross(finalsquare,-1,-1, Bishop.class, Game.getEnemyTurn()) == null
+			&& checkPawn_Capture(finalsquare, -1, Pawn.class, Game.getEnemyTurn()) == null && isThereAKingAroundThisSquare(finalsquare, Game.getEnemyTurn()) == null){
+
+				return true;
+		}
+		else{
+		
+			return false;
+		}	
 	}
 }

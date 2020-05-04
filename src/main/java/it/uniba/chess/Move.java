@@ -1,5 +1,6 @@
 package it.uniba.chess;
 
+import it.uniba.chess.pieces.King;
 import it.uniba.chess.pieces.Pawn;
 import it.uniba.chess.pieces.Rook;
 import it.uniba.chess.utils.ChessColor;
@@ -270,6 +271,42 @@ public class Move {
 				finalsquare.setOccupied(true);
 				finalsquare.setPiece(startingsquare.getPiece());
 				startingsquare.setOccupied(false);
+				//startingsquare.setPiece(NULL);
+				
+				Game.startingsquares.add(startingsquare);
+				Game.destinationsquares.add(finalsquare);
+				return;
+			}
+		}
+		throw new IllegalMoveException();
+	}
+	
+public static void kingMoveOrCapture(Square startingsquare, Square finalsquare, boolean isCapture) throws IllegalMoveException {
+		
+		if(startingsquare == null) 
+			throw new IllegalMoveException();
+		
+		if(finalsquare.isOccupied()) {
+			if(finalsquare.getPiece().getColor() != Game.turn && isCapture) {
+				
+				Game.captures.add(finalsquare.getPiece());
+				finalsquare.setOccupied(true);
+				finalsquare.setPiece(startingsquare.getPiece());
+				startingsquare.setOccupied(false);
+				( (King) finalsquare.getPiece()).setHasMoved();
+			
+				Game.startingsquares.add(startingsquare);
+				Game.destinationsquares.add(finalsquare);
+				//startingsquare.setPiece(NULL);
+				return;
+			}
+		}
+		else {
+			if(!isCapture) {
+				finalsquare.setOccupied(true);
+				finalsquare.setPiece(startingsquare.getPiece());
+				startingsquare.setOccupied(false);
+				( (King) finalsquare.getPiece()).setHasMoved();
 				//startingsquare.setPiece(NULL);
 				
 				Game.startingsquares.add(startingsquare);
