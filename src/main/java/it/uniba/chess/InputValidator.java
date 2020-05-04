@@ -63,7 +63,12 @@ public class InputValidator {
 		case "0-0-0":
 			//fallthrough
 		case "O-O-O":
-			//arrocco lungo
+			if(Move.longCastle(Game.turn)) {
+				Game.printableMovesList.add(command);
+				return;
+			} else {
+				throw new IllegalMoveException();
+			}
 		default:
 			if(Game.status == GameStatus.ACTIVE) {
 				/*full escape sequence 
@@ -167,13 +172,13 @@ public class InputValidator {
 										Game.printableMovesList.add(lastmove);
 										return;
 									}
-								} else if ( (lastmove.equals("Rc1")) || (lastmove.equals("Rc8")) ) {
+								} else */if ( (lastmove.equals("Rc1")) || (lastmove.equals("Rc8")) ) {
 								
 									if(Move.longCastle(Game.turn)) {
 										Game.printableMovesList.add(lastmove);
 										return;
 									}
-								}*/
+								}
 								starting_square = isThereAKingAroundThisSquare(destination_square, Game.turn);
 								if(canTheKingMoveToThatSquare(destination_square)) {
 									Move.kingMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
