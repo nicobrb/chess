@@ -59,7 +59,12 @@ public class InputValidator {
 		case "0-0":
 			//fallthrough
 		case "O-O":
-			//arrocco corto
+			if(Move.shortCastle(Game.turn)) {
+				Game.printableMovesList.add(command);
+				return;
+			} else {
+				throw new IllegalMoveException();
+			}
 		case "0-0-0":
 			//fallthrough
 		case "O-O-O":
@@ -166,13 +171,13 @@ public class InputValidator {
 							break;
 						case "R":
 							if(isEnpassant_string.isEmpty() && startingRowOrColumn_string.isEmpty()) {
-								/*if((lastmove.equals("Rg1") ) || (lastmove.equals("Rg8"))){
+								if((lastmove.equals("Rg1") ) || (lastmove.equals("Rg8"))){
 								
 									if(Move.shortCastle(Game.turn)) {
 										Game.printableMovesList.add(lastmove);
 										return;
 									}
-								} else */if ( (lastmove.equals("Rc1")) || (lastmove.equals("Rc8")) ) {
+								} else if ( (lastmove.equals("Rc1")) || (lastmove.equals("Rc8")) ) {
 								
 									if(Move.longCastle(Game.turn)) {
 										Game.printableMovesList.add(lastmove);
@@ -283,10 +288,11 @@ public class InputValidator {
 			*/
 			throw illegalmove;
 		}
-	}
+	}	
 	
 	private static Square checkPawn_Capture(Square destination_square, int startingY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
 		ArrayList<Square> squares_to_check = new ArrayList<Square>();
+		
 		if(startingY != -1){
 			if(Math.abs(destination_square.getY() - startingY) == 1){
 				//we have a true pawn capture
@@ -299,9 +305,11 @@ public class InputValidator {
 		}else{
 			//we are using it to check if king is in check
 			if(wantedColor == ChessColor.WHITE){
+				
 				offsetMovement(destination_square, -1, +1, piecetype, wantedColor, squares_to_check);
 				offsetMovement(destination_square, -1, -1, piecetype, wantedColor, squares_to_check);
 			} else {
+				
 				offsetMovement(destination_square, +1, +1, piecetype, wantedColor, squares_to_check);
 				offsetMovement(destination_square, +1, -1, piecetype, wantedColor, squares_to_check);
 			}
@@ -331,208 +339,8 @@ public class InputValidator {
 		return "";
 	}
 	
-	private static void offsetMovement(Square destination_square, int x_offset, int y_offset, Class<? extends Piece> piecetype, ChessColor wantedColor, ArrayList<Square> squares_to_check) throws IllegalMoveException{
-		
-		
-		if( (destination_square.getX() + x_offset) >=0 && (destination_square.getX() + x_offset) < 8 
-			&& (destination_square.getY() + y_offset) >=0 && (destination_square.getY() + y_offset) < 8){
-
-			Square temp_square = Game.getBoard().getSquare(destination_square.getX() + x_offset, destination_square.getY() + y_offset);
-			if(temp_square.isOccupied()){
-				if(temp_square.getPiece().getClass() == piecetype && temp_square.getPiece().getColor() == wantedColor){
-					squares_to_check.add(temp_square);
-				}
-			}
-		}
-	}
-	
-	public static Square checkFlower(Square destination_square, int startX, int startY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		ArrayList<Square> squares_to_check = new ArrayList<Square>();
-		
-		if(startX != -1) {
-			switch(Math.abs(startX-destination_square.getX())) { 
-				case 1:
-					
-					offsetMovement(destination_square, startX-destination_square.getX(), +2, piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, startX-destination_square.getX(), -2, piecetype, wantedColor, squares_to_check);
-					if(squares_to_check.size() != 1) {
-						throw new IllegalMoveException();
-					}
-					else {
-						return squares_to_check.get(0);
-					}
-				case 2:
-					
-					offsetMovement(destination_square, startX-destination_square.getX(), +1, piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, startX-destination_square.getX(), -1, piecetype, wantedColor, squares_to_check);
-					if(squares_to_check.size() != 1) {
-						throw new IllegalMoveException();
-					}
-					else {
-						return squares_to_check.get(0);
-					}
-			}
-		}
-		if(startY != -1) {
-			switch(Math.abs(destination_square.getY() - startY)) { 
-				case 1:
-					
-					offsetMovement(destination_square, +2, /*!!*/ startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, -2, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
-					if(squares_to_check.size() != 1) {
-						throw new IllegalMoveException();
-					}
-					else {
-						return squares_to_check.get(0);
-					}
-				case 2:
-					
-					offsetMovement(destination_square, +1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, -1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
-					if(squares_to_check.size() != 1) {
-						throw new IllegalMoveException();
-					}
-					else {
-						return squares_to_check.get(0);
-					}
-			}
-		}
-		
-		offsetMovement(destination_square, +2, +1, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, +2, -1, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, +1, +2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, +1, -2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -1, +2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -1, -2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -2, +1, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -2, -1, piecetype, wantedColor, squares_to_check);
-
-		if(squares_to_check.size() > 1) {
-			throw new IllegalMoveException();
-		}
-		else if(squares_to_check.size() == 0) {
-			return null;
-		}
-		else {
-			return squares_to_check.get(0);
-		}
-	}
-	
-	private static void diagonalUpperRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		int i = 1;
-		Square temp_square;
-		while(finalsquare.getX()+i < 8 && finalsquare.getY()+i < 8) {
-			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()+i);
-			if(temp_square.isOccupied()) {
-				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
-					checksquares.add(temp_square);
-					return;
-				}
-				else {
-					return;
-				}
-			}
-			++i;
-		}
-	}
-	
-	private static void diagonalLowerRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		int i = 1;
-		Square temp_square;
-		while(finalsquare.getX()-i >= 0 && finalsquare.getY()+i < 8) {
-			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()+i);
-			if(temp_square.isOccupied()) {
-				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
-					checksquares.add(temp_square);
-					return;
-				}
-				else {
-					return;
-				}
-			}
-			++i;
-		}
-	}
-	
-	private static void diagonalUpperLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		int i = 1;
-		Square temp_square;
-		while(finalsquare.getX()+i < 8 && finalsquare.getY()-i >= 0) {
-			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()-i);
-			if(temp_square.isOccupied()) {
-				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
-					checksquares.add(temp_square);
-					return;
-				}
-				else {
-					return;
-				}
-			}
-			++i;
-		}
-	}
-	
-	private static void diagonalLowerLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		int i = 1;
-		Square temp_square;
-		while(finalsquare.getX()-i >= 0 && finalsquare.getY()-i >= 0) {
-			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()-i);
-			if(temp_square.isOccupied()) {
-				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
-					checksquares.add(temp_square);
-					return;
-				}
-				else {
-					return;
-				}
-			}
-			++i;
-		}
-	}
-	
-	private static Square checkCross(Square finalsquare, int startingX, int startingY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		
-		
-		ArrayList<Square> squares_to_check = new ArrayList<Square>();
-		diagonalUpperRight(finalsquare, squares_to_check, piecetype, wantedColor);
-		if(squares_to_check.size() == 0){
-			diagonalLowerRight(finalsquare, squares_to_check, piecetype, wantedColor);
-			if(squares_to_check.size() == 0){
-				diagonalLowerLeft(finalsquare, squares_to_check, piecetype, wantedColor);
-				if(squares_to_check.size() == 0){
-					diagonalUpperLeft(finalsquare, squares_to_check, piecetype, wantedColor);
-				}
-			}
-		}
-		if(squares_to_check.size() > 1){
-				throw new IllegalMoveException();
-		}
-		else if(squares_to_check.size() == 0) {
-			return null;
-		}
-		else {
-        		if(startingX != -1) {
-        		    if(startingX == squares_to_check.get(0).getX()) {
-        			return squares_to_check.get(0);
-        		    }
-        		    else {
-        			throw new IllegalMoveException();
-        		    }
-        		}
-        		if(startingY != -1) {
-        		    if(startingY == squares_to_check.get(0).getY()) {
-        			return squares_to_check.get(0);
-        		    }
-        		    else {
-        			throw new IllegalMoveException();
-        		    }
-        		}
-        		return squares_to_check.get(0);
-		}
-	}
-	
 	private static Square plusMovement(Square finalsquare, int startingX, int startingY, Class<? extends Piece> pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
-		
+	
 		Square onlyPieceFound = null;
 		int counter = 0;
 		if(finalsquare.isOccupied() && finalsquare.getPiece().getColor() == wantedColor && wantedColor == Game.turn) {
@@ -731,8 +539,119 @@ public class InputValidator {
 	      }
 	      else if(counter == 0)
 	        return null;
-	      
 	      return onlyPieceFound;   
+	}
+	
+	private static void diagonalUpperRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()+i < 8 && finalsquare.getY()+i < 8) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()+i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static void diagonalLowerRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()-i >= 0 && finalsquare.getY()+i < 8) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()+i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static void diagonalUpperLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()+i < 8 && finalsquare.getY()-i >= 0) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()-i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static void diagonalLowerLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()-i >= 0 && finalsquare.getY()-i >= 0) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()-i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static Square checkCross(Square finalsquare, int startingX, int startingY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+
+		ArrayList<Square> squares_to_check = new ArrayList<Square>();
+		diagonalUpperRight(finalsquare, squares_to_check, piecetype, wantedColor);
+		if(squares_to_check.size() == 0){
+			diagonalLowerRight(finalsquare, squares_to_check, piecetype, wantedColor);
+			if(squares_to_check.size() == 0){
+				diagonalLowerLeft(finalsquare, squares_to_check, piecetype, wantedColor);
+				if(squares_to_check.size() == 0){
+					diagonalUpperLeft(finalsquare, squares_to_check, piecetype, wantedColor);
+				}
+			}
+		}
+		if(squares_to_check.size() > 1){
+				throw new IllegalMoveException();
+		}
+		else if(squares_to_check.size() == 0) {
+			return null;
+		}
+		else {
+        		if(startingX != -1) {
+        		    if(startingX == squares_to_check.get(0).getX()) {
+        			return squares_to_check.get(0);
+        		    }
+        		    else {
+        			throw new IllegalMoveException();
+        		    }
+        		}
+        		if(startingY != -1) {
+        		    if(startingY == squares_to_check.get(0).getY()) {
+        			return squares_to_check.get(0);
+        		    }
+        		    else {
+        			throw new IllegalMoveException();
+        		    }
+        		}
+        		return squares_to_check.get(0);
+		}
 	}
 	
 	private static Square queenIntersectionControl(Square finalsquare, int startX, int startY, Class<? extends Piece> pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
@@ -751,31 +670,118 @@ public class InputValidator {
 		}
 	}
 	
-	public static Square isThereAKingAroundThisSquare(Square destination_square, ChessColor wantedColor) throws IllegalMoveException{
+	private static void offsetMovement(Square destination_square, int x_offset, int y_offset, Class<? extends Piece> piecetype, ChessColor wantedColor, ArrayList<Square> squares_to_check) throws IllegalMoveException{
 		
+		
+		if( (destination_square.getX() + x_offset) >=0 && (destination_square.getX() + x_offset) < 8 
+			&& (destination_square.getY() + y_offset) >=0 && (destination_square.getY() + y_offset) < 8){
 
-        ArrayList<Square> squares_to_check = new ArrayList<Square>();
-        offsetMovement(destination_square, +1, 0, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, +1, -1, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, 0, -1, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, -1, -1, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, -1, 0, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, -1, +1, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, 0, +1, King.class, wantedColor, squares_to_check);
-        offsetMovement(destination_square, +1, +1, King.class, wantedColor, squares_to_check);
-
-        if(squares_to_check.size() > 1) {
-        	
-            throw new IllegalMoveException();
-        }
-        else if(squares_to_check.size() == 0) {
-            return null;
-        }
-        else {
-            return squares_to_check.get(0);
-        }
- }
+			Square temp_square = Game.getBoard().getSquare(destination_square.getX() + x_offset, destination_square.getY() + y_offset);
+			if(temp_square.isOccupied()){
+				if(temp_square.getPiece().getClass() == piecetype && temp_square.getPiece().getColor() == wantedColor){
+					squares_to_check.add(temp_square);
+				}
+			}
+		}
+	}
 	
+	public static Square checkFlower(Square destination_square, int startX, int startY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		ArrayList<Square> squares_to_check = new ArrayList<Square>();
+		
+		if(startX != -1) {
+			switch(Math.abs(startX-destination_square.getX())) { 
+				case 1:
+					
+					offsetMovement(destination_square, startX-destination_square.getX(), +2, piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, startX-destination_square.getX(), -2, piecetype, wantedColor, squares_to_check);
+					if(squares_to_check.size() != 1) {
+						throw new IllegalMoveException();
+					}
+					else {
+						return squares_to_check.get(0);
+					}
+				case 2:
+					
+					offsetMovement(destination_square, startX-destination_square.getX(), +1, piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, startX-destination_square.getX(), -1, piecetype, wantedColor, squares_to_check);
+					if(squares_to_check.size() != 1) {
+						throw new IllegalMoveException();
+					}
+					else {
+						return squares_to_check.get(0);
+					}
+			}
+		}
+		if(startY != -1) {
+			switch(Math.abs(destination_square.getY() - startY)) { 
+				case 1:
+					
+					offsetMovement(destination_square, +2, /*!!*/ startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, -2, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					if(squares_to_check.size() != 1) {
+						throw new IllegalMoveException();
+					}
+					else {
+						return squares_to_check.get(0);
+					}
+				case 2:
+					
+					offsetMovement(destination_square, +1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, -1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					if(squares_to_check.size() != 1) {
+						throw new IllegalMoveException();
+					}
+					else {
+						return squares_to_check.get(0);
+					}
+			}
+		}
+		
+		offsetMovement(destination_square, +2, +1, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, +2, -1, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, +1, +2, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, +1, -2, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, -1, +2, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, -1, -2, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, -2, +1, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, -2, -1, piecetype, wantedColor, squares_to_check);
+
+		if(squares_to_check.size() > 1) {
+			throw new IllegalMoveException();
+		}
+		else if(squares_to_check.size() == 0) {
+			return null;
+		}
+		else {
+			return squares_to_check.get(0);
+		}
+	}
+	
+	public static Square isThereAKingAroundThisSquare(Square destination_square, ChessColor wantedColor) throws IllegalMoveException{
+	
+
+	        ArrayList<Square> squares_to_check = new ArrayList<Square>();
+	        offsetMovement(destination_square, +1, 0, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, +1, -1, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, 0, -1, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, -1, -1, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, -1, 0, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, -1, +1, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, 0, +1, King.class, wantedColor, squares_to_check);
+	        offsetMovement(destination_square, +1, +1, King.class, wantedColor, squares_to_check);
+
+	        if(squares_to_check.size() > 1) {
+	        	
+	            throw new IllegalMoveException();
+	        }
+	        else if(squares_to_check.size() == 0) {
+	            return null;
+	        }
+	        else {
+	            return squares_to_check.get(0);
+	        }
+	 }
+
 	public static boolean canTheKingMoveToThatSquare(Square finalsquare) throws IllegalMoveException {
 		if(finalsquare.isOccupied() && finalsquare.getPiece().getColor() == Game.turn) {
 
@@ -793,4 +799,5 @@ public class InputValidator {
 			return false;
 		}	
 	}
+
 }
