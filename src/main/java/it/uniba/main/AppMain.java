@@ -6,8 +6,8 @@ import java.io.UnsupportedEncodingException;
 
 import java.util.Scanner;
 
-import it.uniba.chess.IllegalMoveException;
-import it.uniba.chess.Parser;
+import it.uniba.chess.InputValidator;
+import it.uniba.chess.utils.IllegalMoveException;
 
 
 /**
@@ -43,7 +43,7 @@ public final class AppMain {
 		do {
 			command = sc.nextLine();
 			try {
-			Parser.parseCommand(command.toLowerCase());
+			InputValidator.parseCommand(command.toLowerCase());
 			} catch(IllegalMoveException ex) {
 				System.out.println(ex.getMessage());
 			}

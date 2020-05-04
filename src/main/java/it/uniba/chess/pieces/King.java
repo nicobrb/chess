@@ -1,31 +1,32 @@
 package it.uniba.chess.pieces;		
 
 import it.uniba.chess.utils.ChessColor;
-import it.uniba.chess.Board;
 
+/**
+ * Rappresenta ed istanzia un re di un determinato colore con il rispettivo codice unicode
+ *
+ * <<Entity>>
+ */
 
 public class King extends Piece{
 	
-	private boolean moved;
+	private boolean hasMoved;
 	
-	public King(ChessColor color) {
-		if(color == ChessColor.WHITE) {
+	public King(ChessColor colorPiece) {
+		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2654';
 		}
 		else{
 			unicode = '\u265a';
 		}
-			this.c = color;
-			moved = false;
+		this.colorPiece = colorPiece;
+		hasMoved = false;
 	}
 
-	public void setMoved() {
-		moved = true;
+	public void setHasMoved() {
+		this.hasMoved = true;
 	}
-	public boolean getMoved() {
-		return moved;
+	public boolean getHasMoved() {
+		return this.hasMoved;
 	}
 }
-
-// TODO canCastle(Board): a method that verifies if the king can castle (short or long castling).
-// Not necessary for the current Sprint.

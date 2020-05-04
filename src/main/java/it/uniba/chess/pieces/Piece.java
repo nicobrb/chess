@@ -2,16 +2,21 @@ package it.uniba.chess.pieces;
 
 import it.uniba.chess.utils.ChessColor;
 
+/**
+ * Definisce le caratteristiche comuni a tutti i pezzi
+ *
+ * <<Entity>>
+ */
 public abstract class Piece {
-	ChessColor c;
+	ChessColor colorPiece;
 	char unicode; //unicode of the piece
 	
 	public ChessColor getColor() {
-		return this.c;
+		return this.colorPiece;
 	}
 	
-	public void setColor(ChessColor c) {
-		this.c  = c;
+	public void setColor(ChessColor colorPiece) {
+		this.colorPiece  = colorPiece;
 	}
 	
 	public char getUnicode() {
@@ -21,4 +26,5 @@ public abstract class Piece {
 	public char setUnicode() {
 		return this.unicode;
 	}
+	
 }

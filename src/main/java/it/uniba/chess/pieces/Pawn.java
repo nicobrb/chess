@@ -2,13 +2,18 @@ package it.uniba.chess.pieces;
 
 import it.uniba.chess.utils.*;
 
+/**
+ * Rappresenta ed istanzia un pedone di un determinato colore con il rispettivo codice unicode
+ * 
+ * <<Entity>>
+ */
 public class Pawn extends Piece{
-	boolean moved;
+	boolean hasMoved;
 	
-	public Pawn(ChessColor c){
-		this.c = c;
-		this.moved = false;
-		if (c == ChessColor.WHITE) {
+	public Pawn(ChessColor colorPiece){
+		this.colorPiece= colorPiece;
+		this.hasMoved = false;
+		if (colorPiece == ChessColor.WHITE) {
 			unicode = '\u2659';
 		} else {
 			unicode = '\u265F';
@@ -19,12 +24,12 @@ public class Pawn extends Piece{
 		return false;
 	}
 	
-	public void setMoved() {
-		moved=true;
+	public void setHasMoved() {
+		this.hasMoved=true;
 	}
 	
-	public boolean hasMoved() {
-		return moved;
+	public boolean getHasMoved() {
+		return this.hasMoved;
 	}
 	
 }

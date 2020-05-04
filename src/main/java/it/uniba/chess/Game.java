@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
 
-
-
+/**
+ * Mantiene lo stato della partita corrente.
+ *
+ * <<Control>>
+ */
 public class Game{
 	
 	private static Board board;
@@ -17,6 +20,7 @@ public class Game{
 	
 	
 	public static ArrayList<Piece> captures =  new ArrayList<Piece>(30); //can't capture kings
+	
 	
 	//each semi-move adds to both this list respectively
 	public static ArrayList<Square> startingsquares = new ArrayList<Square>();
@@ -117,5 +121,9 @@ public class Game{
 		} else {
 			turn = ChessColor.WHITE;
 		}
+	}
+	
+	public static ChessColor getEnemyTurn(){
+	    return Game.turn == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE; 
 	}
 }

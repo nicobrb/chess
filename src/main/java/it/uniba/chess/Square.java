@@ -2,6 +2,13 @@ package it.uniba.chess;
 
 import it.uniba.chess.pieces.*;
 
+/**
+ * Definisce lo stato di una singola casa nella scacchiera. In particolare:
+ * 	- Indica se è occupato o meno e, in caso positivo, da quale pezzo;
+ *	- Contiene le proprie coordinate all'interno della scacchiera.
+ *
+ * <<Entity>>
+ */
 public class Square {
 		
 	private Piece piece;

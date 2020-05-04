@@ -1,4 +1,4 @@
-package it.uniba.chess;
+package it.uniba.chess.utils;
 
 public class IllegalMoveException extends Exception {	
 
