@@ -126,6 +126,16 @@ public class InputValidator {
 							}
 							break;
 						case "A":
+							if(isEnpassant_string.isEmpty()) {
+							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
+							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+							    starting_square = checkCross(destination_square, startRow, startColumn, Bishop.class, Game.turn);
+							    Move.bishopMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
+							    Game.printableMovesList.add(lastmove);
+							} else {
+								throw new IllegalMoveException();
+							}
+							break;
 						case "T":
 						case "D":
 						case "R":
@@ -357,6 +367,119 @@ public class InputValidator {
 		}
 		else {
 			return squares_to_check.get(0);
+		}
+	}
+	
+	private static void diagonalUpperRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()+i < 8 && finalsquare.getY()+i < 8) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()+i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static void diagonalLowerRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()-i >= 0 && finalsquare.getY()+i < 8) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()+i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static void diagonalUpperLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()+i < 8 && finalsquare.getY()-i >= 0) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()-i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static void diagonalLowerLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		int i = 1;
+		Square temp_square;
+		while(finalsquare.getX()-i >= 0 && finalsquare.getY()-i >= 0) {
+			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()-i);
+			if(temp_square.isOccupied()) {
+				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
+					checksquares.add(temp_square);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			++i;
+		}
+	}
+	
+	private static Square checkCross(Square finalsquare, int startingX, int startingY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
+		
+		
+		ArrayList<Square> squares_to_check = new ArrayList<Square>();
+		diagonalUpperRight(finalsquare, squares_to_check, piecetype, wantedColor);
+		if(squares_to_check.size() == 0){
+			diagonalLowerRight(finalsquare, squares_to_check, piecetype, wantedColor);
+			if(squares_to_check.size() == 0){
+				diagonalLowerLeft(finalsquare, squares_to_check, piecetype, wantedColor);
+				if(squares_to_check.size() == 0){
+					diagonalUpperLeft(finalsquare, squares_to_check, piecetype, wantedColor);
+				}
+			}
+		}
+		if(squares_to_check.size() > 1){
+				throw new IllegalMoveException();
+		}
+		else if(squares_to_check.size() == 0) {
+			return null;
+		}
+		else {
+        		if(startingX != -1) {
+        		    if(startingX == squares_to_check.get(0).getX()) {
+        			return squares_to_check.get(0);
+        		    }
+        		    else {
+        			throw new IllegalMoveException();
+        		    }
+        		}
+        		if(startingY != -1) {
+        		    if(startingY == squares_to_check.get(0).getY()) {
+        			return squares_to_check.get(0);
+        		    }
+        		    else {
+        			throw new IllegalMoveException();
+        		    }
+        		}
+        		return squares_to_check.get(0);
 		}
 	}
 }
