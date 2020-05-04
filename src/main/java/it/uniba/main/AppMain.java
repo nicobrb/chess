@@ -14,6 +14,8 @@ import it.uniba.chess.utils.IllegalMoveException;
  * The main class for the project. It must be customized to meet the project
  * assignment specifications.
  * 
+ * <<Boundary>>
+ * 
  * <b>DO NOT RENAME</b>
  */
 public final class AppMain {
@@ -43,7 +45,7 @@ public final class AppMain {
 		do {
 			command = sc.nextLine();
 			try {
-			InputValidator.parseCommand(command.toLowerCase());
+			InputValidator.parseCommand(command.trim());
 			} catch(IllegalMoveException ex) {
 				System.out.println(ex.getMessage());
 			}
