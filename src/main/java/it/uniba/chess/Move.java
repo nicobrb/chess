@@ -249,4 +249,35 @@ public class Move {
 		throw new IllegalMoveException();
 	}
 	
+	public static void queenMoveOrCapture(Square startingsquare, Square finalsquare, boolean isCapture) throws IllegalMoveException {
+		if(startingsquare == null) 
+			throw new IllegalMoveException();
+		if(finalsquare.isOccupied()) {
+			if(finalsquare.getPiece().getColor() != Game.turn && isCapture) {
+				Game.captures.add(finalsquare.getPiece());
+				finalsquare.setOccupied(true);
+				finalsquare.setPiece(startingsquare.getPiece());
+				startingsquare.setOccupied(false);
+				//startingsquare.setPiece(NULL);
+				
+				Game.startingsquares.add(startingsquare);
+				Game.destinationsquares.add(finalsquare);
+				return;
+			}
+		}
+		else {
+			if(!isCapture) {
+				finalsquare.setOccupied(true);
+				finalsquare.setPiece(startingsquare.getPiece());
+				startingsquare.setOccupied(false);
+				//startingsquare.setPiece(NULL);
+				
+				Game.startingsquares.add(startingsquare);
+				Game.destinationsquares.add(finalsquare);
+				return;
+			}
+		}
+		throw new IllegalMoveException();
+	}
+	
 }
