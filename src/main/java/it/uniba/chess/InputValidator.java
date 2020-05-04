@@ -59,21 +59,29 @@ public class InputValidator {
 		case "0-0":
 			//fallthrough
 		case "O-O":
-			if(Move.shortCastle(Game.turn)) {
-				Game.printableMovesList.add(command);
-				return;
-			} else {
-				throw new IllegalMoveException();
-			}
+			if(Game.getStatus() == GameStatus.ACTIVE)
+				if(Move.shortCastle(Game.turn)) {
+					Game.printableMovesList.add(command);
+					return;
+				} else {
+					throw new IllegalMoveException();
+				}
+			else
+				System.out.println("Gioco non ancora avviato.");
+			return;
 		case "0-0-0":
 			//fallthrough
 		case "O-O-O":
-			if(Move.longCastle(Game.turn)) {
-				Game.printableMovesList.add(command);
-				return;
-			} else {
-				throw new IllegalMoveException();
-			}
+			if(Game.getStatus() == GameStatus.ACTIVE)
+				if(Move.longCastle(Game.turn)) {
+					Game.printableMovesList.add(command);
+					return;
+				} else {
+					throw new IllegalMoveException();
+				}
+			else
+				System.out.println("Gioco non ancora avviato.");
+			return;
 		default:
 			if(Game.status == GameStatus.ACTIVE) {
 				/*full escape sequence 
