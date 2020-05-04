@@ -137,6 +137,17 @@ public class InputValidator {
 							}
 							break;
 						case "T":
+							if(isEnpassant_string.isEmpty()) {
+								//if we have an empty row string, we return -1 as control;
+								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+								starting_square = plusMovement(destination_square, startRow, startColumn, Rook.class, Game.turn);
+								Move.rookMoveOrCapture(starting_square,destination_square, !isCapture_string.isEmpty());
+								Game.printableMovesList.add(lastmove);
+							} else {
+								throw new IllegalMoveException();
+							}
+							break;
 						case "D":
 						case "R":
 						case "":
@@ -481,5 +492,209 @@ public class InputValidator {
         		}
         		return squares_to_check.get(0);
 		}
+	}
+	
+	private static Square plusMovement(Square finalsquare, int startingX, int startingY, Class<? extends Piece> pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
+		
+		Square onlyPieceFound = null;
+		int counter = 0;
+		if(finalsquare.isOccupied() && finalsquare.getPiece().getColor() == wantedColor && wantedColor == Game.turn) {
+			throw new IllegalMoveException();
+		}
+		
+		if(startingX != -1 && startingX != finalsquare.getX() &&  Game.getBoard().getSquare(startingX, finalsquare.getY()).isOccupied()) {
+			
+			if(Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getClass() == pieceClassToSearch &&
+			Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getColor() == wantedColor ) {
+				if(finalsquare.getX() > startingX) {
+					for(int i = finalsquare.getX()-1; i > startingX; --i) {
+						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
+							throw new IllegalMoveException();
+						}
+					}	
+				}
+				else if(finalsquare.getX() < startingX) {
+					for(int i = finalsquare.getX()+1; i < startingX; ++i) {
+						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
+							throw new IllegalMoveException();
+						}
+					}	
+				}
+				return onlyPieceFound = Game.getBoard().getSquare(startingX, finalsquare.getY());
+			}
+			else throw new IllegalMoveException();
+			
+		}
+		else if(startingX != -1 && startingX == finalsquare.getX()) {
+			for(int i = finalsquare.getY()+1; i<=7; ++i) {
+				if(Game.getBoard().getSquare(startingX, i).isOccupied()) {
+					if(Game.getBoard().getSquare(startingX, i).getPiece().getClass() == pieceClassToSearch
+					&& Game.getBoard().getSquare(startingX, i).getPiece().getColor() == wantedColor) {
+						counter++;
+						onlyPieceFound = Game.getBoard().getSquare(startingX, i);
+						break;
+					}
+				}
+			}
+			for(int i = finalsquare.getY()-1; i >=0; --i){
+				if(Game.getBoard().getSquare(startingX, i).isOccupied()) {
+					if(Game.getBoard().getSquare(startingX, i).getPiece().getClass() == pieceClassToSearch
+					&& Game.getBoard().getSquare(startingX, i).getPiece().getColor() == wantedColor) {
+						counter++;
+						onlyPieceFound = Game.getBoard().getSquare(startingX, i);
+						break;
+					}
+					else {
+						break;
+					}
+				}
+			}
+			if(counter > 1) {
+				throw new IllegalMoveException();
+			}
+			else if(counter == 0)
+				return null;
+			
+			return onlyPieceFound;		
+		}
+		if(startingY != -1 && startingY != finalsquare.getY() &&  Game.getBoard().getSquare(finalsquare.getX(), startingY).isOccupied()) {
+			
+			if(Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getClass() == pieceClassToSearch &&
+			Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getColor() == wantedColor ) {
+				if(finalsquare.getY() > startingY) {
+					for(int i = finalsquare.getY()-1; i > startingY; --i) {
+						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
+							throw new IllegalMoveException();
+						}
+					}	
+				}
+				else if(finalsquare.getY() < startingY) {
+					for(int i = finalsquare.getY()+1; i < startingY; ++i) {
+						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
+							throw new IllegalMoveException();
+						}
+					}	
+				}
+				return onlyPieceFound = Game.getBoard().getSquare(finalsquare.getX(), startingY);
+			}
+			else throw new IllegalMoveException();
+			
+		}
+		else if(startingY != -1 && startingY == finalsquare.getY()){
+			for(int i = finalsquare.getX()+1; i <=7; ++i) {
+				if(Game.getBoard().getSquare(i, startingY).isOccupied()) {
+						if(Game.getBoard().getSquare(i,startingY).getPiece().getClass() == pieceClassToSearch
+						&& Game.getBoard().getSquare(i, startingY).getPiece().getColor() == wantedColor) {
+							counter++;
+							onlyPieceFound = Game.getBoard().getSquare(i, startingY);
+							break;
+						}
+						else {
+							break;
+						}
+					}
+			}
+		
+			for(int i = finalsquare.getX()-1; i >=0; --i){
+					if(Game.getBoard().getSquare(i, startingY).isOccupied()) {
+						if(Game.getBoard().getSquare(i, startingY).getPiece().getClass() == pieceClassToSearch
+						&& Game.getBoard().getSquare(i, startingY).getPiece().getColor() == wantedColor) {
+							counter++;
+							onlyPieceFound = Game.getBoard().getSquare(i, startingY);
+							break;
+						}
+						else {
+							break;
+						}
+					}
+			}
+		
+			if(counter > 1) {
+				throw new IllegalMoveException();
+			}
+			else if(counter == 0)
+				return null;
+					
+			return onlyPieceFound;		
+		}		
+		
+		
+		for(int i = finalsquare.getY()+1; i <=7; ++i) {
+			if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
+				if(Game.getBoard().getSquare(finalsquare.getX(), i).getPiece().getClass() == pieceClassToSearch
+						&& Game.getBoard().getSquare(finalsquare.getX(), i).getPiece().getColor() == wantedColor) {
+
+					counter++;
+					onlyPieceFound = Game.getBoard().getSquare(finalsquare.getX(), i);
+					break;
+				}
+				else {
+					break;
+	
+				}
+			}
+		}
+		
+		for(int i = finalsquare.getY()-1; i >=0; --i) {
+	        if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
+	          if(Game.getBoard().getSquare(finalsquare.getX(), i).getPiece().getClass() == pieceClassToSearch
+	          && Game.getBoard().getSquare(finalsquare.getX(), i).getPiece().getColor() == wantedColor) {
+
+	            counter++;
+	            onlyPieceFound = Game.getBoard().getSquare(finalsquare.getX(), i);
+	            break;
+	          }
+	          else {
+	            break;
+	        
+	          }
+	        
+	        }
+	      }
+
+	      for(int i = finalsquare.getX()+1; i <=7; ++i) {
+	        if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
+	          if(Game.getBoard().getSquare(i, finalsquare.getY()).getPiece().getClass() == pieceClassToSearch
+	          && Game.getBoard().getSquare(i, finalsquare.getY()).getPiece().getColor() == wantedColor) {
+
+	            counter++;
+	            onlyPieceFound = Game.getBoard().getSquare(i, finalsquare.getY());
+	            break;
+	          }
+	          else {
+	            break;
+	  
+	          }
+	        
+	        }
+	      }
+
+	      for(int i = finalsquare.getX()-1; i >=0; --i) {
+	        if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
+	          if(Game.getBoard().getSquare(i, finalsquare.getY()).getPiece().getClass() == pieceClassToSearch
+	          && Game.getBoard().getSquare(i, finalsquare.getY()).getPiece().getColor() == wantedColor) {
+	 
+	            counter++;
+	            onlyPieceFound = Game.getBoard().getSquare(i, finalsquare.getY());
+	            break;
+	          }
+	          else {
+	            break;
+	      
+	          }
+	        
+	        }
+	      }
+	  
+	  
+	      //if we have more than one of this piece-colour combo
+	      if(counter > 1) {
+
+	        throw new IllegalMoveException();
+	      }
+	      else if(counter == 0)
+	        return null;
+	      //System.out.println("rook from " + onlyPieceFound.getX() + onlyPieceFound.getY());
+	      return onlyPieceFound;   
 	}
 }
