@@ -27,7 +27,7 @@ public class Board{
 	
 	public Square getSquare(int x, int y) throws IllegalMoveException {
 		if(x<0 || x>7 || y<0 || y>7) {
-			System.out.println("Error square: " + x + "," + y);
+			//System.out.println("Error square: " + x + "," + y);
 			throw new IllegalMoveException();
 		}
 		

@@ -26,16 +26,23 @@ public class Game{
 	public static ArrayList<Square> startingsquares = new ArrayList<Square>();
 	public static ArrayList<Square> destinationsquares = new ArrayList<Square>();
 	
+	public static ArrayList<Square> kingSquares = new ArrayList<Square>(2);
+	
 	//each semi-move will be added by the parser to this list for ease of printing
 	public static ArrayList<String> printableMovesList = new ArrayList<String>(30); //can't capture kings
 	
-	public static void startGame() {
+	public static void startGame() throws IllegalMoveException{
 		//initialization function to be called on "play"
+
+		board = new Board();
+		
 		captures.clear();
 		startingsquares.clear();
 		destinationsquares.clear();
 		printableMovesList.clear();
-		board = new Board();
+		kingSquares.add(Game.getBoard().getSquare(0, 3));
+		kingSquares.add(Game.getBoard().getSquare(7, 3));	
+		
 		status =  GameStatus.ACTIVE;
 		turn = ChessColor.WHITE;
 		movescounter = 0;
@@ -125,5 +132,13 @@ public class Game{
 	
 	public static ChessColor getEnemyTurn(){
 	    return Game.turn == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE; 
+	}
+	
+	public static Square getKingPosition(ChessColor wantedColor) {
+		if(wantedColor == ChessColor.WHITE) {
+			return kingSquares.get(0);
+		} else {
+			return kingSquares.get(1);
+		}
 	}
 }
