@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MathUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.example.utils.math</a> &gt; <span class="el_source">MathUtils.java</span></div><h1>MathUtils.java</h1><pre class="source lang-java linenums">package it.uniba.example.utils.math;
+
+/**
+ * This class and package are for demo purpose only and must be deleted.
+ */
+<span class="fc" id="L6">public class MathUtils {</span>
+	/**
+	 * Returns the arithmetic sum of two integers.
+	 * 
+	 * @param addend1
+	 *            First integer to sum.
+	 * @param addend2
+	 *            Second integer to sum.
+	 * @return The arithmetic sum of &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;.
+	 */
+	public int add(final int addend1, final int addend2) {
+<span class="fc" id="L17">		return addend1 + addend2;</span>
+	}
+
+	/**
+	 * Returns the arithmetic division of two integers.
+	 * 
+	 * @param num
+	 *            The division numerator.
+	 * @param div
+	 *            The division denominator.
+	 * @return The result of the division as a &lt;code&gt;float&lt;/code&gt; number.
+	 * @throws ArithmeticException
+	 *             If &lt;code&gt;div&lt;/code&gt; is zero.
+	 */
+	public float divide(final int num, final int div) throws ArithmeticException {
+<span class="fc" id="L32">		return new Float(num / div);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,355 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+				color: red;
+				font-weight: bold;
+		}
+		.priority-2 {
+				color: orange;
+				font-weight: bold;
+		}
+		.priority-3 {
+				color: green;
+				font-weight: bold;
+		}
+		.priority-4 {
+				color: blue;
+				font-weight: bold;
+		}
+		</style>
+      <script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+   </head>
+   <body>
+      <h1>
+         <a href="https://spotbugs.github.io/">SpotBugs</a> Report</h1>
+      <h2>Project Information</h2>
+      <p>Project: 
+		root project 'scacchi' (main)</p>
+      <p>SpotBugs version: 4.0.0-RC3</p>
+      <p>Code analyzed:</p>
+      <ul>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\Board.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\Game.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\InputValidator.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\Move.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\Bishop.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\King.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\Knight.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\Pawn.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\Piece.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\Queen.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\pieces\Rook.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\Square.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\utils\ChessColor.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\utils\GameStatus.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\utils\IllegalMoveException.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\chess\utils\ParserColumns.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\example\db\DatabaseConnection.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\example\utils\math\MathUtils.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\example\utils\strings\StringUtils.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\main\AppMain.class</li>
+         <li>C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main\it\uniba\sotorrent\GoogleDocsUtils.class</li>
+      </ul>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Metrics</h2>
+      <p>1069 lines of code analyzed,
+	in 21 classes, 
+	in 8 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right">3</td>
+            <td align="right">2.81</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">2</td>
+            <td align="right">1.87</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>5</b>
+            </td>
+            <td align="right">
+               <b>4.68</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Contents</h2>
+      <ul>
+         <li>
+            <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+         </li>
+         <li>
+            <a href="#Warnings_I18N">Internationalization Warnings</a>
+         </li>
+         <li>
+            <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+         </li>
+         <li>
+            <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+         </li>
+         <li>
+            <a href="#Details">Details</a>
+         </li>
+      </ul>
+      <h1>Summary</h1>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_I18N">Internationalization Warnings</a>
+            </td>
+            <td align="right">2</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>5</b>
+            </td>
+         </tr>
+      </table>
+      <h1>Warnings</h1>
+      <p>Click on a warning row to see full context information.</p>
+      <h2>
+         <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e126');">
+            <td>
+               <span class="priority-1">IL</span>
+            </td>
+            <td>There is an apparent infinite recursive loop in it.uniba.main.AppMain.menu(Scanner)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e126" style="display: none;">
+                  <a href="#IL_INFINITE_RECURSIVE_LOOP">Bug type IL_INFINITE_RECURSIVE_LOOP (click for details)</a>
+                  <br/>In class it.uniba.main.AppMain<br/>In method it.uniba.main.AppMain.menu(Scanner)<br/>At AppMain.java:[line 61]</p>
+            </td>
+         </tr>
+      </table>
+      <h2>
+         <a name="Warnings_I18N">Internationalization Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e72');">
+            <td>
+               <span class="priority-1">Dm</span>
+            </td>
+            <td>Found reliance on default encoding in it.uniba.chess.InputValidator.parseCommand(String): new java.util.Scanner(InputStream)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e72" style="display: none;">
+                  <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                  <br/>In class it.uniba.chess.InputValidator<br/>In method it.uniba.chess.InputValidator.parseCommand(String)<br/>Called method new java.util.Scanner(InputStream)<br/>At InputValidator.java:[line 50]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e111');">
+            <td>
+               <span class="priority-1">Dm</span>
+            </td>
+            <td>Found reliance on default encoding in it.uniba.main.AppMain.main(String[]): new java.util.Scanner(InputStream)</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e111" style="display: none;">
+                  <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+                  <br/>In class it.uniba.main.AppMain<br/>In method it.uniba.main.AppMain.main(String[])<br/>Called method new java.util.Scanner(InputStream)<br/>At AppMain.java:[line 37]</p>
+            </td>
+         </tr>
+      </table>
+      <h2>
+         <a name="Warnings_PERFORMANCE">Performance Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e87');">
+            <td>
+               <span class="priority-2">Bx</span>
+            </td>
+            <td>Primitive value is boxed and then immediately unboxed in it.uniba.example.utils.math.MathUtils.divide(int, int)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e87" style="display: none;">
+                  <a href="#BX_BOXING_IMMEDIATELY_UNBOXED">Bug type BX_BOXING_IMMEDIATELY_UNBOXED (click for details)</a>
+                  <br/>In class it.uniba.example.utils.math.MathUtils<br/>In method it.uniba.example.utils.math.MathUtils.divide(int, int)<br/>At MathUtils.java:[line 32]</p>
+            </td>
+         </tr>
+      </table>
+      <h2>
+         <a name="Warnings_STYLE">Dodgy code Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e99');">
+            <td>
+               <span class="priority-2">ICAST</span>
+            </td>
+            <td>Integral division result cast to double or float in it.uniba.example.utils.math.MathUtils.divide(int, int)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e99" style="display: none;">
+                  <a href="#ICAST_IDIV_CAST_TO_DOUBLE">Bug type ICAST_IDIV_CAST_TO_DOUBLE (click for details)</a>
+                  <br/>In class it.uniba.example.utils.math.MathUtils<br/>In method it.uniba.example.utils.math.MathUtils.divide(int, int)<br/>At MathUtils.java:[line 32]</p>
+            </td>
+         </tr>
+      </table>
+      <h1>
+         <a name="Details">Details</a>
+      </h1>
+      <h2>
+         <a name="BX_BOXING_IMMEDIATELY_UNBOXED">BX_BOXING_IMMEDIATELY_UNBOXED: Primitive value is boxed and then immediately unboxed</a>
+      </h2>
+
+  <p>A primitive is boxed, and then immediately unboxed. This probably is due to a manual
+    boxing in a place where an unboxed value is required, thus forcing the compiler
+to immediately undo the work of the boxing.
+</p>
+
+    <h2>
+         <a name="DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING: Reliance on default encoding</a>
+      </h2>
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      <h2>
+         <a name="ICAST_IDIV_CAST_TO_DOUBLE">ICAST_IDIV_CAST_TO_DOUBLE: Integral division result cast to double or float</a>
+      </h2>
+
+<p>
+This code casts the result of an integral division (e.g., int or long division)
+operation to double or
+float.
+Doing division on integers truncates the result
+to the integer value closest to zero.  The fact that the result
+was cast to double suggests that this precision should have been retained.
+What was probably meant was to cast one or both of the operands to
+double <em>before</em> performing the division.  Here is an example:
+</p>
+<pre><code>int x = 2;
+int y = 5;
+// Wrong: yields result 0.0
+double value1 = x / y;
+
+// Right: yields result 0.4
+double value2 = x / (double) y;
+</code></pre>
+
+    <h2>
+         <a name="IL_INFINITE_RECURSIVE_LOOP">IL_INFINITE_RECURSIVE_LOOP: An apparent infinite recursive loop</a>
+      </h2>
+
+<p>This method unconditionally invokes itself. This would seem to indicate
+an infinite recursive loop that will result in a stack overflow.</p>
+
+    </body>
+</html>
