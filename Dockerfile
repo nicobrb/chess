@@ -1,5 +1,5 @@
 FROM openjdk:8-alpine
 RUN mkdir /app
-COPY ./build/libs/scacchi-all-obf.jar /app
+COPY ./build/libs/scacchi-all.jar /app
 WORKDIR /app
-ENTRYPOINT ["java", "-jar", "scacchi-all-obf.jar"]
+ENTRYPOINT ["java", "-jar", "scacchi-all.jar"]

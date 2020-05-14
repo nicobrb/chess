@@ -9,11 +9,9 @@
 buildscript {
   repositories {
     mavenCentral()
-    jcenter()
   }
   dependencies {
     classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
-    classpath 'net.sf.proguard:proguard-gradle:6.2.2'
   }
 }
 
@@ -105,11 +103,6 @@ junitPlatform {
 			include 'junit-jupiter'
 			// exclude 'custom-engine'
 		}
-		tags {
-			// include 'fast'
-			exclude 'slow'
-		}
-		// includeClassNamePattern '.*Test'
 	}
 	// configurationParameter 'junit.jupiter.conditions.deactivate', '*'
 	enableStandardTestTask true
@@ -141,7 +134,10 @@ coveralls {
 test {
 
     // Enable JUnit 5 (Gradle 4.6+).
-    useJUnitPlatform()
+    useJUnitPlatform{
+        //includeTags 'fast'
+        excludeTags 'slow', 'db'
+    }
 
     // Always run tests, even when nothing changed.
     dependsOn 'cleanTest'
@@ -162,36 +158,7 @@ task fatJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
-
-task proguardTask(type: proguard.gradle.ProGuardTask) {
-
-    dependsOn 'fatJar'
-
-    injars './build/libs/scacchi-all.jar'
-    outjars './build/libs/scacchi-all-obf.jar'
-
-    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
-        libraryjars(System.getProperty("java.home") + "/jmods")
-    } else {
-        libraryjars(System.getProperty("java.home") + "/lib/rt.jar")
-    }
-
-    // Allow methods with the same signature, except for the return type,
-    // to get the same obfuscation name.
-    overloadaggressively
-
-    // Put all obfuscated classes into the nameless root package.
-    repackageclasses ''
-    
-    // Allow classes and class members to be made public.
-    allowaccessmodification
-
-    // The entry point
-    keep 'public class it.uniba.main.AppMain { \
-        public static void main(java.lang.String[]); \
-    }'
-}
-project.tasks.getByName('build').dependsOn proguardTask
+project.tasks.getByName('build').dependsOn fatJar
 
 // Main class
 mainClassName = 'it.uniba.main/AppMain'
