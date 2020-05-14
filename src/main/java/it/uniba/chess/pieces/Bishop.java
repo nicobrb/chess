@@ -7,13 +7,12 @@ import it.uniba.chess.utils.ChessColor;
  *
  * <<Entity>>
  */
-public class Bishop extends Piece{
+public class Bishop extends Piece {
 	
 	public Bishop(ChessColor colorPiece) {
 		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2657';
-		}
-		else{
+		} else {
 			unicode = '\u265d';
 		}
 			this.colorPiece = colorPiece;

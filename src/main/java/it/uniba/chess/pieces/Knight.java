@@ -12,8 +12,7 @@ public class Knight extends Piece{
 	public Knight(ChessColor colorPiece) {
 		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2658';
-		}
-		else{
+		} else{
 			unicode = '\u265e';
 		}
 			this.colorPiece = colorPiece;

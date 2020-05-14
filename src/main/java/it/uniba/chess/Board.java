@@ -9,7 +9,7 @@ import it.uniba.chess.utils.*;
  * <<Entity>>
  */
 public class Board{
-	public Square[][] chessboard;
+	private Square[][] chessboard;
 	
 	public Board(){
 		this.chessboard = new Square[8][8];
@@ -27,7 +27,6 @@ public class Board{
 	
 	public Square getSquare(int x, int y) throws IllegalMoveException {
 		if(x<0 || x>7 || y<0 || y>7) {
-			//System.out.println("Error square: " + x + "," + y);
 			throw new IllegalMoveException();
 		}
 		
@@ -36,11 +35,11 @@ public class Board{
 
 	//first square in local matrix is h1, white rook
 	
-	private void initPieces(ChessColor c) {
+	private void initPieces(ChessColor pieceColor) {
 		int valueRow;
 		int pawnRow;
 		
-		if(c == ChessColor.WHITE) {
+		if(pieceColor == ChessColor.WHITE) {
 			valueRow = 0;
 			pawnRow = 1;
 		} else {
@@ -49,26 +48,26 @@ public class Board{
 		}
 		
 		//ROOK
-		this.chessboard[valueRow][0] = new Square(valueRow, 0, new Rook(c));
-		this.chessboard[valueRow][7] = new Square(valueRow, 7, new Rook(c));
+		this.chessboard[valueRow][0] = new Square(valueRow, 0, new Rook(pieceColor));
+		this.chessboard[valueRow][7] = new Square(valueRow, 7, new Rook(pieceColor));
 		//KNIGHTS
-		this.chessboard[valueRow][1] = new Square(valueRow, 1, new Knight(c));
-		this.chessboard[valueRow][6] = new Square(valueRow, 6, new Knight(c));
+		this.chessboard[valueRow][1] = new Square(valueRow, 1, new Knight(pieceColor));
+		this.chessboard[valueRow][6] = new Square(valueRow, 6, new Knight(pieceColor));
 		
 		//BISHOPS
-		this.chessboard[valueRow][2] = new Square(valueRow, 2, new Bishop(c));
-		this.chessboard[valueRow][5] = new Square(valueRow, 5, new Bishop(c));
+		this.chessboard[valueRow][2] = new Square(valueRow, 2, new Bishop(pieceColor));
+		this.chessboard[valueRow][5] = new Square(valueRow, 5, new Bishop(pieceColor));
 		
 		//QUEEN
-		this.chessboard[valueRow][4] = new Square(valueRow, 4, new Queen(c));
+		this.chessboard[valueRow][4] = new Square(valueRow, 4, new Queen(pieceColor));
 		
 		//KING
-		this.chessboard[valueRow][3] = new Square(valueRow, 3, new King(c));
+		this.chessboard[valueRow][3] = new Square(valueRow, 3, new King(pieceColor));
 		
 		
 		//PAWNS
 		for (int i=0; i<8; i++) {
-			this.chessboard[pawnRow][i] = new Square(pawnRow, i, new Pawn(c));
+			this.chessboard[pawnRow][i] = new Square(pawnRow, i, new Pawn(pieceColor));
 		}
 		
 		

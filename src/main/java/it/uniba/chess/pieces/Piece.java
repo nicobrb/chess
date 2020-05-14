@@ -8,8 +8,8 @@ import it.uniba.chess.utils.ChessColor;
  * <<Entity>>
  */
 public abstract class Piece {
-	ChessColor colorPiece;
-	char unicode; //unicode of the piece
+	protected ChessColor colorPiece;
+	protected char unicode; //unicode of the piece
 	
 	public ChessColor getColor() {
 		return this.colorPiece;
