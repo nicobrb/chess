@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.chess</a> &gt; <span class="el_source">Board.java</span></div><h1>Board.java</h1><pre class="source lang-java linenums">package it.uniba.chess;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.chess</a> &gt; <span class="el_source">Board.java</span></div><h1>Board.java</h1><pre class="source lang-java linenums">package it.uniba.chess;
 
 import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
@@ -8,89 +8,94 @@ import it.uniba.chess.utils.*;
  *
  * &lt;&lt;Entity&gt;&gt;
  */
-public class Board{
+public class Board {
 	private Square[][] chessboard;
-	
-<span class="nc" id="L14">	public Board(){</span>
-<span class="nc" id="L15">		this.chessboard = new Square[8][8];</span>
-<span class="nc" id="L16">		initPieces(ChessColor.WHITE);</span>
-<span class="nc" id="L17">		initPieces(ChessColor.BLACK);</span>
+<span class="nc" id="L13">	private final int chessboardDimension = 8;</span>
+<span class="nc" id="L14">	private final int startingBlankRank = 2;</span>
+<span class="nc" id="L15">	private final int finalBlankRank = 6;</span>
+<span class="nc" id="L16">	private final int chessboardEdge = 7;</span>
+<span class="nc" id="L17">	private final int whitePawnRank = 1;</span>
+<span class="nc" id="L18">	private final int blackPawnRank = 6;</span>
+
+<span class="nc" id="L20">	public Board() {</span>
+
+<span class="nc" id="L22">		this.chessboard = new Square[chessboardDimension][chessboardDimension];</span>
+<span class="nc" id="L23">		initPieces(ChessColor.WHITE);</span>
+<span class="nc" id="L24">		initPieces(ChessColor.BLACK);</span>
 
 		//init null chessboard squares
-<span class="nc bnc" id="L20" title="All 2 branches missed.">		for(int i = 2; i&lt;6; ++i) {</span>
-<span class="nc bnc" id="L21" title="All 2 branches missed.">			for (int j=0; j&lt;8; j++) {</span>
-<span class="nc" id="L22">				chessboard[i][j] = new Square(i,j);</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">		for (int i = startingBlankRank; i &lt; finalBlankRank; ++i) {</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">			for (int j = 0; j &lt; chessboardDimension; j++) {</span>
+<span class="nc" id="L29">				chessboard[i][j] = new Square(i, j);</span>
 			}
 		}
-		
-<span class="nc" id="L26">	}</span>
-	
+<span class="nc" id="L32">	}</span>
+
 	public Square getSquare(int x, int y) throws IllegalMoveException {
-<span class="nc bnc" id="L29" title="All 8 branches missed.">		if(x&lt;0 || x&gt;7 || y&lt;0 || y&gt;7) {</span>
-<span class="nc" id="L30">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">		if (x &lt; 0 || x &gt; chessboardEdge</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">				|| y &lt; ParserColumns.getFileIntFromChar('h')</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">				|| y &gt; ParserColumns.getFileIntFromChar('a')) {</span>
+<span class="nc" id="L38">			throw new IllegalMoveException();</span>
 		}
-		
-<span class="nc" id="L33">		return(chessboard[x][y]);</span>
+
+<span class="nc" id="L41">		return (chessboard[x][y]);</span>
 	}
 
 	//first square in local matrix is h1, white rook
-	
-	private void initPieces(ChessColor pieceColor) {
+
+	private void initPieces(final ChessColor pieceColor) {
 		int valueRow;
 		int pawnRow;
-		
-<span class="nc bnc" id="L42" title="All 2 branches missed.">		if(pieceColor == ChessColor.WHITE) {</span>
-<span class="nc" id="L43">			valueRow = 0;</span>
-<span class="nc" id="L44">			pawnRow = 1;</span>
+
+<span class="nc bnc" id="L50" title="All 2 branches missed.">		if (pieceColor == ChessColor.WHITE) {</span>
+<span class="nc" id="L51">			valueRow = 0;</span>
+<span class="nc" id="L52">			pawnRow = whitePawnRank;</span>
 		} else {
-<span class="nc" id="L46">			valueRow = 7;</span>
-<span class="nc" id="L47">			pawnRow = 6;</span>
+<span class="nc" id="L54">			valueRow = chessboardEdge;</span>
+<span class="nc" id="L55">			pawnRow = blackPawnRank;</span>
 		}
-		
+
 		//ROOK
-<span class="nc" id="L51">		this.chessboard[valueRow][0] = new Square(valueRow, 0, new Rook(pieceColor));</span>
-<span class="nc" id="L52">		this.chessboard[valueRow][7] = new Square(valueRow, 7, new Rook(pieceColor));</span>
+<span class="nc" id="L59">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('h')] = new Square(valueRow, ParserColumns.getFileIntFromChar('h'), new Rook(pieceColor));</span>
+<span class="nc" id="L60">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('a')] = new Square(valueRow, ParserColumns.getFileIntFromChar('a'), new Rook(pieceColor));</span>
 		//KNIGHTS
-<span class="nc" id="L54">		this.chessboard[valueRow][1] = new Square(valueRow, 1, new Knight(pieceColor));</span>
-<span class="nc" id="L55">		this.chessboard[valueRow][6] = new Square(valueRow, 6, new Knight(pieceColor));</span>
-		
+<span class="nc" id="L62">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('g')] = new Square(valueRow, ParserColumns.getFileIntFromChar('g'), new Knight(pieceColor));</span>
+<span class="nc" id="L63">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('b')] = new Square(valueRow, ParserColumns.getFileIntFromChar('b'), new Knight(pieceColor));</span>
+
 		//BISHOPS
-<span class="nc" id="L58">		this.chessboard[valueRow][2] = new Square(valueRow, 2, new Bishop(pieceColor));</span>
-<span class="nc" id="L59">		this.chessboard[valueRow][5] = new Square(valueRow, 5, new Bishop(pieceColor));</span>
-		
+<span class="nc" id="L66">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('f')] = new Square(valueRow, ParserColumns.getFileIntFromChar('f'), new Bishop(pieceColor));</span>
+<span class="nc" id="L67">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('c')] = new Square(valueRow, ParserColumns.getFileIntFromChar('c'), new Bishop(pieceColor));</span>
+
 		//QUEEN
-<span class="nc" id="L62">		this.chessboard[valueRow][4] = new Square(valueRow, 4, new Queen(pieceColor));</span>
-		
+<span class="nc" id="L70">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('d')] = new Square(valueRow, ParserColumns.getFileIntFromChar('d'), new Queen(pieceColor));</span>
+
 		//KING
-<span class="nc" id="L65">		this.chessboard[valueRow][3] = new Square(valueRow, 3, new King(pieceColor));</span>
-		
-		
+<span class="nc" id="L73">		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('e')] = new Square(valueRow, ParserColumns.getFileIntFromChar('e'), new King(pieceColor));</span>
+
+
 		//PAWNS
-<span class="nc bnc" id="L69" title="All 2 branches missed.">		for (int i=0; i&lt;8; i++) {</span>
-<span class="nc" id="L70">			this.chessboard[pawnRow][i] = new Square(pawnRow, i, new Pawn(pieceColor));</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		for (int i = 0; i &lt; chessboardDimension; i++) {</span>
+<span class="nc" id="L78">			this.chessboard[pawnRow][i] = new Square(pawnRow, i, new Pawn(pieceColor));</span>
 		}
-		
-		
-<span class="nc" id="L74">	}</span>
-	
+<span class="nc" id="L80">	}</span>
+
 	public void print() {
-<span class="nc" id="L77">		System.out.print(&quot;   a   b   c   d   e   f   g   h \n&quot;);</span>
-<span class="nc" id="L78">		System.out.println(&quot;  --------------------------------&quot;);</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">		for(int i=7; i&gt;=0; --i) {</span>
-<span class="nc" id="L80">			System.out.print((i+1) + &quot; | &quot;);</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">			for (int j=7; j&gt;=0; --j) {</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">				if(chessboard[i][j].isOccupied()) {</span>
-<span class="nc" id="L83">					System.out.print(chessboard[i][j].getPiece().getUnicode() + &quot; | &quot;);</span>
-				}else {
-<span class="nc" id="L85">					System.out.print(&quot;  | &quot;);</span>
+<span class="nc" id="L83">		System.out.print(&quot;   a   b   c   d   e   f   g   h \n&quot;);</span>
+<span class="nc" id="L84">		System.out.println(&quot;  --------------------------------&quot;);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">		for (int i = chessboardEdge; i &gt;= 0; --i) {</span>
+<span class="nc" id="L86">			System.out.print((i + 1) + &quot; | &quot;);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">			for (int j = chessboardEdge; j &gt;= 0; --j) {</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">				if (chessboard[i][j].isOccupied()) {</span>
+<span class="nc" id="L89">					System.out.print(chessboard[i][j].getPiece().getUnicode() + &quot; | &quot;);</span>
+				} else {
+<span class="nc" id="L91">					System.out.print(&quot;  | &quot;);</span>
 				}
 			}
-<span class="nc" id="L88">			System.out.print(i+1);</span>
-<span class="nc" id="L89">			System.out.print(&quot;\n&quot;);</span>
-<span class="nc" id="L90">			System.out.println(&quot;  --------------------------------&quot;);</span>
+<span class="nc" id="L94">			System.out.print(i + 1);</span>
+<span class="nc" id="L95">			System.out.print(&quot;\n&quot;);</span>
+<span class="nc" id="L96">			System.out.println(&quot;  --------------------------------&quot;);</span>
 		}
-<span class="nc" id="L92">		System.out.print(&quot;   a   b   c   d   e   f   g   h \n&quot;);</span>
-<span class="nc" id="L93">	}</span>
-	
+<span class="nc" id="L98">		System.out.print(&quot;   a   b   c   d   e   f   g   h \n&quot;);</span>
+<span class="nc" id="L99">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

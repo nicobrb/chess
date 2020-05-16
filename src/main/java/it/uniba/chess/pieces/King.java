@@ -9,9 +9,11 @@ import it.uniba.chess.utils.ChessColor;
  */
 
 public class King extends Piece{
-	
+
+	private final int kingStartingColumn = 3;
+	//private final int king
 	private boolean hasMoved;
-	
+
 	public King(ChessColor colorPiece) {
 		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2654';
@@ -28,5 +30,9 @@ public class King extends Piece{
 	}
 	public boolean getHasMoved() {
 		return this.hasMoved;
+	}
+
+	public int getKingStartingColumn() {
+		return kingStartingColumn;
 	}
 }

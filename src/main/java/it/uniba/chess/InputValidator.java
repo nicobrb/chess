@@ -135,7 +135,7 @@ public class InputValidator {
 						case "C":
 							if(isEnpassant_string.isEmpty()) {
 								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 								starting_square = checkFlower(destination_square, startRow, startColumn, Knight.class, Game.getTurn());
 								//Move.knightMoveOrCapture(starting_square,destination_square, !isCapture_string.isEmpty());
 								Move.pieceMoveOrCapture(Knight.class, starting_square,destination_square, !isCapture_string.isEmpty());
@@ -147,7 +147,7 @@ public class InputValidator {
 						case "A":
 							if(isEnpassant_string.isEmpty()) {
 							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 							    starting_square = checkCross(destination_square, startRow, startColumn, Bishop.class, Game.getTurn());
 							    //Move.bishopMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
 							    Move.pieceMoveOrCapture(Bishop.class, starting_square,destination_square, !isCapture_string.isEmpty());
@@ -160,7 +160,7 @@ public class InputValidator {
 							if(isEnpassant_string.isEmpty()) {
 								//if we have an empty row string, we return -1 as control;
 								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 								starting_square = plusMovement(destination_square, startRow, startColumn, Rook.class, Game.getTurn());			
 								Move.pieceMoveOrCapture(Rook.class, starting_square,destination_square, !isCapture_string.isEmpty());
 								Game.addPrintableMove(lastmove);
@@ -171,7 +171,7 @@ public class InputValidator {
 						case "D":
 							if(isEnpassant_string.isEmpty()) {
 							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 							    starting_square = queenIntersectionControl(destination_square, startRow, startColumn, Queen.class, Game.getTurn());
 							    Move.pieceMoveOrCapture(Queen.class, starting_square,destination_square, !isCapture_string.isEmpty());
 							    Game.addPrintableMove(lastmove);
@@ -214,7 +214,7 @@ public class InputValidator {
 								} else if (startingRow_string.isEmpty() && !startingColumn_string.isEmpty() && !isCapture_string.isEmpty()) {
 								//this is a pawn capture (either simple or en-passant)
 								//starting_square = getPawnStartingSquare_Capture(startingColumn_string, destination_square);
-								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getColumnIntegerFromChar(startingColumn_string.charAt(0));
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0));
 
 								starting_square = checkPawn_Capture(destination_square, startColumn, Pawn.class, Game.getTurn());
 								Move.pawnCapture(starting_square, destination_square, !isEnpassant_string.isEmpty()); // <-------- only way is to call it with startingY != -1
@@ -240,7 +240,7 @@ public class InputValidator {
 	
 	private static Square getDestinationSquare(String regExpGroup_destination) throws IllegalMoveException {
 		try {
-			int destination_square_column = ParserColumns.getColumnIntegerFromChar(regExpGroup_destination.charAt(0));
+			int destination_square_column = ParserColumns.getFileIntFromChar(regExpGroup_destination.charAt(0));
 			int destination_square_row = Character.getNumericValue(regExpGroup_destination.charAt(1)) - 1;
 			return Game.getBoard().getSquare(destination_square_row, destination_square_column);
 		} catch (IllegalMoveException illegalmove) {
@@ -658,9 +658,8 @@ public class InputValidator {
 			return squares_to_check.get(0);
 		}
 	}
-	
+
 	private static Square isThereAKingAroundThisSquare(Square destination_square, ChessColor wantedColor) throws IllegalMoveException{
-	
 
 	        ArrayList<Square> squares_to_check = new ArrayList<Square>();
 	        offsetMovement(destination_square, +1, 0, King.class, wantedColor, squares_to_check);
@@ -688,7 +687,7 @@ public class InputValidator {
 		if(finalsquare.isOccupied() && finalsquare.getPiece().getColor() == Game.getTurn() && finalsquare.getPiece().getClass() != King.class) {
 			throw new IllegalMoveException();
 		}
-			
+
 		if(checkFlower(finalsquare,-1,-1,Knight.class, Game.getEnemyTurn()) == null && queenIntersectionControl(finalsquare, -1, -1, Queen.class, Game.getEnemyTurn()) == null 
 			&& plusMovement(finalsquare, -1,-1,Rook.class, Game.getEnemyTurn()) == null && checkCross(finalsquare,-1,-1, Bishop.class, Game.getEnemyTurn()) == null
 			&& checkPawn_Capture(finalsquare, -1, Pawn.class, Game.getEnemyTurn()) == null && isThereAKingAroundThisSquare(finalsquare, Game.getEnemyTurn()) == null){
@@ -696,13 +695,13 @@ public class InputValidator {
 				return true;
 		}
 		else{
-		
+
 			return false;
 		}	
 	}
-	
+
 	private static void northCheck(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-		
+
 		int i = 1;
 		Square temp_square;
 		while(finalsquare.getX()+i < 8) {
@@ -721,7 +720,7 @@ public class InputValidator {
 	}
 
 	private static void southCheck(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-			
+
 		int i = 1;
 		Square temp_square;
 		while(finalsquare.getX()-i >=0) {
@@ -740,7 +739,7 @@ public class InputValidator {
 	}
 
 	private static void westCheck(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-			
+
 		int i = 1;
 		Square temp_square;
 		while(finalsquare.getY()+i < 8) {
@@ -759,7 +758,7 @@ public class InputValidator {
 	}
 
 	private static void eastCheck(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
-			
+	
 		int i = 1;
 		Square temp_square;
 		while(finalsquare.getY()-i >= 0) {
@@ -776,5 +775,4 @@ public class InputValidator {
 			++i;
 		}
 	}
-
 }

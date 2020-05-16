@@ -10,7 +10,7 @@ public enum ParserColumns {
 	h,g,f,e,d,c,b,a;
 	
 	//we will check that this method only receives in input chars defining a chess column;
-	public static int getColumnIntegerFromChar(char row) {
+	public static int getFileIntFromChar(char row) {
 		switch(row) {
 		case 'h':
 			return 0;
