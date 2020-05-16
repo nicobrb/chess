@@ -10,6 +10,7 @@ import it.uniba.chess.utils.ChessColor;
 public class Queen extends Piece{
 	
 	public Queen(ChessColor colorPiece) {
+		this.hasMoved = false;
 		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2655';
 		}

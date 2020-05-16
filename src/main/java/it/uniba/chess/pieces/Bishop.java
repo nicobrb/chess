@@ -10,6 +10,8 @@ import it.uniba.chess.utils.ChessColor;
 public class Bishop extends Piece {
 	
 	public Bishop(ChessColor colorPiece) {
+		
+		this.hasMoved = false;
 		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2657';
 		} else {

@@ -1,5 +1,7 @@
 package it.uniba.chess;
 
+import java.util.LinkedList;
+
 import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
 
@@ -10,33 +12,52 @@ import it.uniba.chess.utils.*;
  */
 public class Board {
 	private Square[][] chessboard;
-	private final int chessboardDimension = 8;
-	private final int startingBlankRank = 2;
-	private final int finalBlankRank = 6;
-	private final int chessboardEdge = 7;
-	private final int whitePawnRank = 1;
-	private final int blackPawnRank = 6;
+	public static final int CHESSBOARD_DIMENSION = 8;
+	private static final int STARTING_BLANK_RANK = 2;
+	private static final int FINAL_BLANK_RANK = 6;
+	public static final int CHESSBOARD_EDGE = 7;
+	private static final int WHITE_PAWN_RANK = 1;
+	private static final int BLACK_PAWN_RANK = 6;
+
 
 	public Board() {
 
-		this.chessboard = new Square[chessboardDimension][chessboardDimension];
-		initPieces(ChessColor.WHITE);
-		initPieces(ChessColor.BLACK);
+        this.chessboard = new Square[CHESSBOARD_DIMENSION][CHESSBOARD_DIMENSION];
+        initPieces(ChessColor.WHITE);
+        initPieces(ChessColor.BLACK);
 
-		//init null chessboard squares
-		for (int i = startingBlankRank; i < finalBlankRank; ++i) {
-			for (int j = 0; j < chessboardDimension; j++) {
-				chessboard[i][j] = new Square(i, j);
+        //init null chessboard squares
+        for (int i = STARTING_BLANK_RANK; i < FINAL_BLANK_RANK; ++i) {
+            for (int j = 0; j < CHESSBOARD_DIMENSION; j++) {
+                chessboard[i][j] = new Square(i, j);
+            }
+        }
+    }
+	
+	public Board(LinkedList<Square> chessPosition){
+		this.chessboard = new Square[CHESSBOARD_DIMENSION][CHESSBOARD_DIMENSION];
+		
+		for(int i = 0; i < CHESSBOARD_DIMENSION; ++i) {
+			for (int j=0; j < CHESSBOARD_DIMENSION; j++) {
+				chessboard[i][j] = new Square(i,j);
 			}
 		}
+		
+		for(Square sq : chessPosition) {
+			this.chessboard[sq.getX()][sq.getY()] = sq;
+		}
+		
+		int file = Integer.parseInt("0");
+		int rank = ParseFiles.getFileIntFromChar('e');
+		
+		chessboard[file][rank] = new Square(file, rank, new King(ChessColor.WHITE));
+		
+		file = Integer.parseInt("7");
+		chessboard[file][rank] = new Square(file, rank, new King(ChessColor.BLACK));
+		
 	}
 
-	public Square getSquare(int x, int y) throws IllegalMoveException {
-		if (x < 0 || x > chessboardEdge
-				|| y < ParserColumns.getFileIntFromChar('h')
-				|| y > ParserColumns.getFileIntFromChar('a')) {
-			throw new IllegalMoveException();
-		}
+	public Square getSquare(int x, int y) {
 
 		return (chessboard[x][y]);
 	}
@@ -49,32 +70,32 @@ public class Board {
 
 		if (pieceColor == ChessColor.WHITE) {
 			valueRow = 0;
-			pawnRow = whitePawnRank;
+			pawnRow = WHITE_PAWN_RANK;
 		} else {
-			valueRow = chessboardEdge;
-			pawnRow = blackPawnRank;
+			valueRow = CHESSBOARD_EDGE;
+			pawnRow = BLACK_PAWN_RANK;
 		}
 
 		//ROOK
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('h')] = new Square(valueRow, ParserColumns.getFileIntFromChar('h'), new Rook(pieceColor));
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('a')] = new Square(valueRow, ParserColumns.getFileIntFromChar('a'), new Rook(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('h')] = new Square(valueRow, ParseFiles.getFileIntFromChar('h'), new Rook(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('a')] = new Square(valueRow, ParseFiles.getFileIntFromChar('a'), new Rook(pieceColor));
 		//KNIGHTS
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('g')] = new Square(valueRow, ParserColumns.getFileIntFromChar('g'), new Knight(pieceColor));
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('b')] = new Square(valueRow, ParserColumns.getFileIntFromChar('b'), new Knight(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('g')] = new Square(valueRow, ParseFiles.getFileIntFromChar('g'), new Knight(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('b')] = new Square(valueRow, ParseFiles.getFileIntFromChar('b'), new Knight(pieceColor));
 
 		//BISHOPS
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('f')] = new Square(valueRow, ParserColumns.getFileIntFromChar('f'), new Bishop(pieceColor));
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('c')] = new Square(valueRow, ParserColumns.getFileIntFromChar('c'), new Bishop(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('f')] = new Square(valueRow, ParseFiles.getFileIntFromChar('f'), new Bishop(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('c')] = new Square(valueRow, ParseFiles.getFileIntFromChar('c'), new Bishop(pieceColor));
 
 		//QUEEN
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('d')] = new Square(valueRow, ParserColumns.getFileIntFromChar('d'), new Queen(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('d')] = new Square(valueRow, ParseFiles.getFileIntFromChar('d'), new Queen(pieceColor));
 
 		//KING
-		this.chessboard[valueRow][ParserColumns.getFileIntFromChar('e')] = new Square(valueRow, ParserColumns.getFileIntFromChar('e'), new King(pieceColor));
+		this.chessboard[valueRow][ParseFiles.getFileIntFromChar('e')] = new Square(valueRow, ParseFiles.getFileIntFromChar('e'), new King(pieceColor));
 
 
 		//PAWNS
-		for (int i = 0; i < chessboardDimension; i++) {
+		for (int i = 0; i < CHESSBOARD_DIMENSION; i++) {
 			this.chessboard[pawnRow][i] = new Square(pawnRow, i, new Pawn(pieceColor));
 		}
 	}
@@ -82,9 +103,9 @@ public class Board {
 	public void print() {
 		System.out.print("   a   b   c   d   e   f   g   h \n");
 		System.out.println("  --------------------------------");
-		for (int i = chessboardEdge; i >= 0; --i) {
+		for (int i = CHESSBOARD_EDGE; i >= 0; --i) {
 			System.out.print((i + 1) + " | ");
-			for (int j = chessboardEdge; j >= 0; --j) {
+			for (int j = CHESSBOARD_EDGE; j >= 0; --j) {
 				if (chessboard[i][j].isOccupied()) {
 					System.out.print(chessboard[i][j].getPiece().getUnicode() + " | ");
 				} else {
@@ -97,4 +118,41 @@ public class Board {
 		}
 		System.out.print("   a   b   c   d   e   f   g   h \n");
 	}
+	
+	   @Override
+	    public boolean equals(Object o) { 
+	    	
+	    	boolean isEqual = true;
+	    	
+	        // If the object is compared with itself then return true   
+	        if (o == this) { 
+	            return true; 
+	        } 
+	  
+	        /* Check if o is an instance of Complex or not 
+	          "null instanceof [type]" also returns false */
+	        if (!(o instanceof Board)) { 
+	            return false; 
+	        } 
+	          
+	        // typecast o to Complex so that we can compare data members  
+	        Board comparedBoard = (Board) o; 
+	          
+	        // Compare the data members and return accordingly  
+	        for(int i=0; i<CHESSBOARD_DIMENSION && isEqual; ++i) {
+	        	for(int j=0; j<CHESSBOARD_DIMENSION && isEqual; ++j) {
+	        		if(this.chessboard[i][j].isOccupied() != comparedBoard.chessboard[i][j].isOccupied()) {
+	        			isEqual = false;
+	        		} else {
+	        			if(this.chessboard[i][j].isOccupied()) {
+	        				if(!this.chessboard[i][j].getPiece().equals(comparedBoard.chessboard[i][j].getPiece())){
+	        					isEqual = false;
+	        				}
+	        			}
+	        		}
+	        	}
+	        }
+	        
+	        return isEqual;
+	    } 
 }

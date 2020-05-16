@@ -12,7 +12,7 @@ public class King extends Piece{
 
 	private final int kingStartingColumn = 3;
 	//private final int king
-	private boolean hasMoved;
+
 
 	public King(ChessColor colorPiece) {
 		if(colorPiece == ChessColor.WHITE) {
@@ -22,15 +22,9 @@ public class King extends Piece{
 			unicode = '\u265a';
 		}
 		this.colorPiece = colorPiece;
-		hasMoved = false;
+		this.hasMoved = false;
 	}
 
-	public void setHasMoved() {
-		this.hasMoved = true;
-	}
-	public boolean getHasMoved() {
-		return this.hasMoved;
-	}
 
 	public int getKingStartingColumn() {
 		return kingStartingColumn;

@@ -9,7 +9,6 @@ import it.uniba.chess.utils.ChessColor;
  */
 public class Rook extends Piece{
 	
-	private boolean hasMoved;
 	
 	public Rook(ChessColor colorPiece) {
 		if(colorPiece == ChessColor.WHITE) {
@@ -19,14 +18,9 @@ public class Rook extends Piece{
 			unicode = '\u265c';
 		}
 			this.colorPiece = colorPiece;
-			hasMoved = false;
+			this.hasMoved = false;
 	}
 
 
-	public void setHasMoved() {
-		this.hasMoved = true;
-	}
-	public boolean getHasMoved() {
-		return hasMoved;
-	}
+
 }

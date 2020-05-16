@@ -8,28 +8,16 @@ import it.uniba.chess.utils.*;
  * <<Entity>>
  */
 public class Pawn extends Piece {
-	private boolean hasMoved;
+
 	
 	public Pawn(ChessColor colorPiece) {
-		this.colorPiece= colorPiece;
+		this.colorPiece = colorPiece;
 		this.hasMoved = false;
 		if (colorPiece == ChessColor.WHITE) {
 			unicode = '\u2659';
 		} else {
 			unicode = '\u265F';
 		}
-	}
-	
-	public boolean move() {
-		return false;
-	}
-	
-	public void setHasMoved() {
-		this.hasMoved=true;
-	}
-	
-	public boolean getHasMoved() {
-		return this.hasMoved;
 	}
 	
 }

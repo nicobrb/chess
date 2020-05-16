@@ -6,28 +6,30 @@ package it.uniba.chess.utils;
  * 
  * <<No-ECB>>
  */
-public enum ParserColumns {
+public enum ParseFiles {
 	h,g,f,e,d,c,b,a;
-	
+		
 	//we will check that this method only receives in input chars defining a chess column;
 	public static int getFileIntFromChar(char row) {
+		
+
 		switch(row) {
 		case 'h':
-			return 0;
+			return h.ordinal();
 		case 'g':
-			return 1;
+			return g.ordinal();
 		case 'f':
-			return 2;
+			return f.ordinal();
 		case 'e':
-			return 3;
+			return e.ordinal();
 		case 'd':
-			return 4;
+			return d.ordinal();
 		case 'c':
-			return 5;
+			return c.ordinal();
 		case 'b':
-			return 6;
+			return b.ordinal();
 		case 'a':
-			return 7;
+			return a.ordinal();
 		default:
 		}
 		

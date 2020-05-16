@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InputValidator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.chess</a> &gt; <span class="el_source">InputValidator.java</span></div><h1>InputValidator.java</h1><pre class="source lang-java linenums">package it.uniba.chess;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InputValidator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.chess</a> &gt; <span class="el_source">InputValidator.java</span></div><h1>InputValidator.java</h1><pre class="source lang-java linenums">package it.uniba.chess;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.ChessColor;
 import it.uniba.chess.utils.GameStatus;
 import it.uniba.chess.utils.IllegalMoveException;
-import it.uniba.chess.utils.ParserColumns;
+import it.uniba.chess.utils.ParseFiles;
 
 /**
  * Dato un input, lo elabora e determina se Ã¨ una mossa di gioco o un'opzione del menÃ¹;
@@ -19,71 +19,78 @@ import it.uniba.chess.utils.ParserColumns;
  */
 <span class="nc" id="L20">public class InputValidator {</span>
 	
+	private static final int FIRST_GROUP=1;
+	private static final int SECOND_GROUP=2;
+	private static final int THIRD_GROUP=3;
+	private static final int FOURTH_GROUP=4;
+	private static final int FIFTH_GROUP=5;
+	
+	
 	public static void parseCommand(String command) throws IllegalMoveException {
-<span class="nc bnc" id="L23" title="All 9 branches missed.">		switch(command) {</span>
+<span class="nc bnc" id="L30" title="All 9 branches missed.">		switch(command) {</span>
 		case &quot;board&quot;:
-<span class="nc bnc" id="L25" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE)</span>
-<span class="nc" id="L26">				Game.getBoard().print();</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE)</span>
+<span class="nc" id="L33">				Game.getBoard().print();</span>
 			else
-<span class="nc" id="L28">				System.out.println(&quot;Gioco non ancora avviato.&quot;);</span>
-<span class="nc" id="L29">			return;</span>
-			
-		case &quot;quit&quot;:
-<span class="nc" id="L32">			return;</span>
-			
-		case &quot;help&quot;:
-<span class="nc" id="L35">			Game.printHelp();</span>
+<span class="nc" id="L35">				System.out.println(&quot;Gioco non ancora avviato.&quot;);</span>
 <span class="nc" id="L36">			return;</span>
 			
+		case &quot;quit&quot;:
+<span class="nc" id="L39">			return;</span>
+			
+		case &quot;help&quot;:
+<span class="nc" id="L42">			Game.printHelp();</span>
+<span class="nc" id="L43">			return;</span>
+			
 		case &quot;captures&quot;:
-<span class="nc" id="L39">			Game.capturedMaterial();</span>
-<span class="nc" id="L40">			return;</span>
+<span class="nc" id="L46">			Game.capturedMaterial();</span>
+<span class="nc" id="L47">			return;</span>
 			
 		case &quot;moves&quot;:
-<span class="nc" id="L43">			Game.printListOfMoves();</span>
-<span class="nc" id="L44">			return;</span>
+<span class="nc" id="L50">			Game.printListOfMoves();</span>
+<span class="nc" id="L51">			return;</span>
 			
 		case &quot;play&quot;:
-<span class="nc bnc" id="L47" title="All 2 branches missed.">			if(Game.getStatus() != GameStatus.ACTIVE) {</span>
-<span class="nc" id="L48">				Game.startGame();	</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">			if(Game.getStatus() != GameStatus.ACTIVE) {</span>
+<span class="nc" id="L55">				Game.startGame();	</span>
 			} else {
-<span class="nc" id="L50">				Scanner input2 = new Scanner(System.in);</span>
-<span class="nc" id="L51">				System.out.println(&quot;Sei sicuro di voler ricominciare il gioco? S/[N]&quot;);</span>
-<span class="nc" id="L52">				String confirmation = input2.nextLine().toLowerCase();</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">				if(confirmation.equals(&quot;s&quot;)) {</span>
-<span class="nc" id="L54">					Game.startGame();</span>
+<span class="nc" id="L57">				Scanner input2 = new Scanner(System.in);</span>
+<span class="nc" id="L58">				System.out.println(&quot;Sei sicuro di voler ricominciare il gioco? S/[N]&quot;);</span>
+<span class="nc" id="L59">				String confirmation = input2.nextLine().toLowerCase();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">				if(confirmation.equals(&quot;s&quot;)) {</span>
+<span class="nc" id="L61">					Game.startGame();</span>
 				}
 			}
 					
-<span class="nc" id="L58">			return;</span>
+<span class="nc" id="L65">			return;</span>
 		case &quot;0-0&quot;:
 			//fallthrough
 		case &quot;O-O&quot;:
-<span class="nc bnc" id="L62" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE)</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">				if(Move.shortCastle(Game.getTurn())) {</span>
-<span class="nc" id="L64">					Game.addPrintableMove(command);</span>
-<span class="nc" id="L65">					return;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE)</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">				if(Move.shortCastle(Game.getTurn())) {</span>
+<span class="nc" id="L71">					Game.addPrintableMove(command);</span>
+<span class="nc" id="L72">					return;</span>
 				} else {
-<span class="nc" id="L67">					throw new IllegalMoveException();</span>
+<span class="nc" id="L74">					throw new IllegalMoveException();</span>
 				}
 			else
-<span class="nc" id="L70">				System.out.println(&quot;Gioco non ancora avviato.&quot;);</span>
-<span class="nc" id="L71">			return;</span>
+<span class="nc" id="L77">				System.out.println(&quot;Gioco non ancora avviato.&quot;);</span>
+<span class="nc" id="L78">			return;</span>
 		case &quot;0-0-0&quot;:
 			//fallthrough
 		case &quot;O-O-O&quot;:
-<span class="nc bnc" id="L75" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE)</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">				if(Move.longCastle(Game.getTurn())) {</span>
-<span class="nc" id="L77">					Game.addPrintableMove(command);</span>
-<span class="nc" id="L78">					return;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE)</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">				if(Move.longCastle(Game.getTurn())) {</span>
+<span class="nc" id="L84">					Game.addPrintableMove(command);</span>
+<span class="nc" id="L85">					return;</span>
 				} else {
-<span class="nc" id="L80">					throw new IllegalMoveException();</span>
+<span class="nc" id="L87">					throw new IllegalMoveException();</span>
 				}
 			else
-<span class="nc" id="L83">				System.out.println(&quot;Gioco non ancora avviato.&quot;);</span>
-<span class="nc" id="L84">			return;</span>
+<span class="nc" id="L90">				System.out.println(&quot;Gioco non ancora avviato.&quot;);</span>
+<span class="nc" id="L91">			return;</span>
 		default:
-<span class="nc bnc" id="L86" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">			if(Game.getStatus() == GameStatus.ACTIVE) {</span>
 				/*full escape sequence 
 				 * 
 				 *&quot;^(C|A|T|D|R|)([a-h]?)([1-8]?)(x?)([a-h][1-8])(=?[CATD]?)(\+?)(\#?)$&quot; 
@@ -103,150 +110,148 @@ import it.uniba.chess.utils.ParserColumns;
 				//n
 				
 				//String RegExp_of_pawn_moves= &quot;^([a-h]?)(x?)([a-h][1-8])$&quot;;
-<span class="nc" id="L106">				String RegExp_of_pawn_moves = &quot;^(C|A|T|D|R|)([a-h]?|[1-8]?)(x?)([a-h][1-8])((e[.]p[.])?)$&quot;;</span>
+<span class="nc" id="L113">				String RegExp_of_pawn_moves = &quot;^(C|A|T|D|R|)([a-h]?|[1-8]?)(x?)([a-h][1-8])((e[.]p[.])?)$&quot;;</span>
 				
 				//followed this tutorial http://tutorials.jenkov.com/java-regex/matcher.html#group-method
 				//the pattern is the actual regexp, the matcher expects the keyboard command as input
 				
-<span class="nc" id="L111">				Pattern regExpPattern = Pattern.compile(RegExp_of_pawn_moves);</span>
+<span class="nc" id="L118">				Pattern regExpPattern = Pattern.compile(RegExp_of_pawn_moves);</span>
 				
-<span class="nc" id="L113">				Matcher regExpMatcher = regExpPattern.matcher(command);</span>
+<span class="nc" id="L120">				Matcher regExpMatcher = regExpPattern.matcher(command);</span>
 				
 				//if the command is a grammatically correct Pawn move
-<span class="nc bnc" id="L116" title="All 2 branches missed.">				if(regExpMatcher.matches()) {</span>
-<span class="nc" id="L117">					String pieceType_string = regExpMatcher.group(1);</span>
-<span class="nc" id="L118">					String startingRowOrColumn_string = regExpMatcher.group(2);</span>
-<span class="nc" id="L119">					String startingRow_string= getStartingRow(startingRowOrColumn_string);</span>
-<span class="nc" id="L120">					String startingColumn_string = getStartingColumn(startingRowOrColumn_string);</span>
-<span class="nc" id="L121">					String isCapture_string = regExpMatcher.group(3);</span>
-<span class="nc" id="L122">					String destination_string = regExpMatcher.group(4);</span>
-<span class="nc" id="L123">					String isEnpassant_string = regExpMatcher.group(5);</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">				if(regExpMatcher.matches()) {</span>
+<span class="nc" id="L124">					String pieceType_string = regExpMatcher.group(FIRST_GROUP);</span>
+<span class="nc" id="L125">					String startingRowOrColumn_string = regExpMatcher.group(SECOND_GROUP);</span>
+<span class="nc" id="L126">					String startingRow_string= getStartingRow(startingRowOrColumn_string);</span>
+<span class="nc" id="L127">					String startingColumn_string = getStartingColumn(startingRowOrColumn_string);</span>
+<span class="nc" id="L128">					String isCapture_string = regExpMatcher.group(THIRD_GROUP);</span>
+<span class="nc" id="L129">					String destination_string = regExpMatcher.group(FOURTH_GROUP);</span>
+<span class="nc" id="L130">					String isEnpassant_string = regExpMatcher.group(FIFTH_GROUP);</span>
 					
 					try {
 						//this matches the whole string to be saved into the moves list if it's not an Illegal Move
-<span class="nc" id="L127">						String lastmove = regExpMatcher.group(0);</span>
+<span class="nc" id="L134">						String lastmove = regExpMatcher.group(0);</span>
 						//we will surely have destination square, we just need to convert the algebraic notation to matrix coordinates
-<span class="nc" id="L129">						Square destination_square = getDestinationSquare(destination_string);</span>
+<span class="nc" id="L136">						Square destination_square = getDestinationSquare(destination_string);</span>
 						
 						//we must always have a starting square too
 						Square starting_square;
 						
-<span class="nc bnc" id="L134" title="All 7 branches missed.">						switch(pieceType_string) {</span>
+<span class="nc bnc" id="L141" title="All 7 branches missed.">						switch(pieceType_string) {</span>
 						case &quot;C&quot;:
-<span class="nc bnc" id="L136" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
-<span class="nc bnc" id="L137" title="All 2 branches missed.">								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
-<span class="nc bnc" id="L138" title="All 2 branches missed.">								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
-<span class="nc" id="L139">								starting_square = checkFlower(destination_square, startRow, startColumn, Knight.class, Game.getTurn());</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">								int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
+<span class="nc" id="L146">								starting_square = checkFlower(destination_square, startRow, startColumn, Knight.class, Game.getTurn());</span>
 								//Move.knightMoveOrCapture(starting_square,destination_square, !isCapture_string.isEmpty());
-<span class="nc bnc" id="L141" title="All 2 branches missed.">								Move.pieceMoveOrCapture(Knight.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
-<span class="nc" id="L142">								Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L143">							} else {</span>
-<span class="nc" id="L144">								throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">								Move.pieceMoveOrCapture(Knight.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
+<span class="nc" id="L149">								Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L150">							} else {</span>
+<span class="nc" id="L151">								throw new IllegalMoveException();</span>
 							}
 							break;
 						case &quot;A&quot;:
-<span class="nc bnc" id="L148" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
-<span class="nc bnc" id="L149" title="All 2 branches missed.">							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
-<span class="nc bnc" id="L150" title="All 2 branches missed.">							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
-<span class="nc" id="L151">							    starting_square = checkCross(destination_square, startRow, startColumn, Bishop.class, Game.getTurn());</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
+<span class="nc" id="L158">							    starting_square = checkCross(destination_square, startRow, startColumn, Bishop.class, Game.getTurn());</span>
 							    //Move.bishopMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
-<span class="nc bnc" id="L153" title="All 2 branches missed.">							    Move.pieceMoveOrCapture(Bishop.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
-<span class="nc" id="L154">							    Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L155">							} else {</span>
-<span class="nc" id="L156">								throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">							    Move.pieceMoveOrCapture(Bishop.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
+<span class="nc" id="L161">							    Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L162">							} else {</span>
+<span class="nc" id="L163">								throw new IllegalMoveException();</span>
 							}
 							break;
 						case &quot;T&quot;:
-<span class="nc bnc" id="L160" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
 								//if we have an empty row string, we return -1 as control;
-<span class="nc bnc" id="L162" title="All 2 branches missed.">								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
-<span class="nc bnc" id="L163" title="All 2 branches missed.">								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
-<span class="nc" id="L164">								starting_square = plusMovement(destination_square, startRow, startColumn, Rook.class, Game.getTurn());			</span>
-<span class="nc bnc" id="L165" title="All 2 branches missed.">								Move.pieceMoveOrCapture(Rook.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
-<span class="nc" id="L166">								Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L167">							} else {</span>
-<span class="nc" id="L168">								throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">								int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
+<span class="nc" id="L171">								starting_square = plusMovement(destination_square, startRow, startColumn, Rook.class, Game.getTurn());			</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">								Move.pieceMoveOrCapture(Rook.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
+<span class="nc" id="L173">								Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L174">							} else {</span>
+<span class="nc" id="L175">								throw new IllegalMoveException();</span>
 							}
 							break;
 						case &quot;D&quot;:
-<span class="nc bnc" id="L172" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
-<span class="nc bnc" id="L174" title="All 2 branches missed.">							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
-<span class="nc" id="L175">							    starting_square = queenIntersectionControl(destination_square, startRow, startColumn, Queen.class, Game.getTurn());</span>
-<span class="nc bnc" id="L176" title="All 2 branches missed.">							    Move.pieceMoveOrCapture(Queen.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
-<span class="nc" id="L177">							    Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L178">							} else {</span>
-<span class="nc" id="L179">								throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">							if(isEnpassant_string.isEmpty()) {</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7</span>
+<span class="nc" id="L182">							    starting_square = queenIntersectionControl(destination_square, startRow, startColumn, Queen.class, Game.getTurn());</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">							    Move.pieceMoveOrCapture(Queen.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
+<span class="nc" id="L184">							    Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L185">							} else {</span>
+<span class="nc" id="L186">								throw new IllegalMoveException();</span>
 							}
 							break;
 						case &quot;R&quot;:
-<span class="nc bnc" id="L183" title="All 4 branches missed.">							if(isEnpassant_string.isEmpty() &amp;&amp; startingRowOrColumn_string.isEmpty()) {</span>
-<span class="nc bnc" id="L184" title="All 4 branches missed.">								if((lastmove.equals(&quot;Rg1&quot;) ) || (lastmove.equals(&quot;Rg8&quot;))){</span>
+<span class="nc bnc" id="L190" title="All 4 branches missed.">							if(isEnpassant_string.isEmpty() &amp;&amp; startingRowOrColumn_string.isEmpty()) {</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">								if((lastmove.equals(&quot;Rg1&quot;) ) || (lastmove.equals(&quot;Rg8&quot;))){</span>
 								
-<span class="nc bnc" id="L186" title="All 2 branches missed.">									if(Move.shortCastle(Game.getTurn())) {</span>
-<span class="nc" id="L187">										Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L188">										return;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">									if(Move.shortCastle(Game.getTurn())) {</span>
+<span class="nc" id="L194">										Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L195">										return;</span>
 									}
-<span class="nc bnc" id="L190" title="All 4 branches missed.">								} else if ( (lastmove.equals(&quot;Rc1&quot;)) || (lastmove.equals(&quot;Rc8&quot;)) ) {</span>
+<span class="nc bnc" id="L197" title="All 4 branches missed.">								} else if ( (lastmove.equals(&quot;Rc1&quot;)) || (lastmove.equals(&quot;Rc8&quot;)) ) {</span>
 								
-<span class="nc bnc" id="L192" title="All 2 branches missed.">									if(Move.longCastle(Game.getTurn())) {</span>
-<span class="nc" id="L193">										Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L194">										return;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">									if(Move.longCastle(Game.getTurn())) {</span>
+<span class="nc" id="L200">										Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L201">										return;</span>
 									}
 								}
-<span class="nc" id="L197">								starting_square = isThereAKingAroundThisSquare(destination_square, Game.getTurn());</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">								if(isTurnKingInCheck(destination_square)) {</span>
+<span class="nc" id="L204">								starting_square = isThereAKingAroundThisSquare(destination_square, Game.getTurn());</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">								if(isTurnKingInCheck(destination_square)) {</span>
 									//Move.kingMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
-<span class="nc bnc" id="L200" title="All 2 branches missed.">									Move.pieceMoveOrCapture(King.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
-<span class="nc" id="L201">									Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L202">									break;</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">									Move.pieceMoveOrCapture(King.class, starting_square,destination_square, !isCapture_string.isEmpty());</span>
+<span class="nc" id="L208">									Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L209">									break;</span>
 								}
 							}
-<span class="nc" id="L205">							throw new IllegalMoveException();</span>
+<span class="nc" id="L212">							throw new IllegalMoveException();</span>
 						case &quot;&quot;:
-<span class="nc bnc" id="L207" title="All 6 branches missed.">							if(startingRowOrColumn_string.isEmpty() &amp;&amp; isCapture_string.isEmpty() &amp;&amp; isEnpassant_string.isEmpty()){</span>
+<span class="nc bnc" id="L214" title="All 6 branches missed.">							if(startingRowOrColumn_string.isEmpty() &amp;&amp; isCapture_string.isEmpty() &amp;&amp; isEnpassant_string.isEmpty()){</span>
 								//this is a pawn move
-<span class="nc" id="L209">								starting_square = getPawnStartingSquare_Move(destination_square);</span>
-<span class="nc" id="L210">								Move.pawnMove(starting_square, destination_square); </span>
-<span class="nc" id="L211">								Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L216">								starting_square = getPawnStartingSquare_Move(destination_square);</span>
+<span class="nc" id="L217">								Move.pawnMove(starting_square, destination_square); </span>
+<span class="nc" id="L218">								Game.addPrintableMove(lastmove);</span>
 								
 								
-<span class="nc bnc" id="L214" title="All 6 branches missed.">								} else if (startingRow_string.isEmpty() &amp;&amp; !startingColumn_string.isEmpty() &amp;&amp; !isCapture_string.isEmpty()) {</span>
+<span class="nc bnc" id="L221" title="All 6 branches missed.">								} else if (startingRow_string.isEmpty() &amp;&amp; !startingColumn_string.isEmpty() &amp;&amp; !isCapture_string.isEmpty()) {</span>
 								//this is a pawn capture (either simple or en-passant)
 								//starting_square = getPawnStartingSquare_Capture(startingColumn_string, destination_square);
-<span class="nc bnc" id="L217" title="All 2 branches missed.">								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0));</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">								int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0));</span>
 
-<span class="nc" id="L219">								starting_square = checkPawn_Capture(destination_square, startColumn, Pawn.class, Game.getTurn());</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">								Move.pawnCapture(starting_square, destination_square, !isEnpassant_string.isEmpty()); // &lt;-------- only way is to call it with startingY != -1</span>
-<span class="nc" id="L221">								Game.addPrintableMove(lastmove);</span>
-<span class="nc" id="L222">							 } else {</span>
-<span class="nc" id="L223">								throw new IllegalMoveException();</span>
+<span class="nc" id="L226">								starting_square = checkPawn_Capture(destination_square, startColumn, Pawn.class, Game.getTurn());</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">								Move.pawnCapture(starting_square, destination_square, !isEnpassant_string.isEmpty()); // &lt;-------- only way is to call it with startingY != -1</span>
+<span class="nc" id="L228">								Game.addPrintableMove(lastmove);</span>
+<span class="nc" id="L229">							 } else {</span>
+<span class="nc" id="L230">								throw new IllegalMoveException();</span>
 							}
 							break;
 						} //end inner switch
-<span class="nc" id="L227">						Game.nextTurn();</span>
-<span class="nc" id="L228">						return;</span>
-<span class="nc" id="L229">					} catch (IllegalMoveException illegalmove) {</span>
-<span class="nc" id="L230">						throw illegalmove;</span>
+<span class="nc" id="L234">						Game.nextTurn();</span>
+<span class="nc" id="L235">						return;</span>
+<span class="nc" id="L236">					} catch (IllegalMoveException illegalmove) {</span>
+<span class="nc" id="L237">						throw illegalmove;</span>
 					}
 				}
 				//end algebraic move default case;			
 			}	
 			//if nothing did return until now, it's an invalid command (not exclusively an Illegal move)
-<span class="nc" id="L236">			System.out.println(&quot;Comando non riconosciuto. Scrivi help per la lista dei comandi.&quot;);</span>
+<span class="nc" id="L243">			System.out.println(&quot;Comando non riconosciuto. Scrivi help per la lista dei comandi.&quot;);</span>
 			//throw new IllegalMoveException();
 		}
-<span class="nc" id="L239">	}</span>
+<span class="nc" id="L246">	}</span>
 	
-	private static Square getDestinationSquare(String regExpGroup_destination) throws IllegalMoveException {
-		try {
-<span class="nc" id="L243">			int destination_square_column = ParserColumns.getFileIntFromChar(regExpGroup_destination.charAt(0));</span>
-<span class="nc" id="L244">			int destination_square_row = Character.getNumericValue(regExpGroup_destination.charAt(1)) - 1;</span>
-<span class="nc" id="L245">			return Game.getBoard().getSquare(destination_square_row, destination_square_column);</span>
-<span class="nc" id="L246">		} catch (IllegalMoveException illegalmove) {</span>
-<span class="nc" id="L247">			throw illegalmove;</span>
-		}
+
+	private static Square getDestinationSquare(String regExpGroup_destination) {
+<span class="nc" id="L250">			int destination_square_column = ParseFiles.getFileIntFromChar(regExpGroup_destination.charAt(0));</span>
+<span class="nc" id="L251">			int destination_square_row = Character.getNumericValue(regExpGroup_destination.charAt(1)) - 1;</span>
+<span class="nc" id="L252">			return Game.getBoard().getSquare(destination_square_row, destination_square_column);</span>
 	}
+
 	
 	/* We look for a plausible pawn to moved in the previous two rows and the same column;
 	 * There can be:
@@ -256,40 +261,50 @@ import it.uniba.chess.utils.ParserColumns;
 	 */
 	private static Square getPawnStartingSquare_Move(Square destination_square) throws IllegalMoveException{
 		try {
-<span class="nc" id="L259">			ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L264">			ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
 			Piece piece_to_check;
 			
 			//we dinamically populate a list of squares to check adding the first and the second
 			//square before the destination square of our Pawn
 			
-<span class="nc bnc" id="L265" title="All 2 branches missed.">			if(Game.getTurn() == ChessColor.WHITE) {</span>
-<span class="nc" id="L266">				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-1, destination_square.getY()));</span>
-<span class="nc" id="L267">				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-2, destination_square.getY()));</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">			if(Game.getTurn() == ChessColor.WHITE) {</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">				if(destination_square.getX()-1 &gt; 0) {</span>
+<span class="nc" id="L272">					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-1, destination_square.getY()));</span>
+				}
+				
+<span class="nc bnc" id="L275" title="All 2 branches missed.">				if(destination_square.getX()-2 &gt; 0) {</span>
+<span class="nc" id="L276">					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-2, destination_square.getY()));</span>
+				}	
 			} else {
-<span class="nc" id="L269">				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+1, destination_square.getY()));</span>
-<span class="nc" id="L270">				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+2, destination_square.getY()));</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">				if(destination_square.getX()+1 &lt; Board.CHESSBOARD_DIMENSION) {</span>
+<span class="nc" id="L280">					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+1, destination_square.getY()));</span>
+				}
+				
+<span class="nc bnc" id="L283" title="All 2 branches missed.">				if(destination_square.getX()+2 &lt; Board.CHESSBOARD_DIMENSION) {</span>
+<span class="nc" id="L284">					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+2, destination_square.getY()));</span>
+				}
 			}
 			
-<span class="nc bnc" id="L273" title="All 2 branches missed.">			if(squares_to_check.get(0).isOccupied()) {</span>
-<span class="nc" id="L274">				piece_to_check = squares_to_check.get(0).getPiece();</span>
+<span class="nc bnc" id="L288" title="All 4 branches missed.">			if(squares_to_check.size() &gt; 0 &amp;&amp; squares_to_check.get(0).isOccupied()) {</span>
+<span class="nc" id="L289">				piece_to_check = squares_to_check.get(0).getPiece();</span>
 				
 				//if the square before destination is occupied by EXACTLY a pawn
-<span class="nc bnc" id="L277" title="All 4 branches missed.">				if( (piece_to_check.getClass() == Pawn.class) &amp;&amp; (piece_to_check.getColor() == Game.getTurn()) )			</span>
-<span class="nc" id="L278">					return squares_to_check.get(0);</span>
+<span class="nc bnc" id="L292" title="All 4 branches missed.">				if( (piece_to_check.getClass() == Pawn.class) &amp;&amp; (piece_to_check.getColor() == Game.getTurn()) )			</span>
+<span class="nc" id="L293">					return squares_to_check.get(0);</span>
 				
 			} else {					
 				//first square was empty, let's check for a pawn a starting position
-<span class="nc bnc" id="L282" title="All 2 branches missed.">				if(squares_to_check.get(1).isOccupied()) {</span>
-<span class="nc" id="L283">					piece_to_check = squares_to_check.get(1).getPiece();</span>
-<span class="nc bnc" id="L284" title="All 4 branches missed.">					if( (piece_to_check.getClass() == Pawn.class) &amp;&amp; (piece_to_check.getColor() == Game.getTurn())) </span>
-<span class="nc" id="L285">						return squares_to_check.get(1);</span>
+<span class="nc bnc" id="L297" title="All 4 branches missed.">				if(squares_to_check.size() &gt; 1 &amp;&amp; squares_to_check.get(1).isOccupied()) {</span>
+<span class="nc" id="L298">					piece_to_check = squares_to_check.get(1).getPiece();</span>
+<span class="nc bnc" id="L299" title="All 4 branches missed.">					if( (piece_to_check.getClass() == Pawn.class) &amp;&amp; (piece_to_check.getColor() == Game.getTurn())) </span>
+<span class="nc" id="L300">						return squares_to_check.get(1);</span>
 				}
 				
 			}
 			//if the method hasn't returned by now, it must be an illegal move
-<span class="nc" id="L290">			throw new IllegalMoveException();</span>
+<span class="nc" id="L305">			throw new IllegalMoveException();</span>
 			
-<span class="nc" id="L292">		}catch(IllegalMoveException illegalmove) {</span>
+<span class="nc" id="L307">		}catch(IllegalMoveException illegalmove) {</span>
 			/*
 			 * we don't need to create another exception, just reuse what we already have
 			 * most of the times this catch block will happen because we go check for an out-of-bounds-move
@@ -297,277 +312,277 @@ import it.uniba.chess.utils.ParserColumns;
 			 * for a pawn in a0, which doesn't exist and will produce this exception
 			 *
 			*/
-<span class="nc" id="L300">			throw illegalmove;</span>
+<span class="nc" id="L315">			throw illegalmove;</span>
 		}
-	}	
+	}
 	
 	private static Square checkPawn_Capture(Square destination_square, int startingY, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-<span class="nc" id="L305">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L320">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
 		
-<span class="nc bnc" id="L307" title="All 2 branches missed.">		if(startingY != -1){</span>
-<span class="nc bnc" id="L308" title="All 2 branches missed.">			if(Math.abs(destination_square.getY() - startingY) == 1){</span>
+<span class="nc bnc" id="L322" title="All 2 branches missed.">		if(startingY != -1){</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">			if(Math.abs(destination_square.getY() - startingY) == 1){</span>
 				//we have a true pawn capture
-<span class="nc bnc" id="L310" title="All 2 branches missed.">				if(wantedColor == ChessColor.WHITE) {</span>
-<span class="nc" id="L311">					offsetMovement(destination_square, -1, startingY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
+<span class="nc bnc" id="L325" title="All 2 branches missed.">				if(wantedColor == ChessColor.WHITE) {</span>
+<span class="nc" id="L326">					offsetMovement(destination_square, -1, startingY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
 				}				
 				else
-<span class="nc" id="L314">					offsetMovement(destination_square, +1, startingY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L329">					offsetMovement(destination_square, +1, startingY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
 			}	
 		}else{
 			//we are using it to check if king is in check
-<span class="nc bnc" id="L318" title="All 2 branches missed.">			if(wantedColor == ChessColor.WHITE){</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">			if(wantedColor == ChessColor.WHITE){</span>
 				
-<span class="nc" id="L320">				offsetMovement(destination_square, -1, +1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L321">				offsetMovement(destination_square, -1, -1, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L335">				offsetMovement(destination_square, -1, +1, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L336">				offsetMovement(destination_square, -1, -1, piecetype, wantedColor, squares_to_check);</span>
 			} else {
 				
-<span class="nc" id="L324">				offsetMovement(destination_square, +1, +1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L325">				offsetMovement(destination_square, +1, -1, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L339">				offsetMovement(destination_square, +1, +1, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L340">				offsetMovement(destination_square, +1, -1, piecetype, wantedColor, squares_to_check);</span>
 			}
 		}
 
 
-<span class="nc bnc" id="L330" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1) {</span>
-<span class="nc" id="L331">			throw new IllegalMoveException();</span>
-<span class="nc bnc" id="L332" title="All 2 branches missed.">		} else if(squares_to_check.size() == 0) {</span>
-<span class="nc" id="L333">			return null;</span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1) {</span>
+<span class="nc" id="L346">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L347" title="All 2 branches missed.">		} else if(squares_to_check.size() == 0) {</span>
+<span class="nc" id="L348">			return null;</span>
 		} else {
-<span class="nc" id="L335">			return squares_to_check.get(0);</span>
+<span class="nc" id="L350">			return squares_to_check.get(0);</span>
 		}		
 	}
 	
 	private static String getStartingRow(String startRowOrColumn ) {
-<span class="nc bnc" id="L340" title="All 2 branches missed.">		if(startRowOrColumn.matches(&quot;[1-8]&quot;)) {</span>
-<span class="nc" id="L341">			return startRowOrColumn;</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">		if(startRowOrColumn.matches(&quot;[1-8]&quot;)) {</span>
+<span class="nc" id="L356">			return startRowOrColumn;</span>
 		}
-<span class="nc" id="L343">		return &quot;&quot;;</span>
+<span class="nc" id="L358">		return &quot;&quot;;</span>
 	}
 	
 	private static String getStartingColumn(String startRowOrColumn ) {
-<span class="nc bnc" id="L347" title="All 2 branches missed.">		if(startRowOrColumn.matches(&quot;[a-h]&quot;)) {</span>
-<span class="nc" id="L348">			return startRowOrColumn;</span>
+<span class="nc bnc" id="L362" title="All 2 branches missed.">		if(startRowOrColumn.matches(&quot;[a-h]&quot;)) {</span>
+<span class="nc" id="L363">			return startRowOrColumn;</span>
 		}
-<span class="nc" id="L350">		return &quot;&quot;;</span>
+<span class="nc" id="L365">		return &quot;&quot;;</span>
 	}
 	
 	private static Square plusMovement(Square finalsquare, int startingX, int startingY, Class&lt;? extends Piece&gt; pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
 		
-<span class="nc" id="L355">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L370">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
 		
-<span class="nc bnc" id="L357" title="All 6 branches missed.">		if(finalsquare.isOccupied() &amp;&amp; finalsquare.getPiece().getColor() == wantedColor &amp;&amp; wantedColor == Game.getTurn()) {</span>
-<span class="nc" id="L358">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L372" title="All 6 branches missed.">		if(finalsquare.isOccupied() &amp;&amp; finalsquare.getPiece().getColor() == wantedColor &amp;&amp; wantedColor == Game.getTurn()) {</span>
+<span class="nc" id="L373">			throw new IllegalMoveException();</span>
 		}
 		
-<span class="nc bnc" id="L361" title="All 6 branches missed.">		if(startingX != -1 &amp;&amp; startingX != finalsquare.getX() &amp;&amp;  Game.getBoard().getSquare(startingX, finalsquare.getY()).isOccupied()) {</span>
-<span class="nc bnc" id="L362" title="All 2 branches missed.">			if(Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getClass() == pieceClassToSearch &amp;&amp;</span>
-<span class="nc bnc" id="L363" title="All 2 branches missed.">			Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getColor() == wantedColor ) {</span>
-<span class="nc bnc" id="L364" title="All 2 branches missed.">				if(finalsquare.getX() &gt; startingX) {</span>
-<span class="nc bnc" id="L365" title="All 2 branches missed.">					for(int i = finalsquare.getX()-1; i &gt; startingX; --i) {</span>
-<span class="nc bnc" id="L366" title="All 2 branches missed.">						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {</span>
-<span class="nc" id="L367">							throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L376" title="All 6 branches missed.">		if(startingX != -1 &amp;&amp; startingX != finalsquare.getX() &amp;&amp;  Game.getBoard().getSquare(startingX, finalsquare.getY()).isOccupied()) {</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">			if(Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getClass() == pieceClassToSearch &amp;&amp;</span>
+<span class="nc bnc" id="L378" title="All 2 branches missed.">			Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getColor() == wantedColor ) {</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">				if(finalsquare.getX() &gt; startingX) {</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">					for(int i = finalsquare.getX()-1; i &gt; startingX; --i) {</span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {</span>
+<span class="nc" id="L382">							throw new IllegalMoveException();</span>
 						}
 					}	
 				}
-<span class="nc bnc" id="L371" title="All 2 branches missed.">				else if(finalsquare.getX() &lt; startingX) {</span>
-<span class="nc bnc" id="L372" title="All 2 branches missed.">					for(int i = finalsquare.getX()+1; i &lt; startingX; ++i) {</span>
-<span class="nc bnc" id="L373" title="All 2 branches missed.">						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {</span>
-<span class="nc" id="L374">							throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">				else if(finalsquare.getX() &lt; startingX) {</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">					for(int i = finalsquare.getX()+1; i &lt; startingX; ++i) {</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {</span>
+<span class="nc" id="L389">							throw new IllegalMoveException();</span>
 						}
 					}	
 				}
-<span class="nc" id="L378">				return Game.getBoard().getSquare(startingX, finalsquare.getY());</span>
+<span class="nc" id="L393">				return Game.getBoard().getSquare(startingX, finalsquare.getY());</span>
 			}
-<span class="nc" id="L380">			else throw new IllegalMoveException();</span>
+<span class="nc" id="L395">			else throw new IllegalMoveException();</span>
 			
 		}
-<span class="nc bnc" id="L383" title="All 4 branches missed.">		else if(startingX != -1 &amp;&amp; startingX == finalsquare.getX()) {</span>
-<span class="nc" id="L384">			westCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
-<span class="nc" id="L385">			eastCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc bnc" id="L398" title="All 4 branches missed.">		else if(startingX != -1 &amp;&amp; startingX == finalsquare.getX()) {</span>
+<span class="nc" id="L399">			westCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L400">			eastCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
 			
-<span class="nc bnc" id="L387" title="All 2 branches missed.">			if(squares_to_check.size() &gt; 1) {</span>
-<span class="nc" id="L388">				throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L402" title="All 2 branches missed.">			if(squares_to_check.size() &gt; 1) {</span>
+<span class="nc" id="L403">				throw new IllegalMoveException();</span>
 			}
-<span class="nc bnc" id="L390" title="All 2 branches missed.">			else if(squares_to_check.size() == 0)</span>
-<span class="nc" id="L391">				return null;</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">			else if(squares_to_check.size() == 0)</span>
+<span class="nc" id="L406">				return null;</span>
 			
-<span class="nc" id="L393">			return squares_to_check.get(0);		</span>
+<span class="nc" id="L408">			return squares_to_check.get(0);		</span>
 		}
-<span class="nc bnc" id="L395" title="All 6 branches missed.">		if(startingY != -1 &amp;&amp; startingY != finalsquare.getY() &amp;&amp;  Game.getBoard().getSquare(finalsquare.getX(), startingY).isOccupied()) {</span>
+<span class="nc bnc" id="L410" title="All 6 branches missed.">		if(startingY != -1 &amp;&amp; startingY != finalsquare.getY() &amp;&amp;  Game.getBoard().getSquare(finalsquare.getX(), startingY).isOccupied()) {</span>
 			
-<span class="nc bnc" id="L397" title="All 2 branches missed.">			if(Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getClass() == pieceClassToSearch &amp;&amp;</span>
-<span class="nc bnc" id="L398" title="All 2 branches missed.">			Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getColor() == wantedColor ) {</span>
-<span class="nc bnc" id="L399" title="All 2 branches missed.">				if(finalsquare.getY() &gt; startingY) {</span>
-<span class="nc bnc" id="L400" title="All 2 branches missed.">					for(int i = finalsquare.getY()-1; i &gt; startingY; --i) {</span>
-<span class="nc bnc" id="L401" title="All 2 branches missed.">						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {</span>
-<span class="nc" id="L402">							throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L412" title="All 2 branches missed.">			if(Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getClass() == pieceClassToSearch &amp;&amp;</span>
+<span class="nc bnc" id="L413" title="All 2 branches missed.">			Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getColor() == wantedColor ) {</span>
+<span class="nc bnc" id="L414" title="All 2 branches missed.">				if(finalsquare.getY() &gt; startingY) {</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">					for(int i = finalsquare.getY()-1; i &gt; startingY; --i) {</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {</span>
+<span class="nc" id="L417">							throw new IllegalMoveException();</span>
 						}
 					}	
 				}
-<span class="nc bnc" id="L406" title="All 2 branches missed.">				else if(finalsquare.getY() &lt; startingY) {</span>
-<span class="nc bnc" id="L407" title="All 2 branches missed.">					for(int i = finalsquare.getY()+1; i &lt; startingY; ++i) {</span>
-<span class="nc bnc" id="L408" title="All 2 branches missed.">						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {</span>
-<span class="nc" id="L409">							throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L421" title="All 2 branches missed.">				else if(finalsquare.getY() &lt; startingY) {</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">					for(int i = finalsquare.getY()+1; i &lt; startingY; ++i) {</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {</span>
+<span class="nc" id="L424">							throw new IllegalMoveException();</span>
 						}
 					}	
 				}
-<span class="nc" id="L413">				return Game.getBoard().getSquare(finalsquare.getX(), startingY);</span>
+<span class="nc" id="L428">				return Game.getBoard().getSquare(finalsquare.getX(), startingY);</span>
 			}
-<span class="nc" id="L415">			else throw new IllegalMoveException();</span>
+<span class="nc" id="L430">			else throw new IllegalMoveException();</span>
 			
 		}
-<span class="nc bnc" id="L418" title="All 4 branches missed.">		else if(startingY != -1 &amp;&amp; startingY == finalsquare.getY()){</span>
-<span class="nc" id="L419">			northCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
-<span class="nc" id="L420">			southCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc bnc" id="L433" title="All 4 branches missed.">		else if(startingY != -1 &amp;&amp; startingY == finalsquare.getY()){</span>
+<span class="nc" id="L434">			northCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L435">			southCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
 		
-<span class="nc bnc" id="L422" title="All 2 branches missed.">			if(squares_to_check.size() &gt; 1) {</span>
-<span class="nc" id="L423">				throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L437" title="All 2 branches missed.">			if(squares_to_check.size() &gt; 1) {</span>
+<span class="nc" id="L438">				throw new IllegalMoveException();</span>
 			}
-<span class="nc bnc" id="L425" title="All 2 branches missed.">			else if(squares_to_check.size() == 0)</span>
-<span class="nc" id="L426">				return null;</span>
+<span class="nc bnc" id="L440" title="All 2 branches missed.">			else if(squares_to_check.size() == 0)</span>
+<span class="nc" id="L441">				return null;</span>
 			
-<span class="nc" id="L428">			return squares_to_check.get(0);			</span>
+<span class="nc" id="L443">			return squares_to_check.get(0);			</span>
 		}		
 		
-<span class="nc" id="L431">		northCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
-<span class="nc" id="L432">		southCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
-<span class="nc" id="L433">		westCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
-<span class="nc" id="L434">		eastCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L446">		northCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L447">		southCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L448">		westCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L449">		eastCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);</span>
 	
 	  
 	      //if we have more than one of this piece-colour combo
-<span class="nc bnc" id="L438" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1) {</span>
-<span class="nc" id="L439">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L453" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1) {</span>
+<span class="nc" id="L454">			throw new IllegalMoveException();</span>
 		}
-<span class="nc bnc" id="L441" title="All 2 branches missed.">		else if(squares_to_check.size() == 0)</span>
-<span class="nc" id="L442">			return null;</span>
+<span class="nc bnc" id="L456" title="All 2 branches missed.">		else if(squares_to_check.size() == 0)</span>
+<span class="nc" id="L457">			return null;</span>
 		
-<span class="nc" id="L444">		return squares_to_check.get(0);	</span>
+<span class="nc" id="L459">		return squares_to_check.get(0);	</span>
 	}
 	
 	private static void diagonalUpperRight(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-<span class="nc" id="L448">		int i = 1;</span>
+<span class="nc" id="L463">		int i = 1;</span>
 		Square temp_square;
-<span class="nc bnc" id="L450" title="All 4 branches missed.">		while(finalsquare.getX()+i &lt; 8 &amp;&amp; finalsquare.getY()+i &lt; 8) {</span>
-<span class="nc" id="L451">			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()+i);</span>
-<span class="nc bnc" id="L452" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
-<span class="nc bnc" id="L453" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
-<span class="nc" id="L454">					checksquares.add(temp_square);</span>
-<span class="nc" id="L455">					return;</span>
+<span class="nc bnc" id="L465" title="All 4 branches missed.">		while(finalsquare.getX()+i &lt;Board.CHESSBOARD_DIMENSION &amp;&amp; finalsquare.getY()+i &lt; Board.CHESSBOARD_DIMENSION) {</span>
+<span class="nc" id="L466">			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()+i);</span>
+<span class="nc bnc" id="L467" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
+<span class="nc bnc" id="L468" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
+<span class="nc" id="L469">					checksquares.add(temp_square);</span>
+<span class="nc" id="L470">					return;</span>
 				}
 				else {
-<span class="nc" id="L458">					return;</span>
-				}
-			}
-<span class="nc" id="L461">			++i;</span>
-		}
-<span class="nc" id="L463">	}</span>
-	
-	private static void diagonalLowerRight(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-<span class="nc" id="L466">		int i = 1;</span>
-		Square temp_square;
-<span class="nc bnc" id="L468" title="All 4 branches missed.">		while(finalsquare.getX()-i &gt;= 0 &amp;&amp; finalsquare.getY()+i &lt; 8) {</span>
-<span class="nc" id="L469">			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()+i);</span>
-<span class="nc bnc" id="L470" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
-<span class="nc bnc" id="L471" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
-<span class="nc" id="L472">					checksquares.add(temp_square);</span>
 <span class="nc" id="L473">					return;</span>
 				}
-				else {
-<span class="nc" id="L476">					return;</span>
-				}
 			}
-<span class="nc" id="L479">			++i;</span>
+<span class="nc" id="L476">			++i;</span>
 		}
-<span class="nc" id="L481">	}</span>
+<span class="nc" id="L478">	}</span>
 	
-	private static void diagonalUpperLeft(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-<span class="nc" id="L484">		int i = 1;</span>
+	private static void diagonalLowerRight(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
+<span class="nc" id="L481">		int i = 1;</span>
 		Square temp_square;
-<span class="nc bnc" id="L486" title="All 4 branches missed.">		while(finalsquare.getX()+i &lt; 8 &amp;&amp; finalsquare.getY()-i &gt;= 0) {</span>
-<span class="nc" id="L487">			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()-i);</span>
-<span class="nc bnc" id="L488" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
-<span class="nc bnc" id="L489" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
-<span class="nc" id="L490">					checksquares.add(temp_square);</span>
+<span class="nc bnc" id="L483" title="All 4 branches missed.">		while(finalsquare.getX()-i &gt;= 0 &amp;&amp; finalsquare.getY()+i &lt; Board.CHESSBOARD_DIMENSION) {</span>
+<span class="nc" id="L484">			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()+i);</span>
+<span class="nc bnc" id="L485" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
+<span class="nc bnc" id="L486" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
+<span class="nc" id="L487">					checksquares.add(temp_square);</span>
+<span class="nc" id="L488">					return;</span>
+				}
+				else {
 <span class="nc" id="L491">					return;</span>
 				}
-				else {
-<span class="nc" id="L494">					return;</span>
-				}
 			}
-<span class="nc" id="L497">			++i;</span>
+<span class="nc" id="L494">			++i;</span>
 		}
-<span class="nc" id="L499">	}</span>
+<span class="nc" id="L496">	}</span>
 	
-	private static void diagonalLowerLeft(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-<span class="nc" id="L502">		int i = 1;</span>
+	private static void diagonalUpperLeft(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
+<span class="nc" id="L499">		int i = 1;</span>
 		Square temp_square;
-<span class="nc bnc" id="L504" title="All 4 branches missed.">		while(finalsquare.getX()-i &gt;= 0 &amp;&amp; finalsquare.getY()-i &gt;= 0) {</span>
-<span class="nc" id="L505">			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()-i);</span>
-<span class="nc bnc" id="L506" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
-<span class="nc bnc" id="L507" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
-<span class="nc" id="L508">					checksquares.add(temp_square);</span>
+<span class="nc bnc" id="L501" title="All 4 branches missed.">		while(finalsquare.getX()+i &lt; Board.CHESSBOARD_DIMENSION &amp;&amp; finalsquare.getY()-i &gt;= 0) {</span>
+<span class="nc" id="L502">			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()-i);</span>
+<span class="nc bnc" id="L503" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
+<span class="nc bnc" id="L504" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
+<span class="nc" id="L505">					checksquares.add(temp_square);</span>
+<span class="nc" id="L506">					return;</span>
+				}
+				else {
 <span class="nc" id="L509">					return;</span>
 				}
+			}
+<span class="nc" id="L512">			++i;</span>
+		}
+<span class="nc" id="L514">	}</span>
+	
+	private static void diagonalLowerLeft(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
+<span class="nc" id="L517">		int i = 1;</span>
+		Square temp_square;
+<span class="nc bnc" id="L519" title="All 4 branches missed.">		while(finalsquare.getX()-i &gt;= 0 &amp;&amp; finalsquare.getY()-i &gt;= 0) {</span>
+<span class="nc" id="L520">			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()-i);</span>
+<span class="nc bnc" id="L521" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
+<span class="nc bnc" id="L522" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
+<span class="nc" id="L523">					checksquares.add(temp_square);</span>
+<span class="nc" id="L524">					return;</span>
+				}
 				else {
-<span class="nc" id="L512">					return;</span>
+<span class="nc" id="L527">					return;</span>
 				}
 			}
-<span class="nc" id="L515">			++i;</span>
+<span class="nc" id="L530">			++i;</span>
 		}
-<span class="nc" id="L517">	}</span>
+<span class="nc" id="L532">	}</span>
 	
 	private static Square checkCross(Square finalsquare, int startingX, int startingY, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
 
-<span class="nc" id="L521">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
-<span class="nc" id="L522">		diagonalUpperRight(finalsquare, squares_to_check, piecetype, wantedColor);</span>
-<span class="nc bnc" id="L523" title="All 2 branches missed.">		if(squares_to_check.size() == 0){</span>
-<span class="nc" id="L524">			diagonalLowerRight(finalsquare, squares_to_check, piecetype, wantedColor);</span>
-<span class="nc bnc" id="L525" title="All 2 branches missed.">			if(squares_to_check.size() == 0){</span>
-<span class="nc" id="L526">				diagonalLowerLeft(finalsquare, squares_to_check, piecetype, wantedColor);</span>
-<span class="nc bnc" id="L527" title="All 2 branches missed.">				if(squares_to_check.size() == 0){</span>
-<span class="nc" id="L528">					diagonalUpperLeft(finalsquare, squares_to_check, piecetype, wantedColor);</span>
+<span class="nc" id="L536">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L537">		diagonalUpperRight(finalsquare, squares_to_check, piecetype, wantedColor);</span>
+<span class="nc bnc" id="L538" title="All 2 branches missed.">		if(squares_to_check.size() == 0){</span>
+<span class="nc" id="L539">			diagonalLowerRight(finalsquare, squares_to_check, piecetype, wantedColor);</span>
+<span class="nc bnc" id="L540" title="All 2 branches missed.">			if(squares_to_check.size() == 0){</span>
+<span class="nc" id="L541">				diagonalLowerLeft(finalsquare, squares_to_check, piecetype, wantedColor);</span>
+<span class="nc bnc" id="L542" title="All 2 branches missed.">				if(squares_to_check.size() == 0){</span>
+<span class="nc" id="L543">					diagonalUpperLeft(finalsquare, squares_to_check, piecetype, wantedColor);</span>
 				}
 			}
 		}
-<span class="nc bnc" id="L532" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1){</span>
-<span class="nc" id="L533">				throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L547" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1){</span>
+<span class="nc" id="L548">				throw new IllegalMoveException();</span>
 		}
-<span class="nc bnc" id="L535" title="All 2 branches missed.">		else if(squares_to_check.size() == 0) {</span>
-<span class="nc" id="L536">			return null;</span>
+<span class="nc bnc" id="L550" title="All 2 branches missed.">		else if(squares_to_check.size() == 0) {</span>
+<span class="nc" id="L551">			return null;</span>
 		}
 		else {
-<span class="nc bnc" id="L539" title="All 2 branches missed.">        		if(startingX != -1) {</span>
-<span class="nc bnc" id="L540" title="All 2 branches missed.">        		    if(startingX == squares_to_check.get(0).getX()) {</span>
-<span class="nc" id="L541">        			return squares_to_check.get(0);</span>
+<span class="nc bnc" id="L554" title="All 2 branches missed.">        		if(startingX != -1) {</span>
+<span class="nc bnc" id="L555" title="All 2 branches missed.">        		    if(startingX == squares_to_check.get(0).getX()) {</span>
+<span class="nc" id="L556">        			return squares_to_check.get(0);</span>
         		    }
         		    else {
-<span class="nc" id="L544">        			throw new IllegalMoveException();</span>
+<span class="nc" id="L559">        			throw new IllegalMoveException();</span>
         		    }
         		}
-<span class="nc bnc" id="L547" title="All 2 branches missed.">        		if(startingY != -1) {</span>
-<span class="nc bnc" id="L548" title="All 2 branches missed.">        		    if(startingY == squares_to_check.get(0).getY()) {</span>
-<span class="nc" id="L549">        			return squares_to_check.get(0);</span>
+<span class="nc bnc" id="L562" title="All 2 branches missed.">        		if(startingY != -1) {</span>
+<span class="nc bnc" id="L563" title="All 2 branches missed.">        		    if(startingY == squares_to_check.get(0).getY()) {</span>
+<span class="nc" id="L564">        			return squares_to_check.get(0);</span>
         		    }
         		    else {
-<span class="nc" id="L552">        			throw new IllegalMoveException();</span>
+<span class="nc" id="L567">        			throw new IllegalMoveException();</span>
         		    }
         		}
-<span class="nc" id="L555">        		return squares_to_check.get(0);</span>
+<span class="nc" id="L570">        		return squares_to_check.get(0);</span>
 		}
 	}
 	
 	private static Square queenIntersectionControl(Square finalsquare, int startX, int startY, Class&lt;? extends Piece&gt; pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
-<span class="nc" id="L560">		Square plusSquare = plusMovement(finalsquare, startX, startY, pieceClassToSearch, wantedColor);</span>
-<span class="nc" id="L561">		Square crossSquare = checkCross(finalsquare, startX, startY, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L575">		Square plusSquare = plusMovement(finalsquare, startX, startY, pieceClassToSearch, wantedColor);</span>
+<span class="nc" id="L576">		Square crossSquare = checkCross(finalsquare, startX, startY, pieceClassToSearch, wantedColor);</span>
 
-<span class="nc bnc" id="L563" title="All 4 branches missed.">		if(plusSquare == null &amp;&amp; crossSquare == null)</span>
-<span class="nc" id="L564">			return null;</span>
-<span class="nc bnc" id="L565" title="All 4 branches missed.">		else if(plusSquare != null &amp;&amp; crossSquare != null)</span>
-<span class="nc" id="L566">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L578" title="All 4 branches missed.">		if(plusSquare == null &amp;&amp; crossSquare == null)</span>
+<span class="nc" id="L579">			return null;</span>
+<span class="nc bnc" id="L580" title="All 4 branches missed.">		else if(plusSquare != null &amp;&amp; crossSquare != null)</span>
+<span class="nc" id="L581">			throw new IllegalMoveException();</span>
 		else {
-<span class="nc bnc" id="L568" title="All 2 branches missed.">			if(plusSquare != null)</span>
-<span class="nc" id="L569">				return plusSquare;</span>
-<span class="nc" id="L570">			else return crossSquare;</span>
+<span class="nc bnc" id="L583" title="All 2 branches missed.">			if(plusSquare != null)</span>
+<span class="nc" id="L584">				return plusSquare;</span>
+<span class="nc" id="L585">			else return crossSquare;</span>
 			
 		}
 	}
@@ -575,156 +590,141 @@ import it.uniba.chess.utils.ParserColumns;
 	private static void offsetMovement(Square destination_square, int x_offset, int y_offset, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor, ArrayList&lt;Square&gt; squares_to_check) throws IllegalMoveException{
 		
 		
-<span class="nc bnc" id="L578" title="All 4 branches missed.">		if( (destination_square.getX() + x_offset) &gt;=0 &amp;&amp; (destination_square.getX() + x_offset) &lt; 8 </span>
-<span class="nc bnc" id="L579" title="All 4 branches missed.">			&amp;&amp; (destination_square.getY() + y_offset) &gt;=0 &amp;&amp; (destination_square.getY() + y_offset) &lt; 8){</span>
+<span class="nc bnc" id="L593" title="All 4 branches missed.">		if( (destination_square.getX() + x_offset) &gt;=0 &amp;&amp; (destination_square.getX() + x_offset) &lt; Board.CHESSBOARD_DIMENSION </span>
+<span class="nc bnc" id="L594" title="All 4 branches missed.">			&amp;&amp; (destination_square.getY() + y_offset) &gt;=0 &amp;&amp; (destination_square.getY() + y_offset) &lt; Board.CHESSBOARD_DIMENSION){</span>
 
-<span class="nc" id="L581">			Square temp_square = Game.getBoard().getSquare(destination_square.getX() + x_offset, destination_square.getY() + y_offset);</span>
-<span class="nc bnc" id="L582" title="All 2 branches missed.">			if(temp_square.isOccupied()){</span>
-<span class="nc bnc" id="L583" title="All 4 branches missed.">				if(temp_square.getPiece().getClass() == piecetype &amp;&amp; temp_square.getPiece().getColor() == wantedColor){</span>
-<span class="nc" id="L584">					squares_to_check.add(temp_square);</span>
+<span class="nc" id="L596">			Square temp_square = Game.getBoard().getSquare(destination_square.getX() + x_offset, destination_square.getY() + y_offset);</span>
+<span class="nc bnc" id="L597" title="All 2 branches missed.">			if(temp_square.isOccupied()){</span>
+<span class="nc bnc" id="L598" title="All 4 branches missed.">				if(temp_square.getPiece().getClass() == piecetype &amp;&amp; temp_square.getPiece().getColor() == wantedColor){</span>
+<span class="nc" id="L599">					squares_to_check.add(temp_square);</span>
 				}
 			}
 		}
-<span class="nc" id="L588">	}</span>
+<span class="nc" id="L603">	}</span>
 	
 	private static Square checkFlower(Square destination_square, int startX, int startY, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-<span class="nc" id="L591">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L606">		ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L607">		final int LONG_POSITIVE_KNIGHT_MOVEMENT=2;</span>
+<span class="nc" id="L608">		final int LONG_NEGATIVE_KNIGHT_MOVEMENT=-2;</span>
+<span class="nc" id="L609">		final int SHORT_POSITIVE_KNIGHT_MOVEMENT=1;</span>
+<span class="nc" id="L610">		final int SHORT_NEGATIVE_KNIGHT_MOVEMENT=-1;</span>
 		
-<span class="nc bnc" id="L593" title="All 2 branches missed.">		if(startX != -1) {</span>
-<span class="nc bnc" id="L594" title="All 3 branches missed.">			switch(Math.abs(startX-destination_square.getX())) { </span>
+<span class="nc bnc" id="L612" title="All 2 branches missed.">		if(startX != -1) {</span>
+<span class="nc bnc" id="L613" title="All 3 branches missed.">			switch(Math.abs(startX-destination_square.getX())) { </span>
 				case 1:
 					
-<span class="nc" id="L597">					offsetMovement(destination_square, startX-destination_square.getX(), +2, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L598">					offsetMovement(destination_square, startX-destination_square.getX(), -2, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc bnc" id="L599" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
-<span class="nc" id="L600">						throw new IllegalMoveException();</span>
+<span class="nc" id="L616">					offsetMovement(destination_square, startX-destination_square.getX(), LONG_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L617">					offsetMovement(destination_square, startX-destination_square.getX(), LONG_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc bnc" id="L618" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
+<span class="nc" id="L619">						throw new IllegalMoveException();</span>
 					}
 					else {
-<span class="nc" id="L603">						return squares_to_check.get(0);</span>
+<span class="nc" id="L622">						return squares_to_check.get(0);</span>
 					}
 				case 2:
 					
-<span class="nc" id="L607">					offsetMovement(destination_square, startX-destination_square.getX(), +1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L608">					offsetMovement(destination_square, startX-destination_square.getX(), -1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc bnc" id="L609" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
-<span class="nc" id="L610">						throw new IllegalMoveException();</span>
+<span class="nc" id="L626">					offsetMovement(destination_square, startX-destination_square.getX(), SHORT_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L627">					offsetMovement(destination_square, startX-destination_square.getX(), SHORT_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc bnc" id="L628" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
+<span class="nc" id="L629">						throw new IllegalMoveException();</span>
 					}
 					else {
-<span class="nc" id="L613">						return squares_to_check.get(0);</span>
+<span class="nc" id="L632">						return squares_to_check.get(0);</span>
 					}
 			}
 		}
-<span class="nc bnc" id="L617" title="All 2 branches missed.">		if(startY != -1) {</span>
-<span class="nc bnc" id="L618" title="All 3 branches missed.">			switch(Math.abs(destination_square.getY() - startY)) { </span>
+<span class="nc bnc" id="L636" title="All 2 branches missed.">		if(startY != -1) {</span>
+<span class="nc bnc" id="L637" title="All 3 branches missed.">			switch(Math.abs(destination_square.getY() - startY)) { </span>
 				case 1:
 					
-<span class="nc" id="L621">					offsetMovement(destination_square, +2, /*!!*/ startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L622">					offsetMovement(destination_square, -2, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
-<span class="nc bnc" id="L623" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
-<span class="nc" id="L624">						throw new IllegalMoveException();</span>
+<span class="nc" id="L640">					offsetMovement(destination_square, LONG_POSITIVE_KNIGHT_MOVEMENT, /*!!*/ startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L641">					offsetMovement(destination_square, LONG_NEGATIVE_KNIGHT_MOVEMENT, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
+<span class="nc bnc" id="L642" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
+<span class="nc" id="L643">						throw new IllegalMoveException();</span>
 					}
 					else {
-<span class="nc" id="L627">						return squares_to_check.get(0);</span>
+<span class="nc" id="L646">						return squares_to_check.get(0);</span>
 					}
 				case 2:
 					
-<span class="nc" id="L631">					offsetMovement(destination_square, +1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L632">					offsetMovement(destination_square, -1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
-<span class="nc bnc" id="L633" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
-<span class="nc" id="L634">						throw new IllegalMoveException();</span>
+<span class="nc" id="L650">					offsetMovement(destination_square, SHORT_POSITIVE_KNIGHT_MOVEMENT, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L651">					offsetMovement(destination_square, SHORT_NEGATIVE_KNIGHT_MOVEMENT, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);</span>
+<span class="nc bnc" id="L652" title="All 2 branches missed.">					if(squares_to_check.size() != 1) {</span>
+<span class="nc" id="L653">						throw new IllegalMoveException();</span>
 					}
 					else {
-<span class="nc" id="L637">						return squares_to_check.get(0);</span>
+<span class="nc" id="L656">						return squares_to_check.get(0);</span>
 					}
 			}
 		}
 		
-<span class="nc" id="L642">		offsetMovement(destination_square, +2, +1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L643">		offsetMovement(destination_square, +2, -1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L644">		offsetMovement(destination_square, +1, +2, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L645">		offsetMovement(destination_square, +1, -2, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L646">		offsetMovement(destination_square, -1, +2, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L647">		offsetMovement(destination_square, -1, -2, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L648">		offsetMovement(destination_square, -2, +1, piecetype, wantedColor, squares_to_check);</span>
-<span class="nc" id="L649">		offsetMovement(destination_square, -2, -1, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L661">		offsetMovement(destination_square, LONG_POSITIVE_KNIGHT_MOVEMENT, SHORT_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L662">		offsetMovement(destination_square, LONG_POSITIVE_KNIGHT_MOVEMENT, SHORT_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L663">		offsetMovement(destination_square, SHORT_POSITIVE_KNIGHT_MOVEMENT, LONG_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L664">		offsetMovement(destination_square, SHORT_POSITIVE_KNIGHT_MOVEMENT, LONG_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L665">		offsetMovement(destination_square, SHORT_NEGATIVE_KNIGHT_MOVEMENT, LONG_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L666">		offsetMovement(destination_square, SHORT_NEGATIVE_KNIGHT_MOVEMENT, LONG_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L667">		offsetMovement(destination_square, LONG_NEGATIVE_KNIGHT_MOVEMENT, SHORT_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
+<span class="nc" id="L668">		offsetMovement(destination_square, LONG_NEGATIVE_KNIGHT_MOVEMENT, SHORT_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);</span>
 
-<span class="nc bnc" id="L651" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1) {</span>
-<span class="nc" id="L652">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L670" title="All 2 branches missed.">		if(squares_to_check.size() &gt; 1) {</span>
+<span class="nc" id="L671">			throw new IllegalMoveException();</span>
 		}
-<span class="nc bnc" id="L654" title="All 2 branches missed.">		else if(squares_to_check.size() == 0) {</span>
-<span class="nc" id="L655">			return null;</span>
+<span class="nc bnc" id="L673" title="All 2 branches missed.">		else if(squares_to_check.size() == 0) {</span>
+<span class="nc" id="L674">			return null;</span>
 		}
 		else {
-<span class="nc" id="L658">			return squares_to_check.get(0);</span>
+<span class="nc" id="L677">			return squares_to_check.get(0);</span>
 		}
 	}
 
 	private static Square isThereAKingAroundThisSquare(Square destination_square, ChessColor wantedColor) throws IllegalMoveException{
 
-<span class="nc" id="L664">	        ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
-<span class="nc" id="L665">	        offsetMovement(destination_square, +1, 0, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L666">	        offsetMovement(destination_square, +1, -1, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L667">	        offsetMovement(destination_square, 0, -1, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L668">	        offsetMovement(destination_square, -1, -1, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L669">	        offsetMovement(destination_square, -1, 0, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L670">	        offsetMovement(destination_square, -1, +1, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L671">	        offsetMovement(destination_square, 0, +1, King.class, wantedColor, squares_to_check);</span>
-<span class="nc" id="L672">	        offsetMovement(destination_square, +1, +1, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L683">	        ArrayList&lt;Square&gt; squares_to_check = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L684">	        offsetMovement(destination_square, +1, 0, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L685">	        offsetMovement(destination_square, +1, -1, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L686">	        offsetMovement(destination_square, 0, -1, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L687">	        offsetMovement(destination_square, -1, -1, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L688">	        offsetMovement(destination_square, -1, 0, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L689">	        offsetMovement(destination_square, -1, +1, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L690">	        offsetMovement(destination_square, 0, +1, King.class, wantedColor, squares_to_check);</span>
+<span class="nc" id="L691">	        offsetMovement(destination_square, +1, +1, King.class, wantedColor, squares_to_check);</span>
 
-<span class="nc bnc" id="L674" title="All 2 branches missed.">	        if(squares_to_check.size() &gt; 1) {</span>
+<span class="nc bnc" id="L693" title="All 2 branches missed.">	        if(squares_to_check.size() &gt; 1) {</span>
 	        	
-<span class="nc" id="L676">	            throw new IllegalMoveException();</span>
+<span class="nc" id="L695">	            throw new IllegalMoveException();</span>
 	        }
-<span class="nc bnc" id="L678" title="All 2 branches missed.">	        else if(squares_to_check.size() == 0) {</span>
-<span class="nc" id="L679">	            return null;</span>
+<span class="nc bnc" id="L697" title="All 2 branches missed.">	        else if(squares_to_check.size() == 0) {</span>
+<span class="nc" id="L698">	            return null;</span>
 	        }
 	        else {
-<span class="nc" id="L682">	            return squares_to_check.get(0);</span>
+<span class="nc" id="L701">	            return squares_to_check.get(0);</span>
 	        }
 	 }
 
 	public static boolean isTurnKingInCheck(Square finalsquare) throws IllegalMoveException {
-<span class="nc bnc" id="L687" title="All 6 branches missed.">		if(finalsquare.isOccupied() &amp;&amp; finalsquare.getPiece().getColor() == Game.getTurn() &amp;&amp; finalsquare.getPiece().getClass() != King.class) {</span>
-<span class="nc" id="L688">			throw new IllegalMoveException();</span>
+<span class="nc bnc" id="L706" title="All 6 branches missed.">		if(finalsquare.isOccupied() &amp;&amp; finalsquare.getPiece().getColor() == Game.getTurn() &amp;&amp; finalsquare.getPiece().getClass() != King.class) {</span>
+<span class="nc" id="L707">			throw new IllegalMoveException();</span>
 		}
 
-<span class="nc bnc" id="L691" title="All 4 branches missed.">		if(checkFlower(finalsquare,-1,-1,Knight.class, Game.getEnemyTurn()) == null &amp;&amp; queenIntersectionControl(finalsquare, -1, -1, Queen.class, Game.getEnemyTurn()) == null </span>
-<span class="nc bnc" id="L692" title="All 4 branches missed.">			&amp;&amp; plusMovement(finalsquare, -1,-1,Rook.class, Game.getEnemyTurn()) == null &amp;&amp; checkCross(finalsquare,-1,-1, Bishop.class, Game.getEnemyTurn()) == null</span>
-<span class="nc bnc" id="L693" title="All 4 branches missed.">			&amp;&amp; checkPawn_Capture(finalsquare, -1, Pawn.class, Game.getEnemyTurn()) == null &amp;&amp; isThereAKingAroundThisSquare(finalsquare, Game.getEnemyTurn()) == null){</span>
+<span class="nc bnc" id="L710" title="All 4 branches missed.">		if(checkFlower(finalsquare,-1,-1,Knight.class, Game.getEnemyTurn()) == null &amp;&amp; queenIntersectionControl(finalsquare, -1, -1, Queen.class, Game.getEnemyTurn()) == null </span>
+<span class="nc bnc" id="L711" title="All 4 branches missed.">			&amp;&amp; plusMovement(finalsquare, -1,-1,Rook.class, Game.getEnemyTurn()) == null &amp;&amp; checkCross(finalsquare,-1,-1, Bishop.class, Game.getEnemyTurn()) == null</span>
+<span class="nc bnc" id="L712" title="All 4 branches missed.">			&amp;&amp; checkPawn_Capture(finalsquare, -1, Pawn.class, Game.getEnemyTurn()) == null &amp;&amp; isThereAKingAroundThisSquare(finalsquare, Game.getEnemyTurn()) == null){</span>
 
-<span class="nc" id="L695">				return true;</span>
+<span class="nc" id="L714">				return true;</span>
 		}
 		else{
 
-<span class="nc" id="L699">			return false;</span>
+<span class="nc" id="L718">			return false;</span>
 		}	
 	}
 
 	private static void northCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
 
-<span class="nc" id="L705">		int i = 1;</span>
-		Square temp_square;
-<span class="nc bnc" id="L707" title="All 2 branches missed.">		while(finalsquare.getX()+i &lt; 8) {</span>
-<span class="nc" id="L708">			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY());</span>
-<span class="nc bnc" id="L709" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
-<span class="nc bnc" id="L710" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
-<span class="nc" id="L711">					checksquares.add(temp_square);</span>
-<span class="nc" id="L712">					return;</span>
-				}
-				else {
-<span class="nc" id="L715">					return;</span>
-				}
-			}
-<span class="nc" id="L718">			++i;</span>
-		}
-<span class="nc" id="L720">	}</span>
-
-	private static void southCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-
 <span class="nc" id="L724">		int i = 1;</span>
 		Square temp_square;
-<span class="nc bnc" id="L726" title="All 2 branches missed.">		while(finalsquare.getX()-i &gt;=0) {</span>
-<span class="nc" id="L727">			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY());</span>
+<span class="nc bnc" id="L726" title="All 2 branches missed.">		while(finalsquare.getX()+i &lt; Board.CHESSBOARD_DIMENSION) {</span>
+<span class="nc" id="L727">			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY());</span>
 <span class="nc bnc" id="L728" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
 <span class="nc bnc" id="L729" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
 <span class="nc" id="L730">					checksquares.add(temp_square);</span>
@@ -738,12 +738,12 @@ import it.uniba.chess.utils.ParserColumns;
 		}
 <span class="nc" id="L739">	}</span>
 
-	private static void westCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
+	private static void southCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
 
 <span class="nc" id="L743">		int i = 1;</span>
 		Square temp_square;
-<span class="nc bnc" id="L745" title="All 2 branches missed.">		while(finalsquare.getY()+i &lt; 8) {</span>
-<span class="nc" id="L746">			temp_square = Game.getBoard().getSquare(finalsquare.getX(), finalsquare.getY()+i);</span>
+<span class="nc bnc" id="L745" title="All 2 branches missed.">		while(finalsquare.getX()-i &gt;=0) {</span>
+<span class="nc" id="L746">			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY());</span>
 <span class="nc bnc" id="L747" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
 <span class="nc bnc" id="L748" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
 <span class="nc" id="L749">					checksquares.add(temp_square);</span>
@@ -757,12 +757,12 @@ import it.uniba.chess.utils.ParserColumns;
 		}
 <span class="nc" id="L758">	}</span>
 
-	private static void eastCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
-	
+	private static void westCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
+
 <span class="nc" id="L762">		int i = 1;</span>
 		Square temp_square;
-<span class="nc bnc" id="L764" title="All 2 branches missed.">		while(finalsquare.getY()-i &gt;= 0) {</span>
-<span class="nc" id="L765">			temp_square = Game.getBoard().getSquare(finalsquare.getX(), finalsquare.getY()-i);</span>
+<span class="nc bnc" id="L764" title="All 2 branches missed.">		while(finalsquare.getY()+i &lt; Board.CHESSBOARD_DIMENSION) {</span>
+<span class="nc" id="L765">			temp_square = Game.getBoard().getSquare(finalsquare.getX(), finalsquare.getY()+i);</span>
 <span class="nc bnc" id="L766" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
 <span class="nc bnc" id="L767" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
 <span class="nc" id="L768">					checksquares.add(temp_square);</span>
@@ -775,5 +775,24 @@ import it.uniba.chess.utils.ParserColumns;
 <span class="nc" id="L775">			++i;</span>
 		}
 <span class="nc" id="L777">	}</span>
+
+	private static void eastCheck(Square finalsquare, ArrayList&lt;Square&gt; checksquares, Class&lt;? extends Piece&gt; piecetype, ChessColor wantedColor) throws IllegalMoveException{
+	
+<span class="nc" id="L781">		int i = 1;</span>
+		Square temp_square;
+<span class="nc bnc" id="L783" title="All 2 branches missed.">		while(finalsquare.getY()-i &gt;= 0) {</span>
+<span class="nc" id="L784">			temp_square = Game.getBoard().getSquare(finalsquare.getX(), finalsquare.getY()-i);</span>
+<span class="nc bnc" id="L785" title="All 2 branches missed.">			if(temp_square.isOccupied()) {</span>
+<span class="nc bnc" id="L786" title="All 4 branches missed.">				if(temp_square.getPiece().getColor() == wantedColor &amp;&amp; temp_square.getPiece().getClass() == piecetype) {</span>
+<span class="nc" id="L787">					checksquares.add(temp_square);</span>
+<span class="nc" id="L788">					return;</span>
+				}
+				else {
+<span class="nc" id="L791">					return;</span>
+				}
+			}
+<span class="nc" id="L794">			++i;</span>
+		}
+<span class="nc" id="L796">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

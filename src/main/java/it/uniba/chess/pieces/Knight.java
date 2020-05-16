@@ -10,6 +10,7 @@ import it.uniba.chess.utils.ChessColor;
 public class Knight extends Piece{
 	
 	public Knight(ChessColor colorPiece) {
+		this.hasMoved = false;
 		if(colorPiece == ChessColor.WHITE) {
 			unicode = '\u2658';
 		} else{

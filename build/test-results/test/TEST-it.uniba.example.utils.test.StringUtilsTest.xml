@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="it.uniba.example.utils.test.StringUtilsTest" tests="7" skipped="1" failures="0" errors="0" timestamp="2020-05-16T17:04:13" hostname="LAPTOP-82866RT0" time="0.046">
+  <properties/>
+  <testcase name="testConvertToDoubleWithNullArgument()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.01"/>
+  <testcase name="testIsNullOrBlankOK()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.002"/>
+  <testcase name="testConcatWithAllNullInput()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.002">
+    <skipped/>
+  </testcase>
+  <testcase name="testConvertToDoubleOK()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.014"/>
+  <testcase name="testConvertToDoubleThrowException()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.003"/>
+  <testcase name="testConcatWithRegularInput()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.001"/>
+  <testcase name="testConcatWithNullInput()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

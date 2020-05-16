@@ -9,7 +9,7 @@ import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.ChessColor;
 import it.uniba.chess.utils.GameStatus;
 import it.uniba.chess.utils.IllegalMoveException;
-import it.uniba.chess.utils.ParserColumns;
+import it.uniba.chess.utils.ParseFiles;
 
 /**
  * Dato un input, lo elabora e determina se è una mossa di gioco o un'opzione del menù;
@@ -18,6 +18,13 @@ import it.uniba.chess.utils.ParserColumns;
  * <<Control>>
  */
 public class InputValidator {
+	
+	private static final int FIRST_GROUP=1;
+	private static final int SECOND_GROUP=2;
+	private static final int THIRD_GROUP=3;
+	private static final int FOURTH_GROUP=4;
+	private static final int FIFTH_GROUP=5;
+	
 	
 	public static void parseCommand(String command) throws IllegalMoveException {
 		switch(command) {
@@ -114,13 +121,13 @@ public class InputValidator {
 				
 				//if the command is a grammatically correct Pawn move
 				if(regExpMatcher.matches()) {
-					String pieceType_string = regExpMatcher.group(1);
-					String startingRowOrColumn_string = regExpMatcher.group(2);
+					String pieceType_string = regExpMatcher.group(FIRST_GROUP);
+					String startingRowOrColumn_string = regExpMatcher.group(SECOND_GROUP);
 					String startingRow_string= getStartingRow(startingRowOrColumn_string);
 					String startingColumn_string = getStartingColumn(startingRowOrColumn_string);
-					String isCapture_string = regExpMatcher.group(3);
-					String destination_string = regExpMatcher.group(4);
-					String isEnpassant_string = regExpMatcher.group(5);
+					String isCapture_string = regExpMatcher.group(THIRD_GROUP);
+					String destination_string = regExpMatcher.group(FOURTH_GROUP);
+					String isEnpassant_string = regExpMatcher.group(FIFTH_GROUP);
 					
 					try {
 						//this matches the whole string to be saved into the moves list if it's not an Illegal Move
@@ -135,7 +142,7 @@ public class InputValidator {
 						case "C":
 							if(isEnpassant_string.isEmpty()) {
 								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 								starting_square = checkFlower(destination_square, startRow, startColumn, Knight.class, Game.getTurn());
 								//Move.knightMoveOrCapture(starting_square,destination_square, !isCapture_string.isEmpty());
 								Move.pieceMoveOrCapture(Knight.class, starting_square,destination_square, !isCapture_string.isEmpty());
@@ -147,7 +154,7 @@ public class InputValidator {
 						case "A":
 							if(isEnpassant_string.isEmpty()) {
 							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 							    starting_square = checkCross(destination_square, startRow, startColumn, Bishop.class, Game.getTurn());
 							    //Move.bishopMoveOrCapture(starting_square, destination_square, !isCapture_string.isEmpty());
 							    Move.pieceMoveOrCapture(Bishop.class, starting_square,destination_square, !isCapture_string.isEmpty());
@@ -160,7 +167,7 @@ public class InputValidator {
 							if(isEnpassant_string.isEmpty()) {
 								//if we have an empty row string, we return -1 as control;
 								int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 								starting_square = plusMovement(destination_square, startRow, startColumn, Rook.class, Game.getTurn());			
 								Move.pieceMoveOrCapture(Rook.class, starting_square,destination_square, !isCapture_string.isEmpty());
 								Game.addPrintableMove(lastmove);
@@ -171,7 +178,7 @@ public class InputValidator {
 						case "D":
 							if(isEnpassant_string.isEmpty()) {
 							    int startRow =  startingRow_string.isEmpty() ? -1 : (Integer.parseInt(startingRow_string) - 1); //from 0 to 7
-							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
+							    int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0)); //from 0 to 7
 							    starting_square = queenIntersectionControl(destination_square, startRow, startColumn, Queen.class, Game.getTurn());
 							    Move.pieceMoveOrCapture(Queen.class, starting_square,destination_square, !isCapture_string.isEmpty());
 							    Game.addPrintableMove(lastmove);
@@ -214,7 +221,7 @@ public class InputValidator {
 								} else if (startingRow_string.isEmpty() && !startingColumn_string.isEmpty() && !isCapture_string.isEmpty()) {
 								//this is a pawn capture (either simple or en-passant)
 								//starting_square = getPawnStartingSquare_Capture(startingColumn_string, destination_square);
-								int startColumn = startingColumn_string.isEmpty() ? -1 :ParserColumns.getFileIntFromChar(startingColumn_string.charAt(0));
+								int startColumn = startingColumn_string.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumn_string.charAt(0));
 
 								starting_square = checkPawn_Capture(destination_square, startColumn, Pawn.class, Game.getTurn());
 								Move.pawnCapture(starting_square, destination_square, !isEnpassant_string.isEmpty()); // <-------- only way is to call it with startingY != -1
@@ -238,15 +245,13 @@ public class InputValidator {
 		}
 	}
 	
-	private static Square getDestinationSquare(String regExpGroup_destination) throws IllegalMoveException {
-		try {
-			int destination_square_column = ParserColumns.getFileIntFromChar(regExpGroup_destination.charAt(0));
+
+	private static Square getDestinationSquare(String regExpGroup_destination) {
+			int destination_square_column = ParseFiles.getFileIntFromChar(regExpGroup_destination.charAt(0));
 			int destination_square_row = Character.getNumericValue(regExpGroup_destination.charAt(1)) - 1;
 			return Game.getBoard().getSquare(destination_square_row, destination_square_column);
-		} catch (IllegalMoveException illegalmove) {
-			throw illegalmove;
-		}
 	}
+
 	
 	/* We look for a plausible pawn to moved in the previous two rows and the same column;
 	 * There can be:
@@ -263,14 +268,24 @@ public class InputValidator {
 			//square before the destination square of our Pawn
 			
 			if(Game.getTurn() == ChessColor.WHITE) {
-				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-1, destination_square.getY()));
-				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-2, destination_square.getY()));
+				if(destination_square.getX()-1 > 0) {
+					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-1, destination_square.getY()));
+				}
+				
+				if(destination_square.getX()-2 > 0) {
+					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()-2, destination_square.getY()));
+				}	
 			} else {
-				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+1, destination_square.getY()));
-				squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+2, destination_square.getY()));
+				if(destination_square.getX()+1 < Board.CHESSBOARD_DIMENSION) {
+					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+1, destination_square.getY()));
+				}
+				
+				if(destination_square.getX()+2 < Board.CHESSBOARD_DIMENSION) {
+					squares_to_check.add(Game.getBoard().getSquare(destination_square.getX()+2, destination_square.getY()));
+				}
 			}
 			
-			if(squares_to_check.get(0).isOccupied()) {
+			if(squares_to_check.size() > 0 && squares_to_check.get(0).isOccupied()) {
 				piece_to_check = squares_to_check.get(0).getPiece();
 				
 				//if the square before destination is occupied by EXACTLY a pawn
@@ -279,7 +294,7 @@ public class InputValidator {
 				
 			} else {					
 				//first square was empty, let's check for a pawn a starting position
-				if(squares_to_check.get(1).isOccupied()) {
+				if(squares_to_check.size() > 1 && squares_to_check.get(1).isOccupied()) {
 					piece_to_check = squares_to_check.get(1).getPiece();
 					if( (piece_to_check.getClass() == Pawn.class) && (piece_to_check.getColor() == Game.getTurn())) 
 						return squares_to_check.get(1);
@@ -299,7 +314,7 @@ public class InputValidator {
 			*/
 			throw illegalmove;
 		}
-	}	
+	}
 	
 	private static Square checkPawn_Capture(Square destination_square, int startingY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
 		ArrayList<Square> squares_to_check = new ArrayList<Square>();
@@ -447,7 +462,7 @@ public class InputValidator {
 	private static void diagonalUpperRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
 		int i = 1;
 		Square temp_square;
-		while(finalsquare.getX()+i < 8 && finalsquare.getY()+i < 8) {
+		while(finalsquare.getX()+i <Board.CHESSBOARD_DIMENSION && finalsquare.getY()+i < Board.CHESSBOARD_DIMENSION) {
 			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()+i);
 			if(temp_square.isOccupied()) {
 				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
@@ -465,7 +480,7 @@ public class InputValidator {
 	private static void diagonalLowerRight(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
 		int i = 1;
 		Square temp_square;
-		while(finalsquare.getX()-i >= 0 && finalsquare.getY()+i < 8) {
+		while(finalsquare.getX()-i >= 0 && finalsquare.getY()+i < Board.CHESSBOARD_DIMENSION) {
 			temp_square = Game.getBoard().getSquare(finalsquare.getX()-i, finalsquare.getY()+i);
 			if(temp_square.isOccupied()) {
 				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
@@ -483,7 +498,7 @@ public class InputValidator {
 	private static void diagonalUpperLeft(Square finalsquare, ArrayList<Square> checksquares, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
 		int i = 1;
 		Square temp_square;
-		while(finalsquare.getX()+i < 8 && finalsquare.getY()-i >= 0) {
+		while(finalsquare.getX()+i < Board.CHESSBOARD_DIMENSION && finalsquare.getY()-i >= 0) {
 			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY()-i);
 			if(temp_square.isOccupied()) {
 				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
@@ -575,8 +590,8 @@ public class InputValidator {
 	private static void offsetMovement(Square destination_square, int x_offset, int y_offset, Class<? extends Piece> piecetype, ChessColor wantedColor, ArrayList<Square> squares_to_check) throws IllegalMoveException{
 		
 		
-		if( (destination_square.getX() + x_offset) >=0 && (destination_square.getX() + x_offset) < 8 
-			&& (destination_square.getY() + y_offset) >=0 && (destination_square.getY() + y_offset) < 8){
+		if( (destination_square.getX() + x_offset) >=0 && (destination_square.getX() + x_offset) < Board.CHESSBOARD_DIMENSION 
+			&& (destination_square.getY() + y_offset) >=0 && (destination_square.getY() + y_offset) < Board.CHESSBOARD_DIMENSION){
 
 			Square temp_square = Game.getBoard().getSquare(destination_square.getX() + x_offset, destination_square.getY() + y_offset);
 			if(temp_square.isOccupied()){
@@ -589,13 +604,17 @@ public class InputValidator {
 	
 	private static Square checkFlower(Square destination_square, int startX, int startY, Class<? extends Piece> piecetype, ChessColor wantedColor) throws IllegalMoveException{
 		ArrayList<Square> squares_to_check = new ArrayList<Square>();
+		final int LONG_POSITIVE_KNIGHT_MOVEMENT=2;
+		final int LONG_NEGATIVE_KNIGHT_MOVEMENT=-2;
+		final int SHORT_POSITIVE_KNIGHT_MOVEMENT=1;
+		final int SHORT_NEGATIVE_KNIGHT_MOVEMENT=-1;
 		
 		if(startX != -1) {
 			switch(Math.abs(startX-destination_square.getX())) { 
 				case 1:
 					
-					offsetMovement(destination_square, startX-destination_square.getX(), +2, piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, startX-destination_square.getX(), -2, piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, startX-destination_square.getX(), LONG_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, startX-destination_square.getX(), LONG_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
 					if(squares_to_check.size() != 1) {
 						throw new IllegalMoveException();
 					}
@@ -604,8 +623,8 @@ public class InputValidator {
 					}
 				case 2:
 					
-					offsetMovement(destination_square, startX-destination_square.getX(), +1, piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, startX-destination_square.getX(), -1, piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, startX-destination_square.getX(), SHORT_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, startX-destination_square.getX(), SHORT_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
 					if(squares_to_check.size() != 1) {
 						throw new IllegalMoveException();
 					}
@@ -618,8 +637,8 @@ public class InputValidator {
 			switch(Math.abs(destination_square.getY() - startY)) { 
 				case 1:
 					
-					offsetMovement(destination_square, +2, /*!!*/ startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, -2, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, LONG_POSITIVE_KNIGHT_MOVEMENT, /*!!*/ startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, LONG_NEGATIVE_KNIGHT_MOVEMENT, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
 					if(squares_to_check.size() != 1) {
 						throw new IllegalMoveException();
 					}
@@ -628,8 +647,8 @@ public class InputValidator {
 					}
 				case 2:
 					
-					offsetMovement(destination_square, +1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
-					offsetMovement(destination_square, -1, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, SHORT_POSITIVE_KNIGHT_MOVEMENT, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
+					offsetMovement(destination_square, SHORT_NEGATIVE_KNIGHT_MOVEMENT, startY - destination_square.getY(), piecetype, wantedColor, squares_to_check);
 					if(squares_to_check.size() != 1) {
 						throw new IllegalMoveException();
 					}
@@ -639,14 +658,14 @@ public class InputValidator {
 			}
 		}
 		
-		offsetMovement(destination_square, +2, +1, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, +2, -1, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, +1, +2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, +1, -2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -1, +2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -1, -2, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -2, +1, piecetype, wantedColor, squares_to_check);
-		offsetMovement(destination_square, -2, -1, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, LONG_POSITIVE_KNIGHT_MOVEMENT, SHORT_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, LONG_POSITIVE_KNIGHT_MOVEMENT, SHORT_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, SHORT_POSITIVE_KNIGHT_MOVEMENT, LONG_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, SHORT_POSITIVE_KNIGHT_MOVEMENT, LONG_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, SHORT_NEGATIVE_KNIGHT_MOVEMENT, LONG_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, SHORT_NEGATIVE_KNIGHT_MOVEMENT, LONG_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, LONG_NEGATIVE_KNIGHT_MOVEMENT, SHORT_POSITIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
+		offsetMovement(destination_square, LONG_NEGATIVE_KNIGHT_MOVEMENT, SHORT_NEGATIVE_KNIGHT_MOVEMENT, piecetype, wantedColor, squares_to_check);
 
 		if(squares_to_check.size() > 1) {
 			throw new IllegalMoveException();
@@ -704,7 +723,7 @@ public class InputValidator {
 
 		int i = 1;
 		Square temp_square;
-		while(finalsquare.getX()+i < 8) {
+		while(finalsquare.getX()+i < Board.CHESSBOARD_DIMENSION) {
 			temp_square = Game.getBoard().getSquare(finalsquare.getX()+i, finalsquare.getY());
 			if(temp_square.isOccupied()) {
 				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {
@@ -742,7 +761,7 @@ public class InputValidator {
 
 		int i = 1;
 		Square temp_square;
-		while(finalsquare.getY()+i < 8) {
+		while(finalsquare.getY()+i < Board.CHESSBOARD_DIMENSION) {
 			temp_square = Game.getBoard().getSquare(finalsquare.getX(), finalsquare.getY()+i);
 			if(temp_square.isOccupied()) {
 				if(temp_square.getPiece().getColor() == wantedColor && temp_square.getPiece().getClass() == piecetype) {

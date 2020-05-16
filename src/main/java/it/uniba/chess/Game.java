@@ -1,6 +1,7 @@
 package it.uniba.chess;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
@@ -15,21 +16,41 @@ public class Game{
 	private static Board board;
 	private static ChessColor turn;
 	private static GameStatus status;
+	private static final int MAX_CAPTURES=32;
+	private static final int KING_SIZE=2;
+	private static final int INITIAL_MOVE_SIZE=30;
+	private static final int CHESSBOARD_EDGE = 7;
 
 
-	private static ArrayList<Piece> captures =  new ArrayList<Piece>(32); //can't capture kings
+	private static ArrayList<Piece> captures =  new ArrayList<Piece>(MAX_CAPTURES); //can't capture kings
 
 
 	//each semi-move adds to both this list respectively
 	private static ArrayList<Square> moveStartingSquaresList = new ArrayList<Square>();
 	private static ArrayList<Square> moveDestinationSquaresList = new ArrayList<Square>();
 
-	private static ArrayList<Square> kingSquares = new ArrayList<Square>(2);
+	private static ArrayList<Square> kingSquares = new ArrayList<Square>(KING_SIZE);
 
 	//each semi-move will be added by the parser to this list for ease of printing
-	private static ArrayList<String> printableMovesList = new ArrayList<String>(30); //can't capture kings
+	private static ArrayList<String> printableMovesList = new ArrayList<String>(INITIAL_MOVE_SIZE); //can't capture kings
 
-	public static void startGame() throws IllegalMoveException{
+	public static void testGame(LinkedList<Square> chessPosition) throws IllegalMoveException{
+		//initialization function to be called on "play"
+
+		board = new Board(chessPosition);
+
+		captures.clear();
+		moveStartingSquaresList.clear();
+		moveDestinationSquaresList.clear();
+		printableMovesList.clear();
+		kingSquares.add(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));
+		kingSquares.add(Game.getBoard().getSquare(CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));	
+
+		status =  GameStatus.ACTIVE;
+		turn = ChessColor.WHITE;
+	}
+	
+	public static void startGame(){
 		//initialization function to be called on "play"
 
 		board = new Board();
@@ -38,8 +59,8 @@ public class Game{
 		moveStartingSquaresList.clear();
 		moveDestinationSquaresList.clear();
 		printableMovesList.clear();
-		kingSquares.add(Game.getBoard().getSquare(0, 3));
-		kingSquares.add(Game.getBoard().getSquare(7, 3));	
+		kingSquares.add(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));
+		kingSquares.add(Game.getBoard().getSquare(CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));	
 
 		status =  GameStatus.ACTIVE;
 		turn = ChessColor.WHITE;
