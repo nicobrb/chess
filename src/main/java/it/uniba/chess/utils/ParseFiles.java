@@ -7,13 +7,12 @@ package it.uniba.chess.utils;
  * <<No-ECB>>
  */
 public enum ParseFiles {
-	h,g,f,e,d,c,b,a;
-		
-	//we will check that this method only receives in input chars defining a chess column;
-	public static int getFileIntFromChar(char row) {
-		
+	h, g, f, e, d, c, b, a;
 
-		switch(row) {
+	//we will check that this method only receives in input chars defining a chess column;
+	public static int getFileIntFromChar(final char row) {
+
+		switch (row) {
 		case 'h':
 			return h.ordinal();
 		case 'g':
@@ -32,7 +31,7 @@ public enum ParseFiles {
 			return a.ordinal();
 		default:
 		}
-		
+
 		//necessary to make the code compile
 		return -1;
 	}

@@ -7,60 +7,105 @@ import it.uniba.chess.utils.ChessColor;
  *
  * &lt;&lt;Entity&gt;&gt;
  */
-<span class="nc" id="L10">public abstract class Piece {</span>
-	protected ChessColor colorPiece;
-	protected char unicode; //unicode of the piece
-	protected boolean hasMoved;
-	
-	public ChessColor getColor() {
-<span class="nc" id="L16">		return this.colorPiece;</span>
-	}
-	
-	public void setColor(ChessColor colorPiece) {
-<span class="nc" id="L20">		this.colorPiece  = colorPiece;</span>
+
+
+public abstract class Piece {
+
+	private ChessColor colorPiece;
+	private char unicode; //unicode of the piece
+	private boolean hasMoved;
+
+<span class="nc" id="L18">	public Piece() {</span>
+<span class="nc" id="L19">		this.colorPiece = null;</span>
+<span class="nc" id="L20">		this.hasMoved = false;</span>
 <span class="nc" id="L21">	}</span>
-	
+
+	/**
+	 * Restituisce il colore del pezzo
+	 * 
+	 */
+	public ChessColor getColor() {
+<span class="nc" id="L28">		return this.colorPiece;</span>
+	}
+
+	/**
+	 * Imposta il colore del pezzo
+	 * 
+	 */
+	public void setColor(final ChessColor newColorPiece) {
+<span class="nc" id="L36">		this.colorPiece = newColorPiece;</span>
+<span class="nc" id="L37">	}</span>
+
+	/**
+	 * Restituisce il carattere Unicode del pezzo
+	 * 
+	 */
 	public char getUnicode() {
-<span class="nc" id="L24">		return this.unicode;</span>
+<span class="nc" id="L44">		return this.unicode;</span>
 	}
-	
-	public char setUnicode() {
-<span class="nc" id="L28">		return this.unicode;</span>
-	}
-	
+
+	/**
+	 * Imposta il carattere Unicode del pezzo
+	 * 
+	 */
+	public void setUnicode(final char newUnicode) {
+<span class="nc" id="L52">		this.unicode = newUnicode;</span>
+<span class="nc" id="L53">	}</span>
+
+	/**
+	 * Imposta il valore del booleano hasMoved per il pezzo
+	 * 
+	 */
 	public void setHasMoved() {
-<span class="nc" id="L32">		this.hasMoved = true;</span>
-<span class="nc" id="L33">	}</span>
+<span class="nc" id="L60">		this.hasMoved = true;</span>
+<span class="nc" id="L61">	}</span>
+
+	/**
+	 * Restituisce il valore del booleano hasMoved per il pezzo
+	 * 
+	 */
 	public boolean getHasMoved() {
-<span class="nc" id="L35">		return hasMoved;</span>
+<span class="nc" id="L68">		return hasMoved;</span>
 	}
-	
+
+	/**
+	 * Override della funzione equals, apposito per il confronto dei pezzi
+	 * 
+	 */
     @Override
-    public boolean equals(Object o) {
-    	
-        // If the object is compared with itself then return true   
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (o == this) { </span>
-<span class="nc" id="L43">            return true; </span>
-        } 
-  
-        /* Check if o is an instance of Complex or not 
+    public boolean equals(final Object o) {
+
+        // If the object is compared with itself then return true
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (o == this) {</span>
+<span class="nc" id="L80">            return true;</span>
+        }
+
+        /* Check if o is an instance of Complex or not
           &quot;null instanceof [type]&quot; also returns false */
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (!(o instanceof Piece)) { </span>
-<span class="nc" id="L49">            return false; </span>
-        } 
-          
-        // typecast o to Complex so that we can compare data members  
-<span class="nc" id="L53">        Piece comparedPiece = (Piece) o; </span>
-          
-        // Compare the data members and return accordingly  
-<span class="nc bnc" id="L56" title="All 6 branches missed.">        if(this.unicode == comparedPiece.unicode</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (!(o instanceof Piece)) {</span>
+<span class="nc" id="L86">            return false;</span>
+        }
+
+        // typecast o to Complex so that we can compare data members
+<span class="nc" id="L90">        Piece comparedPiece = (Piece) o;</span>
+
+        // Compare the data members and return accordingly
+<span class="nc bnc" id="L93" title="All 6 branches missed.">        if (this.unicode == comparedPiece.unicode</span>
         &amp;&amp; this.colorPiece == comparedPiece.colorPiece
         &amp;&amp; this.hasMoved == comparedPiece.hasMoved) {
-<span class="nc" id="L59">        	return true;</span>
+<span class="nc" id="L96">        	return true;</span>
         }
-        
-<span class="nc" id="L62">        return false;</span>
-    } 
-	
+<span class="nc" id="L98">        return false;</span>
+    }
+
+	/**
+	 * Restituisce il valore hashCode del pezzo
+	 * 
+	 */
+    @Override
+    public int hashCode() {
+<span class="nc" id="L107">    	return super.hashCode();</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

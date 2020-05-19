@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Jupiter" tests="10" skipped="2" failures="0" errors="0" time="0.168" hostname="LAPTOP-82866RT0" timestamp="2020-05-16T19:04:10">
+<testsuite name="JUnit Jupiter" tests="10" skipped="2" failures="0" errors="0" time="0.168" hostname="LAPTOP-82866RT0" timestamp="2020-05-18T21:13:59">
 <properties>
 <property name="file.encoding" value="windows-1252"/>
 <property name="file.separator" value="\"/>
@@ -65,7 +65,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.example.utils.test.MathUtilsTe
 display-name: Testing sum of integers
 ]]></system-out>
 </testcase>
-<testcase name="testDivision()" classname="it.uniba.example.utils.test.MathUtilsTest" time="0.004">
+<testcase name="testDivision()" classname="it.uniba.example.utils.test.MathUtilsTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.example.utils.test.MathUtilsTest]/[method:testDivision()]
 display-name: Testing division between integers
@@ -90,7 +90,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.example.utils.test.StringUtils
 display-name: testConcatWithAllNullInput()
 ]]></system-out>
 </testcase>
-<testcase name="testConvertToDoubleOK()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.007">
+<testcase name="testConvertToDoubleOK()" classname="it.uniba.example.utils.test.StringUtilsTest" time="0.008">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.example.utils.test.StringUtilsTest]/[method:testConvertToDoubleOK()]
 display-name: Convert to double pass

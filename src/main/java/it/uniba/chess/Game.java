@@ -110,16 +110,8 @@ public class Game{
 		System.out.print("moves: mostra la lista delle mosse giocate durante la partita\n");
 	}
 
-	public void printBoard() {
-		board.print();
-	}
-
-	public static GameStatus getStatus() {
+	public static GameStatus getGameStatus() {
 		return status;
-	}
-
-	public static void setStatus(GameStatus newstatus) {
-		status = newstatus;
 	}
 
 	public static Board getBoard() {

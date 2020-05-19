@@ -1,6 +1,6 @@
 package it.uniba.chess;
 
-import it.uniba.chess.pieces.*;
+import it.uniba.chess.pieces.Piece;
 
 /**
  * Definisce lo stato di una singola casa nella scacchiera. In particolare:
@@ -9,49 +9,50 @@ import it.uniba.chess.pieces.*;
  *
  * <<Entity>>
  */
-public class Square {
-		
+public final class Square {
+
 	private Piece piece;
 	private boolean occupied;
 	private final int x, y; //this will never change after initialization
-	
-	public Square(int x, int y, Piece p){
-		this.x = x;
-		this.y = y;
+
+	public Square(final int newX, final int newY, final Piece p) {
+		this.x = newX;
+		this.y = newY;
 		this.piece = p;
 		this.occupied = true;
 	}
-	
-	public Square(int row, int col) {
+
+	public Square(final int row, final int col) {
 		this.x = row;
 		this.y = col;
 		this.piece = null;
 		this.occupied = false;
 	}
-	
+
 	public int getX() {
 		return this.x;
 	}
-	
+
 	public int getY() {
 		return this.y;
 	}
-	
+
 	public Piece getPiece() {
 		return piece;
 	}
-	
-	public void setPiece(Piece p) {
+
+	public void setPiece(final Piece p) {
 		this.piece = p;
 	}
-	
+
 	public boolean isOccupied() {
 		return occupied;
 	}
-	
-	public void setOccupied(boolean b) {
+
+	public void setOccupied(final boolean b) {
 		this.occupied = b;
-		if(!b)
+		if (!b) {
 			this.setPiece(null);
+		}
 	}
 }

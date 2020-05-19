@@ -93,16 +93,15 @@
          <li>C:\Users\deros\progetto1920-diffie\build\classes\java\main\it\uniba\example\utils\math\MathUtils.class</li>
          <li>C:\Users\deros\progetto1920-diffie\build\classes\java\main\it\uniba\example\utils\strings\StringUtils.class</li>
          <li>C:\Users\deros\progetto1920-diffie\build\classes\java\main\it\uniba\main\AppMain.class</li>
-         <li>C:\Users\deros\progetto1920-diffie\build\classes\java\main\it\uniba\sotorrent\GoogleDocsUtils.class</li>
       </ul>
       <p>
          <br/>
          <br/>
       </p>
       <h2>Metrics</h2>
-      <p>1130 lines of code analyzed,
-	in 21 classes, 
-	in 8 packages.</p>
+      <p>1146 lines of code analyzed,
+	in 20 classes, 
+	in 7 packages.</p>
       <table width="500" cellpadding="5" cellspacing="2">
          <tr class="tableheader">
             <th align="left">Metric</th>
@@ -111,23 +110,23 @@
          </tr>
          <tr class="tablerow0">
             <td>High Priority Warnings</td>
-            <td align="right">4</td>
-            <td align="right">3.54</td>
+            <td align="right">3</td>
+            <td align="right">2.62</td>
          </tr>
          <tr class="tablerow1">
             <td>Medium Priority Warnings</td>
-            <td align="right">9</td>
-            <td align="right">7.96</td>
+            <td align="right">2</td>
+            <td align="right">1.75</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>13</b>
+               <b>5</b>
             </td>
             <td align="right">
-               <b>11.50</b>
+               <b>4.36</b>
             </td>
          </tr>
       </table>
@@ -140,9 +139,6 @@
       </p>
       <h2>Contents</h2>
       <ul>
-         <li>
-            <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-         </li>
          <li>
             <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
          </li>
@@ -167,166 +163,39 @@
          </tr>
          <tr class="tablerow0">
             <td>
-               <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-            </td>
-            <td align="right">8</td>
-         </tr>
-         <tr class="tablerow1">
-            <td>
                <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
             </td>
             <td align="right">1</td>
          </tr>
-         <tr class="tablerow0">
+         <tr class="tablerow1">
             <td>
                <a href="#Warnings_I18N">Internationalization Warnings</a>
             </td>
             <td align="right">2</td>
          </tr>
-         <tr class="tablerow1">
+         <tr class="tablerow0">
             <td>
                <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
             </td>
             <td align="right">1</td>
          </tr>
-         <tr class="tablerow0">
+         <tr class="tablerow1">
             <td>
                <a href="#Warnings_STYLE">Dodgy code Warnings</a>
             </td>
             <td align="right">1</td>
          </tr>
-         <tr class="tablerow1">
+         <tr class="tablerow0">
             <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>13</b>
+               <b>5</b>
             </td>
          </tr>
       </table>
       <h1>Warnings</h1>
       <p>Click on a warning row to see full context information.</p>
-      <h2>
-         <a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-      </h2>
-      <table class="warningtable" width="100%" cellspacing="0">
-         <tr class="tableheader">
-            <th align="left">Code</th>
-            <th align="left">Warning</th>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e72');">
-            <td>
-               <span class="priority-1">HE</span>
-            </td>
-            <td>it.uniba.chess.Board defines equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e72" style="display: none;">
-                  <a href="#HE_EQUALS_USE_HASHCODE">Bug type HE_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.Board<br/>In method it.uniba.chess.Board.equals(Object)<br/>At Board.java:[lines 125-156]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e99');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.Bishop inherits equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e99" style="display: none;">
-                  <a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.Bishop<br/>At Bishop.java:[lines 12-21]</p>
-            </td>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e108');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.King inherits equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e108" style="display: none;">
-                  <a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.King<br/>At King.java:[lines 13-30]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e117');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.Knight inherits equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e117" style="display: none;">
-                  <a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.Knight<br/>At Knight.java:[lines 12-20]</p>
-            </td>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e126');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.Pawn inherits equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e126" style="display: none;">
-                  <a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.Pawn<br/>At Pawn.java:[lines 13-21]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e135');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.Piece defines equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e135" style="display: none;">
-                  <a href="#HE_EQUALS_USE_HASHCODE">Bug type HE_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.Piece<br/>In method it.uniba.chess.pieces.Piece.equals(Object)<br/>At Piece.java:[lines 42-62]</p>
-            </td>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e147');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.Queen inherits equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e147" style="display: none;">
-                  <a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.Queen<br/>At Queen.java:[lines 12-21]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e156');">
-            <td>
-               <span class="priority-2">HE</span>
-            </td>
-            <td>it.uniba.chess.pieces.Rook inherits equals and uses Object.hashCode()</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e156" style="display: none;">
-                  <a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
-                  <br/>In class it.uniba.chess.pieces.Rook<br/>At Rook.java:[lines 13-22]</p>
-            </td>
-         </tr>
-      </table>
       <h2>
          <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
       </h2>
@@ -335,7 +204,7 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e205');">
+         <tr class="tablerow1" onclick="toggleRow('d1e125');">
             <td>
                <span class="priority-1">IL</span>
             </td>
@@ -344,7 +213,7 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e205" style="display: none;">
+               <p id="d1e125" style="display: none;">
                   <a href="#IL_INFINITE_RECURSIVE_LOOP">Bug type IL_INFINITE_RECURSIVE_LOOP (click for details)</a>
                   <br/>In class it.uniba.main.AppMain<br/>In method it.uniba.main.AppMain.menu(Scanner)<br/>At AppMain.java:[line 61]</p>
             </td>
@@ -358,7 +227,7 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e84');">
+         <tr class="tablerow1" onclick="toggleRow('d1e71');">
             <td>
                <span class="priority-1">Dm</span>
             </td>
@@ -367,12 +236,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e84" style="display: none;">
+               <p id="d1e71" style="display: none;">
                   <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
-                  <br/>In class it.uniba.chess.InputValidator<br/>In method it.uniba.chess.InputValidator.parseCommand(String)<br/>Called method new java.util.Scanner(InputStream)<br/>At InputValidator.java:[line 57]</p>
+                  <br/>In class it.uniba.chess.InputValidator<br/>In method it.uniba.chess.InputValidator.parseCommand(String)<br/>Called method new java.util.Scanner(InputStream)<br/>At InputValidator.java:[line 59]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e190');">
+         <tr class="tablerow0" onclick="toggleRow('d1e110');">
             <td>
                <span class="priority-1">Dm</span>
             </td>
@@ -381,7 +250,7 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e190" style="display: none;">
+               <p id="d1e110" style="display: none;">
                   <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
                   <br/>In class it.uniba.main.AppMain<br/>In method it.uniba.main.AppMain.main(String[])<br/>Called method new java.util.Scanner(InputStream)<br/>At AppMain.java:[line 37]</p>
             </td>
@@ -395,7 +264,7 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e165');">
+         <tr class="tablerow1" onclick="toggleRow('d1e86');">
             <td>
                <span class="priority-2">Bx</span>
             </td>
@@ -404,7 +273,7 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e165" style="display: none;">
+               <p id="d1e86" style="display: none;">
                   <a href="#BX_BOXING_IMMEDIATELY_UNBOXED">Bug type BX_BOXING_IMMEDIATELY_UNBOXED (click for details)</a>
                   <br/>In class it.uniba.example.utils.math.MathUtils<br/>In method it.uniba.example.utils.math.MathUtils.divide(int, int)<br/>At MathUtils.java:[line 32]</p>
             </td>
@@ -418,7 +287,7 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e178');">
+         <tr class="tablerow1" onclick="toggleRow('d1e98');">
             <td>
                <span class="priority-2">ICAST</span>
             </td>
@@ -427,7 +296,7 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e178" style="display: none;">
+               <p id="d1e98" style="display: none;">
                   <a href="#ICAST_IDIV_CAST_TO_DOUBLE">Bug type ICAST_IDIV_CAST_TO_DOUBLE (click for details)</a>
                   <br/>In class it.uniba.example.utils.math.MathUtils<br/>In method it.uniba.example.utils.math.MathUtils.divide(int, int)<br/>At MathUtils.java:[line 32]</p>
             </td>
@@ -452,41 +321,6 @@ to immediately undo the work of the boxing.
 <p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
 
       <h2>
-         <a name="HE_EQUALS_USE_HASHCODE">HE_EQUALS_USE_HASHCODE: Class defines equals() and uses Object.hashCode()</a>
-      </h2>
-
-  <p> This class overrides <code>equals(Object)</code>, but does not
-  override <code>hashCode()</code>, and inherits the implementation of
-  <code>hashCode()</code> from <code>java.lang.Object</code> (which returns
-  the identity hash code, an arbitrary value assigned to the object
-  by the VM).&nbsp; Therefore, the class is very likely to violate the
-  invariant that equal objects must have equal hashcodes.</p>
-
-<p>If you don't think instances of this class will ever be inserted into a HashMap/HashTable,
-the recommended <code>hashCode</code> implementation to use is:</p>
-<pre><code>public int hashCode() {
-    assert false : "hashCode not designed";
-    return 42; // any arbitrary constant will do
-}
-</code></pre>
-
-    <h2>
-         <a name="HE_INHERITS_EQUALS_USE_HASHCODE">HE_INHERITS_EQUALS_USE_HASHCODE: Class inherits equals() and uses Object.hashCode()</a>
-      </h2>
-
-  <p> This class inherits <code>equals(Object)</code> from an abstract
-  superclass, and <code>hashCode()</code> from
-<code>java.lang.Object</code> (which returns
-  the identity hash code, an arbitrary value assigned to the object
-  by the VM).&nbsp; Therefore, the class is very likely to violate the
-  invariant that equal objects must have equal hashcodes.</p>
-
-  <p>If you don't want to define a hashCode method, and/or don't
-   believe the object will ever be put into a HashMap/Hashtable,
-   define the <code>hashCode()</code> method
-   to throw <code>UnsupportedOperationException</code>.</p>
-
-    <h2>
          <a name="ICAST_IDIV_CAST_TO_DOUBLE">ICAST_IDIV_CAST_TO_DOUBLE: Integral division result cast to double or float</a>
       </h2>
 

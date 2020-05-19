@@ -7,34 +7,33 @@
  * &lt;&lt;No-ECB&gt;&gt;
  */
 <span class="nc" id="L9">public enum ParseFiles {</span>
-<span class="nc" id="L10">	h,g,f,e,d,c,b,a;</span>
-		
-	//we will check that this method only receives in input chars defining a chess column;
-	public static int getFileIntFromChar(char row) {
-		
+<span class="nc" id="L10">	h, g, f, e, d, c, b, a;</span>
 
-<span class="nc bnc" id="L16" title="All 9 branches missed.">		switch(row) {</span>
+	//we will check that this method only receives in input chars defining a chess column;
+	public static int getFileIntFromChar(final char row) {
+
+<span class="nc bnc" id="L15" title="All 9 branches missed.">		switch (row) {</span>
 		case 'h':
-<span class="nc" id="L18">			return h.ordinal();</span>
+<span class="nc" id="L17">			return h.ordinal();</span>
 		case 'g':
-<span class="nc" id="L20">			return g.ordinal();</span>
+<span class="nc" id="L19">			return g.ordinal();</span>
 		case 'f':
-<span class="nc" id="L22">			return f.ordinal();</span>
+<span class="nc" id="L21">			return f.ordinal();</span>
 		case 'e':
-<span class="nc" id="L24">			return e.ordinal();</span>
+<span class="nc" id="L23">			return e.ordinal();</span>
 		case 'd':
-<span class="nc" id="L26">			return d.ordinal();</span>
+<span class="nc" id="L25">			return d.ordinal();</span>
 		case 'c':
-<span class="nc" id="L28">			return c.ordinal();</span>
+<span class="nc" id="L27">			return c.ordinal();</span>
 		case 'b':
-<span class="nc" id="L30">			return b.ordinal();</span>
+<span class="nc" id="L29">			return b.ordinal();</span>
 		case 'a':
-<span class="nc" id="L32">			return a.ordinal();</span>
+<span class="nc" id="L31">			return a.ordinal();</span>
 		default:
 		}
-		
+
 		//necessary to make the code compile
-<span class="nc" id="L37">		return -1;</span>
+<span class="nc" id="L36">		return -1;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
