@@ -14,10 +14,10 @@ import it.uniba.chess.utils.ParseFiles;
  *
  * <<Control>>
  */
-public class Move {
+public final class Move {
 
+	private Move() { }
 	public static void pawnMove(final Square initialsquare, final Square finalsquare) throws IllegalMoveException {
-
 		if (finalsquare.isOccupied()) {
 			throw new IllegalMoveException();
 		}
@@ -30,7 +30,7 @@ public class Move {
 				finalsquare.setPiece(initialsquare.getPiece());
 				initialsquare.setOccupied(false);
 
-				if (InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {
+				if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
 					((Pawn) finalsquare.getPiece()).setHasMoved();
 					Game.addNewStartingSquare(initialsquare);
@@ -84,7 +84,7 @@ public class Move {
 						finalsquare.setPiece(initialsquare.getPiece());
 						initialsquare.setOccupied(false);
 
-						if (InputValidator.isTurnKingInCheck(Game
+						if (InputValidator.isTurnKingNotInCheck(Game
 								.getKingPosition(Game.getTurn()))) {
 
 							Game.getCapturesList().add(tmpPiece);
@@ -113,7 +113,7 @@ public class Move {
 						finalsquare.setPiece(initialsquare.getPiece());
 						initialsquare.setOccupied(false);
 
-						if (InputValidator.isTurnKingInCheck(Game
+						if (InputValidator.isTurnKingNotInCheck(Game
 								.getKingPosition(Game.getTurn()))) {
 
 							Game.getCapturesList().add(tmpPiece);
@@ -158,7 +158,7 @@ public class Move {
 
 					initialsquare.setOccupied(false);
 
-					if (InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {
+					if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
 						((Pawn) finalsquare.getPiece()).setHasMoved();
 						Game.getCapturesList().add(Game.getBoard()
@@ -226,9 +226,8 @@ public class Move {
 	}
 
 	private static void swapIfNotInCheck(final Class<? extends Piece> piecetype, final Square startingsquare,
-			final Square finalsquare, final boolean isCapture)
-			throws IllegalMoveException {
-
+	final Square finalsquare, final boolean isCapture)
+	throws IllegalMoveException {
 		Piece tmpPiece = null;
 
 		finalsquare.setOccupied(true);
@@ -240,7 +239,7 @@ public class Move {
 		finalsquare.setPiece(startingsquare.getPiece());
 		startingsquare.setOccupied(false);
 
-		if (InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {
+		if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
 			if (isCapture) {
 				Game.getCapturesList().add(tmpPiece);
@@ -274,83 +273,49 @@ public class Move {
 			throw new IllegalMoveException();
 		}
 	}
-
-	public static boolean shortCastle(final ChessColor wantedColor)
-			throws IllegalMoveException {
+	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
 		if (wantedColor == ChessColor.WHITE) {
-			Square kingInitialSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));
+			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));
 
-			if (kingInitialSquare.isOccupied() && kingInitialSquare.getPiece().getClass()
-					== King.class && kingInitialSquare.getPiece().getColor() == wantedColor) {
-				if (!((King) kingInitialSquare.getPiece()).getHasMoved()) {
-				//make the king disappear
-
-				kingInitialSquare.setOccupied(false);
-
-				if (InputValidator.isTurnKingInCheck(kingInitialSquare)) {
-				//there is an unmoved white king and it's not under check
-			 		kingInitialSquare.setOccupied(true);
-			 		kingInitialSquare.setPiece(new King(wantedColor));
-
+			if (kingStSquare.isOccupied() && kingStSquare.getPiece().getClass() == King.class
+			&& kingStSquare.getPiece().getColor() == wantedColor) {
+				if (!((King) kingStSquare.getPiece()).getHasMoved()) {
+				kingStSquare.setOccupied(false);
+				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {
+			 		kingStSquare.setOccupied(true);
+			 		kingStSquare.setPiece(new King(wantedColor));
 			 		Square rookInitialSquare = Game.getBoard().getSquare(0, 0);
-
 					if (rookInitialSquare.isOccupied()
-							&& rookInitialSquare.getPiece().getClass() == Rook.class
-							&& rookInitialSquare.getPiece().getColor() == wantedColor) {
-
+					&& rookInitialSquare.getPiece().getClass() == Rook.class
+					&& rookInitialSquare.getPiece().getColor() == wantedColor) {
 						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {
-						//there is an unmoved white rook
-
-
 							if (!Game.getBoard().getSquare(0, 2).isOccupied()
-									&& InputValidator.isTurnKingInCheck(Game
-											.getBoard().getSquare(0, 2))) {
+							&& InputValidator.
+							isTurnKingNotInCheck(Game.getBoard().getSquare(0, 2))) {
 								if (!Game.getBoard().getSquare(0, 1).isOccupied()
-										&& InputValidator.isTurnKingInCheck(Game
-												.getBoard()
-												.getSquare(0, 1))) {
-
-									((King) kingInitialSquare.getPiece())
-									.setHasMoved();
-
-									((Rook) rookInitialSquare.getPiece())
-									.setHasMoved();
-
+								&& InputValidator.
+								isTurnKingNotInCheck(Game.getBoard().getSquare(0, 1))) {
+									((King) kingStSquare.getPiece()).setHasMoved();
+									((Rook) rookInitialSquare
+									.getPiece()).setHasMoved();
 									Game.getBoard().getSquare(0, 2)
 									.setOccupied(true);
-
-									Game.getBoard().getSquare(0, 2).setPiece(Game
-											.getBoard().getSquare(0, 0)
-											.getPiece());
-
-									Game.getBoard().getSquare(0, 0)
-									.setOccupied(false);
-
-									Game.getBoard().getSquare(0, 1)
-									.setOccupied(true);
-
-									Game.getBoard().getSquare(0, 1)
-									.setPiece(Game.getBoard()
-											.getSquare(0, ParseFiles
-											.getFileIntFromChar('e'))
-											.getPiece());
-
-									Game.getBoard().getSquare(0, ParseFiles
-											.getFileIntFromChar('e'))
-									.setOccupied(false);
-
-									Game.setKingPosition(Game
-											.getTurn(), Game.getBoard()
-											.getSquare(0, 1));
-
-									Game.addNewStartingSquare(Game
-											.getBoard()
-											.getSquare(0, ParseFiles
-											.getFileIntFromChar('e')));
-
-									Game.addNewDestinationSquare(Game
-											.getBoard().getSquare(0, 2));
-
+									Game.getBoard().getSquare(0, 2)
+									.setPiece(Game.getBoard().getSquare(0, 0)
+									.getPiece());
+									Game.getBoard()
+									.getSquare(0, 0).setOccupied(false);
+									Game.getBoard()
+									.getSquare(0, 1).setOccupied(true);
+									Game.getBoard()
+									.getSquare(0, 1)
+									.setPiece(kingStSquare.getPiece());
+									kingStSquare.setOccupied(false);
+									Game.setKingPosition(Game.getTurn(), Game
+									.getBoard().getSquare(0, 1));
+									Game.addNewStartingSquare(kingStSquare);
+									Game.addNewDestinationSquare(Game.getBoard()
+									.getSquare(0, 2));
 									Game.nextTurn();
 									return true;
 								}
@@ -358,30 +323,28 @@ public class Move {
 						}
 					}
 				 	} else {
-				 		//make the piece appear again if we can't castle
-				 		kingInitialSquare.setOccupied(true);
-				 		kingInitialSquare.setPiece(new King(wantedColor));
+				 		kingStSquare.setOccupied(true);
+				 		kingStSquare.setPiece(new King(wantedColor));
 				 	}
 				}
 			}
 		} else {
-			Square kingInitialSquare
-			= Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e'));
-
-			if (kingInitialSquare.isOccupied()
-					&& kingInitialSquare.getPiece().getClass() == King.class
-					&& kingInitialSquare.getPiece().getColor() == wantedColor) {
-				if (!((King) kingInitialSquare.getPiece()).getHasMoved()) {
+			Square kingStSquare = Game.getBoard()
+			.getSquare(Board.CB_EDGE, ParseFiles.getFileIntFromChar('e'));
+			if (kingStSquare.isOccupied()
+					&& kingStSquare.getPiece().getClass() == King.class
+					&& kingStSquare.getPiece().getColor() == wantedColor) {
+				if (!((King) kingStSquare.getPiece()).getHasMoved()) {
 				//make the king disappear
 
-					kingInitialSquare.setOccupied(false);
+					kingStSquare.setOccupied(false);
 
-				if (InputValidator.isTurnKingInCheck(kingInitialSquare)) {
+				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {
 				//there is an unmoved white king and it's not under check
-					kingInitialSquare.setOccupied(true);
-					kingInitialSquare.setPiece(new King(wantedColor));
+					kingStSquare.setOccupied(true);
+					kingStSquare.setPiece(new King(wantedColor));
 
-			 		Square rookInitialSquare = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 0);
+			 		Square rookInitialSquare = Game.getBoard().getSquare(Board.CB_EDGE, 0);
 
 					if (rookInitialSquare.isOccupied()
 							&& rookInitialSquare.getPiece().getClass() == Rook.class
@@ -390,52 +353,52 @@ public class Move {
 						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {
 						//there is an unmoved white rook
 
-							if (!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 2)
+							if (!Game.getBoard().getSquare(Board.CB_EDGE, 2)
 									.isOccupied()
-									&& InputValidator.isTurnKingInCheck(
+									&& InputValidator.isTurnKingNotInCheck(
 											Game.getBoard()
 											.getSquare(Board
-											.CHESSBOARD_EDGE, 2))) {
-								if (!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 1)
+											.CB_EDGE, 2))) {
+								if (!Game.getBoard().getSquare(Board.CB_EDGE, 1)
 										.isOccupied()
 										&& InputValidator
-										.isTurnKingInCheck(Game.getBoard()
-										.getSquare(Board.CHESSBOARD_EDGE, 1))) {
+										.isTurnKingNotInCheck(Game.getBoard()
+										.getSquare(Board.CB_EDGE, 1))) {
 
-									((King) kingInitialSquare.getPiece())
+									((King) kingStSquare.getPiece())
 									.setHasMoved();
 									((Rook) rookInitialSquare.getPiece())
 									.setHasMoved();
 
 									Game.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, 2).setOccupied(true);
+										.CB_EDGE, 2).setOccupied(true);
 									Game.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, 2).setPiece(
+										.CB_EDGE, 2).setPiece(
 										Game.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, 0).getPiece());
+										.CB_EDGE, 0).getPiece());
 									Game.getBoard().getSquare(Board
-											.CHESSBOARD_EDGE, 0)
+											.CB_EDGE, 0)
 									.setOccupied(false);
 
 									Game.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, 1).setOccupied(true);
+										.CB_EDGE, 1).setOccupied(true);
 									Game.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, 1).setPiece(Game
+										.CB_EDGE, 1).setPiece(Game
 										.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, ParseFiles
+										.CB_EDGE, ParseFiles
 										.getFileIntFromChar('e')).getPiece());
-									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE,
+									Game.getBoard().getSquare(Board.CB_EDGE,
 										ParseFiles.getFileIntFromChar('e'))
 										.setOccupied(false);
 
 									Game.setKingPosition(Game.getTurn(), Game
 										.getBoard().getSquare(Board
-										.CHESSBOARD_EDGE, 1));
+										.CB_EDGE, 1));
 									Game.addNewStartingSquare(Game.getBoard()
-										.getSquare(Board.CHESSBOARD_EDGE,
+										.getSquare(Board.CB_EDGE,
 										ParseFiles.getFileIntFromChar('e')));
 									Game.addNewDestinationSquare(Game.getBoard()
-										.getSquare(Board.CHESSBOARD_EDGE, 2));
+										.getSquare(Board.CB_EDGE, 2));
 
 									Game.nextTurn();
 									return true;
@@ -453,69 +416,70 @@ public class Move {
 
 	public static boolean longCastle(final ChessColor wantedColor) throws IllegalMoveException {
 		if (wantedColor == ChessColor.WHITE) {
-			Square kingInitialSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));
+			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));
 
-			if (kingInitialSquare.isOccupied()
-					&& kingInitialSquare.getPiece().getClass() == King.class
-					&& kingInitialSquare.getPiece().getColor() == wantedColor) {
-				if (!((King) kingInitialSquare.getPiece()).getHasMoved()) {
+			if (kingStSquare.isOccupied()
+					&& kingStSquare.getPiece().getClass() == King.class
+					&& kingStSquare.getPiece().getColor() == wantedColor) {
+				if (!((King) kingStSquare.getPiece()).getHasMoved()) {
 				//make the king disappear
 
-				kingInitialSquare.setOccupied(false);
+				kingStSquare.setOccupied(false);
 
-				if (InputValidator.isTurnKingInCheck(kingInitialSquare)) {
+				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {
 				//there is an unmoved white king and it's not under check
-			 		kingInitialSquare.setOccupied(true);
-			 		kingInitialSquare.setPiece(new King(wantedColor));
+			 		kingStSquare.setOccupied(true);
+			 		kingStSquare.setPiece(new King(wantedColor));
 
 			 		Square rookInitialSquare = Game.getBoard()
-			 			.getSquare(0, Board.CHESSBOARD_EDGE);
+			 			.getSquare(0, Board.CB_EDGE);
 
 					if (rookInitialSquare.isOccupied()
 						&& rookInitialSquare.getPiece().getClass() == Rook.class
 						&& rookInitialSquare.getPiece().getColor() == wantedColor) {
 
 						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {
-						//there is an unmoved white rook
-
 							if (!Game.getBoard().getSquare(0, ParseFiles
-									.getFileIntFromChar('d')).isOccupied()
-									&& InputValidator.isTurnKingInCheck(Game
-										.getBoard().getSquare(0, ParseFiles
-											.getFileIntFromChar('d')))) {
+							.getFileIntFromChar('d')).isOccupied()
+							&& InputValidator.isTurnKingNotInCheck(Game
+							.getBoard().getSquare(0, ParseFiles
+							.getFileIntFromChar('d')))) {
 								if (!Game.getBoard().getSquare(0, ParseFiles
-										.getFileIntFromChar('c')).isOccupied()
-										&& InputValidator.isTurnKingInCheck(Game
-										.getBoard().getSquare(0, ParseFiles
-										.getFileIntFromChar('c')))) {
+								.getFileIntFromChar('c')).isOccupied()
+								&& InputValidator
+								.isTurnKingNotInCheck(Game
+								.getBoard().getSquare(0, ParseFiles
+								.getFileIntFromChar('c')))) {
 									if (!Game.getBoard().getSquare(0, ParseFiles
-										.getFileIntFromChar('b'))
-											.isOccupied()) {
-										((King) kingInitialSquare.getPiece())
+									.getFileIntFromChar('b'))
+									.isOccupied()) {
+										((King) kingStSquare.getPiece())
 										.setHasMoved();
-										((Rook) rookInitialSquare.getPiece())
+										((Rook) rookInitialSquare
+										.getPiece())
 										.setHasMoved();
-
 										Game.getBoard().getSquare(0, ParseFiles
 										.getFileIntFromChar('d'))
 										.setOccupied(true);
 										Game.getBoard().getSquare(0, ParseFiles
 										.getFileIntFromChar('d')).setPiece(
-											rookInitialSquare.getPiece());
+										rookInitialSquare.getPiece());
 										rookInitialSquare.setOccupied(false);
-
 										Game.getBoard().getSquare(0, ParseFiles
 										.getFileIntFromChar('c'))
 										.setOccupied(true);
 										Game.getBoard().getSquare(0, ParseFiles
 										.getFileIntFromChar('c'))
-										.setPiece(kingInitialSquare.getPiece());
-										kingInitialSquare.setOccupied(false);
-
-										Game.setKingPosition(Game.getTurn(), Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')));
-										Game.addNewStartingSquare(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));
-										Game.addNewDestinationSquare(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')));
-
+										.setPiece(kingStSquare.getPiece());
+										kingStSquare.setOccupied(false);
+										Game.setKingPosition(Game.getTurn(),
+										Game.getBoard().getSquare(0, ParseFiles
+										.getFileIntFromChar('c')));
+										Game.addNewStartingSquare(kingStSquare);
+										Game.addNewDestinationSquare(Game
+										.getBoard()
+										.getSquare(0, ParseFiles
+										.getFileIntFromChar('c')));
 										Game.nextTurn();
 										return true;
 									}
@@ -524,59 +488,66 @@ public class Move {
 						}
 					}
 				 	} else {
-				 		//make the piece appear again if we can't castle
-				 		kingInitialSquare.setOccupied(true);
-				 		kingInitialSquare.setPiece(new King(wantedColor));
+				 		kingStSquare.setOccupied(true);
+				 		kingStSquare.setPiece(new King(wantedColor));
 				 	}
 				}
 			}
 		} else {
-			Square kingInitialSquare = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e'));
-
-			if (kingInitialSquare.isOccupied() && kingInitialSquare.getPiece().getClass() == King.class && kingInitialSquare.getPiece().getColor() == wantedColor) {
-				if (!((King) kingInitialSquare.getPiece()).getHasMoved()) {
-				//make the king disappear
-
-				kingInitialSquare.setOccupied(false);
-
-				if (InputValidator.isTurnKingInCheck(kingInitialSquare)) {
-				//there is an unmoved white king and it's not under check
-			 		kingInitialSquare.setOccupied(true);
-			 		kingInitialSquare.setPiece(new King(wantedColor));
-
-			 		Square rookInitialSquare = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, Board.CHESSBOARD_EDGE);
-
-					if (rookInitialSquare.isOccupied() && rookInitialSquare.getPiece().getClass() == Rook.class
-						&& rookInitialSquare.getPiece().getColor() == wantedColor) {
-
+			Square kingStSquare = Game.getBoard().
+			getSquare(Board.CB_EDGE, ParseFiles.getFileIntFromChar('e'));
+			if (kingStSquare.isOccupied() && kingStSquare.getPiece()
+			.getClass() == King.class && kingStSquare
+			.getPiece().getColor() == wantedColor) {
+				if (!((King) kingStSquare.getPiece()).getHasMoved()) {
+				kingStSquare.setOccupied(false);
+				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {
+			 		kingStSquare.setOccupied(true);
+			 		kingStSquare.setPiece(new King(wantedColor));
+			 		Square rookInitialSquare = Game.getBoard()
+			 		.getSquare(Board.CB_EDGE, Board.CB_EDGE);
+					if (rookInitialSquare.isOccupied() && rookInitialSquare
+					.getPiece().getClass() == Rook.class
+					&& rookInitialSquare.getPiece().getColor() == wantedColor) {
 						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {
-						//there is an unmoved white rook
-
-							if (!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')).isOccupied()
-									&& InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(
-											Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')))) {
-								if (!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE,
-										ParseFiles.getFileIntFromChar('c')).isOccupied()
-									&& InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(
-											Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')))) {
-									if (!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE,
-											ParseFiles.getFileIntFromChar('b')).isOccupied()) {
-
-										((King) kingInitialSquare.getPiece()).setHasMoved();
-										((Rook) rookInitialSquare.getPiece()).setHasMoved();
-
-										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')).setOccupied(true);
-										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')).setPiece(rookInitialSquare.getPiece());
+							if (!Game.getBoard().getSquare(Board.CB_EDGE,
+							ParseFiles.getFileIntFromChar('d')).isOccupied()
+							&& InputValidator.isTurnKingNotInCheck(Game
+							.getBoard().getSquare(
+							Board.CB_EDGE, ParseFiles.getFileIntFromChar('d')))) {
+								if (!Game.getBoard().getSquare(Board.CB_EDGE,
+								ParseFiles.getFileIntFromChar('c')).isOccupied()
+								&& InputValidator.isTurnKingNotInCheck(Game
+								.getBoard().getSquare(
+								Board.CB_EDGE, ParseFiles.getFileIntFromChar('c')))) {
+									if (!Game.getBoard().getSquare(Board.CB_EDGE,
+									ParseFiles.getFileIntFromChar('b'))
+									.isOccupied()) {
+										((King) kingStSquare.getPiece())
+										.setHasMoved();
+										((Rook) rookInitialSquare.getPiece())
+										.setHasMoved();
+										Game.getBoard().getSquare(Board.CB_EDGE,
+										ParseFiles.getFileIntFromChar('d'))
+										.setOccupied(true);
+										Game.getBoard().getSquare(Board.CB_EDGE,
+										ParseFiles.getFileIntFromChar('d'))
+										.setPiece(rookInitialSquare.getPiece());
 										rookInitialSquare.setOccupied(false);
-
-										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')).setOccupied(true);
-										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')).setPiece(kingInitialSquare.getPiece());
-										kingInitialSquare.setOccupied(false);
-
-										Game.setKingPosition(Game.getTurn(), Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')));
-										Game.addNewStartingSquare(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));
-										Game.addNewDestinationSquare(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')));
-
+										Game.getBoard().getSquare(Board.CB_EDGE,
+										ParseFiles.getFileIntFromChar('c'))
+										.setOccupied(true);
+										Game.getBoard().getSquare(Board.CB_EDGE,
+										ParseFiles.getFileIntFromChar('c'))
+										.setPiece(kingStSquare.getPiece());
+										kingStSquare.setOccupied(false);
+										Game.setKingPosition(Game.getTurn(),
+										Game.getBoard().getSquare(Board.CB_EDGE,
+										ParseFiles.getFileIntFromChar('c')));
+										Game.addNewStartingSquare(kingStSquare);
+										Game.addNewDestinationSquare(Game
+										.getBoard().getSquare(Board.CB_EDGE,
+										ParseFiles.getFileIntFromChar('c')));
 										Game.nextTurn();
 										return true;
 									}
@@ -585,15 +556,12 @@ public class Move {
 						}
 					}
 				 	} else {
-				 		//make the piece appear again if we can't castle
-				 		kingInitialSquare.setOccupied(true);
-				 		kingInitialSquare.setPiece(new King(wantedColor));
+				 		kingStSquare.setOccupied(true);
+				 		kingStSquare.setPiece(new King(wantedColor));
 				 	}
 			}
 		}
 	}
-	 //can't castle
 	return false;
 	}
 }
-

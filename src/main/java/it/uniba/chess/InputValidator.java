@@ -194,7 +194,7 @@ public class InputValidator {
 									}
 								}
 								startingSquare = isThereAKingAroundThisSquare(destinationSquare, Game.getTurn());
-								if (isTurnKingInCheck(destinationSquare)) {
+								if (isTurnKingNotInCheck(destinationSquare)) {
 									Move.pieceMoveOrCapture(King.class, startingSquare,
 										destinationSquare, !isCaptureString.isEmpty());
 									Game.addPrintableMove(lastmove);
@@ -214,7 +214,7 @@ public class InputValidator {
 								int startColumn = startingColumnString.isEmpty() ? -1 :ParseFiles.getFileIntFromChar(startingColumnString.charAt(0));
 
 								startingSquare = checkPawn_Capture(destinationSquare, startColumn, Pawn.class, Game.getTurn());
-								Move.pawnCapture(startingSquare, destinationSquare, !isEnpassantString.isEmpty()); // <-------- only way is to call it with startingY != -1
+								Move.pawnCapture(startingSquare, destinationSquare, !isEnpassantString.isEmpty());
 								Game.addPrintableMove(lastmove);
 							 } else {
 								throw new IllegalMoveException();
@@ -688,7 +688,7 @@ public class InputValidator {
 	        }
 	 }
 
-	public static boolean isTurnKingInCheck(Square finalsquare) throws IllegalMoveException {
+	public static boolean isTurnKingNotInCheck(Square finalsquare) throws IllegalMoveException {
 		if(finalsquare.isOccupied() && finalsquare.getPiece().getColor() == Game.getTurn() && finalsquare.getPiece().getClass() != King.class) {
 			throw new IllegalMoveException();
 		}

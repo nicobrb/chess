@@ -20,7 +20,7 @@ public final class Board {
 	public static final int CHESSBOARD_DIMENSION = 8;
 	private static final int STARTING_BLANK_RANK = 2;
 	private static final int FINAL_BLANK_RANK = 6;
-	public static final int CHESSBOARD_EDGE = 7;
+	public static final int CB_EDGE = 7;
 	private static final int WHITE_PAWN_RANK = 1;
 	private static final int BLACK_PAWN_RANK = 6;
 
@@ -77,7 +77,7 @@ public final class Board {
 			valueRow = 0;
 			pawnRow = WHITE_PAWN_RANK;
 		} else {
-			valueRow = CHESSBOARD_EDGE;
+			valueRow = CB_EDGE;
 			pawnRow = BLACK_PAWN_RANK;
 		}
 
@@ -116,9 +116,9 @@ public final class Board {
 	public void print() {
 		System.out.print("   a   b   c   d   e   f   g   h \n");
 		System.out.println("  --------------------------------");
-		for (int i = CHESSBOARD_EDGE; i >= 0; --i) {
+		for (int i = CB_EDGE; i >= 0; --i) {
 			System.out.print((i + 1) + " | ");
-			for (int j = CHESSBOARD_EDGE; j >= 0; --j) {
+			for (int j = CB_EDGE; j >= 0; --j) {
 				if (chessboard[i][j].isOccupied()) {
 					System.out.print(chessboard[i][j].getPiece().getUnicode() + " | ");
 				} else {
