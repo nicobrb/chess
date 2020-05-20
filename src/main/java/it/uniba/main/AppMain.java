@@ -34,36 +34,37 @@ public final class AppMain {
 	 * @param args The command-line arguments.
 	 */
 	public static void main(final String[] args) throws UnsupportedEncodingException {
-		System.out.print("Scrivi help per la lista dei comandi, play per iniziare una nuova partita. Qualunque notazione algebrica prima di play non sarà accettata\n");
+		System.out.print("Scrivi help per la lista dei comandi, play per iniziare una nuova partita."
+		+ " Qualunque notazione algebrica prima di play non sarà accettata\n");
 		Scanner sc = new Scanner(System.in, "UTF-8");
 		System.setOut(new PrintStream(System.out, false, "UTF-8"));
 		menu(sc);
 		sc.close();
 	}
-	
-	private static void menu(Scanner sc) {		
+
+	private static void menu(final Scanner sc) {
 		String command = "";
-		while(!command.equals("quit") && !command.equals("play")) {
+		while (!command.equals("quit") && !command.equals("play")) {
 			command = sc.nextLine();
 			try {
 				InputValidator.parseCommand(command.trim());
-			} catch(IllegalMoveException ex) {
+			} catch (IllegalMoveException ex) {
 				System.out.println(ex.getMessage());
 			}
 		}
-		//IMPORTANT	
-		if(command.equals("quit")) {
+		//IMPORTANT
+		if (command.equals("quit")) {
 			quitConfirmation(sc);
 		} else if (command.equals("play")) {
 			playGame(sc);
 		}
-		return;		
+		return;
 	}
-	
-	private static void quitConfirmation(Scanner sc) {
+
+	private static void quitConfirmation(final Scanner sc) {
 		System.out.print("Sei sicuro di voler uscire? S/N (default: N)\n");
 		String confirm = sc.nextLine().toLowerCase().trim();
-		
+
 		if (confirm.equals("s")) {
 			return;
 		} else {
@@ -71,14 +72,14 @@ public final class AppMain {
 			menu(sc);
 		}
 	}
-	
-	private static void playGame(Scanner sc) {
-		if(Game.getGameStatus() != GameStatus.ACTIVE) {
-			Game.startGame();	
+
+	private static void playGame(final Scanner sc) {
+		if (Game.getGameStatus() != GameStatus.ACTIVE) {
+			Game.startGame();
 		} else {
 			System.out.print("Sei sicuro di voler ricominciare il gioco? S/[N]\n");
 			String confirmation = sc.nextLine().toLowerCase().trim();
-			if(confirmation.equals("s")) {
+			if (confirmation.equals("s")) {
 				Game.startGame();
 			}
 		}
