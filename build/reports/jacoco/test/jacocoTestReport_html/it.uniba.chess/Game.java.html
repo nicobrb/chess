@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.chess</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package it.uniba.chess;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import it.uniba.chess.pieces.*;
 import it.uniba.chess.utils.*;
@@ -10,159 +11,175 @@ import it.uniba.chess.utils.*;
  *
  * &lt;&lt;Control&gt;&gt;
  */
-<span class="nc" id="L13">public class Game{</span>
-	
+<span class="nc" id="L14">public class Game{</span>
+
 	private static Board board;
 	private static ChessColor turn;
 	private static GameStatus status;
-	
-	
-<span class="nc" id="L20">	private static ArrayList&lt;Piece&gt; captures =  new ArrayList&lt;Piece&gt;(32); //can't capture kings</span>
-	
-	
+	private static final int MAX_CAPTURES=32;
+	private static final int KING_SIZE=2;
+	private static final int INITIAL_MOVE_SIZE=30;
+	private static final int CHESSBOARD_EDGE = 7;
+
+
+<span class="nc" id="L25">	private static ArrayList&lt;Piece&gt; captures =  new ArrayList&lt;Piece&gt;(MAX_CAPTURES); //can't capture kings</span>
+
+
 	//each semi-move adds to both this list respectively
-<span class="nc" id="L24">	private static ArrayList&lt;Square&gt; moveStartingSquaresList = new ArrayList&lt;Square&gt;();</span>
-<span class="nc" id="L25">	private static ArrayList&lt;Square&gt; moveDestinationSquaresList = new ArrayList&lt;Square&gt;();</span>
-	
-<span class="nc" id="L27">	private static ArrayList&lt;Square&gt; kingSquares = new ArrayList&lt;Square&gt;(2);</span>
-	
+<span class="nc" id="L29">	private static ArrayList&lt;Square&gt; moveStartingSquaresList = new ArrayList&lt;Square&gt;();</span>
+<span class="nc" id="L30">	private static ArrayList&lt;Square&gt; moveDestinationSquaresList = new ArrayList&lt;Square&gt;();</span>
+
+<span class="nc" id="L32">	private static ArrayList&lt;Square&gt; kingSquares = new ArrayList&lt;Square&gt;(KING_SIZE);</span>
+
 	//each semi-move will be added by the parser to this list for ease of printing
-<span class="nc" id="L30">	private static ArrayList&lt;String&gt; printableMovesList = new ArrayList&lt;String&gt;(30); //can't capture kings</span>
-	
-	public static void startGame() throws IllegalMoveException{
+<span class="nc" id="L35">	private static ArrayList&lt;String&gt; printableMovesList = new ArrayList&lt;String&gt;(INITIAL_MOVE_SIZE); //can't capture kings</span>
+
+	public static void testGame(LinkedList&lt;Square&gt; chessPosition) throws IllegalMoveException{
 		//initialization function to be called on &quot;play&quot;
 
-<span class="nc" id="L35">		board = new Board();</span>
-		
-<span class="nc" id="L37">		captures.clear();</span>
-<span class="nc" id="L38">		moveStartingSquaresList.clear();</span>
-<span class="nc" id="L39">		moveDestinationSquaresList.clear();</span>
-<span class="nc" id="L40">		printableMovesList.clear();</span>
-<span class="nc" id="L41">		kingSquares.add(Game.getBoard().getSquare(0, 3));</span>
-<span class="nc" id="L42">		kingSquares.add(Game.getBoard().getSquare(7, 3));	</span>
-		
-<span class="nc" id="L44">		status =  GameStatus.ACTIVE;</span>
-<span class="nc" id="L45">		turn = ChessColor.WHITE;</span>
-<span class="nc" id="L46">	}</span>
+<span class="nc" id="L40">		board = new Board(chessPosition);</span>
+
+<span class="nc" id="L42">		captures.clear();</span>
+<span class="nc" id="L43">		moveStartingSquaresList.clear();</span>
+<span class="nc" id="L44">		moveDestinationSquaresList.clear();</span>
+<span class="nc" id="L45">		printableMovesList.clear();</span>
+<span class="nc" id="L46">		kingSquares.add(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));</span>
+<span class="nc" id="L47">		kingSquares.add(Game.getBoard().getSquare(CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));	</span>
+
+<span class="nc" id="L49">		status =  GameStatus.ACTIVE;</span>
+<span class="nc" id="L50">		turn = ChessColor.WHITE;</span>
+<span class="nc" id="L51">	}</span>
 	
+	public static void startGame(){
+		//initialization function to be called on &quot;play&quot;
+
+<span class="nc" id="L56">		board = new Board();</span>
+
+<span class="nc" id="L58">		captures.clear();</span>
+<span class="nc" id="L59">		moveStartingSquaresList.clear();</span>
+<span class="nc" id="L60">		moveDestinationSquaresList.clear();</span>
+<span class="nc" id="L61">		printableMovesList.clear();</span>
+<span class="nc" id="L62">		kingSquares.add(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));</span>
+<span class="nc" id="L63">		kingSquares.add(Game.getBoard().getSquare(CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));	</span>
+
+<span class="nc" id="L65">		status =  GameStatus.ACTIVE;</span>
+<span class="nc" id="L66">		turn = ChessColor.WHITE;</span>
+<span class="nc" id="L67">	}</span>
+
 	public static void capturedMaterial(){
 		//Note that material is the list of pieces captured by the opposite colour
-		
-<span class="nc" id="L51">		System.out.print(&quot;Materiale del bianco: &quot;);</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">		for(int i=0; i&lt;captures.size(); i++) {</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">			if(captures.get(i).getColor() == ChessColor.BLACK) {</span>
-<span class="nc" id="L54">				System.out.print(captures.get(i).getUnicode());</span>
+
+<span class="nc" id="L72">		System.out.print(&quot;Materiale del bianco: &quot;);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		for(int i=0; i&lt;captures.size(); i++) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">			if(captures.get(i).getColor() == ChessColor.BLACK) {</span>
+<span class="nc" id="L75">				System.out.print(captures.get(i).getUnicode());</span>
 			}
 		}
-<span class="nc" id="L57">		System.out.print(&quot;\nMateriale del nero: &quot;);</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">		for(int i=0; i&lt;captures.size(); i++) {</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">			if(captures.get(i).getColor() == ChessColor.WHITE) {</span>
-<span class="nc" id="L60">				System.out.print(captures.get(i).getUnicode());</span>
+<span class="nc" id="L78">		System.out.print(&quot;\nMateriale del nero: &quot;);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">		for(int i=0; i&lt;captures.size(); i++) {</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">			if(captures.get(i).getColor() == ChessColor.WHITE) {</span>
+<span class="nc" id="L81">				System.out.print(captures.get(i).getUnicode());</span>
 			}
 		}
-<span class="nc" id="L63">		System.out.println();</span>
-<span class="nc" id="L64">	}</span>
-
-
+<span class="nc" id="L84">		System.out.println();</span>
+<span class="nc" id="L85">	}</span>
 
 	public static  void printListOfMoves(){	
 		/* we created move_counter to control the number of the actual move counter. WARNING: this is not
 		 * a SEMIMOVES counter (which are the actual number of moves made (e4 is a semimove, 1.e4 e5 is a MOVE))
 		 */
-<span class="nc" id="L72">		int move_counter = 0;</span>
+<span class="nc" id="L91">		int move_counter = 0;</span>
 
-<span class="nc bnc" id="L74" title="All 2 branches missed.">		for (int i = 0; i &lt; printableMovesList.size(); i++) {</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">			if(i%2 == 0) {</span>
-<span class="nc" id="L76">				System.out.print(&quot;\n&quot;);</span>
-<span class="nc" id="L77">				move_counter++;</span>
-<span class="nc" id="L78">				System.out.print(move_counter + &quot;. &quot;);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">		for (int i = 0; i &lt; printableMovesList.size(); i++) {</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">			if(i%2 == 0) {</span>
+<span class="nc" id="L95">				System.out.print(&quot;\n&quot;);</span>
+<span class="nc" id="L96">				move_counter++;</span>
+<span class="nc" id="L97">				System.out.print(move_counter + &quot;. &quot;);</span>
 			}
-<span class="nc" id="L80">			System.out.print(printableMovesList.get(i) + &quot; &quot;);</span>
+<span class="nc" id="L99">			System.out.print(printableMovesList.get(i) + &quot; &quot;);</span>
 		}
-		
-<span class="nc" id="L83">		System.out.println();</span>
+<span class="nc" id="L101">		System.out.println();</span>
+<span class="nc" id="L102">	}</span>
 
-<span class="nc" id="L85">	}</span>
-	
 	public static void printHelp() {
-<span class="nc" id="L88">		System.out.print(&quot;help: questo menu\n&quot;);</span>
-<span class="nc" id="L89">		System.out.print(&quot;board: mostra la scacchiera alla posizione attuale\n&quot;);</span>
-<span class="nc" id="L90">		System.out.print(&quot;play: inizia una nuova partita (anche a partitÃ  giÃ  iniziata)\n&quot;);</span>
-<span class="nc" id="L91">		System.out.print(&quot;quit: termina l'applicazione\n&quot;);</span>
-<span class="nc" id="L92">		System.out.print(&quot;captures: mostra il materiale catturato da ogni colore\n&quot;);</span>
-<span class="nc" id="L93">		System.out.print(&quot;moves: mostra la lista delle mosse giocate durante la partita\n&quot;);</span>
-<span class="nc" id="L94">	}</span>
-	
+<span class="nc" id="L105">		System.out.print(&quot;help: questo menu\n&quot;);</span>
+<span class="nc" id="L106">		System.out.print(&quot;board: mostra la scacchiera alla posizione attuale\n&quot;);</span>
+<span class="nc" id="L107">		System.out.print(&quot;play: inizia una nuova partita (anche a partitÃ  giÃ  iniziata)\n&quot;);</span>
+<span class="nc" id="L108">		System.out.print(&quot;quit: termina l'applicazione\n&quot;);</span>
+<span class="nc" id="L109">		System.out.print(&quot;captures: mostra il materiale catturato da ogni colore\n&quot;);</span>
+<span class="nc" id="L110">		System.out.print(&quot;moves: mostra la lista delle mosse giocate durante la partita\n&quot;);</span>
+<span class="nc" id="L111">	}</span>
+
 	public void printBoard() {
-<span class="nc" id="L97">		board.print();</span>
-<span class="nc" id="L98">	}</span>
-	
+<span class="nc" id="L114">		board.print();</span>
+<span class="nc" id="L115">	}</span>
+
 	public static GameStatus getStatus() {
-<span class="nc" id="L101">		return status;</span>
+<span class="nc" id="L118">		return status;</span>
 	}
-	
+
 	public static void setStatus(GameStatus newstatus) {
-<span class="nc" id="L105">		status = newstatus;</span>
-<span class="nc" id="L106">	}</span>
-	
+<span class="nc" id="L122">		status = newstatus;</span>
+<span class="nc" id="L123">	}</span>
+
 	public static Board getBoard() {
-<span class="nc" id="L109">		return board;</span>
+<span class="nc" id="L126">		return board;</span>
 	}
-	
+
 	public static ChessColor getTurn() {
-<span class="nc" id="L113">		return turn;</span>
+<span class="nc" id="L130">		return turn;</span>
 	}
-	
+
 	public static void nextTurn() {
-<span class="nc bnc" id="L117" title="All 2 branches missed.">		if(turn == ChessColor.WHITE) {</span>
-<span class="nc" id="L118">			turn = ChessColor.BLACK;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">		if(turn == ChessColor.WHITE) {</span>
+<span class="nc" id="L135">			turn = ChessColor.BLACK;</span>
 		} else {
-<span class="nc" id="L120">			turn = ChessColor.WHITE;</span>
+<span class="nc" id="L137">			turn = ChessColor.WHITE;</span>
 		}
-<span class="nc" id="L122">	}</span>
-	
+<span class="nc" id="L139">	}</span>
+
 	public static ChessColor getEnemyTurn(){
-<span class="nc bnc" id="L125" title="All 2 branches missed.">	    return Game.turn == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE; </span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">	    return Game.turn == ChessColor.WHITE ? ChessColor.BLACK : ChessColor.WHITE; </span>
 	}
-	
+
 	public static Square getKingPosition(ChessColor wantedColor) {
-<span class="nc bnc" id="L129" title="All 2 branches missed.">		if(wantedColor == ChessColor.WHITE) {</span>
-<span class="nc" id="L130">			return kingSquares.get(0);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">		if(wantedColor == ChessColor.WHITE) {</span>
+<span class="nc" id="L147">			return kingSquares.get(0);</span>
 		} else {
-<span class="nc" id="L132">			return kingSquares.get(1);</span>
+<span class="nc" id="L149">			return kingSquares.get(1);</span>
 		}
 	}
-	
+
 	public static void setKingPosition(ChessColor wantedColor, Square destinationSquare) {
-<span class="nc bnc" id="L137" title="All 2 branches missed.">		if(wantedColor == ChessColor.WHITE) {</span>
-<span class="nc" id="L138">			kingSquares.set(0, destinationSquare);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">		if(wantedColor == ChessColor.WHITE) {</span>
+<span class="nc" id="L155">			kingSquares.set(0, destinationSquare);</span>
 		} else {
-<span class="nc" id="L140">			kingSquares.set(1, destinationSquare);</span>
+<span class="nc" id="L157">			kingSquares.set(1, destinationSquare);</span>
 		}
-<span class="nc" id="L142">	}</span>
-	
+<span class="nc" id="L159">	}</span>
+
 	public static ArrayList&lt;Piece&gt; getCapturesList(){
-<span class="nc" id="L145">		return captures;</span>
+<span class="nc" id="L162">		return captures;</span>
 	}
-	
+
 	public static void addNewStartingSquare(Square lastSquare) {
-<span class="nc" id="L149">		moveStartingSquaresList.add(lastSquare);</span>
-<span class="nc" id="L150">	}</span>
-	
+<span class="nc" id="L166">		moveStartingSquaresList.add(lastSquare);</span>
+<span class="nc" id="L167">	}</span>
+
 	public static void addNewDestinationSquare(Square lastSquare) {
-<span class="nc" id="L153">		moveDestinationSquaresList.add(lastSquare);</span>
-<span class="nc" id="L154">	}</span>
-	
+<span class="nc" id="L170">		moveDestinationSquaresList.add(lastSquare);</span>
+<span class="nc" id="L171">	}</span>
+
 	public static Square getLatestStartingSquare() {
-<span class="nc" id="L157">		return moveStartingSquaresList.get(moveStartingSquaresList.size()-1);</span>
+<span class="nc" id="L174">		return moveStartingSquaresList.get(moveStartingSquaresList.size()-1);</span>
 	}
-	
+
 	public static Square getLatestDestinationSquare() {
-<span class="nc" id="L161">		return moveDestinationSquaresList.get(moveDestinationSquaresList.size()-1);</span>
+<span class="nc" id="L178">		return moveDestinationSquaresList.get(moveDestinationSquaresList.size()-1);</span>
 	}
-	
+
 	public static void addPrintableMove(String lastMove) {
-<span class="nc" id="L165">		printableMovesList.add(lastMove);</span>
-<span class="nc" id="L166">	}</span>
+<span class="nc" id="L182">		printableMovesList.add(lastMove);</span>
+<span class="nc" id="L183">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

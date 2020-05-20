@@ -1,95 +1,178 @@
 package it.uniba.chess;
 
-import it.uniba.chess.pieces.*;
-import it.uniba.chess.utils.*;
+import java.util.LinkedList;
 
+import it.uniba.chess.pieces.Bishop;
+import it.uniba.chess.pieces.King;
+import it.uniba.chess.pieces.Knight;
+import it.uniba.chess.pieces.Pawn;
+import it.uniba.chess.pieces.Queen;
+import it.uniba.chess.pieces.Rook;
+import it.uniba.chess.utils.ChessColor;
+import it.uniba.chess.utils.ParseFiles;
 /**
  * Definisce ed istanzia una matrice 8x8 di oggetti di tipo Square, che rappresenterà la nostra scacchiera
  *
  * <<Entity>>
  */
-public class Board{
+public final class Board {
 	private Square[][] chessboard;
-	
-	public Board(){
-		this.chessboard = new Square[8][8];
-		initPieces(ChessColor.WHITE);
-		initPieces(ChessColor.BLACK);
+	public static final int CHESSBOARD_DIMENSION = 8;
+	private static final int STARTING_BLANK_RANK = 2;
+	private static final int FINAL_BLANK_RANK = 6;
+	public static final int CB_EDGE = 7;
+	private static final int WHITE_PAWN_RANK = 1;
+	private static final int BLACK_PAWN_RANK = 6;
 
-		//init null chessboard squares
-		for(int i = 2; i<6; ++i) {
-			for (int j=0; j<8; j++) {
-				chessboard[i][j] = new Square(i,j);
+
+	public Board() {
+
+        this.chessboard = new Square[CHESSBOARD_DIMENSION][CHESSBOARD_DIMENSION];
+        initPieces(ChessColor.WHITE);
+        initPieces(ChessColor.BLACK);
+
+        //init null chessboard squares
+        for (int i = STARTING_BLANK_RANK; i < FINAL_BLANK_RANK; ++i) {
+        	for (int j = 0; j < CHESSBOARD_DIMENSION; j++) {
+                chessboard[i][j] = new Square(i, j);
+            }
+        }
+    }
+
+	public Board(final LinkedList<Square> chessPosition) {
+		this.chessboard = new Square[CHESSBOARD_DIMENSION][CHESSBOARD_DIMENSION];
+
+		for (int i = 0; i < CHESSBOARD_DIMENSION; ++i) {
+			for (int j = 0; j < CHESSBOARD_DIMENSION; j++) {
+				chessboard[i][j] = new Square(i, j);
 			}
 		}
-		
-	}
-	
-	public Square getSquare(int x, int y) throws IllegalMoveException {
-		if(x<0 || x>7 || y<0 || y>7) {
-			throw new IllegalMoveException();
+
+		for (Square sq : chessPosition) {
+			this.chessboard[sq.getX()][sq.getY()] = sq;
 		}
-		
-		return(chessboard[x][y]);
+
+		int file = Integer.parseInt("0");
+		int rank = ParseFiles.getFileIntFromChar('e');
+
+		chessboard[file][rank] = new Square(file, rank, new King(ChessColor.WHITE));
+
+		file = Integer.parseInt("7");
+		chessboard[file][rank] = new Square(file, rank, new King(ChessColor.BLACK));
+
+	}
+
+	public Square getSquare(final int x, final int y) {
+
+		return (chessboard[x][y]);
 	}
 
 	//first square in local matrix is h1, white rook
-	
-	private void initPieces(ChessColor pieceColor) {
-		int valueRow;
-		int pawnRow;
-		
-		if(pieceColor == ChessColor.WHITE) {
-			valueRow = 0;
-			pawnRow = 1;
+
+	private void initPieces(final ChessColor pieceColor) {
+		int valueRank;
+		int pawnRank;
+
+		if (pieceColor == ChessColor.WHITE) {
+			valueRank = 0;
+			pawnRank = WHITE_PAWN_RANK;
 		} else {
-			valueRow = 7;
-			pawnRow = 6;
+			valueRank = CB_EDGE;
+			pawnRank = BLACK_PAWN_RANK;
 		}
-		
+
 		//ROOK
-		this.chessboard[valueRow][0] = new Square(valueRow, 0, new Rook(pieceColor));
-		this.chessboard[valueRow][7] = new Square(valueRow, 7, new Rook(pieceColor));
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('h')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('h'), new Rook(pieceColor));
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('a')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('a'), new Rook(pieceColor));
 		//KNIGHTS
-		this.chessboard[valueRow][1] = new Square(valueRow, 1, new Knight(pieceColor));
-		this.chessboard[valueRow][6] = new Square(valueRow, 6, new Knight(pieceColor));
-		
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('g')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('g'), new Knight(pieceColor));
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('b')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('b'), new Knight(pieceColor));
+
 		//BISHOPS
-		this.chessboard[valueRow][2] = new Square(valueRow, 2, new Bishop(pieceColor));
-		this.chessboard[valueRow][5] = new Square(valueRow, 5, new Bishop(pieceColor));
-		
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('f')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('f'), new Bishop(pieceColor));
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('c')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('c'), new Bishop(pieceColor));
+
 		//QUEEN
-		this.chessboard[valueRow][4] = new Square(valueRow, 4, new Queen(pieceColor));
-		
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('d')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('d'), new Queen(pieceColor));
+
 		//KING
-		this.chessboard[valueRow][3] = new Square(valueRow, 3, new King(pieceColor));
-		
-		
+		this.chessboard[valueRank][ParseFiles.getFileIntFromChar('e')]
+		= new Square(valueRank, ParseFiles.getFileIntFromChar('e'), new King(pieceColor));
+
+
 		//PAWNS
-		for (int i=0; i<8; i++) {
-			this.chessboard[pawnRow][i] = new Square(pawnRow, i, new Pawn(pieceColor));
+		for (int i = 0; i < CHESSBOARD_DIMENSION; i++) {
+			this.chessboard[pawnRank][i] = new Square(pawnRank, i, new Pawn(pieceColor));
 		}
-		
-		
 	}
-	
+
 	public void print() {
 		System.out.print("   a   b   c   d   e   f   g   h \n");
-		System.out.println("  --------------------------------");
-		for(int i=7; i>=0; --i) {
-			System.out.print((i+1) + " | ");
-			for (int j=7; j>=0; --j) {
-				if(chessboard[i][j].isOccupied()) {
+		System.out.print("  --------------------------------\n");
+		for (int i = CB_EDGE; i >= 0; --i) {
+			System.out.print((i + 1) + " | ");
+			for (int j = CB_EDGE; j >= 0; --j) {
+				if (chessboard[i][j].isOccupied()) {
 					System.out.print(chessboard[i][j].getPiece().getUnicode() + " | ");
-				}else {
+				} else {
 					System.out.print("  | ");
 				}
 			}
-			System.out.print(i+1);
+			System.out.print(i + 1);
 			System.out.print("\n");
-			System.out.println("  --------------------------------");
+			System.out.print("  --------------------------------\n");
 		}
 		System.out.print("   a   b   c   d   e   f   g   h \n");
 	}
-	
+
+	   @Override
+	    public boolean equals(final Object o) {
+
+	    	boolean isEqual = true;
+
+	        // If the object is compared with itself then return true
+	        if (o == this) {
+	            return true;
+	        }
+
+	        /* Check if o is an instance of Complex or not
+	          "null instanceof [type]" also returns false */
+	        if (!(o instanceof Board)) {
+	            return false;
+	        }
+
+	        // typecast o to Complex so that we can compare data members
+	        Board comparedBoard = (Board) o;
+
+	        // Compare the data members and return accordingly
+	        for (int i = 0; i < CHESSBOARD_DIMENSION && isEqual; ++i) {
+	        	for (int j = 0; j < CHESSBOARD_DIMENSION && isEqual; ++j) {
+	        		if (this.chessboard[i][j].isOccupied() != comparedBoard.chessboard[i][j].isOccupied()) {
+	        			isEqual = false;
+	        		} else {
+	        			if (this.chessboard[i][j].isOccupied()) {
+	        				if (!this.chessboard[i][j].getPiece()
+	        				.equals(comparedBoard.chessboard[i][j].getPiece())) {
+	        					isEqual = false;
+	        				}
+	        			}
+	        		}
+	        	}
+	        }
+
+	        return isEqual;
+	    }
+
+	   @Override
+	   public int hashCode() {
+		   return super.hashCode();
+	   }
 }
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="it.uniba.example.utils.test.MathUtilsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-05-18T19:14:02" hostname="LAPTOP-82866RT0" time="0.068">
+  <properties/>
+  <testcase name="testAddition()" classname="it.uniba.example.utils.test.MathUtilsTest" time="0.057"/>
+  <testcase name="testDivision()" classname="it.uniba.example.utils.test.MathUtilsTest" time="0.009"/>
+  <system-out><![CDATA[setUpAll
+setUpEach
+teadDownEach
+setUpEach
+teadDownEach
+teadDownAll
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

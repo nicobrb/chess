@@ -7,15 +7,16 @@ import it.uniba.chess.utils.ChessColor;
  *
  * <<Entity>>
  */
-public class Queen extends Piece{
-	
-	public Queen(ChessColor colorPiece) {
-		if(colorPiece == ChessColor.WHITE) {
-			unicode = '\u2655';
+public class Queen extends Piece {
+
+	public Queen(final ChessColor colorPiece) {
+		super();
+		this.setColor(colorPiece);
+		if (colorPiece == ChessColor.WHITE) {
+			this.setUnicode("\u2655");
+		} else {
+			this.setUnicode("\u265b");
 		}
-		else{
-			unicode = '\u265b';
-		}
-			this.colorPiece = colorPiece;
 	}
 }
+

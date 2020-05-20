@@ -1,4 +1,4 @@
-package it.uniba.chess.pieces;		
+package it.uniba.chess.pieces;
 
 import it.uniba.chess.utils.ChessColor;
 
@@ -8,25 +8,16 @@ import it.uniba.chess.utils.ChessColor;
  * <<Entity>>
  */
 
-public class King extends Piece{
-	
-	private boolean hasMoved;
-	
-	public King(ChessColor colorPiece) {
-		if(colorPiece == ChessColor.WHITE) {
-			unicode = '\u2654';
+public class King extends Piece {
+
+	public King(final ChessColor colorPiece) {
+		super();
+		this.setColor(colorPiece);
+		if (colorPiece == ChessColor.WHITE) {
+			this.setUnicode("\u2654");
+		} else {
+			this.setUnicode("\u265a");
 		}
-		else{
-			unicode = '\u265a';
-		}
-		this.colorPiece = colorPiece;
-		hasMoved = false;
 	}
 
-	public void setHasMoved() {
-		this.hasMoved = true;
-	}
-	public boolean getHasMoved() {
-		return this.hasMoved;
-	}
 }
