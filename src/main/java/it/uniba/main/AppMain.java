@@ -49,7 +49,7 @@ public final class AppMain {
 			try {
 				InputValidator.parseCommand(command.trim());
 			} catch (IllegalMoveException ex) {
-				System.out.println(ex.getMessage());
+				System.out.print(ex.getMessage() + "\n");
 			}
 		}
 		//IMPORTANT

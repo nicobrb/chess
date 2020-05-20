@@ -86,7 +86,7 @@ public final class Game {
 				System.out.print(captures.get(i).getUnicode());
 			}
 		}
-		System.out.println();
+		System.out.print("\n");
 	}
 
 	public static void printListOfMoves() {
@@ -103,7 +103,7 @@ public final class Game {
 			}
 			System.out.print(printableMovesList.get(i) + " ");
 		}
-		System.out.println();
+		System.out.print("\n");
 	}
 
 	public static void printHelp() {

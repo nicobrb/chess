@@ -22,9 +22,9 @@ public final class Square {
 		this.occupied = true;
 	}
 
-	public Square(final int row, final int col) {
-		this.x = row;
-		this.y = col;
+	public Square(final int rank, final int file) {
+		this.x = rank;
+		this.y = file;
 		this.piece = null;
 		this.occupied = false;
 	}

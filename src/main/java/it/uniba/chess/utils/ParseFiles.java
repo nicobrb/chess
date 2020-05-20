@@ -10,9 +10,9 @@ public enum ParseFiles {
 	h, g, f, e, d, c, b, a;
 
 	//we will check that this method only receives in input chars defining a chess column;
-	public static int getFileIntFromChar(final char row) {
+	public static int getFileIntFromChar(final char file) {
 
-		switch (row) {
+		switch (file) {
 		case 'h':
 			return h.ordinal();
 		case 'g':

@@ -46,8 +46,8 @@ public final class InputValidator {
 				if (regExpMatcher.matches() && Game.getGameStatus() == GameStatus.ACTIVE) {
 					String pieceTypeString = regExpMatcher.group(FIRST_GROUP);
 					String startRankOrFileString = regExpMatcher.group(SECOND_GROUP);
-					String startRankString = getStartingRow(startRankOrFileString);
-					String startFileString = getStartingColumn(startRankOrFileString);
+					String startRankString = getStartingRank(startRankOrFileString);
+					String startFileString = getStartingFile(startRankOrFileString);
 					String isCaptureString = regExpMatcher.group(THIRD_GROUP);
 					String destString = regExpMatcher.group(FOURTH_GROUP);
 					String isEnpassantString = regExpMatcher.group(FIFTH_GROUP);
@@ -90,7 +90,7 @@ public final class InputValidator {
 							Game.addPrintableMove(lastmove);
 							break;
 						case "T":
-							//if we have an empty row string, we return -1 as control;
+							//if we have an empty rank string, we return -1 as control;
 							startSquare = plusMovement(destSquare, startRank,
 									startFile, Rook.class, Game.getTurn());
 							Move.pieceMoveOrCapture(Rook.class, startSquare,
@@ -156,8 +156,8 @@ public final class InputValidator {
 					Game.nextTurn();
 					return;
 				} else {
-					System.out.println("Comando non riconosciuto. "
-							+ "Scrivi help per la lista dei comandi.");
+					System.out.print("Comando non riconosciuto. "
+							+ "Scrivi help per la lista dei comandi.\n");
 				}
 			}
 			//end algebraic move default case;
@@ -180,7 +180,7 @@ public final class InputValidator {
 					throw new IllegalMoveException();
 				}
 			} else {
-				System.out.println("Gioco non ancora avviato.");
+				System.out.print("Gioco non ancora avviato.\n");
 			}
 			return true;
 		case "0-0-0":
@@ -193,14 +193,14 @@ public final class InputValidator {
 				throw new IllegalMoveException();
 				}
 			} else {
-				System.out.println("Gioco non ancora avviato.");
+				System.out.print("Gioco non ancora avviato.\n");
 			}
 			return true;
 		case "board":
 			if (Game.getGameStatus() == GameStatus.ACTIVE) {
 				Game.getBoard().print();
 			} else {
-				System.out.println("Gioco non ancora avviato.");
+				System.out.print("Gioco non ancora avviato.\n");
 			}
 			return true;
 
@@ -232,7 +232,7 @@ public final class InputValidator {
 			return Game.getBoard().getSquare(destSquareRank, destSquareFile);
 	}
 
-	/* We look for a plausible pawn to moved in the previous two rows and the same column;
+	/* We look for a plausible pawn to moved in the previous two ranks and the same file;
 	 * There can be:
 	 * 	A pawn just before the destination square: we move it;
 	 * 	A pawn with a white square before its destination:
@@ -343,16 +343,16 @@ public final class InputValidator {
 		}
 	}
 
-	private static String getStartingRow(final String startRowOrColumn) {
-		if (startRowOrColumn.matches("[1-8]")) {
-			return startRowOrColumn;
+	private static String getStartingRank(final String startRankOrFile) {
+		if (startRankOrFile.matches("[1-8]")) {
+			return startRankOrFile;
 		}
 		return "";
 	}
 
-	private static String getStartingColumn(final String startRowOrColumn) {
-		if (startRowOrColumn.matches("[a-h]")) {
-			return startRowOrColumn;
+	private static String getStartingFile(final String startRankOrFile) {
+		if (startRankOrFile.matches("[a-h]")) {
+			return startRankOrFile;
 		}
 		return "";
 	}
