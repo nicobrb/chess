@@ -19,7 +19,7 @@ public final class Game {
 
 	private static Board board;
 	private static ChessColor turn;
-	private static GameStatus status;
+	private static GameStatus status = GameStatus.INACTIVE;
 	private static final int MAX_CAPTURES = 32;
 	private static final int KING_SIZE = 2;
 	private static final int INITIAL_MOVE_SIZE = 30;

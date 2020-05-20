@@ -161,9 +161,7 @@ public final class Move {
 					if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
 						((Pawn) finalsquare.getPiece()).setHasMoved();
-						Game.getCapturesList().add(Game.getBoard()
-								.getSquare(initialsquare.getX(), finalsquare.getY())
-								.getPiece());
+						Game.getCapturesList().add(tmpPiece);
 						Game.addNewStartingSquare(initialsquare);
 						Game.addNewDestinationSquare(finalsquare);
 						return true;
