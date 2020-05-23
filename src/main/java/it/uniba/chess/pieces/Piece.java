@@ -85,8 +85,6 @@ public abstract class Piece {
         if (!(o instanceof Piece)) {
             return false;
         }
-
-        // typecast o to Complex so that we can compare data members
         Piece comparedPiece = (Piece) o;
 
         // Compare the data members and return accordingly
