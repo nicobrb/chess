@@ -136,3 +136,4 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 .idea/
+/build/

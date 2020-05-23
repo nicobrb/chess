@@ -6,29 +6,29 @@
  * 
  * &lt;&lt;No-ECB&gt;&gt;
  */
-<span class="nc" id="L9">public enum ParseFiles {</span>
-<span class="nc" id="L10">	h, g, f, e, d, c, b, a;</span>
+<span class="fc" id="L9">public enum ParseFiles {</span>
+<span class="fc" id="L10">	h, g, f, e, d, c, b, a;</span>
 
 	//we will check that this method only receives in input chars defining a chess column;
-	public static int getFileIntFromChar(final char row) {
+	public static int getFileIntFromChar(final char file) {
 
-<span class="nc bnc" id="L15" title="All 9 branches missed.">		switch (row) {</span>
+<span class="pc bpc" id="L15" title="1 of 9 branches missed.">		switch (file) {</span>
 		case 'h':
-<span class="nc" id="L17">			return h.ordinal();</span>
+<span class="fc" id="L17">			return h.ordinal();</span>
 		case 'g':
-<span class="nc" id="L19">			return g.ordinal();</span>
+<span class="fc" id="L19">			return g.ordinal();</span>
 		case 'f':
-<span class="nc" id="L21">			return f.ordinal();</span>
+<span class="fc" id="L21">			return f.ordinal();</span>
 		case 'e':
-<span class="nc" id="L23">			return e.ordinal();</span>
+<span class="fc" id="L23">			return e.ordinal();</span>
 		case 'd':
-<span class="nc" id="L25">			return d.ordinal();</span>
+<span class="fc" id="L25">			return d.ordinal();</span>
 		case 'c':
-<span class="nc" id="L27">			return c.ordinal();</span>
+<span class="fc" id="L27">			return c.ordinal();</span>
 		case 'b':
-<span class="nc" id="L29">			return b.ordinal();</span>
+<span class="fc" id="L29">			return b.ordinal();</span>
 		case 'a':
-<span class="nc" id="L31">			return a.ordinal();</span>
+<span class="fc" id="L31">			return a.ordinal();</span>
 		default:
 		}
 

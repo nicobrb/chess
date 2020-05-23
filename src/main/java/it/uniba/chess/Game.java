@@ -48,11 +48,16 @@ public final class Game {
 		moveStartingSquaresList.clear();
 		moveDestinationSquaresList.clear();
 		printableMovesList.clear();
+		kingSquares.clear();
 		kingSquares.add(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));
 		kingSquares.add(Game.getBoard().getSquare(CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));
 
 		status =  GameStatus.ACTIVE;
 		turn = ChessColor.WHITE;
+	}
+
+	private Game() {
+		//never called
 	}
 
 	public static void startGame() {
@@ -64,9 +69,9 @@ public final class Game {
 		moveStartingSquaresList.clear();
 		moveDestinationSquaresList.clear();
 		printableMovesList.clear();
+		kingSquares.clear();
 		kingSquares.add(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));
 		kingSquares.add(Game.getBoard().getSquare(CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));
-
 		status = GameStatus.ACTIVE;
 		turn = ChessColor.WHITE;
 	}
@@ -113,10 +118,6 @@ public final class Game {
 		System.out.print("quit: termina l'applicazione\n");
 		System.out.print("captures: mostra il materiale catturato da ogni colore\n");
 		System.out.print("moves: mostra la lista delle mosse giocate durante la partita\n");
-	}
-
-	public void printBoard() {
-		board.print();
 	}
 
 	public static GameStatus getGameStatus() {

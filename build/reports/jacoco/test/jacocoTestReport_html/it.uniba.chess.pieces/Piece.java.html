@@ -12,20 +12,20 @@ import it.uniba.chess.utils.ChessColor;
 public abstract class Piece {
 
 	private ChessColor colorPiece;
-	private char unicode; //unicode of the piece
+	private String unicode; //unicode of the piece
 	private boolean hasMoved;
 
-<span class="nc" id="L18">	public Piece() {</span>
-<span class="nc" id="L19">		this.colorPiece = null;</span>
-<span class="nc" id="L20">		this.hasMoved = false;</span>
-<span class="nc" id="L21">	}</span>
+<span class="fc" id="L18">	public Piece() {</span>
+<span class="fc" id="L19">		this.colorPiece = null;</span>
+<span class="fc" id="L20">		this.hasMoved = false;</span>
+<span class="fc" id="L21">	}</span>
 
 	/**
 	 * Restituisce il colore del pezzo
 	 * 
 	 */
 	public ChessColor getColor() {
-<span class="nc" id="L28">		return this.colorPiece;</span>
+<span class="fc" id="L28">		return this.colorPiece;</span>
 	}
 
 	/**
@@ -33,39 +33,39 @@ public abstract class Piece {
 	 * 
 	 */
 	public void setColor(final ChessColor newColorPiece) {
-<span class="nc" id="L36">		this.colorPiece = newColorPiece;</span>
-<span class="nc" id="L37">	}</span>
+<span class="fc" id="L36">		this.colorPiece = newColorPiece;</span>
+<span class="fc" id="L37">	}</span>
 
 	/**
 	 * Restituisce il carattere Unicode del pezzo
 	 * 
 	 */
-	public char getUnicode() {
-<span class="nc" id="L44">		return this.unicode;</span>
+	public String getUnicode() {
+<span class="fc" id="L44">		return this.unicode;</span>
 	}
 
 	/**
 	 * Imposta il carattere Unicode del pezzo
 	 * 
 	 */
-	public void setUnicode(final char newUnicode) {
-<span class="nc" id="L52">		this.unicode = newUnicode;</span>
-<span class="nc" id="L53">	}</span>
+	public void setUnicode(final String newUnicode) {
+<span class="fc" id="L52">		this.unicode = newUnicode;</span>
+<span class="fc" id="L53">	}</span>
 
 	/**
 	 * Imposta il valore del booleano hasMoved per il pezzo
 	 * 
 	 */
 	public void setHasMoved() {
-<span class="nc" id="L60">		this.hasMoved = true;</span>
-<span class="nc" id="L61">	}</span>
+<span class="fc" id="L60">		this.hasMoved = true;</span>
+<span class="fc" id="L61">	}</span>
 
 	/**
 	 * Restituisce il valore del booleano hasMoved per il pezzo
 	 * 
 	 */
 	public boolean getHasMoved() {
-<span class="nc" id="L68">		return hasMoved;</span>
+<span class="fc" id="L68">		return hasMoved;</span>
 	}
 
 	/**
@@ -76,26 +76,26 @@ public abstract class Piece {
     public boolean equals(final Object o) {
 
         // If the object is compared with itself then return true
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (o == this) {</span>
-<span class="nc" id="L80">            return true;</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (o == this) {</span>
+<span class="fc" id="L80">            return true;</span>
         }
 
         /* Check if o is an instance of Complex or not
           &quot;null instanceof [type]&quot; also returns false */
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (!(o instanceof Piece)) {</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if (!(o instanceof Piece)) {</span>
 <span class="nc" id="L86">            return false;</span>
         }
 
         // typecast o to Complex so that we can compare data members
-<span class="nc" id="L90">        Piece comparedPiece = (Piece) o;</span>
+<span class="fc" id="L90">        Piece comparedPiece = (Piece) o;</span>
 
         // Compare the data members and return accordingly
-<span class="nc bnc" id="L93" title="All 6 branches missed.">        if (this.unicode == comparedPiece.unicode</span>
+<span class="pc bpc" id="L93" title="2 of 6 branches missed.">        if (this.unicode.equals(comparedPiece.unicode)</span>
         &amp;&amp; this.colorPiece == comparedPiece.colorPiece
         &amp;&amp; this.hasMoved == comparedPiece.hasMoved) {
-<span class="nc" id="L96">        	return true;</span>
+<span class="fc" id="L96">        	return true;</span>
         }
-<span class="nc" id="L98">        return false;</span>
+<span class="fc" id="L98">        return false;</span>
     }
 
 	/**

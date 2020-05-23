@@ -14,345 +14,326 @@ import it.uniba.chess.utils.ParseFiles;
  *
  * &lt;&lt;Control&gt;&gt;
  */
-<span class="nc" id="L17">public class Move {</span>
-	
-	public static void pawnMove(Square initialsquare, Square finalsquare) throws IllegalMoveException {
-		
-<span class="nc bnc" id="L21" title="All 2 branches missed.">		if(finalsquare.isOccupied()) {</span>
-<span class="nc" id="L22">			throw new IllegalMoveException();</span>
+public final class Move {
+
+	private Move() { }
+	public static void pawnMove(final Square initialsquare, final Square finalsquare) throws IllegalMoveException {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">		if (finalsquare.isOccupied()) {</span>
+<span class="fc" id="L22">			throw new IllegalMoveException();</span>
 		}
-		
-<span class="nc bnc" id="L25" title="All 4 branches missed.">		if( ((Math.abs(finalsquare.getX() - initialsquare.getX()) == 2) &amp;&amp; !((Pawn) initialsquare.getPiece()).getHasMoved()) </span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">			|| ((Math.abs( finalsquare.getX() -  initialsquare.getX() ) == 1))){</span>
-			//explicitly cast to Pawn to check for moved
-<span class="nc" id="L28">				finalsquare.setOccupied(true);</span>
-<span class="nc" id="L29">				finalsquare.setPiece(initialsquare.getPiece());</span>
-<span class="nc" id="L30">				initialsquare.setOccupied(false);</span>
-				
-<span class="nc bnc" id="L32" title="All 2 branches missed.">				if(InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
-					
-<span class="nc" id="L34">					((Pawn) finalsquare.getPiece()).setHasMoved();</span>
-<span class="nc" id="L35">					Game.addNewStartingSquare(initialsquare);</span>
-<span class="nc" id="L36">					Game.addNewDestinationSquare(finalsquare);</span>
-<span class="nc" id="L37">					return;</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		if (((Math.abs(finalsquare.getX() - initialsquare.getX()) == 2)</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">				&amp;&amp; !((Pawn) initialsquare.getPiece()).getHasMoved())</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">				|| ((Math.abs(finalsquare.getX() -  initialsquare.getX()) == 1))) {</span>
+
+<span class="fc" id="L29">				finalsquare.setOccupied(true);</span>
+<span class="fc" id="L30">				finalsquare.setPiece(initialsquare.getPiece());</span>
+<span class="fc" id="L31">				initialsquare.setOccupied(false);</span>
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">				if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
+
+<span class="fc" id="L35">					((Pawn) finalsquare.getPiece()).setHasMoved();</span>
+<span class="fc" id="L36">					Game.addNewStartingSquare(initialsquare);</span>
+<span class="fc" id="L37">					Game.addNewDestinationSquare(finalsquare);</span>
+<span class="fc" id="L38">					return;</span>
 				} else {
-<span class="nc" id="L39">					initialsquare.setOccupied(true);</span>
-<span class="nc" id="L40">					initialsquare.setPiece(finalsquare.getPiece());</span>
-<span class="nc" id="L41">					finalsquare.setOccupied(false);</span>
-					
+<span class="fc" id="L40">					initialsquare.setOccupied(true);</span>
+<span class="fc" id="L41">					initialsquare.setPiece(finalsquare.getPiece());</span>
+<span class="fc" id="L42">					finalsquare.setOccupied(false);</span>
+
 					//pinned piece
-<span class="nc" id="L44">					throw new IllegalMoveException();</span>
-			}	
-		}	
+<span class="fc" id="L45">					throw new IllegalMoveException();</span>
+			}
+		}
 		//in any other case
-<span class="nc" id="L48">		throw new IllegalMoveException();	</span>
+<span class="fc" id="L49">		throw new IllegalMoveException();</span>
 
 	}
-	
-	public static void pawnCapture(Square initialsquare, Square finalsquare, boolean enPassantFlag) throws IllegalMoveException {
-<span class="nc bnc" id="L53" title="All 2 branches missed.">		if(initialsquare == null) </span>
-<span class="nc" id="L54">			throw new IllegalMoveException();</span>
-		
-		try{
+
+	public static void pawnCapture(final Square initialsquare, final Square finalsquare,
+			final boolean enPassantFlag) throws IllegalMoveException {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		if (initialsquare == null) {</span>
+<span class="fc" id="L56">			throw new IllegalMoveException();</span>
+		}
+
+		try {
 			//if we can capture en-passant we are done
-<span class="nc bnc" id="L58" title="All 2 branches missed.">			if(captureEnPassant(initialsquare, finalsquare)) {</span>
-<span class="nc" id="L59">				return;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">			if (captureEnPassant(initialsquare, finalsquare)) {</span>
+<span class="fc" id="L62">				return;</span>
 			} else {
-<span class="nc bnc" id="L61" title="All 2 branches missed.">				if(enPassantFlag) {</span>
-<span class="nc" id="L62">					throw new IllegalMoveException();</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">				if (enPassantFlag) {</span>
+<span class="fc" id="L65">					throw new IllegalMoveException();</span>
 				}
 			}
-<span class="nc" id="L65">		} catch (IllegalMoveException ex) {</span>
-<span class="nc" id="L66">			throw ex;</span>
-<span class="nc" id="L67">		}</span>
+<span class="fc" id="L68">		} catch (IllegalMoveException ex) {</span>
+<span class="fc" id="L69">			throw ex;</span>
+<span class="fc" id="L70">		}</span>
 
-		//otherwise we check for a normal capture
-<span class="nc bnc" id="L70" title="All 2 branches missed.">		if(initialsquare.getPiece().getClass() == Pawn.class) {</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">			if(Math.abs(finalsquare.getY()-initialsquare.getY()) == 1) { </span>
-<span class="nc bnc" id="L72" title="All 4 branches missed.">				if(finalsquare.getX() &gt; initialsquare.getX() &amp;&amp; initialsquare.getPiece().getColor() == ChessColor.WHITE) {	</span>
-<span class="nc bnc" id="L73" title="All 4 branches missed.">					if(finalsquare.getPiece() != null &amp;&amp; finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor())</span>
-					{
-<span class="nc" id="L75">						finalsquare.setOccupied(true);</span>
-						
-						//captured piece
-<span class="nc" id="L78">						Piece tmp_piece = finalsquare.getPiece();</span>
-						
-<span class="nc" id="L80">						finalsquare.setPiece(initialsquare.getPiece());</span>
-<span class="nc" id="L81">						initialsquare.setOccupied(false);</span>
-						
-<span class="nc bnc" id="L83" title="All 2 branches missed.">						if(InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
-							
-<span class="nc" id="L85">							Game.getCapturesList().add(tmp_piece);</span>
-<span class="nc" id="L86">							Game.addNewStartingSquare(initialsquare);</span>
-<span class="nc" id="L87">							Game.addNewDestinationSquare(finalsquare);</span>
-<span class="nc" id="L88">							return;</span>
-						} else {
-<span class="nc" id="L90">							initialsquare.setOccupied(true);</span>
-<span class="nc" id="L91">							initialsquare.setPiece(finalsquare.getPiece());</span>
-<span class="nc" id="L92">							finalsquare.setOccupied(true);</span>
-<span class="nc" id="L93">							finalsquare.setPiece(tmp_piece);</span>
-<span class="nc" id="L94">							throw new IllegalMoveException();</span>
-						}
-					}
-<span class="nc bnc" id="L97" title="All 4 branches missed.">				}else if (finalsquare.getX() &lt; initialsquare.getX() &amp;&amp; initialsquare.getPiece().getColor() == ChessColor.BLACK) {</span>
-<span class="nc bnc" id="L98" title="All 4 branches missed.">					if(finalsquare.getPiece() != null &amp;&amp; finalsquare.getPiece().getColor() != initialsquare.getPiece().getColor()) {		</span>
-						
-						
-<span class="nc" id="L101">						finalsquare.setOccupied(true);</span>
-						
-						//captured piece
-<span class="nc" id="L104">						Piece tmp_piece = finalsquare.getPiece();</span>
-						
-<span class="nc" id="L106">						finalsquare.setPiece(initialsquare.getPiece());</span>
-<span class="nc" id="L107">						initialsquare.setOccupied(false);</span>
-						
-<span class="nc bnc" id="L109" title="All 2 branches missed.">						if(InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
-							
-<span class="nc" id="L111">							Game.getCapturesList().add(tmp_piece);</span>
-<span class="nc" id="L112">							Game.addNewStartingSquare(initialsquare);</span>
-<span class="nc" id="L113">							Game.addNewDestinationSquare(finalsquare);</span>
-<span class="nc" id="L114">							return;</span>
-						} else {
-<span class="nc" id="L116">							initialsquare.setOccupied(true);</span>
-<span class="nc" id="L117">							initialsquare.setPiece(finalsquare.getPiece());</span>
-<span class="nc" id="L118">							finalsquare.setOccupied(true);</span>
-<span class="nc" id="L119">							finalsquare.setPiece(tmp_piece);</span>
-<span class="nc" id="L120">							throw new IllegalMoveException();</span>
-						}
-					}//there is no piece inside the final square or there is but is not capturable due to a pin or due to being the same color as the pawn in initial square
-				} //there is a discrepancy between initial-final square and actual pawn movement
-			} //exit the function with break because there is no pawn inside the initial square, thus the capture can't fisically happen
-		}
-<span class="nc" id="L126">		throw new IllegalMoveException();</span>
-	}
-	
-	private static boolean captureEnPassant(Square initialsquare, Square finalsquare) throws IllegalMoveException{
-<span class="nc bnc" id="L130" title="All 2 branches missed.">		if( (initialsquare.getPiece().getClass() == Pawn.class)) {</span>
-<span class="nc bnc" id="L131" title="All 2 branches missed.">			if(Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).isOccupied()) {</span>
-<span class="nc bnc" id="L132" title="All 4 branches missed.">				if(Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).getPiece().getClass() == Pawn.class &amp;&amp; Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).getPiece().getColor() != initialsquare.getPiece().getColor()</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">					&amp;&amp; isCapturableEnPassant(initialsquare, finalsquare))</span>
-				{
-					
-<span class="nc" id="L136">					finalsquare.setOccupied(true);</span>
-<span class="nc" id="L137">					finalsquare.setPiece(initialsquare.getPiece());</span>
-					
-<span class="nc" id="L139">					Piece tmp_piece = Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).getPiece();</span>
-<span class="nc" id="L140">					Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).setOccupied(false);</span>
-					
-<span class="nc" id="L142">					initialsquare.setOccupied(false);</span>
-					
-<span class="nc bnc" id="L144" title="All 2 branches missed.">					if(InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
-						
-<span class="nc" id="L146">						((Pawn) finalsquare.getPiece()).setHasMoved();</span>
-<span class="nc" id="L147">						Game.getCapturesList().add(Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).getPiece());</span>
-<span class="nc" id="L148">						Game.addNewStartingSquare(initialsquare);</span>
-<span class="nc" id="L149">						Game.addNewDestinationSquare(finalsquare);</span>
-<span class="nc" id="L150">						return true;</span>
+<span class="fc" id="L72">		pieceMoveOrCapture(Pawn.class, initialsquare, finalsquare, true);</span>
+<span class="fc" id="L73">	}</span>
+
+	private static boolean captureEnPassant(final Square initialsquare, final Square finalsquare)
+			throws IllegalMoveException {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">			if (Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).isOccupied()) {</span>
+<span class="fc" id="L78">				if (Game.getBoard().getSquare(initialsquare.getX(),</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">						finalsquare.getY()).getPiece().getClass()</span>
+						== Pawn.class
+<span class="fc" id="L81">						&amp;&amp; Game.getBoard().getSquare(initialsquare.getX(),</span>
+<span class="fc" id="L82">								finalsquare.getY()).getPiece().getColor()</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">						!= initialsquare.getPiece().getColor()</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">						&amp;&amp; isCapturableEnPassant(initialsquare, finalsquare)) {</span>
+
+<span class="fc" id="L86">					finalsquare.setOccupied(true);</span>
+<span class="fc" id="L87">					finalsquare.setPiece(initialsquare.getPiece());</span>
+
+<span class="fc" id="L89">					Piece tmpPiece = Game.getBoard()</span>
+<span class="fc" id="L90">							.getSquare(initialsquare.getX(), finalsquare.getY()).getPiece();</span>
+<span class="fc" id="L91">					Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY())</span>
+<span class="fc" id="L92">					.setOccupied(false);</span>
+
+<span class="fc" id="L94">					initialsquare.setOccupied(false);</span>
+
+<span class="fc bfc" id="L96" title="All 2 branches covered.">					if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
+
+<span class="fc" id="L98">						finalsquare.getPiece().setHasMoved();</span>
+<span class="fc" id="L99">						Game.getCapturesList().add(tmpPiece);</span>
+<span class="fc" id="L100">						Game.addNewStartingSquare(initialsquare);</span>
+<span class="fc" id="L101">						Game.addNewDestinationSquare(finalsquare);</span>
+<span class="fc" id="L102">						return true;</span>
 					} else {
-<span class="nc" id="L152">						initialsquare.setOccupied(true);</span>
-<span class="nc" id="L153">						initialsquare.setPiece(finalsquare.getPiece());</span>
-<span class="nc" id="L154">						finalsquare.setOccupied(false);</span>
-<span class="nc" id="L155">						Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).setOccupied(true);</span>
-<span class="nc" id="L156">						Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).setPiece(tmp_piece);</span>
-						
+<span class="fc" id="L104">						initialsquare.setOccupied(true);</span>
+<span class="fc" id="L105">						initialsquare.setPiece(finalsquare.getPiece());</span>
+<span class="fc" id="L106">						finalsquare.setOccupied(false);</span>
+<span class="fc" id="L107">						Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY())</span>
+<span class="fc" id="L108">						.setOccupied(true);</span>
+<span class="fc" id="L109">						Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY())</span>
+<span class="fc" id="L110">						.setPiece(tmpPiece);</span>
+
 						//pinned piece
-<span class="nc" id="L159">						throw new IllegalMoveException();</span>
+<span class="fc" id="L113">						throw new IllegalMoveException();</span>
 					}
 				}
 			}
-		}
-<span class="nc" id="L164">		return false;</span>
+<span class="fc" id="L117">		return false;</span>
 	}
-	
-	private static boolean isCapturableEnPassant(Square initialsquare, Square finalsquare) {
+
+	private static boolean isCapturableEnPassant(final Square initialsquare, final Square finalsquare) {
 		//if last move was a pawn push
-<span class="nc bnc" id="L169" title="All 2 branches missed.">		if(Game.getLatestDestinationSquare().getPiece().getClass() == Pawn.class ) {</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		if (Game.getLatestDestinationSquare().getPiece().getClass() == Pawn.class) {</span>
 			//if the push was exactly a 2-push
-<span class="nc" id="L171">			int previous_move_initial_x = Game.getLatestStartingSquare().getX();</span>
-<span class="nc" id="L172">			int previous_move_final_x = Game.getLatestDestinationSquare().getX();</span>
-			
-<span class="nc bnc" id="L174" title="All 2 branches missed.">			if(Math.abs( previous_move_initial_x - previous_move_final_x ) == 2) {</span>
+<span class="fc" id="L124">			int previousMoveInitialX = Game.getLatestStartingSquare().getX();</span>
+<span class="fc" id="L125">			int previousMoveFinalX = Game.getLatestDestinationSquare().getX();</span>
+
+<span class="fc bfc" id="L127" title="All 2 branches covered.">			if (Math.abs(previousMoveInitialX - previousMoveFinalX) == 2) {</span>
 				//if the capture happens exactly on the pawn that moved during the last turn
 
-<span class="nc bnc" id="L177" title="All 2 branches missed.">				return (Game.getLatestDestinationSquare().getY() == finalsquare.getY()</span>
-<span class="nc bnc" id="L178" title="All 2 branches missed.">				&amp;&amp; Game.getLatestDestinationSquare().getX() == initialsquare.getX());</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">				return (Game.getLatestDestinationSquare().getY() == finalsquare.getY()</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">				&amp;&amp; Game.getLatestDestinationSquare().getX() == initialsquare.getX());</span>
 			}
 		}
-		
-<span class="nc" id="L182">		return false;</span>
+
+<span class="fc" id="L135">		return false;</span>
 	}
-	
-	public static void pieceMoveOrCapture(Class&lt;? extends Piece&gt; piecetype, Square startingsquare, Square finalsquare, boolean isCapture) throws IllegalMoveException{
-<span class="nc bnc" id="L186" title="All 2 branches missed.">		if(startingsquare == null) </span>
-<span class="nc" id="L187">			throw new IllegalMoveException();</span>
-		
-<span class="nc bnc" id="L189" title="All 2 branches missed.">		if(finalsquare.isOccupied()) {</span>
-<span class="nc bnc" id="L190" title="All 4 branches missed.">			if(finalsquare.getPiece().getColor() != Game.getTurn() &amp;&amp; isCapture) {</span>
-<span class="nc" id="L191">				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);</span>
-<span class="nc" id="L192">				return;</span>
+
+	public static void pieceMoveOrCapture(final Class&lt;? extends Piece&gt; piecetype,
+			final Square startingsquare, final Square finalsquare, final boolean isCapture)
+					throws IllegalMoveException {
+
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">		if (startingsquare == null) {</span>
+<span class="nc" id="L143">			throw new IllegalMoveException();</span>
+		}
+
+<span class="fc bfc" id="L146" title="All 2 branches covered.">		if (finalsquare.isOccupied()) {</span>
+<span class="pc bpc" id="L147" title="2 of 4 branches missed.">			if (finalsquare.getPiece().getColor() != Game.getTurn() &amp;&amp; isCapture) {</span>
+<span class="fc" id="L148">				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);</span>
+<span class="fc" id="L149">				return;</span>
 			}
 		} else {
-<span class="nc bnc" id="L195" title="All 2 branches missed.">			if(!isCapture) {</span>
-<span class="nc" id="L196">				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);</span>
-<span class="nc" id="L197">				return;</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">			if (!isCapture) {</span>
+<span class="fc" id="L153">				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);</span>
+<span class="fc" id="L154">				return;</span>
 			}
 		}
-<span class="nc" id="L200">		throw new IllegalMoveException();</span>
-		
+<span class="fc" id="L157">		throw new IllegalMoveException();</span>
 	}
-	
-	private static void swapIfNotInCheck(Class&lt;? extends Piece&gt; piecetype, Square startingsquare, Square finalsquare, boolean isCapture) throws IllegalMoveException{
-		
-<span class="nc" id="L206">		Piece tmp_piece = null;</span>
-		
-<span class="nc" id="L208">		finalsquare.setOccupied(true);</span>
-		
-<span class="nc bnc" id="L210" title="All 2 branches missed.">		if(isCapture) {</span>
-<span class="nc" id="L211">			tmp_piece = finalsquare.getPiece();</span>
-		}	
-		
-<span class="nc" id="L214">		finalsquare.setPiece(startingsquare.getPiece());</span>
-<span class="nc" id="L215">		startingsquare.setOccupied(false);</span>
-		
-<span class="nc bnc" id="L217" title="All 2 branches missed.">		if(InputValidator.isTurnKingInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
-			
-<span class="nc bnc" id="L219" title="All 2 branches missed.">			if(isCapture) {</span>
-<span class="nc" id="L220">				Game.getCapturesList().add(tmp_piece);	</span>
+
+	private static void swapIfNotInCheck(final Class&lt;? extends Piece&gt; piecetype, final Square startingsquare,
+	final Square finalsquare, final boolean isCapture)
+	throws IllegalMoveException {
+<span class="fc" id="L163">		Piece tmpPiece = null;</span>
+
+<span class="fc" id="L165">		finalsquare.setOccupied(true);</span>
+
+<span class="fc bfc" id="L167" title="All 2 branches covered.">		if (isCapture) {</span>
+<span class="fc" id="L168">			tmpPiece = finalsquare.getPiece();</span>
+		}
+
+<span class="fc" id="L171">		finalsquare.setPiece(startingsquare.getPiece());</span>
+<span class="fc" id="L172">		startingsquare.setOccupied(false);</span>
+
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">		if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
+
+<span class="fc bfc" id="L176" title="All 2 branches covered.">			if (isCapture) {</span>
+<span class="fc" id="L177">				Game.getCapturesList().add(tmpPiece);</span>
 			}
-			
-<span class="nc" id="L223">			Game.addNewStartingSquare(startingsquare);</span>
-<span class="nc" id="L224">			Game.addNewDestinationSquare(finalsquare);</span>
-			
-<span class="nc" id="L226">			finalsquare.getPiece().setHasMoved();</span>
-				
-<span class="nc bnc" id="L228" title="All 2 branches missed.">			if (piecetype == King.class ) {</span>
-<span class="nc" id="L229">				Game.setKingPosition(Game.getTurn(), finalsquare);	</span>
+
+<span class="fc" id="L180">			Game.addNewStartingSquare(startingsquare);</span>
+<span class="fc" id="L181">			Game.addNewDestinationSquare(finalsquare);</span>
+
+<span class="fc" id="L183">			finalsquare.getPiece().setHasMoved();</span>
+
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">			if (piecetype == King.class) {</span>
+<span class="nc" id="L186">				Game.setKingPosition(Game.getTurn(), finalsquare);</span>
 			}
-			
-<span class="nc" id="L232">			return;</span>
+
+<span class="fc" id="L189">			return;</span>
 		} else {
-			
+
 			//we reset the board status to the previous move
-			
-<span class="nc" id="L237">			startingsquare.setOccupied(true);</span>
-<span class="nc" id="L238">			startingsquare.setPiece(finalsquare.getPiece());</span>
-			
-<span class="nc bnc" id="L240" title="All 2 branches missed.">			if(isCapture) {</span>
-<span class="nc" id="L241">				finalsquare.setOccupied(true);</span>
-<span class="nc" id="L242">				finalsquare.setPiece(tmp_piece);</span>
+
+<span class="nc" id="L194">			startingsquare.setOccupied(true);</span>
+<span class="nc" id="L195">			startingsquare.setPiece(finalsquare.getPiece());</span>
+
+<span class="nc bnc" id="L197" title="All 2 branches missed.">			if (isCapture) {</span>
+<span class="nc" id="L198">				finalsquare.setOccupied(true);</span>
+<span class="nc" id="L199">				finalsquare.setPiece(tmpPiece);</span>
 			} else {
-<span class="nc" id="L244">				finalsquare.setOccupied(false);</span>
+<span class="nc" id="L201">				finalsquare.setOccupied(false);</span>
 			}
-			
+
 			//it's a pinned piece
-<span class="nc" id="L248">			throw new IllegalMoveException();</span>
+<span class="nc" id="L205">			throw new IllegalMoveException();</span>
 		}
 	}
+	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
+<span class="pc bpc" id="L209" title="1 of 2 branches missed.">		if (wantedColor == ChessColor.WHITE) {</span>
+<span class="fc" id="L210">			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));</span>
 
-
-
-
-	public static boolean shortCastle(ChessColor wantedColor) throws IllegalMoveException {
-<span class="nc bnc" id="L256" title="All 2 branches missed.">		if(wantedColor == ChessColor.WHITE) {</span>
-<span class="nc" id="L257">			Square king_initial_square = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));</span>
-			
-<span class="nc bnc" id="L259" title="All 6 branches missed.">			if(king_initial_square.isOccupied() &amp;&amp; king_initial_square.getPiece().getClass() == King.class &amp;&amp; king_initial_square.getPiece().getColor() == wantedColor) {</span>
-<span class="nc bnc" id="L260" title="All 2 branches missed.">				if( ! ((King) king_initial_square.getPiece()).getHasMoved()) {</span>
-				//make the king disappear	
-				
-<span class="nc" id="L263">				king_initial_square.setOccupied(false);</span>
-				
-<span class="nc bnc" id="L265" title="All 2 branches missed.">				if(InputValidator.isTurnKingInCheck(king_initial_square)) {</span>
-				//there is an unmoved white king and it's not under check
-<span class="nc" id="L267">			 		king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L268">			 		king_initial_square.setPiece(new King(wantedColor));</span>
-			 		
-<span class="nc" id="L270">			 		Square rook_initial_square = Game.getBoard().getSquare(0, 0);</span>
-			 		
-<span class="nc bnc" id="L272" title="All 4 branches missed.">					if(rook_initial_square.isOccupied() &amp;&amp; rook_initial_square.getPiece().getClass() == Rook.class </span>
-<span class="nc bnc" id="L273" title="All 2 branches missed.">						&amp;&amp; rook_initial_square.getPiece().getColor() == wantedColor) {</span>
-						
-<span class="nc bnc" id="L275" title="All 2 branches missed.">						if( ! ((Rook) rook_initial_square.getPiece()).getHasMoved()) {</span>
-						//there is an unmoved white rook		
-							
-							
-<span class="nc bnc" id="L279" title="All 4 branches missed.">							if(!Game.getBoard().getSquare(0, 2).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(0, 2))) {</span>
-<span class="nc bnc" id="L280" title="All 4 branches missed.">								if(!Game.getBoard().getSquare(0, 1).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(0, 1))){</span>
-									
-<span class="nc" id="L282">									( (King) king_initial_square.getPiece()).setHasMoved();</span>
-<span class="nc" id="L283">									( (Rook) rook_initial_square.getPiece()).setHasMoved();</span>
-									
-<span class="nc" id="L285">									Game.getBoard().getSquare(0, 2).setOccupied(true);</span>
-<span class="nc" id="L286">									Game.getBoard().getSquare(0, 2).setPiece(Game.getBoard().getSquare(0, 0).getPiece());</span>
-<span class="nc" id="L287">									Game.getBoard().getSquare(0, 0).setOccupied(false);</span>
-									
-									//startingsquare.setPiece(NULL);
-									
-<span class="nc" id="L291">									Game.getBoard().getSquare(0, 1).setOccupied(true);</span>
-<span class="nc" id="L292">									Game.getBoard().getSquare(0, 1).setPiece(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')).getPiece());</span>
-<span class="nc" id="L293">									Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')).setOccupied(false);</span>
-									//startingsquare.setPiece(NULL);
-									
-<span class="nc" id="L296">									Game.setKingPosition(Game.getTurn(), Game.getBoard().getSquare(0, 1));</span>
-<span class="nc" id="L297">									Game.addNewStartingSquare(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));</span>
-<span class="nc" id="L298">									Game.addNewDestinationSquare(Game.getBoard().getSquare(0, 2));</span>
-									
-<span class="nc" id="L300">									Game.nextTurn();</span>
-<span class="nc" id="L301">									return true;</span>
+<span class="pc bpc" id="L212" title="2 of 4 branches missed.">			if (kingStSquare.isOccupied() &amp;&amp; kingStSquare.getPiece().getClass() == King.class</span>
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">			&amp;&amp; kingStSquare.getPiece().getColor() == wantedColor) {</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">				if (!((King) kingStSquare.getPiece()).getHasMoved()) {</span>
+<span class="fc" id="L215">				kingStSquare.setOccupied(false);</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {</span>
+<span class="fc" id="L217">			 		kingStSquare.setOccupied(true);</span>
+<span class="fc" id="L218">			 		kingStSquare.setPiece(new King(wantedColor));</span>
+<span class="fc" id="L219">			 		Square rookInitialSquare = Game.getBoard().getSquare(0, 0);</span>
+<span class="pc bpc" id="L220" title="1 of 2 branches missed.">					if (rookInitialSquare.isOccupied()</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">					&amp;&amp; rookInitialSquare.getPiece().getClass() == Rook.class</span>
+<span class="pc bpc" id="L222" title="1 of 2 branches missed.">					&amp;&amp; rookInitialSquare.getPiece().getColor() == wantedColor) {</span>
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {</span>
+<span class="pc bpc" id="L224" title="1 of 2 branches missed.">							if (!Game.getBoard().getSquare(0, 2).isOccupied()</span>
+							&amp;&amp; InputValidator.
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">							isTurnKingNotInCheck(Game.getBoard().getSquare(0, 2))) {</span>
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">								if (!Game.getBoard().getSquare(0, 1).isOccupied()</span>
+								&amp;&amp; InputValidator.
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">								isTurnKingNotInCheck(Game.getBoard().getSquare(0, 1))) {</span>
+<span class="fc" id="L230">									((King) kingStSquare.getPiece()).setHasMoved();</span>
+<span class="fc" id="L231">									((Rook) rookInitialSquare</span>
+<span class="fc" id="L232">									.getPiece()).setHasMoved();</span>
+<span class="fc" id="L233">									Game.getBoard().getSquare(0, 2)</span>
+<span class="fc" id="L234">									.setOccupied(true);</span>
+<span class="fc" id="L235">									Game.getBoard().getSquare(0, 2)</span>
+<span class="fc" id="L236">									.setPiece(Game.getBoard().getSquare(0, 0)</span>
+<span class="fc" id="L237">									.getPiece());</span>
+<span class="fc" id="L238">									Game.getBoard()</span>
+<span class="fc" id="L239">									.getSquare(0, 0).setOccupied(false);</span>
+<span class="fc" id="L240">									Game.getBoard()</span>
+<span class="fc" id="L241">									.getSquare(0, 1).setOccupied(true);</span>
+<span class="fc" id="L242">									Game.getBoard()</span>
+<span class="fc" id="L243">									.getSquare(0, 1)</span>
+<span class="fc" id="L244">									.setPiece(kingStSquare.getPiece());</span>
+<span class="fc" id="L245">									kingStSquare.setOccupied(false);</span>
+<span class="fc" id="L246">									Game.setKingPosition(Game.getTurn(), Game</span>
+<span class="fc" id="L247">									.getBoard().getSquare(0, 1));</span>
+<span class="fc" id="L248">									Game.addNewStartingSquare(kingStSquare);</span>
+<span class="fc" id="L249">									Game.addNewDestinationSquare(Game.getBoard()</span>
+<span class="fc" id="L250">									.getSquare(0, 2));</span>
+<span class="fc" id="L251">									Game.nextTurn();</span>
+<span class="fc" id="L252">									return true;</span>
 								}
 							}
-						}		
-					}	
-<span class="nc" id="L306">				 	} else {</span>
-				 		//make the piece appear again if we can't castle
-<span class="nc" id="L308">				 		king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L309">				 		king_initial_square.setPiece(new King(wantedColor));</span>
+						}
+					}
+<span class="nc" id="L257">				 	} else {</span>
+<span class="nc" id="L258">				 		kingStSquare.setOccupied(true);</span>
+<span class="nc" id="L259">				 		kingStSquare.setPiece(new King(wantedColor));</span>
 				 	}
 				}
 			}
-<span class="nc" id="L313">		} else {</span>
-<span class="nc" id="L314">			Square king_initial_square = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e'));</span>
-			
-<span class="nc bnc" id="L316" title="All 6 branches missed.">			if(king_initial_square.isOccupied() &amp;&amp; king_initial_square.getPiece().getClass() == King.class &amp;&amp; king_initial_square.getPiece().getColor() == wantedColor) {</span>
-<span class="nc bnc" id="L317" title="All 2 branches missed.">				if( ! ((King) king_initial_square.getPiece()).getHasMoved()) {</span>
-				//make the king disappear	
-				
-<span class="nc" id="L320">					king_initial_square.setOccupied(false);</span>
-				
-<span class="nc bnc" id="L322" title="All 2 branches missed.">				if(InputValidator.isTurnKingInCheck(king_initial_square)) {</span>
+<span class="nc" id="L263">		} else {</span>
+<span class="nc" id="L264">			Square kingStSquare = Game.getBoard()</span>
+<span class="nc" id="L265">			.getSquare(Board.CB_EDGE, ParseFiles.getFileIntFromChar('e'));</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">			if (kingStSquare.isOccupied()</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">					&amp;&amp; kingStSquare.getPiece().getClass() == King.class</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">					&amp;&amp; kingStSquare.getPiece().getColor() == wantedColor) {</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">				if (!((King) kingStSquare.getPiece()).getHasMoved()) {</span>
+				//make the king disappear
+
+<span class="nc" id="L272">					kingStSquare.setOccupied(false);</span>
+
+<span class="nc bnc" id="L274" title="All 2 branches missed.">				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {</span>
 				//there is an unmoved white king and it's not under check
-<span class="nc" id="L324">					king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L325">					king_initial_square.setPiece(new King(wantedColor));</span>
-			 		
-<span class="nc" id="L327">			 		Square rook_initial_square = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 0);</span>
-			 		
-<span class="nc bnc" id="L329" title="All 4 branches missed.">					if(rook_initial_square.isOccupied() &amp;&amp; rook_initial_square.getPiece().getClass() == Rook.class </span>
-<span class="nc bnc" id="L330" title="All 2 branches missed.">						&amp;&amp; rook_initial_square.getPiece().getColor() == wantedColor) {</span>
-						
-<span class="nc bnc" id="L332" title="All 2 branches missed.">						if( ! ((Rook) rook_initial_square.getPiece()).getHasMoved()) {</span>
-						//there is an unmoved white rook		
-							
-							
-<span class="nc bnc" id="L336" title="All 4 branches missed.">							if(!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 2).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 2))) {</span>
-<span class="nc bnc" id="L337" title="All 4 branches missed.">								if(!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 1).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 1))){</span>
-									
-<span class="nc" id="L339">									( (King) king_initial_square.getPiece()).setHasMoved();</span>
-<span class="nc" id="L340">									( (Rook) rook_initial_square.getPiece()).setHasMoved();</span>
-									
-<span class="nc" id="L342">									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 2).setOccupied(true);</span>
-<span class="nc" id="L343">									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 2).setPiece(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 0).getPiece());</span>
-<span class="nc" id="L344">									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 0).setOccupied(false);</span>
-									
-<span class="nc" id="L346">									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 1).setOccupied(true);</span>
-<span class="nc" id="L347">									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 1).setPiece(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')).getPiece());</span>
-<span class="nc" id="L348">									Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')).setOccupied(false);</span>
-									
-<span class="nc" id="L350">									Game.setKingPosition(Game.getTurn(), Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 1));</span>
-<span class="nc" id="L351">									Game.addNewStartingSquare(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));</span>
-<span class="nc" id="L352">									Game.addNewDestinationSquare(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, 2));</span>
-									
-<span class="nc" id="L354">									Game.nextTurn();</span>
-<span class="nc" id="L355">									return true;</span>
+<span class="nc" id="L276">					kingStSquare.setOccupied(true);</span>
+<span class="nc" id="L277">					kingStSquare.setPiece(new King(wantedColor));</span>
+
+<span class="nc" id="L279">			 		Square rookInitialSquare = Game.getBoard().getSquare(Board.CB_EDGE, 0);</span>
+
+<span class="nc bnc" id="L281" title="All 2 branches missed.">					if (rookInitialSquare.isOccupied()</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">							&amp;&amp; rookInitialSquare.getPiece().getClass() == Rook.class</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">							&amp;&amp; rookInitialSquare.getPiece().getColor() == wantedColor) {</span>
+
+<span class="nc bnc" id="L285" title="All 2 branches missed.">						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {</span>
+						//there is an unmoved white rook
+
+<span class="nc" id="L288">							if (!Game.getBoard().getSquare(Board.CB_EDGE, 2)</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">									.isOccupied()</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">									&amp;&amp; InputValidator.isTurnKingNotInCheck(</span>
+<span class="nc" id="L291">											Game.getBoard()</span>
+<span class="nc" id="L292">											.getSquare(Board</span>
+											.CB_EDGE, 2))) {
+<span class="nc" id="L294">								if (!Game.getBoard().getSquare(Board.CB_EDGE, 1)</span>
+<span class="nc bnc" id="L295" title="All 2 branches missed.">										.isOccupied()</span>
+										&amp;&amp; InputValidator
+<span class="nc bnc" id="L297" title="All 2 branches missed.">										.isTurnKingNotInCheck(Game.getBoard()</span>
+<span class="nc" id="L298">										.getSquare(Board.CB_EDGE, 1))) {</span>
+
+<span class="nc" id="L300">									((King) kingStSquare.getPiece())</span>
+<span class="nc" id="L301">									.setHasMoved();</span>
+<span class="nc" id="L302">									((Rook) rookInitialSquare.getPiece())</span>
+<span class="nc" id="L303">									.setHasMoved();</span>
+
+<span class="nc" id="L305">									Game.getBoard().getSquare(Board</span>
+<span class="nc" id="L306">										.CB_EDGE, 2).setOccupied(true);</span>
+<span class="nc" id="L307">									Game.getBoard().getSquare(Board</span>
+<span class="nc" id="L308">										.CB_EDGE, 2).setPiece(</span>
+<span class="nc" id="L309">										Game.getBoard().getSquare(Board</span>
+<span class="nc" id="L310">										.CB_EDGE, 0).getPiece());</span>
+<span class="nc" id="L311">									Game.getBoard().getSquare(Board</span>
+											.CB_EDGE, 0)
+<span class="nc" id="L313">									.setOccupied(false);</span>
+
+<span class="nc" id="L315">									Game.getBoard().getSquare(Board</span>
+<span class="nc" id="L316">										.CB_EDGE, 1).setOccupied(true);</span>
+<span class="nc" id="L317">									Game.getBoard().getSquare(Board</span>
+<span class="nc" id="L318">										.CB_EDGE, 1).setPiece(Game</span>
+<span class="nc" id="L319">										.getBoard().getSquare(Board</span>
+										.CB_EDGE, ParseFiles
+<span class="nc" id="L321">										.getFileIntFromChar('e')).getPiece());</span>
+<span class="nc" id="L322">									Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L323">										ParseFiles.getFileIntFromChar('e'))</span>
+<span class="nc" id="L324">										.setOccupied(false);</span>
+
+<span class="nc" id="L326">									Game.setKingPosition(Game.getTurn(), Game</span>
+<span class="nc" id="L327">										.getBoard().getSquare(Board</span>
+										.CB_EDGE, 1));
+<span class="nc" id="L329">									Game.addNewStartingSquare(Game.getBoard()</span>
+<span class="nc" id="L330">										.getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L331">										ParseFiles.getFileIntFromChar('e')));</span>
+<span class="nc" id="L332">									Game.addNewDestinationSquare(Game.getBoard()</span>
+<span class="nc" id="L333">										.getSquare(Board.CB_EDGE, 2));</span>
+
+<span class="nc" id="L335">									Game.nextTurn();</span>
+<span class="nc" id="L336">									return true;</span>
 								}
 							}
 						}
@@ -360,128 +341,160 @@ import it.uniba.chess.utils.ParseFiles;
 				}
 			}
 		}
-	}	
-	 //can't castle
-<span class="nc" id="L365">	return false;</span>
 	}
-	
-	public static boolean longCastle(ChessColor wantedColor) throws IllegalMoveException {
-<span class="nc bnc" id="L369" title="All 2 branches missed.">		if(wantedColor == ChessColor.WHITE) {</span>
-<span class="nc" id="L370">			Square king_initial_square = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));</span>
-			
-<span class="nc bnc" id="L372" title="All 6 branches missed.">			if(king_initial_square.isOccupied() &amp;&amp; king_initial_square.getPiece().getClass() == King.class &amp;&amp; king_initial_square.getPiece().getColor() == wantedColor) {</span>
-<span class="nc bnc" id="L373" title="All 2 branches missed.">				if( ! ((King) king_initial_square.getPiece()).getHasMoved()) {</span>
-				//make the king disappear	
-				
-<span class="nc" id="L376">				king_initial_square.setOccupied(false);</span>
-				
-<span class="nc bnc" id="L378" title="All 2 branches missed.">				if(InputValidator.isTurnKingInCheck(king_initial_square)) {</span>
+	 //can't castle
+<span class="nc" id="L346">	return false;</span>
+	}
+
+	public static boolean longCastle(final ChessColor wantedColor) throws IllegalMoveException {
+<span class="nc bnc" id="L350" title="All 2 branches missed.">		if (wantedColor == ChessColor.WHITE) {</span>
+<span class="nc" id="L351">			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));</span>
+
+<span class="nc bnc" id="L353" title="All 2 branches missed.">			if (kingStSquare.isOccupied()</span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">					&amp;&amp; kingStSquare.getPiece().getClass() == King.class</span>
+<span class="nc bnc" id="L355" title="All 2 branches missed.">					&amp;&amp; kingStSquare.getPiece().getColor() == wantedColor) {</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">				if (!((King) kingStSquare.getPiece()).getHasMoved()) {</span>
+				//make the king disappear
+
+<span class="nc" id="L359">				kingStSquare.setOccupied(false);</span>
+
+<span class="nc bnc" id="L361" title="All 2 branches missed.">				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {</span>
 				//there is an unmoved white king and it's not under check
-<span class="nc" id="L380">			 		king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L381">			 		king_initial_square.setPiece(new King(wantedColor));</span>
-			 		
-<span class="nc" id="L383">			 		Square rook_initial_square = Game.getBoard().getSquare(0, Board.CHESSBOARD_EDGE);</span>
-			 		
-<span class="nc bnc" id="L385" title="All 4 branches missed.">					if(rook_initial_square.isOccupied() &amp;&amp; rook_initial_square.getPiece().getClass() == Rook.class </span>
-<span class="nc bnc" id="L386" title="All 2 branches missed.">						&amp;&amp; rook_initial_square.getPiece().getColor() == wantedColor) {</span>
-						
-<span class="nc bnc" id="L388" title="All 2 branches missed.">						if( ! ((Rook) rook_initial_square.getPiece()).getHasMoved()) {</span>
-						//there is an unmoved white rook		
-							
-							
-<span class="nc bnc" id="L392" title="All 4 branches missed.">							if(!Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('d')).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('d')))) {</span>
-<span class="nc bnc" id="L393" title="All 4 branches missed.">								if(!Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')))){</span>
-<span class="nc bnc" id="L394" title="All 2 branches missed.">									if(!Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('b')).isOccupied()) {</span>
-										
-<span class="nc" id="L396">										( (King) king_initial_square.getPiece()).setHasMoved();</span>
-<span class="nc" id="L397">										( (Rook) rook_initial_square.getPiece()).setHasMoved();</span>
-										
-<span class="nc" id="L399">										Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('d')).setOccupied(true);</span>
-<span class="nc" id="L400">										Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('d')).setPiece(rook_initial_square.getPiece());</span>
-<span class="nc" id="L401">										rook_initial_square.setOccupied(false);</span>
-										
-<span class="nc" id="L403">										Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')).setOccupied(true);</span>
-<span class="nc" id="L404">										Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')).setPiece(king_initial_square.getPiece());</span>
-<span class="nc" id="L405">										king_initial_square.setOccupied(false);</span>
-										
-<span class="nc" id="L407">										Game.setKingPosition(Game.getTurn(), Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')));</span>
-<span class="nc" id="L408">										Game.addNewStartingSquare(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e')));</span>
-<span class="nc" id="L409">										Game.addNewDestinationSquare(Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('c')));</span>
-										
-<span class="nc" id="L411">										Game.nextTurn();</span>
-<span class="nc" id="L412">										return true;</span>
+<span class="nc" id="L363">			 		kingStSquare.setOccupied(true);</span>
+<span class="nc" id="L364">			 		kingStSquare.setPiece(new King(wantedColor));</span>
+
+<span class="nc" id="L366">			 		Square rookInitialSquare = Game.getBoard()</span>
+<span class="nc" id="L367">			 			.getSquare(0, Board.CB_EDGE);</span>
+
+<span class="nc bnc" id="L369" title="All 2 branches missed.">					if (rookInitialSquare.isOccupied()</span>
+<span class="nc bnc" id="L370" title="All 2 branches missed.">						&amp;&amp; rookInitialSquare.getPiece().getClass() == Rook.class</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">						&amp;&amp; rookInitialSquare.getPiece().getColor() == wantedColor) {</span>
+
+<span class="nc bnc" id="L373" title="All 2 branches missed.">						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {</span>
+<span class="nc" id="L374">							if (!Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc bnc" id="L375" title="All 2 branches missed.">							.getFileIntFromChar('d')).isOccupied()</span>
+<span class="nc bnc" id="L376" title="All 2 branches missed.">							&amp;&amp; InputValidator.isTurnKingNotInCheck(Game</span>
+<span class="nc" id="L377">							.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L378">							.getFileIntFromChar('d')))) {</span>
+<span class="nc" id="L379">								if (!Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">								.getFileIntFromChar('c')).isOccupied()</span>
+								&amp;&amp; InputValidator
+<span class="nc bnc" id="L382" title="All 2 branches missed.">								.isTurnKingNotInCheck(Game</span>
+<span class="nc" id="L383">								.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L384">								.getFileIntFromChar('c')))) {</span>
+<span class="nc" id="L385">									if (!Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L386">									.getFileIntFromChar('b'))</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">									.isOccupied()) {</span>
+<span class="nc" id="L388">										((King) kingStSquare.getPiece())</span>
+<span class="nc" id="L389">										.setHasMoved();</span>
+<span class="nc" id="L390">										((Rook) rookInitialSquare</span>
+<span class="nc" id="L391">										.getPiece())</span>
+<span class="nc" id="L392">										.setHasMoved();</span>
+<span class="nc" id="L393">										Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L394">										.getFileIntFromChar('d'))</span>
+<span class="nc" id="L395">										.setOccupied(true);</span>
+<span class="nc" id="L396">										Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L397">										.getFileIntFromChar('d')).setPiece(</span>
+<span class="nc" id="L398">										rookInitialSquare.getPiece());</span>
+<span class="nc" id="L399">										rookInitialSquare.setOccupied(false);</span>
+<span class="nc" id="L400">										Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L401">										.getFileIntFromChar('c'))</span>
+<span class="nc" id="L402">										.setOccupied(true);</span>
+<span class="nc" id="L403">										Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L404">										.getFileIntFromChar('c'))</span>
+<span class="nc" id="L405">										.setPiece(kingStSquare.getPiece());</span>
+<span class="nc" id="L406">										kingStSquare.setOccupied(false);</span>
+<span class="nc" id="L407">										Game.setKingPosition(Game.getTurn(),</span>
+<span class="nc" id="L408">										Game.getBoard().getSquare(0, ParseFiles</span>
+<span class="nc" id="L409">										.getFileIntFromChar('c')));</span>
+<span class="nc" id="L410">										Game.addNewStartingSquare(kingStSquare);</span>
+<span class="nc" id="L411">										Game.addNewDestinationSquare(Game</span>
+<span class="nc" id="L412">										.getBoard()</span>
+<span class="nc" id="L413">										.getSquare(0, ParseFiles</span>
+<span class="nc" id="L414">										.getFileIntFromChar('c')));</span>
+<span class="nc" id="L415">										Game.nextTurn();</span>
+<span class="nc" id="L416">										return true;</span>
 									}
 								}
 							}
-						}		
-					}	
-<span class="nc" id="L418">				 	} else {</span>
-				 		//make the piece appear again if we can't castle
-<span class="nc" id="L420">				 		king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L421">				 		king_initial_square.setPiece(new King(wantedColor));</span>
+						}
+					}
+<span class="nc" id="L422">				 	} else {</span>
+<span class="nc" id="L423">				 		kingStSquare.setOccupied(true);</span>
+<span class="nc" id="L424">				 		kingStSquare.setPiece(new King(wantedColor));</span>
 				 	}
 				}
 			}
-<span class="nc" id="L425">		} else {</span>
-<span class="nc" id="L426">			Square king_initial_square = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e'));</span>
-			
-<span class="nc bnc" id="L428" title="All 6 branches missed.">			if(king_initial_square.isOccupied() &amp;&amp; king_initial_square.getPiece().getClass() == King.class &amp;&amp; king_initial_square.getPiece().getColor() == wantedColor) {</span>
-<span class="nc bnc" id="L429" title="All 2 branches missed.">				if( ! ((King) king_initial_square.getPiece()).getHasMoved()) {</span>
-				//make the king disappear	
-				
-<span class="nc" id="L432">				king_initial_square.setOccupied(false);</span>
-				
-<span class="nc bnc" id="L434" title="All 2 branches missed.">				if(InputValidator.isTurnKingInCheck(king_initial_square)) {</span>
-				//there is an unmoved white king and it's not under check
-<span class="nc" id="L436">			 		king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L437">			 		king_initial_square.setPiece(new King(wantedColor));</span>
-			 		
-<span class="nc" id="L439">			 		Square rook_initial_square = Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, Board.CHESSBOARD_EDGE);</span>
-			 		
-<span class="nc bnc" id="L441" title="All 4 branches missed.">					if(rook_initial_square.isOccupied() &amp;&amp; rook_initial_square.getPiece().getClass() == Rook.class </span>
-<span class="nc bnc" id="L442" title="All 2 branches missed.">						&amp;&amp; rook_initial_square.getPiece().getColor() == wantedColor) {</span>
-						
-<span class="nc bnc" id="L444" title="All 2 branches missed.">						if( ! ((Rook) rook_initial_square.getPiece()).getHasMoved()) {</span>
-						//there is an unmoved white rook		
-							
-							
-<span class="nc bnc" id="L448" title="All 4 branches missed.">							if(!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')).isOccupied() &amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')))) {</span>
-<span class="nc bnc" id="L449" title="All 2 branches missed.">								if(!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')).isOccupied() </span>
-<span class="nc bnc" id="L450" title="All 2 branches missed.">									&amp;&amp; InputValidator.isTurnKingInCheck(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')))){</span>
-<span class="nc bnc" id="L451" title="All 2 branches missed.">									if(!Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('b')).isOccupied()) {</span>
-										
-<span class="nc" id="L453">										( (King) king_initial_square.getPiece()).setHasMoved();</span>
-<span class="nc" id="L454">										( (Rook) rook_initial_square.getPiece()).setHasMoved();</span>
-										
-<span class="nc" id="L456">										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')).setOccupied(true);</span>
-<span class="nc" id="L457">										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('d')).setPiece(rook_initial_square.getPiece());</span>
-<span class="nc" id="L458">										rook_initial_square.setOccupied(false);</span>
-										
-<span class="nc" id="L460">										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')).setOccupied(true);</span>
-<span class="nc" id="L461">										Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')).setPiece(king_initial_square.getPiece());</span>
-<span class="nc" id="L462">										king_initial_square.setOccupied(false);</span>
-										
-<span class="nc" id="L464">										Game.setKingPosition(Game.getTurn(), Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')));</span>
-<span class="nc" id="L465">										Game.addNewStartingSquare(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('e')));</span>
-<span class="nc" id="L466">										Game.addNewDestinationSquare(Game.getBoard().getSquare(Board.CHESSBOARD_EDGE, ParseFiles.getFileIntFromChar('c')));</span>
-										
-<span class="nc" id="L468">										Game.nextTurn();</span>
-<span class="nc" id="L469">										return true;</span>
+<span class="nc" id="L428">		} else {</span>
+<span class="nc" id="L429">			Square kingStSquare = Game.getBoard().</span>
+<span class="nc" id="L430">			getSquare(Board.CB_EDGE, ParseFiles.getFileIntFromChar('e'));</span>
+<span class="nc bnc" id="L431" title="All 2 branches missed.">			if (kingStSquare.isOccupied() &amp;&amp; kingStSquare.getPiece()</span>
+<span class="nc bnc" id="L432" title="All 2 branches missed.">			.getClass() == King.class &amp;&amp; kingStSquare</span>
+<span class="nc bnc" id="L433" title="All 2 branches missed.">			.getPiece().getColor() == wantedColor) {</span>
+<span class="nc bnc" id="L434" title="All 2 branches missed.">				if (!((King) kingStSquare.getPiece()).getHasMoved()) {</span>
+<span class="nc" id="L435">				kingStSquare.setOccupied(false);</span>
+<span class="nc bnc" id="L436" title="All 2 branches missed.">				if (InputValidator.isTurnKingNotInCheck(kingStSquare)) {</span>
+<span class="nc" id="L437">			 		kingStSquare.setOccupied(true);</span>
+<span class="nc" id="L438">			 		kingStSquare.setPiece(new King(wantedColor));</span>
+<span class="nc" id="L439">			 		Square rookInitialSquare = Game.getBoard()</span>
+<span class="nc" id="L440">			 		.getSquare(Board.CB_EDGE, Board.CB_EDGE);</span>
+<span class="nc bnc" id="L441" title="All 2 branches missed.">					if (rookInitialSquare.isOccupied() &amp;&amp; rookInitialSquare</span>
+<span class="nc bnc" id="L442" title="All 2 branches missed.">					.getPiece().getClass() == Rook.class</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">					&amp;&amp; rookInitialSquare.getPiece().getColor() == wantedColor) {</span>
+<span class="nc bnc" id="L444" title="All 2 branches missed.">						if (!((Rook) rookInitialSquare.getPiece()).getHasMoved()) {</span>
+<span class="nc" id="L445">							if (!Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">							ParseFiles.getFileIntFromChar('d')).isOccupied()</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">							&amp;&amp; InputValidator.isTurnKingNotInCheck(Game</span>
+<span class="nc" id="L448">							.getBoard().getSquare(</span>
+<span class="nc" id="L449">							Board.CB_EDGE, ParseFiles.getFileIntFromChar('d')))) {</span>
+<span class="nc" id="L450">								if (!Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc bnc" id="L451" title="All 2 branches missed.">								ParseFiles.getFileIntFromChar('c')).isOccupied()</span>
+<span class="nc bnc" id="L452" title="All 2 branches missed.">								&amp;&amp; InputValidator.isTurnKingNotInCheck(Game</span>
+<span class="nc" id="L453">								.getBoard().getSquare(</span>
+<span class="nc" id="L454">								Board.CB_EDGE, ParseFiles.getFileIntFromChar('c')))) {</span>
+<span class="nc" id="L455">									if (!Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L456">									ParseFiles.getFileIntFromChar('b'))</span>
+<span class="nc bnc" id="L457" title="All 2 branches missed.">									.isOccupied()) {</span>
+<span class="nc" id="L458">										((King) kingStSquare.getPiece())</span>
+<span class="nc" id="L459">										.setHasMoved();</span>
+<span class="nc" id="L460">										((Rook) rookInitialSquare.getPiece())</span>
+<span class="nc" id="L461">										.setHasMoved();</span>
+<span class="nc" id="L462">										Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L463">										ParseFiles.getFileIntFromChar('d'))</span>
+<span class="nc" id="L464">										.setOccupied(true);</span>
+<span class="nc" id="L465">										Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L466">										ParseFiles.getFileIntFromChar('d'))</span>
+<span class="nc" id="L467">										.setPiece(rookInitialSquare.getPiece());</span>
+<span class="nc" id="L468">										rookInitialSquare.setOccupied(false);</span>
+<span class="nc" id="L469">										Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L470">										ParseFiles.getFileIntFromChar('c'))</span>
+<span class="nc" id="L471">										.setOccupied(true);</span>
+<span class="nc" id="L472">										Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L473">										ParseFiles.getFileIntFromChar('c'))</span>
+<span class="nc" id="L474">										.setPiece(kingStSquare.getPiece());</span>
+<span class="nc" id="L475">										kingStSquare.setOccupied(false);</span>
+<span class="nc" id="L476">										Game.setKingPosition(Game.getTurn(),</span>
+<span class="nc" id="L477">										Game.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L478">										ParseFiles.getFileIntFromChar('c')));</span>
+<span class="nc" id="L479">										Game.addNewStartingSquare(kingStSquare);</span>
+<span class="nc" id="L480">										Game.addNewDestinationSquare(Game</span>
+<span class="nc" id="L481">										.getBoard().getSquare(Board.CB_EDGE,</span>
+<span class="nc" id="L482">										ParseFiles.getFileIntFromChar('c')));</span>
+<span class="nc" id="L483">										Game.nextTurn();</span>
+<span class="nc" id="L484">										return true;</span>
 									}
 								}
 							}
-						}		
-					}	
-<span class="nc" id="L475">				 	} else {</span>
-				 		//make the piece appear again if we can't castle
-<span class="nc" id="L477">				 		king_initial_square.setOccupied(true);</span>
-<span class="nc" id="L478">				 		king_initial_square.setPiece(new King(wantedColor));</span>
+						}
+					}
+<span class="nc" id="L490">				 	} else {</span>
+<span class="nc" id="L491">				 		kingStSquare.setOccupied(true);</span>
+<span class="nc" id="L492">				 		kingStSquare.setPiece(new King(wantedColor));</span>
 				 	}
 			}
 		}
-	}	
-	 //can't castle
-<span class="nc" id="L484">	return false;</span>
+	}
+<span class="nc" id="L497">	return false;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

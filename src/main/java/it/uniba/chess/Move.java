@@ -25,7 +25,7 @@ public final class Move {
 		if (((Math.abs(finalsquare.getX() - initialsquare.getX()) == 2)
 				&& !((Pawn) initialsquare.getPiece()).getHasMoved())
 				|| ((Math.abs(finalsquare.getX() -  initialsquare.getX()) == 1))) {
-			//explicitly cast to Pawn to check for moved
+
 				finalsquare.setOccupied(true);
 				finalsquare.setPiece(initialsquare.getPiece());
 				initialsquare.setOccupied(false);
@@ -69,81 +69,16 @@ public final class Move {
 			throw ex;
 		}
 
-		//otherwise we check for a normal capture
-		if (initialsquare.getPiece().getClass() == Pawn.class) {
-			if (Math.abs(finalsquare.getY() - initialsquare.getY()) == 1) {
-				if (finalsquare.getX() > initialsquare.getX() && initialsquare.getPiece().getColor()
-						== ChessColor.WHITE) {
-					if (finalsquare.getPiece() != null && finalsquare.getPiece().getColor()
-							!= initialsquare.getPiece().getColor()) {
-						finalsquare.setOccupied(true);
-
-						//captured piece
-						Piece tmpPiece = finalsquare.getPiece();
-
-						finalsquare.setPiece(initialsquare.getPiece());
-						initialsquare.setOccupied(false);
-
-						if (InputValidator.isTurnKingNotInCheck(Game
-								.getKingPosition(Game.getTurn()))) {
-
-							Game.getCapturesList().add(tmpPiece);
-							Game.addNewStartingSquare(initialsquare);
-							Game.addNewDestinationSquare(finalsquare);
-							return;
-						} else {
-							initialsquare.setOccupied(true);
-							initialsquare.setPiece(finalsquare.getPiece());
-							finalsquare.setOccupied(true);
-							finalsquare.setPiece(tmpPiece);
-							throw new IllegalMoveException();
-						}
-					}
-				} else if (finalsquare.getX() < initialsquare.getX()
-						&& initialsquare.getPiece().getColor() == ChessColor.BLACK) {
-					if (finalsquare.getPiece() != null && finalsquare.getPiece().getColor()
-							!= initialsquare.getPiece().getColor()) {
-
-
-						finalsquare.setOccupied(true);
-
-						//captured piece
-						Piece tmpPiece = finalsquare.getPiece();
-
-						finalsquare.setPiece(initialsquare.getPiece());
-						initialsquare.setOccupied(false);
-
-						if (InputValidator.isTurnKingNotInCheck(Game
-								.getKingPosition(Game.getTurn()))) {
-
-							Game.getCapturesList().add(tmpPiece);
-							Game.addNewStartingSquare(initialsquare);
-							Game.addNewDestinationSquare(finalsquare);
-							return;
-						} else {
-							initialsquare.setOccupied(true);
-							initialsquare.setPiece(finalsquare.getPiece());
-							finalsquare.setOccupied(true);
-							finalsquare.setPiece(tmpPiece);
-							throw new IllegalMoveException();
-						}
-					} //there is no piece inside the final square or
-					//there is but is not capturable due to a pin or
-					//due to being the same color as the pawn in initial square
-				} //there is a discrepancy between initial-final square and actual pawn movement
-			} //exit the function with break because there is
-			//no pawn inside the initial square, thus the capture can't fisically happen
-		}
-		throw new IllegalMoveException();
+		pieceMoveOrCapture(Pawn.class, initialsquare, finalsquare, true);
 	}
 
 	private static boolean captureEnPassant(final Square initialsquare, final Square finalsquare)
 			throws IllegalMoveException {
-		if ((initialsquare.getPiece().getClass() == Pawn.class)) {
 			if (Game.getBoard().getSquare(initialsquare.getX(), finalsquare.getY()).isOccupied()) {
 				if (Game.getBoard().getSquare(initialsquare.getX(),
 						finalsquare.getY()).getPiece().getClass()
-						== Pawn.class && Game.getBoard().getSquare(initialsquare.getX(),
+						== Pawn.class
+						&& Game.getBoard().getSquare(initialsquare.getX(),
 								finalsquare.getY()).getPiece().getColor()
 						!= initialsquare.getPiece().getColor()
 						&& isCapturableEnPassant(initialsquare, finalsquare)) {
@@ -160,7 +95,7 @@ public final class Move {
 
 					if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
-						((Pawn) finalsquare.getPiece()).setHasMoved();
+						finalsquare.getPiece().setHasMoved();
 						Game.getCapturesList().add(tmpPiece);
 						Game.addNewStartingSquare(initialsquare);
 						Game.addNewDestinationSquare(finalsquare);
@@ -179,7 +114,6 @@ public final class Move {
 					}
 				}
 			}
-		}
 		return false;
 	}
 

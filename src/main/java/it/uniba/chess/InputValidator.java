@@ -139,6 +139,7 @@ public final class InputValidator {
 							//this is a pawn move
 							startSquare = getPawnStartingSquareMove(destSquare);
 							Move.pawnMove(startSquare, destSquare);
+							Game.addPrintableMove(lastmove);
 
 						} else if (startRankString.isEmpty() && !startFileString.isEmpty()
 								&& !isCaptureString.isEmpty()) {
@@ -148,8 +149,10 @@ public final class InputValidator {
 							//only way is to call it with startingY != -1
 							Move.pawnCapture(startSquare, destSquare,
 									!isEnpassantString.isEmpty());
+							Game.addPrintableMove(lastmove);
+						} else {
+							throw new IllegalMoveException();
 						}
-						Game.addPrintableMove(lastmove);
 					} else { //end inner switch
 						throw new IllegalMoveException();
 					}
@@ -279,7 +282,7 @@ public final class InputValidator {
 				}
 
 			} else {
-				//first square was empty, let's check for a pawn a starting position
+				//first square was empty, let's check for a pawn in a starting position
 				if (squaresToCheck.size() > 1 && squaresToCheck.get(1).isOccupied()) {
 					pieceToCheck = squaresToCheck.get(1).getPiece();
 					if ((pieceToCheck.getClass() == Pawn.class)
