@@ -1,6 +1,6 @@
 
 
-# scacchi ![CI/CD](https://github.com/softeng1920-inf-uniba/progetto1920-diffie/workflows/CI/CD/badge.svg) ![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-diffie/badge.svg?branch=issue%231&t=ahjYQD)
+# scacchi ![CI/CD](https://github.com/softeng1920-inf-uniba/progetto1920-diffie/workflows/CI/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-diffie/badge.svg?branch=master&t=ahjYQD)](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-diffie?branch=master)
 
 La struttura della repository si presenta nel seguente modo:
 ```
