@@ -20,7 +20,7 @@ import it.uniba.chess.utils.ParseFiles;
  * Dato un input, lo elabora e determina se è una mossa di gioco o un'opzione del menù;
  * In caso di mossa, ne controlla la validità secondo le regole degli scacchi e della notazione algebrica abbreviata.
  *
- * <<Control>>
+ * «Control»
  */
 public final class InputValidator {
 
@@ -131,7 +131,9 @@ public final class InputValidator {
 										destSquare, !isCaptureString.isEmpty());
 									Game.addPrintableMove(lastmove);
 									break;
-							} else throw new IllegalMoveException();
+							} else {
+								throw new IllegalMoveException();
+							}
 						}
 					} else {
 						if (startRankOrFileString.isEmpty() 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="it.uniba.chess.test.BoardTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-24T14:07:38" hostname="LAPTOP-6NLKKOBG" time="0.081">
+<testsuite name="it.uniba.chess.test.BoardTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-05-24T14:32:35" hostname="DESKTOP-PB8LS1F" time="0.008">
   <properties/>
-  <testcase name="sameReferenceTest()" classname="it.uniba.chess.test.BoardTest" time="0.051"/>
-  <testcase name="differentPositionDifferentPieceTest()" classname="it.uniba.chess.test.BoardTest" time="0.005"/>
-  <testcase name="differentClassTest()" classname="it.uniba.chess.test.BoardTest" time="0.005"/>
-  <testcase name="differentPositionGenericRankTest()" classname="it.uniba.chess.test.BoardTest" time="0.002"/>
-  <testcase name="differentPositionRankEdgeTest()" classname="it.uniba.chess.test.BoardTest" time="0.001"/>
-  <testcase name="hashCodeTest()" classname="it.uniba.chess.test.BoardTest" time="0.0"/>
+  <testcase name="boardDifferentPositionDifferentPieceTest()" classname="it.uniba.chess.test.BoardTest" time="0.0"/>
+  <testcase name="boardsameReferenceTest()" classname="it.uniba.chess.test.BoardTest" time="0.0"/>
+  <testcase name="boardHashCodeTest()" classname="it.uniba.chess.test.BoardTest" time="0.0"/>
+  <testcase name="boardOutOfBoundFileTest()" classname="it.uniba.chess.test.BoardTest" time="0.002"/>
+  <testcase name="boardDifferentPositionRankEdgeTest()" classname="it.uniba.chess.test.BoardTest" time="0.001"/>
+  <testcase name="boardDifferentPositionGenericRankTest()" classname="it.uniba.chess.test.BoardTest" time="0.001"/>
+  <testcase name="boardDifferentClassTest()" classname="it.uniba.chess.test.BoardTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

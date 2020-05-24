@@ -12,7 +12,7 @@ import it.uniba.chess.utils.ParseFiles;
 /**
  * Esegue l'azione di movimento o cattura di ogni pezzo.
  *
- * <<Control>>
+ * «Control»
  */
 public final class Move {
 
@@ -173,7 +173,6 @@ public final class Move {
 		        startingsquare.setOccupied(false);
 		        Square actualKingPosition = Game.getKingPosition(Game.getTurn());
 
-
 		        if(piecetype == King.class) {
 		            Game.setKingPosition(Game.getTurn(), finalsquare);
 		        }
@@ -188,12 +187,11 @@ public final class Move {
 		            Game.addNewDestinationSquare(finalsquare);
 
 		            finalsquare.getPiece().setHasMoved();
-
-		            return;
+		            
+					return;
 		        } else {
 
 		            //we reset the board status to the previous move
-
 		            startingsquare.setOccupied(true);
 		            startingsquare.setPiece(finalsquare.getPiece());
 
@@ -210,6 +208,8 @@ public final class Move {
 		            throw new IllegalMoveException();
 		        }
 		    }
+	
+	
 	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
 		if (wantedColor == ChessColor.WHITE) {
 			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));

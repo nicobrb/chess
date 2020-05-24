@@ -7,7 +7,7 @@ import it.uniba.chess.pieces.Piece;
  * 	- Indica se è occupato o meno e, in caso positivo, da quale pezzo;
  *	- Contiene le proprie coordinate all'interno della scacchiera.
  *
- * <<Entity>>
+ * «Entity»
  */
 public final class Square {
 

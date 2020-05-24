@@ -5,7 +5,7 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Definisce le caratteristiche comuni a tutti i pezzi
  *
- * <<Entity>>
+ * «Entity»
  */
 
 
@@ -23,6 +23,7 @@ public abstract class Piece {
 	/**
 	 * Restituisce il colore del pezzo
 	 * 
+	 * @return Color of the piece
 	 */
 	public ChessColor getColor() {
 		return this.colorPiece;
@@ -31,6 +32,7 @@ public abstract class Piece {
 	/**
 	 * Imposta il colore del pezzo
 	 * 
+	 * @param newColorPiece color to be assigned
 	 */
 	public void setColor(final ChessColor newColorPiece) {
 		this.colorPiece = newColorPiece;
@@ -39,6 +41,7 @@ public abstract class Piece {
 	/**
 	 * Restituisce il carattere Unicode del pezzo
 	 * 
+	 * @return unicode of the piece
 	 */
 	public String getUnicode() {
 		return this.unicode;
@@ -47,6 +50,7 @@ public abstract class Piece {
 	/**
 	 * Imposta il carattere Unicode del pezzo
 	 * 
+	 * @param newUnicode unicode to be set
 	 */
 	public void setUnicode(final String newUnicode) {
 		this.unicode = newUnicode;
@@ -54,7 +58,8 @@ public abstract class Piece {
 
 	/**
 	 * Imposta il valore del booleano hasMoved per il pezzo
-	 * 
+	 *
+	 *
 	 */
 	public void setHasMoved() {
 		this.hasMoved = true;
@@ -63,6 +68,7 @@ public abstract class Piece {
 	/**
 	 * Restituisce il valore del booleano hasMoved per il pezzo
 	 * 
+	 * @return moved status
 	 */
 	public boolean getHasMoved() {
 		return hasMoved;
@@ -71,6 +77,7 @@ public abstract class Piece {
 	/**
 	 * Override della funzione equals, apposito per il confronto dei pezzi
 	 * 
+	 * @param o the piece to be compared
 	 */
     @Override
     public boolean equals(final Object o) {
@@ -101,7 +108,7 @@ public abstract class Piece {
 	 */
     @Override
     public int hashCode() {
-    	return super.hashCode();
+    	return 1;
     }
 
 }

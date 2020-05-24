@@ -1,5 +1,6 @@
 package it.uniba.chess.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,21 +21,21 @@ public class BoardTest {
 
 	@Test
 	@DisplayName("Check if a board is equal to itself")
-	public void sameReferenceTest() {
+	public void boardsameReferenceTest() {
 		Game.startGame();
 		assertTrue(Game.getBoard().equals(Game.getBoard()));
 	}
 	
 	@Test
 	@DisplayName("Check comparison with different classes")
-	public void differentClassTest() {
+	public void boardDifferentClassTest() {
 		Game.startGame();
 		assertFalse(Game.getBoard().equals(Game.getCapturesList()));
 	}
 	
 	@Test
 	@DisplayName("Check comparison with a different position (edge of rank)")
-	public void differentPositionRankEdgeTest() {
+	public void boardDifferentPositionRankEdgeTest() {
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		LinkedList<Square> expectedPosition = new LinkedList<>();
 		
@@ -48,7 +49,7 @@ public class BoardTest {
 	
 	@Test
 	@DisplayName("Check comparison with a different position (middle of rank)")
-	public void differentPositionGenericRankTest() {
+	public void boardDifferentPositionGenericRankTest() {
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		LinkedList<Square> expectedPosition = new LinkedList<>();
 		
@@ -62,7 +63,7 @@ public class BoardTest {
 	
 	@Test
 	@DisplayName("Check comparison with a different position (different piece)")
-	public void differentPositionDifferentPieceTest() {
+	public void boardDifferentPositionDifferentPieceTest() {
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		LinkedList<Square> expectedPosition = new LinkedList<>();
 		
@@ -77,7 +78,7 @@ public class BoardTest {
 	
 	@Test
 	@DisplayName("Check hashCode comparison")
-	public void hashCodeTest() {
+	public void boardHashCodeTest() {
 		//if two objects are equal, then their hashcode MUST be the same
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		LinkedList<Square> expectedPosition = new LinkedList<>();
@@ -85,5 +86,11 @@ public class BoardTest {
 		Board startingBoard = new Board(startingPosition);
 		
 		assertTrue(expectedBoard.hashCode() == startingBoard.hashCode());
+	}
+	
+	@Test
+	@DisplayName("Check that an out of bounds file is not acceptable")
+	public void boardOutOfBoundFileTest() {
+		assertEquals(-1, ParseFiles.getFileIntFromChar('l'));
 	}
 }

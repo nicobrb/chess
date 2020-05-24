@@ -5,7 +5,7 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Rappresenta ed istanzia un re di un determinato colore con il rispettivo codice unicode
  *
- * <<Entity>>
+ * «Entity»
  */
 
 public class King extends Piece {

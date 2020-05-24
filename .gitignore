@@ -44,7 +44,7 @@ local.properties
 /build/libs
 /build/docker
 /build/scripts
-#/build/test-results
+/build/test-results
 
 
 ### Intellij ###

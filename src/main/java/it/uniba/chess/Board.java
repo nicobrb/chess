@@ -13,7 +13,7 @@ import it.uniba.chess.utils.ParseFiles;
 /**
  * Definisce ed istanzia una matrice 8x8 di oggetti di tipo Square, che rappresenterà la nostra scacchiera
  *
- * <<Entity>>
+ * «Entity»
  */
 public final class Board {
 	private Square[][] chessboard;

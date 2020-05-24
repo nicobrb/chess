@@ -15,7 +15,7 @@ import it.uniba.chess.utils.IllegalMoveException;
  * The main class for the project. It must be customized to meet the project
  * assignment specifications.
  * 
- * &lt;&lt;Boundary&gt;&gt;
+ * «Boundary»
  * 
  * &lt;b&gt;DO NOT RENAME&lt;/b&gt;
  */
@@ -32,59 +32,60 @@ public final class AppMain {
 	 * 	 * This is the main entry of the application.
 	 *
 	 * @param args The command-line arguments.
+	 * @throws UnsupportedEncodingException Unsupported UTF-8
 	 */
 	public static void main(final String[] args) throws UnsupportedEncodingException {
-<span class="fc" id="L37">		System.out.print(&quot;Scrivi help per la lista dei comandi, play per iniziare una nuova partita.&quot;</span>
+<span class="fc" id="L38">		System.out.print(&quot;Scrivi help per la lista dei comandi, play per iniziare una nuova partita.&quot;</span>
 		+ &quot; Qualunque notazione algebrica prima di play non sarà accettata\n&quot;);
-<span class="fc" id="L39">		Scanner sc = new Scanner(System.in, &quot;UTF-8&quot;);</span>
-<span class="fc" id="L40">		System.setOut(new PrintStream(System.out, false, &quot;UTF-8&quot;));</span>
-<span class="fc" id="L41">		menu(sc);</span>
-<span class="fc" id="L42">		sc.close();</span>
-<span class="fc" id="L43">	}</span>
+<span class="fc" id="L40">		Scanner sc = new Scanner(System.in, &quot;UTF-8&quot;);</span>
+<span class="fc" id="L41">		System.setOut(new PrintStream(System.out, false, &quot;UTF-8&quot;));</span>
+<span class="fc" id="L42">		menu(sc);</span>
+<span class="fc" id="L43">		sc.close();</span>
+<span class="fc" id="L44">	}</span>
 
 	private static void menu(final Scanner sc) {
-<span class="fc" id="L46">		String command = &quot;&quot;;</span>
-<span class="fc bfc" id="L47" title="All 4 branches covered.">		while (!command.equals(&quot;quit&quot;) &amp;&amp; !command.equals(&quot;play&quot;)) {</span>
-<span class="fc" id="L48">			command = sc.nextLine();</span>
+<span class="fc" id="L47">		String command = &quot;&quot;;</span>
+<span class="fc bfc" id="L48" title="All 4 branches covered.">		while (!command.equals(&quot;quit&quot;) &amp;&amp; !command.equals(&quot;play&quot;)) {</span>
+<span class="fc" id="L49">			command = sc.nextLine();</span>
 			try {
-<span class="fc" id="L50">				InputValidator.parseCommand(command.trim());</span>
-<span class="fc" id="L51">			} catch (IllegalMoveException ex) {</span>
-<span class="fc" id="L52">				System.out.print(ex.getMessage() + &quot;\n&quot;);</span>
-<span class="fc" id="L53">			}</span>
+<span class="fc" id="L51">				InputValidator.parseCommand(command.trim());</span>
+<span class="fc" id="L52">			} catch (IllegalMoveException ex) {</span>
+<span class="fc" id="L53">				System.out.print(ex.getMessage() + &quot;\n&quot;);</span>
+<span class="fc" id="L54">			}</span>
 		}
 		//IMPORTANT
-<span class="fc bfc" id="L56" title="All 2 branches covered.">		if (command.equals(&quot;quit&quot;)) {</span>
-<span class="fc" id="L57">			quitConfirmation(sc);</span>
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">		} else if (command.equals(&quot;play&quot;)) {</span>
-<span class="fc" id="L59">			playGame(sc);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		if (command.equals(&quot;quit&quot;)) {</span>
+<span class="fc" id="L58">			quitConfirmation(sc);</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">		} else if (command.equals(&quot;play&quot;)) {</span>
+<span class="fc" id="L60">			playGame(sc);</span>
 		}
-<span class="fc" id="L61">		return;</span>
+<span class="fc" id="L62">		return;</span>
 	}
 
 	private static void quitConfirmation(final Scanner sc) {
-<span class="fc" id="L65">		System.out.print(&quot;Sei sicuro di voler uscire? S/N (default: N)\n&quot;);</span>
-<span class="fc" id="L66">		String confirm = sc.nextLine().toLowerCase().trim();</span>
+<span class="fc" id="L66">		System.out.print(&quot;Sei sicuro di voler uscire? S/N (default: N)\n&quot;);</span>
+<span class="fc" id="L67">		String confirm = sc.nextLine().toLowerCase().trim();</span>
 
-<span class="fc bfc" id="L68" title="All 2 branches covered.">		if (confirm.equals(&quot;s&quot;)) {</span>
-<span class="fc" id="L69">			return;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (confirm.equals(&quot;s&quot;)) {</span>
+<span class="fc" id="L70">			return;</span>
 		} else {
-<span class="fc" id="L71">			System.out.print(&quot;Continuo la partita:\n&quot;);</span>
-<span class="fc" id="L72">			menu(sc);</span>
+<span class="fc" id="L72">			System.out.print(&quot;Continuo la partita:\n&quot;);</span>
+<span class="fc" id="L73">			menu(sc);</span>
 		}
-<span class="fc" id="L74">	}</span>
+<span class="fc" id="L75">	}</span>
 
 	private static void playGame(final Scanner sc) {
-<span class="fc bfc" id="L77" title="All 2 branches covered.">		if (Game.getGameStatus() != GameStatus.ACTIVE) {</span>
-<span class="fc" id="L78">			Game.startGame();</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		if (Game.getGameStatus() != GameStatus.ACTIVE) {</span>
+<span class="fc" id="L79">			Game.startGame();</span>
 		} else {
-<span class="fc" id="L80">			System.out.print(&quot;Sei sicuro di voler ricominciare il gioco? S/[N]\n&quot;);</span>
-<span class="fc" id="L81">			String confirmation = sc.nextLine().toLowerCase().trim();</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">			if (confirmation.equals(&quot;s&quot;)) {</span>
-<span class="fc" id="L83">				Game.startGame();</span>
+<span class="fc" id="L81">			System.out.print(&quot;Sei sicuro di voler ricominciare il gioco? S/[N]\n&quot;);</span>
+<span class="fc" id="L82">			String confirmation = sc.nextLine().toLowerCase().trim();</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">			if (confirmation.equals(&quot;s&quot;)) {</span>
+<span class="fc" id="L84">				Game.startGame();</span>
 			}
 		}
-<span class="fc" id="L86">		menu(sc);</span>
-<span class="fc" id="L87">		return;</span>
+<span class="fc" id="L87">		menu(sc);</span>
+<span class="fc" id="L88">		return;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

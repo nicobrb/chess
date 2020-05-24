@@ -15,7 +15,7 @@ import it.uniba.chess.utils.IllegalMoveException;
  * The main class for the project. It must be customized to meet the project
  * assignment specifications.
  * 
- * <<Boundary>>
+ * «Boundary»
  * 
  * <b>DO NOT RENAME</b>
  */
@@ -32,6 +32,7 @@ public final class AppMain {
 	 * 	 * This is the main entry of the application.
 	 *
 	 * @param args The command-line arguments.
+	 * @throws UnsupportedEncodingException Unsupported UTF-8
 	 */
 	public static void main(final String[] args) throws UnsupportedEncodingException {
 		System.out.print("Scrivi help per la lista dei comandi, play per iniziare una nuova partita."

@@ -12,7 +12,7 @@ import it.uniba.chess.utils.ParseFiles;
 /**
  * Esegue l'azione di movimento o cattura di ogni pezzo.
  *
- * &lt;&lt;Control&gt;&gt;
+ * «Control»
  */
 public final class Move {
 
@@ -173,43 +173,43 @@ public final class Move {
 <span class="fc" id="L173">		        startingsquare.setOccupied(false);</span>
 <span class="fc" id="L174">		        Square actualKingPosition = Game.getKingPosition(Game.getTurn());</span>
 
-
-<span class="fc bfc" id="L177" title="All 2 branches covered.">		        if(piecetype == King.class) {</span>
-<span class="fc" id="L178">		            Game.setKingPosition(Game.getTurn(), finalsquare);</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">		        if(piecetype == King.class) {</span>
+<span class="fc" id="L177">		            Game.setKingPosition(Game.getTurn(), finalsquare);</span>
 		        }
 
-<span class="fc bfc" id="L181" title="All 2 branches covered.">		        if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">		        if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {</span>
 
-<span class="fc bfc" id="L183" title="All 2 branches covered.">		            if (isCapture) {</span>
-<span class="fc" id="L184">		                Game.getCapturesList().add(tmpPiece);</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">		            if (isCapture) {</span>
+<span class="fc" id="L183">		                Game.getCapturesList().add(tmpPiece);</span>
 		            }
 
-<span class="fc" id="L187">		            Game.addNewStartingSquare(startingsquare);</span>
-<span class="fc" id="L188">		            Game.addNewDestinationSquare(finalsquare);</span>
+<span class="fc" id="L186">		            Game.addNewStartingSquare(startingsquare);</span>
+<span class="fc" id="L187">		            Game.addNewDestinationSquare(finalsquare);</span>
 
-<span class="fc" id="L190">		            finalsquare.getPiece().setHasMoved();</span>
-
-<span class="fc" id="L192">		            return;</span>
+<span class="fc" id="L189">		            finalsquare.getPiece().setHasMoved();</span>
+		            
+<span class="fc" id="L191">					return;</span>
 		        } else {
 
 		            //we reset the board status to the previous move
+<span class="fc" id="L195">		            startingsquare.setOccupied(true);</span>
+<span class="fc" id="L196">		            startingsquare.setPiece(finalsquare.getPiece());</span>
 
-<span class="fc" id="L197">		            startingsquare.setOccupied(true);</span>
-<span class="fc" id="L198">		            startingsquare.setPiece(finalsquare.getPiece());</span>
+<span class="fc" id="L198">		            Game.setKingPosition(Game.getTurn(), actualKingPosition);</span>
 
-<span class="fc" id="L200">		            Game.setKingPosition(Game.getTurn(), actualKingPosition);</span>
-
-<span class="fc bfc" id="L202" title="All 2 branches covered.">		            if (isCapture) {</span>
-<span class="fc" id="L203">		                finalsquare.setOccupied(true);</span>
-<span class="fc" id="L204">		                finalsquare.setPiece(tmpPiece);</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">		            if (isCapture) {</span>
+<span class="fc" id="L201">		                finalsquare.setOccupied(true);</span>
+<span class="fc" id="L202">		                finalsquare.setPiece(tmpPiece);</span>
 		            } else {
-<span class="fc" id="L206">		                finalsquare.setOccupied(false);</span>
+<span class="fc" id="L204">		                finalsquare.setOccupied(false);</span>
 		            }
 
 		            //it's a pinned piece
-<span class="fc" id="L210">		            throw new IllegalMoveException();</span>
+<span class="fc" id="L208">		            throw new IllegalMoveException();</span>
 		        }
 		    }
+	
+	
 	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
 <span class="fc bfc" id="L214" title="All 2 branches covered.">		if (wantedColor == ChessColor.WHITE) {</span>
 <span class="fc" id="L215">			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));</span>

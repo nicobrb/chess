@@ -13,7 +13,6 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -60,14 +59,14 @@ public class InputValidatorTest {
 		
 		String expectedOutput = "Gioco non ancora avviato.\n";
 		InputValidator.parseCommand("board");
-		assertEquals(expectedOutput, outContent.toString());
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 	}
 	
 	@Test
 	@DisplayName("Check 'board' command with active game")
 	public void boardActiveGameTest() throws Exception{	
 		outContent.reset();
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
 		String expectedOutput = 
 				"   a   b   c   d   e   f   g   h \n" + 
@@ -93,13 +92,13 @@ public class InputValidatorTest {
 		Game.startGame();
 		//System.out.print(expectedOutput);
 		InputValidator.parseCommand("board");
-		assertEquals(expectedOutput, outContent.toString());
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 	}
 	@Test
     @DisplayName("Test help menu")
     public void helpMenuTest() throws Exception{
         outContent.reset();
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
         String expectedOutput = 
                 "help: questo menu\n" + 
@@ -111,14 +110,14 @@ public class InputValidatorTest {
 
         Game.startGame();
         InputValidator.parseCommand("help");
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, outContent.toString("UTF-8"));
     }
 
 	@Test
     @DisplayName("Test grammatically wrong move")
     public void grammaticallyWrongMoveTest() throws Exception{
         outContent.reset();
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
         String expectedOutput = 
         	"Comando non riconosciuto. " +
@@ -126,41 +125,41 @@ public class InputValidatorTest {
 
         Game.startGame();
         InputValidator.parseCommand("Se3");
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, outContent.toString("UTF-8"));
     }
 	
 	@Test
     @DisplayName("0-0 but game is inactive")
     public void inactiveShortCastlingTest() throws Exception{
         outContent.reset();
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
         String expectedOutput = "Gioco non ancora avviato.\n";
         InputValidator.parseCommand("0-0");
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, outContent.toString("UTF-8"));
     }
 	@Test
     @DisplayName("0-0-0 but game is inactive")
     public void inactiveLongCastlingTest() throws Exception{
         outContent.reset();
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
         String expectedOutput = "Gioco non ancora avviato.\n";
         InputValidator.parseCommand("0-0-0");
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, outContent.toString("UTF-8"));
     }
 	@Test
     @DisplayName("move during inactive game test")
     public void inactiveGameMoveTest() throws Exception{
         outContent.reset();
-        System.setOut(new PrintStream(outContent));
+        System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
         String expectedOutput = 
         	"Comando non riconosciuto. " +
         	"Scrivi help per la lista dei comandi.\n";
 
         InputValidator.parseCommand("e4");
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, outContent.toString("UTF-8"));
     }
 	@Test
 	@DisplayName("Check white knight movement")
@@ -223,7 +222,7 @@ public class InputValidatorTest {
 				"1. e4 e5 \n" + 
 				"2. Cf3 Cbc6 \n" + 
 				"3. Ac4 Ac5 \n";
-		assertEquals(expectedOutput, outContent.toString());
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 	}
 	
 	@Test
@@ -249,7 +248,7 @@ public class InputValidatorTest {
 		String expectedOutput = 
 				"Materiale del bianco: ♟♛\n" + 
 				"Materiale del nero: ♙♘\n";
-		assertEquals(expectedOutput, outContent.toString());
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 	
 	}
 	
@@ -1828,4 +1827,35 @@ public class InputValidatorTest {
 		
 	}
 	
+	@Test
+	@DisplayName("Check knight (generic) capture")
+	public void pawnBlackCaptureNormalOKTest() throws Exception{
+        LinkedList<Square> startingPosition = new LinkedList<>();
+        LinkedList<Square> expectedPosition = new LinkedList<>();
+        
+        Knight capturingKnight = new Knight(ChessColor.WHITE);
+        capturingKnight.setHasMoved();
+        Queen capturableQueen = new Queen(ChessColor.BLACK);
+        capturableQueen.setHasMoved();
+
+        ArrayList<Piece> expectedCaptures = new ArrayList<Piece>();
+        expectedCaptures.add(capturableQueen);
+        
+        startingPosition.add(new Square(Integer.parseInt("1"), ParseFiles.getFileIntFromChar('d'), capturingKnight));
+        startingPosition.add(new Square(Integer.parseInt("3"), ParseFiles.getFileIntFromChar('c'), capturableQueen));
+        
+        expectedPosition.add(new Square(Integer.parseInt("3"), ParseFiles.getFileIntFromChar('c'), capturingKnight));
+        
+        Board expectedBoard = new Board(expectedPosition);
+        Game.testGame(startingPosition);
+        
+        InputValidator.parseCommand("Cxc4");
+
+        assertAll("Board states and captures must be the same", 
+        	() -> {
+        			assertEquals(expectedBoard, Game.getBoard());
+        			assertEquals(expectedCaptures, Game.getCapturesList());
+        		}
+        	);
+	}
 }
