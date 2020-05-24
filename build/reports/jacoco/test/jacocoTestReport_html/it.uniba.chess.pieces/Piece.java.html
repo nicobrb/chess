@@ -5,97 +5,101 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Definisce le caratteristiche comuni a tutti i pezzi
  *
- * &lt;&lt;Entity&gt;&gt;
+ * «Entity»
  */
 
 
 public abstract class Piece {
 
 	private ChessColor colorPiece;
-	private char unicode; //unicode of the piece
+	private String unicode; //unicode of the piece
 	private boolean hasMoved;
 
-<span class="nc" id="L18">	public Piece() {</span>
-<span class="nc" id="L19">		this.colorPiece = null;</span>
-<span class="nc" id="L20">		this.hasMoved = false;</span>
-<span class="nc" id="L21">	}</span>
+<span class="fc" id="L18">	public Piece() {</span>
+<span class="fc" id="L19">		this.colorPiece = null;</span>
+<span class="fc" id="L20">		this.hasMoved = false;</span>
+<span class="fc" id="L21">	}</span>
 
 	/**
 	 * Restituisce il colore del pezzo
 	 * 
+	 * @return Color of the piece
 	 */
 	public ChessColor getColor() {
-<span class="nc" id="L28">		return this.colorPiece;</span>
+<span class="fc" id="L29">		return this.colorPiece;</span>
 	}
 
 	/**
 	 * Imposta il colore del pezzo
 	 * 
+	 * @param newColorPiece color to be assigned
 	 */
 	public void setColor(final ChessColor newColorPiece) {
-<span class="nc" id="L36">		this.colorPiece = newColorPiece;</span>
-<span class="nc" id="L37">	}</span>
+<span class="fc" id="L38">		this.colorPiece = newColorPiece;</span>
+<span class="fc" id="L39">	}</span>
 
 	/**
 	 * Restituisce il carattere Unicode del pezzo
 	 * 
+	 * @return unicode of the piece
 	 */
-	public char getUnicode() {
-<span class="nc" id="L44">		return this.unicode;</span>
+	public String getUnicode() {
+<span class="fc" id="L47">		return this.unicode;</span>
 	}
 
 	/**
 	 * Imposta il carattere Unicode del pezzo
 	 * 
+	 * @param newUnicode unicode to be set
 	 */
-	public void setUnicode(final char newUnicode) {
-<span class="nc" id="L52">		this.unicode = newUnicode;</span>
-<span class="nc" id="L53">	}</span>
+	public void setUnicode(final String newUnicode) {
+<span class="fc" id="L56">		this.unicode = newUnicode;</span>
+<span class="fc" id="L57">	}</span>
 
 	/**
 	 * Imposta il valore del booleano hasMoved per il pezzo
-	 * 
+	 *
+	 *
 	 */
 	public void setHasMoved() {
-<span class="nc" id="L60">		this.hasMoved = true;</span>
-<span class="nc" id="L61">	}</span>
+<span class="fc" id="L65">		this.hasMoved = true;</span>
+<span class="fc" id="L66">	}</span>
 
 	/**
 	 * Restituisce il valore del booleano hasMoved per il pezzo
 	 * 
+	 * @return moved status
 	 */
 	public boolean getHasMoved() {
-<span class="nc" id="L68">		return hasMoved;</span>
+<span class="fc" id="L74">		return hasMoved;</span>
 	}
 
 	/**
 	 * Override della funzione equals, apposito per il confronto dei pezzi
 	 * 
+	 * @param o the piece to be compared
 	 */
     @Override
     public boolean equals(final Object o) {
 
         // If the object is compared with itself then return true
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (o == this) {</span>
-<span class="nc" id="L80">            return true;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (o == this) {</span>
+<span class="fc" id="L87">            return true;</span>
         }
 
         /* Check if o is an instance of Complex or not
           &quot;null instanceof [type]&quot; also returns false */
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (!(o instanceof Piece)) {</span>
-<span class="nc" id="L86">            return false;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (!(o instanceof Piece)) {</span>
+<span class="fc" id="L93">            return false;</span>
         }
-
-        // typecast o to Complex so that we can compare data members
-<span class="nc" id="L90">        Piece comparedPiece = (Piece) o;</span>
+<span class="fc" id="L95">        Piece comparedPiece = (Piece) o;</span>
 
         // Compare the data members and return accordingly
-<span class="nc bnc" id="L93" title="All 6 branches missed.">        if (this.unicode == comparedPiece.unicode</span>
-        &amp;&amp; this.colorPiece == comparedPiece.colorPiece
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">        if (this.unicode.equals(comparedPiece.unicode)</span>
         &amp;&amp; this.hasMoved == comparedPiece.hasMoved) {
-<span class="nc" id="L96">        	return true;</span>
+<span class="fc" id="L100">        	return true;</span>
         }
-<span class="nc" id="L98">        return false;</span>
+<span class="fc" id="L102">        return false;</span>
     }
 
 	/**
@@ -104,7 +108,7 @@ public abstract class Piece {
 	 */
     @Override
     public int hashCode() {
-<span class="nc" id="L107">    	return super.hashCode();</span>
+<span class="fc" id="L111">    	return 1;</span>
     }
 
 }

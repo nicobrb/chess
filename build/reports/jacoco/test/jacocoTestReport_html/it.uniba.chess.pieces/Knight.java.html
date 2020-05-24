@@ -5,18 +5,18 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Rappresenta ed istanzia un cavallo di un determinato colore con il rispettivo codice unicode
  *
- * &lt;&lt;Entity&gt;&gt;
+ * «Entity»
  */
 public class Knight extends Piece {
 
 	public Knight(final ChessColor colorPiece) {
-<span class="nc" id="L13">		super();</span>
-<span class="nc" id="L14">		this.setColor(colorPiece);</span>
-<span class="nc bnc" id="L15" title="All 2 branches missed.">		if (colorPiece == ChessColor.WHITE) {</span>
-<span class="nc" id="L16">			this.setUnicode('\u2658');</span>
+<span class="fc" id="L13">		super();</span>
+<span class="fc" id="L14">		this.setColor(colorPiece);</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">		if (colorPiece == ChessColor.WHITE) {</span>
+<span class="fc" id="L16">			this.setUnicode(&quot;\u2658&quot;);</span>
 		} else {
-<span class="nc" id="L18">			this.setUnicode('\u265e');</span>
+<span class="fc" id="L18">			this.setUnicode(&quot;\u265e&quot;);</span>
 		}
-<span class="nc" id="L20">	}</span>
+<span class="fc" id="L20">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

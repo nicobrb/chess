@@ -5,20 +5,20 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Rappresenta ed istanzia un re di un determinato colore con il rispettivo codice unicode
  *
- * &lt;&lt;Entity&gt;&gt;
+ * «Entity»
  */
 
 public class King extends Piece {
 
 	public King(final ChessColor colorPiece) {
-<span class="nc" id="L14">		super();</span>
-<span class="nc" id="L15">		this.setColor(colorPiece);</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">		if (colorPiece == ChessColor.WHITE) {</span>
-<span class="nc" id="L17">			this.setUnicode('\u2654');</span>
+<span class="fc" id="L14">		super();</span>
+<span class="fc" id="L15">		this.setColor(colorPiece);</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">		if (colorPiece == ChessColor.WHITE) {</span>
+<span class="fc" id="L17">			this.setUnicode(&quot;\u2654&quot;);</span>
 		} else {
-<span class="nc" id="L19">			this.setUnicode('\u265a');</span>
+<span class="fc" id="L19">			this.setUnicode(&quot;\u265a&quot;);</span>
 		}
-<span class="nc" id="L21">	}</span>
+<span class="fc" id="L21">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

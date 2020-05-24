@@ -3,12 +3,19 @@
 /**
  *  IllegalMoveException si occupa di lanciare un messaggio di errore ogni volta che
  *  la mossa ricevuta in input dall'utente risulta illegale da parte della classe InputValidator
+ *
+ * 	«NO-ECB»
  */
 
-public class IllegalMoveException extends Exception {
+public class IllegalMoveException extends Exception {	
+
+	/**
+	 *  To fix serialization warning
+	 */
+	private static final long serialVersionUID = -101434881562366505L;
 
 	public IllegalMoveException() {
-<span class="nc" id="L11">		super(&quot;Mossa illegale&quot;);</span>
-<span class="nc" id="L12">	}</span>
+<span class="fc" id="L18">		super(&quot;Mossa illegale&quot;);</span>
+<span class="fc" id="L19">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

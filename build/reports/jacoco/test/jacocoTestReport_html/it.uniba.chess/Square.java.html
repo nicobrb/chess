@@ -4,10 +4,10 @@ import it.uniba.chess.pieces.Piece;
 
 /**
  * Definisce lo stato di una singola casa nella scacchiera. In particolare:
- * 	- Indica se Ã¨ occupato o meno e, in caso positivo, da quale pezzo;
+ * 	- Indica se è occupato o meno e, in caso positivo, da quale pezzo;
  *	- Contiene le proprie coordinate all'interno della scacchiera.
  *
- * &lt;&lt;Entity&gt;&gt;
+ * «Entity»
  */
 public final class Square {
 
@@ -15,45 +15,45 @@ public final class Square {
 	private boolean occupied;
 	private final int x, y; //this will never change after initialization
 
-<span class="nc" id="L18">	public Square(final int newX, final int newY, final Piece p) {</span>
-<span class="nc" id="L19">		this.x = newX;</span>
-<span class="nc" id="L20">		this.y = newY;</span>
-<span class="nc" id="L21">		this.piece = p;</span>
-<span class="nc" id="L22">		this.occupied = true;</span>
-<span class="nc" id="L23">	}</span>
+<span class="fc" id="L18">	public Square(final int newX, final int newY, final Piece p) {</span>
+<span class="fc" id="L19">		this.x = newX;</span>
+<span class="fc" id="L20">		this.y = newY;</span>
+<span class="fc" id="L21">		this.piece = p;</span>
+<span class="fc" id="L22">		this.occupied = true;</span>
+<span class="fc" id="L23">	}</span>
 
-<span class="nc" id="L25">	public Square(final int row, final int col) {</span>
-<span class="nc" id="L26">		this.x = row;</span>
-<span class="nc" id="L27">		this.y = col;</span>
-<span class="nc" id="L28">		this.piece = null;</span>
-<span class="nc" id="L29">		this.occupied = false;</span>
-<span class="nc" id="L30">	}</span>
+<span class="fc" id="L25">	public Square(final int rank, final int file) {</span>
+<span class="fc" id="L26">		this.x = rank;</span>
+<span class="fc" id="L27">		this.y = file;</span>
+<span class="fc" id="L28">		this.piece = null;</span>
+<span class="fc" id="L29">		this.occupied = false;</span>
+<span class="fc" id="L30">	}</span>
 
 	public int getX() {
-<span class="nc" id="L33">		return this.x;</span>
+<span class="fc" id="L33">		return this.x;</span>
 	}
 
 	public int getY() {
-<span class="nc" id="L37">		return this.y;</span>
+<span class="fc" id="L37">		return this.y;</span>
 	}
 
 	public Piece getPiece() {
-<span class="nc" id="L41">		return piece;</span>
+<span class="fc" id="L41">		return piece;</span>
 	}
 
 	public void setPiece(final Piece p) {
-<span class="nc" id="L45">		this.piece = p;</span>
-<span class="nc" id="L46">	}</span>
+<span class="fc" id="L45">		this.piece = p;</span>
+<span class="fc" id="L46">	}</span>
 
 	public boolean isOccupied() {
-<span class="nc" id="L49">		return occupied;</span>
+<span class="fc" id="L49">		return occupied;</span>
 	}
 
 	public void setOccupied(final boolean b) {
-<span class="nc" id="L53">		this.occupied = b;</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">		if (!b) {</span>
-<span class="nc" id="L55">			this.setPiece(null);</span>
+<span class="fc" id="L53">		this.occupied = b;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		if (!b) {</span>
+<span class="fc" id="L55">			this.setPiece(null);</span>
 		}
-<span class="nc" id="L57">	}</span>
+<span class="fc" id="L57">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

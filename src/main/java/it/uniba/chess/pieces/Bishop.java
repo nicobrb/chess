@@ -4,7 +4,7 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Rappresenta ed istanzia un alfiere di un determinato colore con il rispettivo codice unicode
  *
- * <<Entity>>
+ * «Entity»
  */
 public class Bishop extends Piece {
 

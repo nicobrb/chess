@@ -5,7 +5,7 @@ import it.uniba.chess.utils.ChessColor;
 /**
  * Rappresenta ed istanzia una torre di un determinato colore con il rispettivo codice unicode
  *
- * <<Entity>>
+ * «Entity»
  */
 public class Rook extends Piece {
 

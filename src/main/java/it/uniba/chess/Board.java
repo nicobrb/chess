@@ -13,7 +13,7 @@ import it.uniba.chess.utils.ParseFiles;
 /**
  * Definisce ed istanzia una matrice 8x8 di oggetti di tipo Square, che rappresenterà la nostra scacchiera
  *
- * <<Entity>>
+ * «Entity»
  */
 public final class Board {
 	private Square[][] chessboard;
@@ -148,7 +148,7 @@ public final class Board {
 	            return false;
 	        }
 
-	        // typecast o to Complex so that we can compare data members
+	        // typecast o to Board so that we can compare data members
 	        Board comparedBoard = (Board) o;
 
 	        // Compare the data members and return accordingly
@@ -172,7 +172,7 @@ public final class Board {
 
 	   @Override
 	   public int hashCode() {
-		   return super.hashCode();
+		   return 1;
 	   }
 }
 

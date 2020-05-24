@@ -3,7 +3,7 @@ package it.uniba.chess.utils;
 /**
  * Classe di costanti a cui viene associato un colore.
  * 
- * <<No-ECB>>
+ * «NO-ECB»
  */
 public enum ChessColor {
 	WHITE,
