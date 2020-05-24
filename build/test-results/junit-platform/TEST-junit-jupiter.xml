@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Jupiter" tests="232" skipped="0" failures="0" errors="0" time="0.25" hostname="DESKTOP-PB8LS1F" timestamp="2020-05-24T16:32:33">
+<testsuite name="JUnit Jupiter" tests="232" skipped="0" failures="0" errors="0" time="0.467" hostname="LAPTOP-6NLKKOBG" timestamp="2020-05-24T16:37:20">
 <properties>
-<property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
 <property name="file.encoding" value="UTF-8"/>
-<property name="file.encoding.pkg" value="sun.io"/>
 <property name="file.separator" value="\"/>
-<property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-<property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
-<property name="java.class.path" value="C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\classes\java\test;C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\resources\test;C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\classes\java\main;C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\resources\main;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.apis\google-api-services-drive\v3-rev154-1.25.0\b840aeb45c31b97e28f365667f93bbd86fd8790d\google-api-services-drive-v3-rev154-1.25.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.api-client\google-api-client\1.25.0\e7ff725e89ff5dcbed107be1a24e8102ae2441ee\google-api-client-1.25.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client-jetty\1.23.0\e0deaf34371e9ca09f9a04bcbaa854243283cae4\google-oauth-client-jetty-1.23.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\21.0\3a3d111be1be1b745edfa7d91678a12d7ed38709\guava-21.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.vintage\junit-vintage-engine\5.6.0\a8e5f7ae69043582a5ab05bdaa62ba4406f403f0\junit-vintage-engine-5.6.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.6.0\a3a6ec96c010875444b3ca31828108093758ec00\junit-platform-engine-1.6.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.6.0\b0a75795cf03841d4f9cc54099557baffc11c727\junit-platform-commons-1.6.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-engine\5.6.0\83c9e737f6015d9e00029b9b1d51e952a884b8f9\junit-jupiter-engine-5.6.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-api\5.6.0\f29e6318333d2303ce4965c9819cfad08de7d1e5\junit-jupiter-api-5.6.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\junit\junit\4.13\e49ccba652b735c93bd6e6f59760d8254cf597dd\junit-4.13.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client-java6\1.23.0\7acbddf56c4ad04efc9d3b48fe015e6250241bf0\google-oauth-client-java6-1.23.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client\1.25.0\c9ee14e8b095b4b301b28d57755cc482b8d6f39f\google-oauth-client-1.25.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-jackson2\1.25.0\7c5c89bd4d0d34d9f1cb3396e8da6233e5074b5c\google-http-client-jackson2-1.25.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.mortbay.jetty\jetty\6.1.26\2f546e289fddd5b1fab1d4199fbb6e9ef43ee4b0\jetty-6.1.26.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.1.0\fc9dff4bb36d627bdc553de77e1f17efd790876c\apiguardian-api-1.1.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.2.0\28c11eb91f9b6d8e200631d46e20a7f407f2a046\opentest4j-1.2.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.mortbay.jetty\jetty-util\6.1.26\e5642fe0399814e1687d55a3862aa5a3417226a9\jetty-util-6.1.26.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.mortbay.jetty\servlet-api\2.5-20081211\22bff70037e1e6fa7e6413149489552ee2064702\servlet-api-2.5-20081211.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client\1.25.0\5fb16523c393bfe0210c29db44742bd308311841\google-http-client-1.25.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.9.6\4e393793c37c77e042ccc7be5a914ae39251b365\jackson-core-2.9.6.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.5\1603dfd56ebcd583ccdf337b6c3984ac55d89e58\httpclient-4.5.5.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\com.google.j2objc\j2objc-annotations\1.1\ed28ded51a8b1c6b112568def5f4b455e6809019\j2objc-annotations-1.1.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.9\a86ce739e5a7175b4b234c290a00a5fdb80957a0\httpcore-4.4.9.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.2\4bfc12adfe4842bf07b657f0369c4cb522955686\commons-logging-1.2.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.10\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\commons-codec-1.10.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-console\1.1.0\1ea376db54ab4ec0018c5e99d414e1c7c034387\junit-platform-console-1.1.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-launcher\1.1.0\ba098edde4e59cacd9225e238ea3ad9c946684ab\junit-platform-launcher-1.1.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.1.0\2596bd4d909e7ea8d029272db4338075445d731b\junit-platform-engine-1.1.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.1.0\d6aa21029f9cedfb4cc8a9e9efc0bd97987205b8\junit-platform-commons-1.1.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.0.0\3ef5276905e36f4d8055fe3cb0bdcc7503ffc85d\apiguardian-api-1.0.0.jar;C:\Users\N-PC-P1\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.0.0\6f09c598e9ff64bf0ce2fa7e7de49a99ba83c0b4\opentest4j-1.0.0.jar"/>
-<property name="java.class.version" value="52.0"/>
-<property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\endorsed"/>
-<property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
-<property name="java.home" value="C:\Program Files\Java\jdk1.8.0_241\jre"/>
-<property name="java.io.tmpdir" value="C:\Users\N-PC-P1\AppData\Local\Temp\"/>
-<property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_241\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_241/bin/server;C:/Program Files/Java/jre1.8.0_241/bin;C:/Program Files/Java/jre1.8.0_241/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\N-PC-P1\AppData\Local\Microsoft\WindowsApps;C:\adb;C:\Program Files\PuTTY\;C:\mingw\mingw64\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\N-PC-P1\AppData\Local\Microsoft\WindowsApps;;C:\Windows\system32;;."/>
+<property name="java.class.path" value="C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\test;C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\resources\test;C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main;C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\resources\main;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.apis\google-api-services-drive\v3-rev154-1.25.0\b840aeb45c31b97e28f365667f93bbd86fd8790d\google-api-services-drive-v3-rev154-1.25.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.api-client\google-api-client\1.25.0\e7ff725e89ff5dcbed107be1a24e8102ae2441ee\google-api-client-1.25.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client-jetty\1.23.0\e0deaf34371e9ca09f9a04bcbaa854243283cae4\google-oauth-client-jetty-1.23.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\21.0\3a3d111be1be1b745edfa7d91678a12d7ed38709\guava-21.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.vintage\junit-vintage-engine\5.6.0\a8e5f7ae69043582a5ab05bdaa62ba4406f403f0\junit-vintage-engine-5.6.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.6.0\a3a6ec96c010875444b3ca31828108093758ec00\junit-platform-engine-1.6.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.6.0\b0a75795cf03841d4f9cc54099557baffc11c727\junit-platform-commons-1.6.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-engine\5.6.0\83c9e737f6015d9e00029b9b1d51e952a884b8f9\junit-jupiter-engine-5.6.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-api\5.6.0\f29e6318333d2303ce4965c9819cfad08de7d1e5\junit-jupiter-api-5.6.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\junit\junit\4.13\e49ccba652b735c93bd6e6f59760d8254cf597dd\junit-4.13.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client-java6\1.23.0\7acbddf56c4ad04efc9d3b48fe015e6250241bf0\google-oauth-client-java6-1.23.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client\1.25.0\c9ee14e8b095b4b301b28d57755cc482b8d6f39f\google-oauth-client-1.25.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-jackson2\1.25.0\7c5c89bd4d0d34d9f1cb3396e8da6233e5074b5c\google-http-client-jackson2-1.25.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.mortbay.jetty\jetty\6.1.26\2f546e289fddd5b1fab1d4199fbb6e9ef43ee4b0\jetty-6.1.26.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.1.0\fc9dff4bb36d627bdc553de77e1f17efd790876c\apiguardian-api-1.1.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.2.0\28c11eb91f9b6d8e200631d46e20a7f407f2a046\opentest4j-1.2.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.mortbay.jetty\jetty-util\6.1.26\e5642fe0399814e1687d55a3862aa5a3417226a9\jetty-util-6.1.26.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.mortbay.jetty\servlet-api\2.5-20081211\22bff70037e1e6fa7e6413149489552ee2064702\servlet-api-2.5-20081211.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client\1.25.0\5fb16523c393bfe0210c29db44742bd308311841\google-http-client-1.25.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.9.6\4e393793c37c77e042ccc7be5a914ae39251b365\jackson-core-2.9.6.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.5\1603dfd56ebcd583ccdf337b6c3984ac55d89e58\httpclient-4.5.5.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\com.google.j2objc\j2objc-annotations\1.1\ed28ded51a8b1c6b112568def5f4b455e6809019\j2objc-annotations-1.1.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.9\a86ce739e5a7175b4b234c290a00a5fdb80957a0\httpcore-4.4.9.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.2\4bfc12adfe4842bf07b657f0369c4cb522955686\commons-logging-1.2.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.10\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\commons-codec-1.10.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-console\1.1.0\1ea376db54ab4ec0018c5e99d414e1c7c034387\junit-platform-console-1.1.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-launcher\1.1.0\ba098edde4e59cacd9225e238ea3ad9c946684ab\junit-platform-launcher-1.1.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.1.0\2596bd4d909e7ea8d029272db4338075445d731b\junit-platform-engine-1.1.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.1.0\d6aa21029f9cedfb4cc8a9e9efc0bd97987205b8\junit-platform-commons-1.1.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.0.0\3ef5276905e36f4d8055fe3cb0bdcc7503ffc85d\apiguardian-api-1.0.0.jar;C:\Users\nicol\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.0.0\6f09c598e9ff64bf0ce2fa7e7de49a99ba83c0b4\opentest4j-1.0.0.jar"/>
+<property name="java.class.version" value="57.0"/>
+<property name="java.home" value="C:\Program Files\Java\jdk-13.0.2"/>
+<property name="java.io.tmpdir" value="C:\Users\nicol\AppData\Local\Temp\"/>
+<property name="java.library.path" value="C:\Program Files\Java\jdk-13.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk-13.0.2/bin/server;C:/Program Files/Java/jdk-13.0.2/bin;C:\Gradle\gradle-6.3\bin;C:\Program Files\Python38\;C:\MinGW\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Git\cmd;C:\Users\nicol\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Docker Toolbox;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.1.1\bin;;C:\WINDOWS\system32;;."/>
 <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-<property name="java.runtime.version" value="1.8.0_241-b07"/>
+<property name="java.runtime.version" value="13.0.2+8"/>
 <property name="java.specification.name" value="Java Platform API Specification"/>
 <property name="java.specification.vendor" value="Oracle Corporation"/>
-<property name="java.specification.version" value="1.8"/>
+<property name="java.specification.version" value="13"/>
 <property name="java.vendor" value="Oracle Corporation"/>
-<property name="java.vendor.url" value="http://java.oracle.com/"/>
-<property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
-<property name="java.version" value="1.8.0_241"/>
-<property name="java.vm.info" value="mixed mode"/>
+<property name="java.vendor.url" value="https://java.oracle.com/"/>
+<property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+<property name="java.version" value="13.0.2"/>
+<property name="java.version.date" value="2020-01-14"/>
+<property name="java.vm.compressedOopsMode" value="Zero based"/>
+<property name="java.vm.info" value="mixed mode, sharing"/>
 <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
 <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
 <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-<property name="java.vm.specification.version" value="1.8"/>
+<property name="java.vm.specification.version" value="13"/>
 <property name="java.vm.vendor" value="Oracle Corporation"/>
-<property name="java.vm.version" value="25.241-b07"/>
+<property name="java.vm.version" value="13.0.2+8"/>
+<property name="jdk.debug" value="release"/>
 <property name="line.separator" value="
 "/>
 <property name="os.arch" value="amd64"/>
@@ -37,51 +34,49 @@
 <property name="os.version" value="10.0"/>
 <property name="path.separator" value=";"/>
 <property name="sun.arch.data.model" value="64"/>
-<property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_241\jre\classes"/>
-<property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\bin"/>
+<property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-13.0.2\bin"/>
 <property name="sun.cpu.endian" value="little"/>
 <property name="sun.cpu.isalist" value="amd64"/>
-<property name="sun.desktop" value="windows"/>
 <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-<property name="sun.java.command" value="org.junit.platform.console.ConsoleLauncher --details NONE --scan-class-path C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\classes\java\main;C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\resources\main;C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\classes\java\test;C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\resources\test -n ^.*Tests?$ -e junit-jupiter --reports-dir C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie\build\test-results\junit-platform"/>
+<property name="sun.java.command" value="org.junit.platform.console.ConsoleLauncher --details NONE --scan-class-path C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\main;C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\resources\main;C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\classes\java\test;C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\resources\test -n ^.*Tests?$ -e junit-jupiter --reports-dir C:\Users\nicol\Documents\Diffie\progetto1920-diffie\build\test-results\junit-platform"/>
 <property name="sun.java.launcher" value="SUN_STANDARD"/>
 <property name="sun.jnu.encoding" value="Cp1252"/>
 <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
 <property name="sun.os.patch.level" value=""/>
-<property name="user.country" value="GB"/>
-<property name="user.dir" value="C:\Users\N-PC-P1\Desktop\softeng\progetto1920-diffie"/>
-<property name="user.home" value="C:\Users\N-PC-P1"/>
+<property name="user.country" value="US"/>
+<property name="user.dir" value="C:\Users\nicol\Documents\Diffie\progetto1920-diffie"/>
+<property name="user.home" value="C:\Users\nicol"/>
 <property name="user.language" value="en"/>
-<property name="user.name" value="N-PC-P1"/>
+<property name="user.name" value="nicol"/>
 <property name="user.script" value=""/>
 <property name="user.timezone" value="Europe/Berlin"/>
 <property name="user.variant" value=""/>
 </properties>
-<testcase name="boardDifferentPositionDifferentPieceTest()" classname="it.uniba.chess.test.BoardTest" time="0.021">
+<testcase name="boardDifferentPositionDifferentPieceTest()" classname="it.uniba.chess.test.BoardTest" time="0.033">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.BoardTest]/[method:boardDifferentPositionDifferentPieceTest()]
 display-name: Check comparison with a different position (different piece)
 ]]></system-out>
 </testcase>
-<testcase name="boardsameReferenceTest()" classname="it.uniba.chess.test.BoardTest" time="0.002">
+<testcase name="boardsameReferenceTest()" classname="it.uniba.chess.test.BoardTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.BoardTest]/[method:boardsameReferenceTest()]
 display-name: Check if a board is equal to itself
 ]]></system-out>
 </testcase>
-<testcase name="boardHashCodeTest()" classname="it.uniba.chess.test.BoardTest" time="0.001">
+<testcase name="boardHashCodeTest()" classname="it.uniba.chess.test.BoardTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.BoardTest]/[method:boardHashCodeTest()]
 display-name: Check hashCode comparison
 ]]></system-out>
 </testcase>
-<testcase name="boardOutOfBoundFileTest()" classname="it.uniba.chess.test.BoardTest" time="0.001">
+<testcase name="boardOutOfBoundFileTest()" classname="it.uniba.chess.test.BoardTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.BoardTest]/[method:boardOutOfBoundFileTest()]
 display-name: Check that an out of bounds file is not acceptable
 ]]></system-out>
 </testcase>
-<testcase name="boardDifferentPositionRankEdgeTest()" classname="it.uniba.chess.test.BoardTest" time="0.001">
+<testcase name="boardDifferentPositionRankEdgeTest()" classname="it.uniba.chess.test.BoardTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.BoardTest]/[method:boardDifferentPositionRankEdgeTest()]
 display-name: Check comparison with a different position (edge of rank)
@@ -99,7 +94,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.BoardTest]/[method:
 display-name: Check comparison with different classes
 ]]></system-out>
 </testcase>
-<testcase name="pieceDifferentClassTest()" classname="it.uniba.chess.pieces.test.PieceTest" time="0.001">
+<testcase name="pieceDifferentClassTest()" classname="it.uniba.chess.pieces.test.PieceTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.pieces.test.PieceTest]/[method:pieceDifferentClassTest()]
 display-name: Check comparison with different class
@@ -123,7 +118,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.pieces.test.PieceTest]/[
 display-name: Check if a piece is equal to itself
 ]]></system-out>
 </testcase>
-<testcase name="pieceHashCodeTest()" classname="it.uniba.chess.pieces.test.PieceTest" time="0.001">
+<testcase name="pieceHashCodeTest()" classname="it.uniba.chess.pieces.test.PieceTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.pieces.test.PieceTest]/[method:pieceHashCodeTest()]
 display-name: Check hashCode comparison
@@ -135,13 +130,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.pieces.test.PieceTest]/[
 display-name: Check that a white Rook is not a black Rook
 ]]></system-out>
 </testcase>
-<testcase name="blackKingDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.007">
+<testcase name="blackKingDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.011">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackKingDisambiguationErrorTest()]
 display-name: Black King disambiguation
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackMovementwithDifferentFileTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.003">
+<testcase name="rookBlackMovementwithDifferentFileTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackMovementwithDifferentFileTest()]
 display-name: Check black rook movement when file disambiguation is passed but is different from the final file
@@ -153,19 +148,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Queen movement
 ]]></system-out>
 </testcase>
-<testcase name="rookWhiteMovementWithDifferentRankNoRookErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhiteMovementWithDifferentRankNoRookErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhiteMovementWithDifferentRankNoRookErrorTest()]
 display-name: Check white rook movement when rank disambiguation is passed but there is no Rook there
 ]]></system-out>
 </testcase>
-<testcase name="whiteKingMoveDefendedByPawnsTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="whiteKingMoveDefendedByPawnsTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whiteKingMoveDefendedByPawnsTest()]
 display-name: White King can't move because there are 2 pawns defending
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackMovementwithFileTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackMovementwithFileTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackMovementwithFileTest()]
 display-name: Check black rook movement when file disambiguation is passed
@@ -177,7 +172,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: White Rook no2 but final square is occupied
 ]]></system-out>
 </testcase>
-<testcase name="blackKingCaptureDefendedByKnightTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="blackKingCaptureDefendedByKnightTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackKingCaptureDefendedByKnightTest()]
 display-name: Black King can't capture that Rook because is protected by a knight
@@ -189,7 +184,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white knight movement
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackMovementwithDifferentRankNoRookErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="rookBlackMovementwithDifferentRankNoRookErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackMovementwithDifferentRankNoRookErrorTest()]
 display-name: Check black rook movement when rank disambiguation is passed but there is no Rook there
@@ -201,7 +196,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: White King can't capture that Rook because is protected by a knight
 ]]></system-out>
 </testcase>
-<testcase name="rookWhiteMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="rookWhiteMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhiteMovementTest()]
 display-name: Check white Rook movement
@@ -225,13 +220,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Bishop movement when wrong rank disambiguation is passed
 ]]></system-out>
 </testcase>
-<testcase name="blackRooksWithYDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="blackRooksWithYDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackRooksWithYDisambiguationErrorTest()]
 display-name: two Black Rooks One File
 ]]></system-out>
 </testcase>
-<testcase name="kingBlackMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="kingBlackMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:kingBlackMovementTest()]
 display-name: Check black King movement
@@ -243,13 +238,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Rook capture
 ]]></system-out>
 </testcase>
-<testcase name="kingBlackCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="kingBlackCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:kingBlackCaptureTest()]
 display-name: Check black King capture
 ]]></system-out>
 </testcase>
-<testcase name="blackRooksWithXDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="blackRooksWithXDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackRooksWithXDisambiguationErrorTest()]
 display-name: two Black Rooks One Rank
@@ -261,13 +256,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white rook movement when file disambiguation is passed but is different from the final file
 ]]></system-out>
 </testcase>
-<testcase name="blackRooksErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="blackRooksErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackRooksErrorTest()]
 display-name: two Black Rooks
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackPieceInbetweenUpperErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="rookBlackPieceInbetweenUpperErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackPieceInbetweenUpperErrorTest()]
 display-name: Black Rook no2 but final square is occupied
@@ -279,13 +274,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: White King can't capture that Rook because is protected by a King
 ]]></system-out>
 </testcase>
-<testcase name="queenBlackDiagonalMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="queenBlackDiagonalMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:queenBlackDiagonalMovementTest()]
 display-name: Check black Queen movement
 ]]></system-out>
 </testcase>
-<testcase name="rookWhitePieceInbetweenEasternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhitePieceInbetweenEasternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhitePieceInbetweenEasternErrorTest()]
 display-name: White Rook no3 but final square is occupied
@@ -297,19 +292,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check printing of moves
 ]]></system-out>
 </testcase>
-<testcase name="helpMenuTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="helpMenuTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:helpMenuTest()]
 display-name: Test help menu
 ]]></system-out>
 </testcase>
-<testcase name="knightBlackMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="knightBlackMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:knightBlackMovementTest()]
 display-name: Check black knight movement
 ]]></system-out>
 </testcase>
-<testcase name="bishopBlackMovementwithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="bishopBlackMovementwithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:bishopBlackMovementwithRankTest()]
 display-name: Check black Bishop movement when rank disambiguation is passed
@@ -321,19 +316,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: east Check test with white
 ]]></system-out>
 </testcase>
-<testcase name="rookWhiteMovementWithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhiteMovementWithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhiteMovementWithRankTest()]
 display-name: Check white rook movement when rank disambiguation is passed
 ]]></system-out>
 </testcase>
-<testcase name="whitePinTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="whitePinTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whitePinTest()]
 display-name: White Bishop puts his king in check thus it's illegal move
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackPieceInbetweenEasternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackPieceInbetweenEasternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackPieceInbetweenEasternErrorTest()]
 display-name: Black Rook no2 but final square is occupied
@@ -345,19 +340,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Bishop movement
 ]]></system-out>
 </testcase>
-<testcase name="rookWhiteMovementWithDifferentFileErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhiteMovementWithDifferentFileErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhiteMovementWithDifferentFileErrorTest()]
 display-name: Check white rook movement when file disambiguation is passed but there is a piece inbetween
 ]]></system-out>
 </testcase>
-<testcase name="inactiveShortCastlingTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="inactiveShortCastlingTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:inactiveShortCastlingTest()]
 display-name: 0-0 but game is inactive
 ]]></system-out>
 </testcase>
-<testcase name="bishopBlackMovementwithWrongFileTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="bishopBlackMovementwithWrongFileTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:bishopBlackMovementwithWrongFileTest()]
 display-name: Check black Bishop movement when wrong file disambiguation is passed
@@ -375,61 +370,61 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check black knight movement
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackMovementwithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="rookBlackMovementwithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackMovementwithRankTest()]
 display-name: Check black rook movement when rank disambiguation is passed
 ]]></system-out>
 </testcase>
-<testcase name="knightWhiteMovementWithOneRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.005">
+<testcase name="knightWhiteMovementWithOneRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:knightWhiteMovementWithOneRankTest()]
 display-name: Check white knight movement
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackCaptureTest()]
 display-name: Check black Rook capture
 ]]></system-out>
 </testcase>
-<testcase name="itIsNotABlackRookYErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="itIsNotABlackRookYErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:itIsNotABlackRookYErrorTest()]
 display-name: There is a black piece but it's not a rook
 ]]></system-out>
 </testcase>
-<testcase name="whiteRooksErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.006">
+<testcase name="whiteRooksErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whiteRooksErrorTest()]
 display-name: Two White Rooks
 ]]></system-out>
 </testcase>
-<testcase name="whiteKingVsBlackKingCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="whiteKingVsBlackKingCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whiteKingVsBlackKingCaptureTest()]
 display-name: White King can't capture a White Rook
 ]]></system-out>
 </testcase>
-<testcase name="rookWhiteMovementWithDifferentRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhiteMovementWithDifferentRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.004">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhiteMovementWithDifferentRankTest()]
 display-name: Check white rook movement when rank disambiguation is passed but is different from the final rank
 ]]></system-out>
 </testcase>
-<testcase name="itIsNotABlackRookXErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="itIsNotABlackRookXErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:itIsNotABlackRookXErrorTest()]
 display-name: There is a black piece but it's not a rook
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackPieceInbetweeWesternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackPieceInbetweeWesternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackPieceInbetweeWesternErrorTest()]
 display-name: Black Rook no3 but final square is occupied
 ]]></system-out>
 </testcase>
-<testcase name="rookWhitePieceInbetweenLowerErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhitePieceInbetweenLowerErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhitePieceInbetweenLowerErrorTest()]
 display-name: White Rook no1 but final square is occupied
@@ -447,13 +442,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check 'board' command with active game
 ]]></system-out>
 </testcase>
-<testcase name="rookWhitePieceInbetweenWesternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhitePieceInbetweenWesternErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhitePieceInbetweenWesternErrorTest()]
 display-name: White Rook no2 but final square is occupied
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackPieceInbetweenLowerErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackPieceInbetweenLowerErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackPieceInbetweenLowerErrorTest()]
 display-name: Black Rook no1 but final square is occupied
@@ -471,7 +466,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: no black rooks in this rank
 ]]></system-out>
 </testcase>
-<testcase name="noBlackRooksYTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="noBlackRooksYTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:noBlackRooksYTest()]
 display-name: no black rooks in this rank
@@ -483,13 +478,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white knight movement
 ]]></system-out>
 </testcase>
-<testcase name="blackKingCaptureDefendedByKingTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="blackKingCaptureDefendedByKingTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackKingCaptureDefendedByKingTest()]
 display-name: Black King can't capture that Rook because is protected by a King
 ]]></system-out>
 </testcase>
-<testcase name="knightBlackMovementWithOneRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="knightBlackMovementWithOneRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:knightBlackMovementWithOneRankTest()]
 display-name: Check black knight movement
@@ -507,19 +502,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check black Queen movement
 ]]></system-out>
 </testcase>
-<testcase name="itIsNotAWhiteRookYErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="itIsNotAWhiteRookYErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:itIsNotAWhiteRookYErrorTest()]
 display-name: There is a white piece but it's not a rook
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackMovementwithDifferentFileErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackMovementwithDifferentFileErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackMovementwithDifferentFileErrorTest()]
 display-name: Check black rook movement when file disambiguation is passed but there is a piece inbetween
 ]]></system-out>
 </testcase>
-<testcase name="itIsNotAWhiteRookXErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="itIsNotAWhiteRookXErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:itIsNotAWhiteRookXErrorTest()]
 display-name: There is a white piece but it's not a rook
@@ -531,13 +526,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: White King can't capture that Rook because is protected by a pawn
 ]]></system-out>
 </testcase>
-<testcase name="grammaticallyWrongMoveTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="grammaticallyWrongMoveTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:grammaticallyWrongMoveTest()]
 display-name: Test grammatically wrong move
 ]]></system-out>
 </testcase>
-<testcase name="rookWhiteMovementWithDifferentFileNoRookErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookWhiteMovementWithDifferentFileNoRookErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookWhiteMovementWithDifferentFileNoRookErrorTest()]
 display-name: Check white rook movement when file disambiguation is passed but there is no Rook there
@@ -561,7 +556,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check black rook movement when file disambiguation is passed but is different from the final file no2
 ]]></system-out>
 </testcase>
-<testcase name="queenBlackIllegalMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="queenBlackIllegalMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:queenBlackIllegalMovementTest()]
 display-name: Check black Queen movement
@@ -585,7 +580,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white knight movement
 ]]></system-out>
 </testcase>
-<testcase name="knightBlackIllegalMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="knightBlackIllegalMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.004">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:knightBlackIllegalMovementTest()]
 display-name: Check black Knight movement
@@ -597,13 +592,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check 'board' command with inactive game
 ]]></system-out>
 </testcase>
-<testcase name="rookBlackMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="rookBlackMovementTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:rookBlackMovementTest()]
 display-name: Check black Rook movement
 ]]></system-out>
 </testcase>
-<testcase name="pawnBlackCaptureNormalOKTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
+<testcase name="pawnBlackCaptureNormalOKTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:pawnBlackCaptureNormalOKTest()]
 display-name: Check knight (generic) capture
@@ -615,7 +610,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Queen movement
 ]]></system-out>
 </testcase>
-<testcase name="capturesPrintTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="capturesPrintTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:capturesPrintTest()]
 display-name: Check captures (Scandinavian defense)
@@ -627,13 +622,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: no white rooks in this rank
 ]]></system-out>
 </testcase>
-<testcase name="noWhiteRooksYTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="noWhiteRooksYTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:noWhiteRooksYTest()]
 display-name: no white rooks in this rank
 ]]></system-out>
 </testcase>
-<testcase name="queenBlackIllegalMoveTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
+<testcase name="queenBlackIllegalMoveTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:queenBlackIllegalMoveTest()]
 display-name: More than one black Queen, illegal move
@@ -657,7 +652,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check black rook movement when rank disambiguation is passed but is different from the final rank no2
 ]]></system-out>
 </testcase>
-<testcase name="whiteRooksWithYDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="whiteRooksWithYDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whiteRooksWithYDisambiguationErrorTest()]
 display-name: Two White Rooks One File
@@ -669,13 +664,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Queen movement
 ]]></system-out>
 </testcase>
-<testcase name="whiteRooksWithXDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="whiteRooksWithXDisambiguationErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whiteRooksWithXDisambiguationErrorTest()]
 display-name: Two White Rooks One Rank
 ]]></system-out>
 </testcase>
-<testcase name="blackPinTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="blackPinTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:blackPinTest()]
 display-name: Black Bishop puts his king in check thus it's illegal move
@@ -687,7 +682,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Bishop movement when file disambiguation is passed
 ]]></system-out>
 </testcase>
-<testcase name="whitePinCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="whitePinCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:whitePinCaptureTest()]
 display-name: White Bishop puts his king in check while capturing thus it's illegal move
@@ -705,7 +700,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white Bishop movement when wrong file disambiguation is passed
 ]]></system-out>
 </testcase>
-<testcase name="knightBlackMovementWithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="knightBlackMovementWithRankTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:knightBlackMovementWithRankTest()]
 display-name: Check black knight movement
@@ -759,13 +754,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: There is a rook but is white and not black
 ]]></system-out>
 </testcase>
-<testcase name="wrongRookWhiteColorXErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="wrongRookWhiteColorXErrorTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:wrongRookWhiteColorXErrorTest()]
 display-name: There is a rook but is black and not white
 ]]></system-out>
 </testcase>
-<testcase name="kingWhiteCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="kingWhiteCaptureTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:kingWhiteCaptureTest()]
 display-name: Check white King capture
@@ -789,7 +784,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: Check white rook movement when rank disambiguation is passed but is different from the final rank no2
 ]]></system-out>
 </testcase>
-<testcase name="pawnIllegalMoveTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0.001">
+<testcase name="pawnIllegalMoveTest()" classname="it.uniba.chess.test.InputValidatorTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]/[method:pawnIllegalMoveTest()]
 display-name: Test illegal pawn move
@@ -801,7 +796,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.InputValidatorTest]
 display-name: White King disambiguation
 ]]></system-out>
 </testcase>
-<testcase name="unsuccessfullQuitCommandTest()" classname="it.uniba.main.test.AppMainTest" time="0.006">
+<testcase name="unsuccessfullQuitCommandTest()" classname="it.uniba.main.test.AppMainTest" time="0.017">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.main.test.AppMainTest]/[method:unsuccessfullQuitCommandTest()]
 display-name: Check handling of illegal move
@@ -813,7 +808,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.main.test.AppMainTest]/[method
 display-name: Check successful re-playing
 ]]></system-out>
 </testcase>
-<testcase name="unsuccessfulQuitCommandTest()" classname="it.uniba.main.test.AppMainTest" time="0.001">
+<testcase name="unsuccessfulQuitCommandTest()" classname="it.uniba.main.test.AppMainTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.main.test.AppMainTest]/[method:unsuccessfulQuitCommandTest()]
 display-name: Test unsuccessful quit after start
@@ -825,7 +820,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.main.test.AppMainTest]/[method
 display-name: Check successful quit after start
 ]]></system-out>
 </testcase>
-<testcase name="unsuccessfulRePlayCommandTest()" classname="it.uniba.main.test.AppMainTest" time="0.002">
+<testcase name="unsuccessfulRePlayCommandTest()" classname="it.uniba.main.test.AppMainTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.main.test.AppMainTest]/[method:unsuccessfulRePlayCommandTest()]
 display-name: Check successful re-playing
@@ -843,7 +838,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle with white but g1 is occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithc8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithc8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithc8OccupiedBlackTest()]
 display-name: long castle with black but c8 is occupied
@@ -861,19 +856,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: long castle but but black king's square is not occupied
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleNotOccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleNotOccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleNotOccupiedWhiteTest()]
 display-name: short castle but black king's square is not occupied
 ]]></system-out>
 </testcase>
-<testcase name="castleShortWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0">
+<testcase name="castleShortWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:castleShortWhiteWithRTest()]
 display-name: Check successful white short castle with Rg1
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithWrongKingColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleWithWrongKingColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithWrongKingColorWhiteTest()]
 display-name: short castle Wrong Color, is Black and not White
@@ -891,13 +886,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: Check successful black long castle with Rc8
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithb1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithb1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithb1OccupiedWhiteTest()]
 display-name: long castle with white but b1 is occupied
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithg1InCheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleWithg1InCheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithg1InCheckWhiteTest()]
 display-name: short castle with white but g1 is check
@@ -915,19 +910,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle with white but f1 is in check
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithf1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleWithf1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithf1OccupiedWhiteTest()]
 display-name: short castle with white but f1 is occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithb8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithb8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithb8OccupiedBlackTest()]
 display-name: long castle with black but b8 is occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithMovedKingBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithMovedKingBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithMovedKingBlackTest()]
 display-name: long castle with black but the king was previously moved
@@ -945,19 +940,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: long castle Wrong rook, is White and not Black
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithMovedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithMovedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithMovedRookBlackTest()]
 display-name: long castle with black but the rook was previously moved
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithg7OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
+<testcase name="shortCastleWithg7OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithg7OccupiedBlackTest()]
 display-name: short castle with black but g8 is occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleBlackKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleBlackKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleBlackKingInCheckTest()]
 display-name: long castle but black king is in check so is unsuccessful
@@ -987,13 +982,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle Wrong rook, is White and not Black
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithd1InCheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithd1InCheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithd1InCheckWhiteTest()]
 display-name: long castle with white but d1 is check
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleBlackKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0">
+<testcase name="shortCastleBlackKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleBlackKingInCheckTest()]
 display-name: short castle but black king is in check so is unsuccessful
@@ -1005,7 +1000,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle but white king is in check so is unsuccessful
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithMovedRookTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithMovedRookTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithMovedRookTest()]
 display-name: long castle with white but the rook was previously moved
@@ -1029,7 +1024,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle Wrong Color, is White and not Black
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithd8inCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithd8inCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithd8inCheckBlackTest()]
 display-name: long castle with black but d8 is in check
@@ -1041,31 +1036,31 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: Check successful white long castle
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithc8InCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithc8InCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithc8InCheckBlackTest()]
 display-name: long castle with black but c8 is in check
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithc1CheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithc1CheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithc1CheckWhiteTest()]
 display-name: long castle with white but c1 is in check
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithf7OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleWithf7OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithf7OccupiedBlackTest()]
 display-name: short castle with black but f8 is occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithMovedKingWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
+<testcase name="longCastleWithMovedKingWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithMovedKingWhiteTest()]
 display-name: long castle  with white but the king was previously moved
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithMovedRookTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleWithMovedRookTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithMovedRookTest()]
 display-name: short castle with white but the rook was previously moved
@@ -1077,7 +1072,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: long castle Wrong rook, is Black and not White
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleNotOccupiedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleNotOccupiedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleNotOccupiedRookBlackTest()]
 display-name: short castle but but black rook's square is not occupied
@@ -1089,31 +1084,31 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: Check successful black short castle with Rg8
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithMovedKingWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleWithMovedKingWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithMovedKingWhiteWithRTest()]
 display-name: short castle with white but the king was previously moved with Rg1
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithWrongPieceRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
+<testcase name="longCastleWithWrongPieceRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithWrongPieceRookBlackTest()]
 display-name: long castle Wrong Piece, is a Bishop and not a Rook
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithWrongPieceBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithWrongPieceBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithWrongPieceBlackTest()]
 display-name: short castle Wrong Color, is White and not Black
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleWithWrongRookColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
+<testcase name="shortCastleWithWrongRookColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleWithWrongRookColorWhiteTest()]
 display-name: short castle Wrong rook, is Black and not White
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithWrongKingColorBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithWrongKingColorBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithWrongKingColorBlackTest()]
 display-name: Wrong Color long castle, is White and not Black
@@ -1143,7 +1138,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: long castle but but black king's square is not occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithd1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithd1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithd1OccupiedWhiteTest()]
 display-name: long castle with white but d1 is occupied
@@ -1155,7 +1150,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle Wrong Piece, is a Bishop and not a King
 ]]></system-out>
 </testcase>
-<testcase name="shortCastleNotOccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="shortCastleNotOccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:shortCastleNotOccupiedBlackTest()]
 display-name: short castle but black king's square is not occupied
@@ -1167,7 +1162,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle Wrong Color, is White and not Black
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithd8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithd8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithd8OccupiedBlackTest()]
 display-name: long castle with black but d8 is occupied
@@ -1185,7 +1180,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle but but black rook's square is not occupied
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithWrongPieceRookWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithWrongPieceRookWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithWrongPieceRookWhiteTest()]
 display-name: long castle Wrong Piece, is a Bishop and not a Rook
@@ -1197,7 +1192,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle Wrong Piece, is a Bishop and not a King
 ]]></system-out>
 </testcase>
-<testcase name="longCastleWithc1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001">
+<testcase name="longCastleWithc1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method:longCastleWithc1OccupiedWhiteTest()]
 display-name: long castle with white but c1 is occupied
@@ -1227,25 +1222,25 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.CastleTest]/[method
 display-name: short castle Wrong Piece, is a Bishop and not a Rook
 ]]></system-out>
 </testcase>
-<testcase name="pawnBlackPushOutOfBoundsTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnBlackPushOutOfBoundsTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnBlackPushOutOfBoundsTest()]
 display-name: Check out of bounds black pawn push
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureWrongPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0">
+<testcase name="pawnCaptureWrongPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureWrongPieceTest()]
 display-name: Check wrong piece trying a pawn capture
 ]]></system-out>
 </testcase>
-<testcase name="pawnEnPassantErrorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnEnPassantErrorTest()" classname="it.uniba.chess.test.PawnTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnEnPassantErrorTest()]
 display-name: Check if a string like 'e3e.p.' is accepted
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureEnPassantLateMoveTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnCaptureEnPassantLateMoveTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureEnPassantLateMoveTest()]
 display-name: Check white en-passant on non-subsequent move
@@ -1257,7 +1252,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check en-passant on doubled pawns and wrong rank
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureWhiteBehindTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnCaptureWhiteBehindTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureWhiteBehindTest()]
 display-name: Check white pawn capture behind it
@@ -1281,7 +1276,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check abs(startY - endY) > 1 normal capture
 ]]></system-out>
 </testcase>
-<testcase name="pawnTwoSquarePushWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnTwoSquarePushWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnTwoSquarePushWrongColorTest()]
 display-name: Check wrong color 2-square push
@@ -1293,7 +1288,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check doubled pawns
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureEnPassantOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnCaptureEnPassantOKTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureEnPassantOKTest()]
 display-name: Check en-passant pawn capture
@@ -1305,7 +1300,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check wrong piece trying a pawn push
 ]]></system-out>
 </testcase>
-<testcase name="pawnOneSquarePushPieceNotFoundTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnOneSquarePushPieceNotFoundTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnOneSquarePushPieceNotFoundTest()]
 display-name: Check not found 1-square push
@@ -1329,7 +1324,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check successful pawn 1-square push
 ]]></system-out>
 </testcase>
-<testcase name="pawnTwoSquarePushOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnTwoSquarePushOKTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnTwoSquarePushOKTest()]
 display-name: Check successful pawn 2-squares push
@@ -1341,19 +1336,19 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check if a string like 'xe3' is accepted
 ]]></system-out>
 </testcase>
-<testcase name="pawnCapturePieceNotFoundTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnCapturePieceNotFoundTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCapturePieceNotFoundTest()]
 display-name: Check piece not found normal capture
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureNotEnpassantTest()" classname="it.uniba.chess.test.PawnTest" time="0">
+<testcase name="pawnCaptureNotEnpassantTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureNotEnpassantTest()]
 display-name: Check normal capture with en-passant conditions
 ]]></system-out>
 </testcase>
-<testcase name="pawnPushAbsolutePinnedTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnPushAbsolutePinnedTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnPushAbsolutePinnedTest()]
 display-name: Check absolute-pinned pawn push
@@ -1365,7 +1360,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check if a string like 'e3xd4' is accepted
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureEnPassantLatePawnPushEdgeCaseMoveTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnCaptureEnPassantLatePawnPushEdgeCaseMoveTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureEnPassantLatePawnPushEdgeCaseMoveTest()]
 display-name: Check white en-passant on non-subsequent move with 2-square black push edge case
@@ -1377,7 +1372,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check en-passant pawn capture with e.p. grammar with black
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureEnPassantPinnedTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnCaptureEnPassantPinnedTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureEnPassantPinnedTest()]
 display-name: Check absolute-pinned en-passant capture
@@ -1389,7 +1384,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check en-passant on own color
 ]]></system-out>
 </testcase>
-<testcase name="pawnPushOccupiedTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnPushOccupiedTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnPushOccupiedTest()]
 display-name: Check pawn push when it is already occupied
@@ -1413,7 +1408,7 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: Check black normal pawn capture
 ]]></system-out>
 </testcase>
-<testcase name="pawnPushBehindWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnPushBehindWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnPushBehindWrongColorTest()]
 display-name: Check correct color pawn behind wrong color pawn
@@ -1437,13 +1432,13 @@ unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:p
 display-name: no x in pawn capture
 ]]></system-out>
 </testcase>
-<testcase name="pawnWhiteCaptureNormalOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
+<testcase name="pawnWhiteCaptureNormalOKTest()" classname="it.uniba.chess.test.PawnTest" time="0">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnWhiteCaptureNormalOKTest()]
 display-name: Check white normal pawn capture
 ]]></system-out>
 </testcase>
-<testcase name="pawnCaptureEnPassantWithWhiteTest()" classname="it.uniba.chess.test.PawnTest" time="0">
+<testcase name="pawnCaptureEnPassantWithWhiteTest()" classname="it.uniba.chess.test.PawnTest" time="0.001">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:it.uniba.chess.test.PawnTest]/[method:pawnCaptureEnPassantWithWhiteTest()]
 display-name: Check en-passant pawn capture with e.p. grammar
