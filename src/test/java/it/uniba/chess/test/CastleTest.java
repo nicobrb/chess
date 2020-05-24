@@ -38,7 +38,61 @@ public class CastleTest {
 
 		System.setOut(stdOut);
 	}
+	@Test
+	@DisplayName("Check successful white short castle with Rg1")
+	public void castleShortWhiteWithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		LinkedList<Square> expectedPosition = new LinkedList<>();
+		
+		//unmoved white rook
+		startingPosition.add(new Square(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('h'), new Rook(ChessColor.WHITE)));
 	
+		Rook castledRook = new Rook(ChessColor.WHITE);
+		castledRook.setHasMoved();
+		
+		King castledKing = new King(ChessColor.WHITE);
+		castledKing.setHasMoved();
+		
+		expectedPosition.add(new Square(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('f'), castledRook));
+		
+		Board expectedBoard = new Board(expectedPosition);
+		expectedBoard.getSquare(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('g')).setOccupied(true);
+		expectedBoard.getSquare(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('g')).setPiece(castledKing);
+		expectedBoard.getSquare(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('e')).setOccupied(false);
+		
+		Game.testGame(startingPosition);
+		InputValidator.parseCommand("Rg1");
+		assertEquals(expectedBoard, Game.getBoard());
+	}
+	
+	@Test
+	@DisplayName("Check successful black short castle with Rg8")
+	public void castleShortBlackwithRmoveTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		LinkedList<Square> expectedPosition = new LinkedList<>();
+		
+		//unmoved white rook
+		startingPosition.add(new Square(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('h'), new Rook(ChessColor.BLACK)));
+		
+		
+		Rook castledRook = new Rook(ChessColor.BLACK);
+		castledRook.setHasMoved();
+		
+		King castledKing = new King(ChessColor.BLACK);
+		castledKing.setHasMoved();
+		
+		expectedPosition.add(new Square(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('f'), castledRook));
+		
+		Board expectedBoard = new Board(expectedPosition);
+		expectedBoard.getSquare(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('g')).setOccupied(true);
+		expectedBoard.getSquare(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('g')).setPiece(castledKing);
+		expectedBoard.getSquare(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('e')).setOccupied(false);
+		
+		Game.testGame(startingPosition);
+		Game.nextTurn();
+		InputValidator.parseCommand("Rg8");
+		assertEquals(expectedBoard, Game.getBoard());
+	}
 	@Test
 	@DisplayName("Check successful white short castle")
 	public void castleShortWhiteTest() throws Exception{
@@ -159,7 +213,7 @@ public class CastleTest {
 		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("0-0"));
 	}
 	@Test
-	@DisplayName("short castle but but black king's square is not occupied")
+	@DisplayName("short castle but black king's square is not occupied")
 	public void shortCastleNotOccupiedWhiteTest() throws Exception{
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		
@@ -175,7 +229,7 @@ public class CastleTest {
 
 
 	@Test
-	@DisplayName("short castle but but black king's square is not occupied")
+	@DisplayName("short castle but black king's square is not occupied")
 	public void shortCastleNotOccupiedBlackTest() throws Exception{
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		
@@ -190,9 +244,8 @@ public class CastleTest {
 		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("0-0"));
 	}
 	
-	
 	@Test
-	@DisplayName("short castle  with white but the king was previously moved")
+	@DisplayName("short castle with white but the king was previously moved")
 	public void shortCastleWithMovedKingWhiteTest() throws Exception{
 		LinkedList<Square> startingPosition = new LinkedList<>();
 		
@@ -220,6 +273,37 @@ public class CastleTest {
 		Game.nextTurn();
 		
 		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("0-0"));
+	}
+	
+	@Test
+	@DisplayName("short castle with white but the king was previously moved with Rg1")
+	public void shortCastleWithMovedKingWhiteWithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		
+		startingPosition.add(new Square(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('h'), new Rook(ChessColor.WHITE)));
+		Game.testGame(startingPosition);
+		Game.getBoard().getSquare(0, 3).getPiece().setHasMoved();
+	
+		
+	
+		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("Rg1"));
+		
+	}
+
+
+	@Test
+	@DisplayName("short castle with black but the king was previously moved with Rg8")
+	public void shortCastleWithMovedKingBlackWithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		
+		
+		startingPosition.add(new Square(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('h'), new Rook(ChessColor.BLACK)));
+		Game.testGame(startingPosition);
+		Game.getBoard().getSquare(7, 3).getPiece().setHasMoved();
+		
+		Game.nextTurn();
+		
+		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("Rg8"));
 	}
 	
 	@Test
@@ -495,6 +579,62 @@ public class CastleTest {
 	
 	// LONG CASTLE
 	@Test
+	@DisplayName("Check successful white long castle with Rc1")
+	public void castleLongWhitewithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		LinkedList<Square> expectedPosition = new LinkedList<>();
+		
+		//unmoved white rook
+		startingPosition.add(new Square(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('a'), new Rook(ChessColor.WHITE)));
+		
+		Rook castledRook = new Rook(ChessColor.WHITE);
+		castledRook.setHasMoved();
+		
+		King castledKing = new King(ChessColor.WHITE);
+		castledKing.setHasMoved();
+		
+		expectedPosition.add(new Square(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('d'), castledRook));
+		
+		Board expectedBoard = new Board(expectedPosition);
+		expectedBoard.getSquare(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('c')).setOccupied(true);
+		expectedBoard.getSquare(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('c')).setPiece(castledKing);
+		expectedBoard.getSquare(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('e')).setOccupied(false);
+		
+		Game.testGame(startingPosition);
+		InputValidator.parseCommand("Rc1");
+		assertEquals(expectedBoard, Game.getBoard());
+	}
+	
+	
+	
+	@Test
+	@DisplayName("Check successful black long castle with Rc8")
+	public void castleLongBlackwithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		LinkedList<Square> expectedPosition = new LinkedList<>();
+		
+		//unmoved white rook
+		startingPosition.add(new Square(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('a'), new Rook(ChessColor.BLACK)));
+
+		Rook castledRook = new Rook(ChessColor.BLACK);
+		castledRook.setHasMoved();
+		
+		King castledKing = new King(ChessColor.BLACK);
+		castledKing.setHasMoved();
+		
+		expectedPosition.add(new Square(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('d'), castledRook));
+		
+		Board expectedBoard = new Board(expectedPosition);
+		expectedBoard.getSquare(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('c')).setOccupied(true);
+		expectedBoard.getSquare(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('c')).setPiece(castledKing);
+		expectedBoard.getSquare(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('e')).setOccupied(false);
+		
+		Game.testGame(startingPosition);
+		Game.nextTurn();
+		InputValidator.parseCommand("Rc8");
+		assertEquals(expectedBoard, Game.getBoard());
+	}
+	@Test
 	@DisplayName("Check successful white long castle")
 	public void castleLongWhiteTest() throws Exception{
 		LinkedList<Square> startingPosition = new LinkedList<>();
@@ -675,6 +815,37 @@ public class CastleTest {
 		Game.nextTurn();
 		
 		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("0-0-0"));
+	}
+	
+	@Test
+	@DisplayName("long castle  with white but the king was previously moved with Rc1")
+	public void longCastleWithMovedKingWhiteWithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		
+		startingPosition.add(new Square(Integer.parseInt("0"), ParseFiles.getFileIntFromChar('a'), new Rook(ChessColor.WHITE)));
+		Game.testGame(startingPosition);
+		Game.getBoard().getSquare(0, 3).getPiece().setHasMoved();
+	
+		
+	
+		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("Rc1"));
+		
+	}
+
+
+	@Test
+	@DisplayName("long castle with black but the king was previously moved with Rc8")
+	public void longCastleWithMovedKingBlackWithRTest() throws Exception{
+		LinkedList<Square> startingPosition = new LinkedList<>();
+		
+		
+		startingPosition.add(new Square(Integer.parseInt("7"), ParseFiles.getFileIntFromChar('a'), new Rook(ChessColor.BLACK)));
+		Game.testGame(startingPosition);
+		Game.getBoard().getSquare(7, 3).getPiece().setHasMoved();
+		
+		Game.nextTurn();
+		
+		assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("Rc8"));
 	}
 	
 	@Test

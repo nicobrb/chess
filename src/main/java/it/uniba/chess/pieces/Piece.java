@@ -89,7 +89,6 @@ public abstract class Piece {
 
         // Compare the data members and return accordingly
         if (this.unicode.equals(comparedPiece.unicode)
-        && this.colorPiece == comparedPiece.colorPiece
         && this.hasMoved == comparedPiece.hasMoved) {
         	return true;
         }

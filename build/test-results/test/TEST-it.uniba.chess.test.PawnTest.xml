@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="it.uniba.chess.test.PawnTest" tests="37" skipped="0" failures="0" errors="0" timestamp="2020-05-24T14:07:39" hostname="LAPTOP-6NLKKOBG" time="0.078">
+  <properties/>
+  <testcase name="pawnBlackPushOutOfBoundsTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureWrongPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnEnPassantErrorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureEnPassantLateMoveTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureEnPassantDoubledTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureWhiteBehindTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnWhitePushOutOfBoundsTest()" classname="it.uniba.chess.test.PawnTest" time="0.0"/>
+  <testcase name="pawnCaptureEnPassantWrongCapturedPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureFileTooFarTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnTwoSquarePushWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnPushDoubledOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureEnPassantOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.006"/>
+  <testcase name="pawnPushWrongPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnOneSquarePushPieceNotFoundTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnPushCaptureTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnOneSquarePushWrongPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnOneSquarePushOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnTwoSquarePushOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureErrorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCapturePieceNotFoundTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureNotEnpassantTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnPushAbsolutePinnedTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnRankDisambiguationErrorTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnCaptureEnPassantLatePawnPushEdgeCaseMoveTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnCaptureEnPassantWithBlackTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureEnPassantPinnedTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureEnPassantOwnColorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnPushOccupiedTest()" classname="it.uniba.chess.test.PawnTest" time="0.0"/>
+  <testcase name="pawnPushInFrontOfWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0.0"/>
+  <testcase name="pawnTwoSquarePushWrongPieceTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnBlackCaptureNormalOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.007"/>
+  <testcase name="pawnPushBehindWrongColorTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnTwoSquarePushPieceMovedTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnCaptureBlackBehindTest()" classname="it.uniba.chess.test.PawnTest" time="0.002"/>
+  <testcase name="pawnXCharachterMissingErrorTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <testcase name="pawnWhiteCaptureNormalOKTest()" classname="it.uniba.chess.test.PawnTest" time="0.003"/>
+  <testcase name="pawnCaptureEnPassantWithWhiteTest()" classname="it.uniba.chess.test.PawnTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

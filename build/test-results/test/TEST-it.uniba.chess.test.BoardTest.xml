@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="it.uniba.chess.test.BoardTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-05-24T14:07:38" hostname="LAPTOP-6NLKKOBG" time="0.081">
+  <properties/>
+  <testcase name="sameReferenceTest()" classname="it.uniba.chess.test.BoardTest" time="0.051"/>
+  <testcase name="differentPositionDifferentPieceTest()" classname="it.uniba.chess.test.BoardTest" time="0.005"/>
+  <testcase name="differentClassTest()" classname="it.uniba.chess.test.BoardTest" time="0.005"/>
+  <testcase name="differentPositionGenericRankTest()" classname="it.uniba.chess.test.BoardTest" time="0.002"/>
+  <testcase name="differentPositionRankEdgeTest()" classname="it.uniba.chess.test.BoardTest" time="0.001"/>
+  <testcase name="hashCodeTest()" classname="it.uniba.chess.test.BoardTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

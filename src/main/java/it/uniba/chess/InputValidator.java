@@ -43,7 +43,8 @@ public final class InputValidator {
 				Matcher regExpMatcher = regExpPattern.matcher(command);
 
 				//if the command is a grammatically correct Pawn move
-				if (regExpMatcher.matches() && Game.getGameStatus() == GameStatus.ACTIVE) {
+				if (regExpMatcher.matches() 
+					&& Game.getGameStatus() == GameStatus.ACTIVE) {
 					String pieceTypeString = regExpMatcher.group(FIRST_GROUP);
 					String startRankOrFileString = regExpMatcher.group(SECOND_GROUP);
 					String startRankString = getStartingRank(startRankOrFileString);
@@ -92,9 +93,10 @@ public final class InputValidator {
 						case "T":
 							//if we have an empty rank string, we return -1 as control;
 							startSquare = plusMovement(destSquare, startRank,
-									startFile, Rook.class, Game.getTurn());
+							startFile, Rook.class, Game.getTurn());
 							Move.pieceMoveOrCapture(Rook.class, startSquare,
-									destSquare, !isCaptureString.isEmpty());
+							destSquare, 
+							!isCaptureString.isEmpty());
 							Game.addPrintableMove(lastmove);
 							break;
 						case "D":
@@ -125,23 +127,23 @@ public final class InputValidator {
 								}
 								startSquare = isThereAKingAroundThisSquare(
 									destSquare, Game.getTurn());
-								if (isTurnKingNotInCheck(destSquare)) {
 									Move.pieceMoveOrCapture(King.class, startSquare,
 										destSquare, !isCaptureString.isEmpty());
 									Game.addPrintableMove(lastmove);
 									break;
-								}
-							}
+							} else throw new IllegalMoveException();
 						}
-					} else if (pieceTypeString.equals("")) {
-						if (startRankOrFileString.isEmpty() && isCaptureString.isEmpty()
-								&& isEnpassantString.isEmpty()) {
+					} else {
+						if (startRankOrFileString.isEmpty() 
+						&& isCaptureString.isEmpty()
+						&& isEnpassantString.isEmpty()) {
 							//this is a pawn move
 							startSquare = getPawnStartingSquareMove(destSquare);
 							Move.pawnMove(startSquare, destSquare);
 							Game.addPrintableMove(lastmove);
 
-						} else if (startRankString.isEmpty() && !startFileString.isEmpty()
+						} else if (startRankString.isEmpty() 
+								&& !startFileString.isEmpty()
 								&& !isCaptureString.isEmpty()) {
 							//this is a pawn capture (either simple or en-passant)
 							startSquare = checkPawnCapture(destSquare, startFile,
@@ -153,14 +155,12 @@ public final class InputValidator {
 						} else {
 							throw new IllegalMoveException();
 						}
-					} else { //end inner switch
-						throw new IllegalMoveException();
-					}
+					} 
 					Game.nextTurn();
 					return;
 				} else {
 					System.out.print("Comando non riconosciuto. "
-							+ "Scrivi help per la lista dei comandi.\n");
+					+ "Scrivi help per la lista dei comandi.\n");
 				}
 			}
 			//end algebraic move default case;
@@ -360,102 +360,94 @@ public final class InputValidator {
 		return "";
 	}
 
-	private static Square plusMovement(final Square finalsquare, final int startingX, final int startingY,
-	final Class<? extends Piece> pieceClassToSearch, final ChessColor wantedColor)
-	throws IllegalMoveException {
-
-		ArrayList<Square> squaresToCheck = new ArrayList<Square>();
-
-		if (finalsquare.isOccupied() && finalsquare.getPiece().getColor()
-				== wantedColor && wantedColor == Game.getTurn()) {
-			throw new IllegalMoveException();
-		}
-
-		if (startingX != -1 && startingX != finalsquare.getX()
-				&& Game.getBoard().getSquare(startingX, finalsquare.getY()).isOccupied()) {
-			if (Game.getBoard().getSquare(startingX, finalsquare.getY())
-					.getPiece().getClass() == pieceClassToSearch
-					&& Game.getBoard().getSquare(startingX, finalsquare.getY())
-					.getPiece().getColor() == wantedColor) {
-				if (finalsquare.getX() > startingX) {
-					for (int i = finalsquare.getX() - 1; i > startingX; --i) {
-						if (Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
+private static Square plusMovement(Square finalsquare, int startingX, int startingY, Class<? extends Piece> pieceClassToSearch, ChessColor wantedColor) throws IllegalMoveException {
+		
+		ArrayList<Square> squares_to_check = new ArrayList<Square>();
+		
+		if(startingX != -1 && startingX != finalsquare.getX() &&  Game.getBoard().getSquare(startingX, finalsquare.getY()).isOccupied()) {
+			if(Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getClass() == pieceClassToSearch &&
+			Game.getBoard().getSquare(startingX, finalsquare.getY()).getPiece().getColor() == wantedColor ) {
+				if(finalsquare.getX() > startingX) {
+					for(int i = finalsquare.getX()-1; i > startingX; --i) {
+						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
 							throw new IllegalMoveException();
 						}
-					}
-				} else if (finalsquare.getX() < startingX) {
-					for (int i = finalsquare.getX() + 1; i < startingX; ++i) {
-						if (Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
+					}	
+				}
+				else {
+					for(int i = finalsquare.getX()+1; i < startingX; ++i) {
+						if(Game.getBoard().getSquare(i, finalsquare.getY()).isOccupied()) {
 							throw new IllegalMoveException();
 						}
-					}
+					}	
 				}
 				return Game.getBoard().getSquare(startingX, finalsquare.getY());
-			} else {
-				throw new IllegalMoveException();
 			}
-
-		} else if (startingX != -1 && startingX == finalsquare.getX()) {
-			westCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-			eastCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-
-			if (squaresToCheck.size() > 1) {
-				throw new IllegalMoveException();
-			} else if (squaresToCheck.size() == 0) {
-				return null;
-			}
-			return squaresToCheck.get(0);
+			else throw new IllegalMoveException();
+			
 		}
-		if (startingY != -1 && startingY != finalsquare.getY()
-				&&  Game.getBoard().getSquare(finalsquare.getX(), startingY).isOccupied()) {
-
-			if (Game.getBoard().getSquare(finalsquare.getX(),
-					startingY).getPiece().getClass() == pieceClassToSearch
-					&& Game.getBoard().getSquare(finalsquare.getX(), startingY)
-					.getPiece().getColor() == wantedColor) {
-				if (finalsquare.getY() > startingY) {
-					for (int i = finalsquare.getY() - 1; i > startingY; --i) {
-						if (Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
+		else if(startingX != -1 && startingX == finalsquare.getX()) {
+			westCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+			eastCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+			
+			if(squares_to_check.size() > 1) {
+				throw new IllegalMoveException();
+			}
+			else if(squares_to_check.size() == 0)
+				return null;
+			
+			return squares_to_check.get(0);		
+		}
+		if(startingY != -1 && startingY != finalsquare.getY() &&  Game.getBoard().getSquare(finalsquare.getX(), startingY).isOccupied()) {
+			
+			if(Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getClass() == pieceClassToSearch &&
+			Game.getBoard().getSquare(finalsquare.getX(), startingY).getPiece().getColor() == wantedColor ) {
+				if(finalsquare.getY() > startingY) {
+					for(int i = finalsquare.getY()-1; i > startingY; --i) {
+						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
 							throw new IllegalMoveException();
 						}
-					}
-				} else if (finalsquare.getY() < startingY) {
-					for (int i = finalsquare.getY() + 1; i < startingY; ++i) {
-						if (Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
+					}	
+				}
+				else {
+					for(int i = finalsquare.getY()+1; i < startingY; ++i) {
+						if(Game.getBoard().getSquare(finalsquare.getX(), i).isOccupied()) {
 							throw new IllegalMoveException();
 						}
-					}
+					}	
 				}
 				return Game.getBoard().getSquare(finalsquare.getX(), startingY);
-			} else {
+			}
+			else throw new IllegalMoveException();
+			
+		}
+		else if(startingY != -1 && startingY == finalsquare.getY()){
+			northCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+			southCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+		
+			if(squares_to_check.size() > 1) {
 				throw new IllegalMoveException();
 			}
-
-		} else if (startingY != -1 && startingY == finalsquare.getY()) {
-			northCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-			southCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-
-			if (squaresToCheck.size() > 1) {
-				throw new IllegalMoveException();
-			} else if (squaresToCheck.size() == 0) {
+			else if(squares_to_check.size() == 0)
 				return null;
-			}
-			return squaresToCheck.get(0);
-		}
-
-		northCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-		southCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-		westCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-		eastCheck(finalsquare, squaresToCheck, pieceClassToSearch, wantedColor);
-
-	      //if we have more than one of this piece-colour combo
-		if (squaresToCheck.size() > 1) {
+			
+			return squares_to_check.get(0);			
+		}		
+		
+		northCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+		southCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+		westCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+		eastCheck(finalsquare, squares_to_check, pieceClassToSearch, wantedColor);
+	
+	  
+	      //if we have more than one of this piece-color combo
+		if(squares_to_check.size() > 1) {
 			throw new IllegalMoveException();
-		} else if (squaresToCheck.size() == 0) {
-			return null;
 		}
-
-		return squaresToCheck.get(0);
+		else if(squares_to_check.size() == 0)
+			return null;
+		
+		return squares_to_check.get(0);	
 	}
 
 	private static void diagonalUpperRight(final Square finalsquare, final ArrayList<Square> checksquares,
@@ -689,10 +681,8 @@ public final class InputValidator {
 	        offsetMovement(destinationSquare, 0, +1, King.class, wantedColor, squaresToCheck);
 	        offsetMovement(destinationSquare, +1, +1, King.class, wantedColor, squaresToCheck);
 
-	        if (squaresToCheck.size() > 1) {
 
-	            throw new IllegalMoveException();
-	        } else if (squaresToCheck.size() == 0) {
+	       if (squaresToCheck.size() == 0) {
 	            return null;
 	        } else {
 	            return squaresToCheck.get(0);
@@ -700,10 +690,6 @@ public final class InputValidator {
 	 }
 
 	public static boolean isTurnKingNotInCheck(final Square finalsquare) throws IllegalMoveException {
-		if (finalsquare.isOccupied() && finalsquare.getPiece().getColor() == Game.getTurn()
-		&& finalsquare.getPiece().getClass() != King.class) {
-			throw new IllegalMoveException();
-		}
 
 		return (checkFlower(finalsquare, -1, -1, Knight.class, Game.getEnemyTurn()) == null
 		&& queenIntersectionControl(finalsquare, -1, -1, Queen.class, Game.getEnemyTurn()) == null

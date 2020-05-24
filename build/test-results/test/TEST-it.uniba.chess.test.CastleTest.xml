@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="it.uniba.chess.test.CastleTest" tests="66" skipped="0" failures="0" errors="0" timestamp="2020-05-24T14:07:38" hostname="LAPTOP-6NLKKOBG" time="0.28">
+  <properties/>
+  <testcase name="castleShortWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.033"/>
+  <testcase name="shortCastleWithg1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.006"/>
+  <testcase name="longCastleWithc8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleWithMovedKingWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleNotOccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.006"/>
+  <testcase name="shortCastleNotOccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.004"/>
+  <testcase name="castleShortWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="shortCastleWithWrongKingColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleNotOccupiedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="castleLongBlackwithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithb1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleWithg1InCheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="castleLongBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithf1CheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithf1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithb8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="longCastleWithMovedKingBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithMovedKingBlackWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithWrongRookColorBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithMovedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithg7OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleBlackKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0.013"/>
+  <testcase name="longCastleWhiteKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="castleLongWhitewithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithMovedKingBlackWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithWrongRookColorBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleWithd1InCheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleBlackKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0.004"/>
+  <testcase name="shortCastleWhiteKingInCheckTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleWithMovedRookTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="longCastleNotOccupiedRookWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithMovedKingWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="shortCastleWithWrongPieceBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithd8inCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="castleLongWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleWithc8InCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="longCastleWithc1CheckWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithf7OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleWithMovedKingWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleWithMovedRookTest()" classname="it.uniba.chess.test.CastleTest" time="0.004"/>
+  <testcase name="longCastleWithWrongRookColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleNotOccupiedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="castleShortBlackwithRmoveTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleWithMovedKingWhiteWithRTest()" classname="it.uniba.chess.test.CastleTest" time="0.004"/>
+  <testcase name="longCastleWithWrongPieceRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.005"/>
+  <testcase name="longCastleWithWrongPieceBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithWrongRookColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.008"/>
+  <testcase name="longCastleWithWrongKingColorBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="shortCastleWithWrongPieceRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="castleShortBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithMovedKingBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.004"/>
+  <testcase name="longCastleNotOccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleWithd1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleWithWrongPieceWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="shortCastleNotOccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithWrongKingColorBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.002"/>
+  <testcase name="longCastleWithd8OccupiedBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="shortCastleWithMovedRookBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.004"/>
+  <testcase name="shortCastleNotOccupiedRookWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="longCastleWithWrongPieceRookWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithWrongPieceWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithc1OccupiedWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="shortCastleWithg7inCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="longCastleWithWrongKingColorWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <testcase name="shortCastleWithf7InCheckBlackTest()" classname="it.uniba.chess.test.CastleTest" time="0.003"/>
+  <testcase name="shortCastleWithWrongPieceRookWhiteTest()" classname="it.uniba.chess.test.CastleTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

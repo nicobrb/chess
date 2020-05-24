@@ -144,7 +144,8 @@ public final class Move {
 		}
 
 		if (finalsquare.isOccupied()) {
-			if (finalsquare.getPiece().getColor() != Game.getTurn() && isCapture) {
+			if (finalsquare.getPiece().getColor() != Game.getTurn() 
+			&& isCapture) {
 				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);
 				return;
 			}
@@ -158,53 +159,57 @@ public final class Move {
 	}
 
 	private static void swapIfNotInCheck(final Class<? extends Piece> piecetype, final Square startingsquare,
-	final Square finalsquare, final boolean isCapture)
-	throws IllegalMoveException {
-		Piece tmpPiece = null;
+		    final Square finalsquare, final boolean isCapture)
+		    throws IllegalMoveException {
+		        Piece tmpPiece = null;
 
-		finalsquare.setOccupied(true);
+		        finalsquare.setOccupied(true);
 
-		if (isCapture) {
-			tmpPiece = finalsquare.getPiece();
-		}
+		        if (isCapture) {
+		            tmpPiece = finalsquare.getPiece();
+		        }
 
-		finalsquare.setPiece(startingsquare.getPiece());
-		startingsquare.setOccupied(false);
+		        finalsquare.setPiece(startingsquare.getPiece());
+		        startingsquare.setOccupied(false);
+		        Square actualKingPosition = Game.getKingPosition(Game.getTurn());
 
-		if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
-			if (isCapture) {
-				Game.getCapturesList().add(tmpPiece);
-			}
+		        if(piecetype == King.class) {
+		            Game.setKingPosition(Game.getTurn(), finalsquare);
+		        }
 
-			Game.addNewStartingSquare(startingsquare);
-			Game.addNewDestinationSquare(finalsquare);
+		        if (InputValidator.isTurnKingNotInCheck(Game.getKingPosition(Game.getTurn()))) {
 
-			finalsquare.getPiece().setHasMoved();
+		            if (isCapture) {
+		                Game.getCapturesList().add(tmpPiece);
+		            }
 
-			if (piecetype == King.class) {
-				Game.setKingPosition(Game.getTurn(), finalsquare);
-			}
+		            Game.addNewStartingSquare(startingsquare);
+		            Game.addNewDestinationSquare(finalsquare);
 
-			return;
-		} else {
+		            finalsquare.getPiece().setHasMoved();
 
-			//we reset the board status to the previous move
+		            return;
+		        } else {
 
-			startingsquare.setOccupied(true);
-			startingsquare.setPiece(finalsquare.getPiece());
+		            //we reset the board status to the previous move
 
-			if (isCapture) {
-				finalsquare.setOccupied(true);
-				finalsquare.setPiece(tmpPiece);
-			} else {
-				finalsquare.setOccupied(false);
-			}
+		            startingsquare.setOccupied(true);
+		            startingsquare.setPiece(finalsquare.getPiece());
 
-			//it's a pinned piece
-			throw new IllegalMoveException();
-		}
-	}
+		            Game.setKingPosition(Game.getTurn(), actualKingPosition);
+
+		            if (isCapture) {
+		                finalsquare.setOccupied(true);
+		                finalsquare.setPiece(tmpPiece);
+		            } else {
+		                finalsquare.setOccupied(false);
+		            }
+
+		            //it's a pinned piece
+		            throw new IllegalMoveException();
+		        }
+		    }
 	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
 		if (wantedColor == ChessColor.WHITE) {
 			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));

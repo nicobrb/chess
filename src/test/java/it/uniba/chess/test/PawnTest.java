@@ -648,4 +648,90 @@ public class PawnTest {
         
         assertThrows(IllegalMoveException.class, () -> {InputValidator.parseCommand("gxf5e.p.");});
     }
+	
+	@Test
+	@DisplayName("Check en-passant pawn capture with e.p. grammar ")
+	public void pawnCaptureEnPassantWithWhiteTest() throws Exception{
+        LinkedList<Square> startingPosition = new LinkedList<>();
+        LinkedList<Square> expectedPosition = new LinkedList<>();
+        
+        Pawn movedPawn = new Pawn(ChessColor.WHITE);
+        movedPawn.setHasMoved();
+        
+        Pawn enPassantCapturablePawn = new Pawn(ChessColor.BLACK);
+
+        ArrayList<Piece> expectedCaptures = new ArrayList<Piece>();
+        expectedCaptures.add(enPassantCapturablePawn);
+        
+        startingPosition.add(new Square(Integer.parseInt("4"), ParseFiles.getFileIntFromChar('d'), movedPawn));
+        startingPosition.add(new Square(Integer.parseInt("6"), ParseFiles.getFileIntFromChar('c'), enPassantCapturablePawn));
+        
+        expectedPosition.add(new Square(Integer.parseInt("5"), ParseFiles.getFileIntFromChar('c'), movedPawn));
+        
+        Board expectedBoard = new Board(expectedPosition);
+        Game.testGame(startingPosition);
+        Game.nextTurn();
+        
+        InputValidator.parseCommand("c5");
+        InputValidator.parseCommand("dxc6e.p.");
+
+       assertEquals(expectedBoard, Game.getBoard());
+	}
+
+	@Test
+	@DisplayName("Check en-passant pawn capture with e.p. grammar with black")
+	public void pawnCaptureEnPassantWithBlackTest() throws Exception{
+        LinkedList<Square> startingPosition = new LinkedList<>();
+        LinkedList<Square> expectedPosition = new LinkedList<>();
+        
+        Pawn movedPawn = new Pawn(ChessColor.BLACK);
+        movedPawn.setHasMoved();
+        
+        Pawn enPassantCapturablePawn = new Pawn(ChessColor.WHITE);
+
+        ArrayList<Piece> expectedCaptures = new ArrayList<Piece>();
+        expectedCaptures.add(enPassantCapturablePawn);
+        
+        startingPosition.add(new Square(Integer.parseInt("3"), ParseFiles.getFileIntFromChar('d'), movedPawn));
+        startingPosition.add(new Square(Integer.parseInt("1"), ParseFiles.getFileIntFromChar('c'), enPassantCapturablePawn));
+        
+        expectedPosition.add(new Square(Integer.parseInt("2"), ParseFiles.getFileIntFromChar('c'), movedPawn));
+        
+        Board expectedBoard = new Board(expectedPosition);
+        Game.testGame(startingPosition);
+        
+        InputValidator.parseCommand("c4");
+        InputValidator.parseCommand("dxc3e.p.");
+
+       assertEquals(expectedBoard, Game.getBoard());
+	}
+	
+	
+	@Test
+    @DisplayName("Check if a string like 'xe3' is accepted")
+    public void pawnCaptureErrorTest() throws Exception{
+        Game.startGame();
+        assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("xe3"));
+    }
+	
+	@Test
+    @DisplayName("Check if a string like 'e3e.p.' is accepted")
+    public void pawnEnPassantErrorTest() throws Exception{
+        Game.startGame();
+        assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("e3e.p."));
+    }
+	
+	@Test
+    @DisplayName("Check if a string like 'e3xd4' is accepted")
+    public void pawnRankDisambiguationErrorTest() throws Exception{
+        Game.startGame();
+        assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("3xd4"));
+    }
+	
+	@Test
+    @DisplayName("no x in pawn capture")
+    public void pawnXCharachterMissingErrorTest() throws Exception{
+        Game.startGame();
+        assertThrows(IllegalMoveException.class, () -> InputValidator.parseCommand("ed4"));
+    }
 }
