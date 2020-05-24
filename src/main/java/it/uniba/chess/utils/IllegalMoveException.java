@@ -7,7 +7,7 @@ package it.uniba.chess.utils;
  * 	«NO-ECB»
  */
 
-public class IllegalMoveException extends Exception {	
+public class IllegalMoveException extends Exception {
 
 	/**
 	 *  To fix serialization warning

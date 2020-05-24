@@ -144,7 +144,7 @@ public final class Move {
 		}
 
 		if (finalsquare.isOccupied()) {
-			if (finalsquare.getPiece().getColor() != Game.getTurn() 
+			if (finalsquare.getPiece().getColor() != Game.getTurn()
 			&& isCapture) {
 				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);
 				return;
@@ -173,7 +173,7 @@ public final class Move {
 		        startingsquare.setOccupied(false);
 		        Square actualKingPosition = Game.getKingPosition(Game.getTurn());
 
-		        if(piecetype == King.class) {
+		        if (piecetype == King.class) {
 		            Game.setKingPosition(Game.getTurn(), finalsquare);
 		        }
 
@@ -187,7 +187,7 @@ public final class Move {
 		            Game.addNewDestinationSquare(finalsquare);
 
 		            finalsquare.getPiece().setHasMoved();
-		            
+
 					return;
 		        } else {
 
@@ -208,8 +208,8 @@ public final class Move {
 		            throw new IllegalMoveException();
 		        }
 		    }
-	
-	
+
+
 	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
 		if (wantedColor == ChessColor.WHITE) {
 			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));
