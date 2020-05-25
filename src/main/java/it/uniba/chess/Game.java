@@ -12,7 +12,7 @@ import it.uniba.chess.utils.ParseFiles;
 /**
  * Mantiene lo stato della partita corrente.
  *
- * <<Control>>
+ * «Control»
  */
 
 public final class Game {

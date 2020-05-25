@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -72,7 +71,6 @@ public class PawnTest {
         movedPawn.setHasMoved();
 
         startingPosition.add(new Square(Integer.parseInt("3"), ParseFiles.getFileIntFromChar('e'), movedPawn));
-        //expectedPosition.add(new Square(Integer.parseInt("4"), ParseFiles.getFileIntFromChar('e'), movedPawn));
         Game.testGame(startingPosition);
         
         
@@ -257,7 +255,7 @@ public class PawnTest {
 	
 	@Test
     @DisplayName("Check wrong piece trying a pawn push")
-    public void pawnPushWrongPieceTest() throws Exception{
+    public void pawnPushWrongPieceTest() throws IllegalMoveException{
         LinkedList<Square> startingPosition = new LinkedList<>();
 
         Rook fakePiece =  new Rook(ChessColor.WHITE);
@@ -266,7 +264,7 @@ public class PawnTest {
         Game.testGame(startingPosition);
         
         assertThrows(IllegalMoveException.class, () -> {InputValidator.parseCommand("d6");});
-    }
+	}
 	
 	@Test
 	@DisplayName("Check absolute-pinned pawn push")
@@ -659,9 +657,6 @@ public class PawnTest {
         movedPawn.setHasMoved();
         
         Pawn enPassantCapturablePawn = new Pawn(ChessColor.BLACK);
-
-        ArrayList<Piece> expectedCaptures = new ArrayList<Piece>();
-        expectedCaptures.add(enPassantCapturablePawn);
         
         startingPosition.add(new Square(Integer.parseInt("4"), ParseFiles.getFileIntFromChar('d'), movedPawn));
         startingPosition.add(new Square(Integer.parseInt("6"), ParseFiles.getFileIntFromChar('c'), enPassantCapturablePawn));
@@ -688,9 +683,6 @@ public class PawnTest {
         movedPawn.setHasMoved();
         
         Pawn enPassantCapturablePawn = new Pawn(ChessColor.WHITE);
-
-        ArrayList<Piece> expectedCaptures = new ArrayList<Piece>();
-        expectedCaptures.add(enPassantCapturablePawn);
         
         startingPosition.add(new Square(Integer.parseInt("3"), ParseFiles.getFileIntFromChar('d'), movedPawn));
         startingPosition.add(new Square(Integer.parseInt("1"), ParseFiles.getFileIntFromChar('c'), enPassantCapturablePawn));

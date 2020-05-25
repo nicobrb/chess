@@ -4,7 +4,7 @@ package it.uniba.chess.utils;
  * Associa al carattere di colonna nella notazione algebrica il rispettivo indice
  * nella matrice Game.board.
  * 
- * <<No-ECB>>
+ * «NO-ECB»
  */
 public enum ParseFiles {
 	h, g, f, e, d, c, b, a;

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.uniba.chess.pieces.test"},{"l":"it.uniba.chess.test"},{"l":"it.uniba.chess.utils"},{"l":"it.uniba.main.test"}]

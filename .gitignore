@@ -44,7 +44,7 @@ local.properties
 /build/libs
 /build/docker
 /build/scripts
-#/build/test-results
+/build/test-results
 
 
 ### Intellij ###
@@ -136,4 +136,4 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 .idea/
-/build/
+build/

@@ -38,19 +38,24 @@ public class AppMainTest {
 	public void successfulQuitCommandTest() throws UnsupportedEncodingException{
 	    
 		outContent.reset();
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
 		String expectedOutput = 
 		"Scrivi help per la lista dei comandi, play per iniziare una nuova partita. "+
 		"Qualunque notazione algebrica prima di play non sarà accettata\n"+
 		"Sei sicuro di voler uscire? S/N (default: N)\n";
 
-		String input = "play\nquit\ns\n";
-		InputStream inContent = new ByteArrayInputStream(input.getBytes());
+		String input = "play\n"
+				+ "quit\n"
+				+ "s\n";
+		InputStream inContent = new ByteArrayInputStream(input.getBytes("UTF-8"));
 		System.setIn(inContent);
 		
-		AppMain.main(null);
-		assertEquals(expectedOutput, outContent.toString());
+		String argv[] = new String[1];
+		argv[0] = "scacchi.jar";
+		
+		AppMain.main(argv);
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 		
 	}
 	
@@ -59,7 +64,7 @@ public class AppMainTest {
 	public void unsuccessfulQuitCommandTest() throws UnsupportedEncodingException{
 	    
 		outContent.reset();
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
 		String expectedOutput = 
 		"Scrivi help per la lista dei comandi, play per iniziare una nuova partita. "+
@@ -74,11 +79,15 @@ public class AppMainTest {
 				+ "n\n"
 				+ "quit\n"
 				+ "s\n";
-		InputStream inContent = new ByteArrayInputStream(input.getBytes());
+		InputStream inContent = new ByteArrayInputStream(input.getBytes("UTF-8"));
 		System.setIn(inContent);
 		
-		AppMain.main(null);
-		assertEquals(expectedOutput, outContent.toString());
+		String argv[] = new String[1];
+		argv[0] = "scacchi.jar";
+		
+		AppMain.main(argv);
+		
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 		
 	}
 	
@@ -87,7 +96,7 @@ public class AppMainTest {
 	public void unsuccessfullQuitCommandTest() throws UnsupportedEncodingException{
 	    
 		outContent.reset();
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
 		String expectedOutput = 
 		"Scrivi help per la lista dei comandi, play per iniziare una nuova partita. "+
@@ -100,11 +109,15 @@ public class AppMainTest {
 				+ "e8\n"
 				+ "quit\n"
 				+ "s\n";
-		InputStream inContent = new ByteArrayInputStream(input.getBytes());
+		InputStream inContent = new ByteArrayInputStream(input.getBytes("UTF-8"));
 		System.setIn(inContent);
 		
-		AppMain.main(null);
-		assertEquals(expectedOutput, outContent.toString());
+		String argv[] = new String[1];
+		argv[0] = "scacchi.jar";
+		
+		AppMain.main(argv);
+		
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 	}
 	
 	@Test
@@ -112,7 +125,7 @@ public class AppMainTest {
 	public void successfulRePlayCommandTest() throws UnsupportedEncodingException{
 	    
 		outContent.reset();
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
 		String expectedOutput = 
 		"Scrivi help per la lista dei comandi, play per iniziare una nuova partita. "+
@@ -153,13 +166,16 @@ public class AppMainTest {
 				+ "moves\n"
 				+ "quit\n"
 				+ "s\n";
-		InputStream inContent = new ByteArrayInputStream(input.getBytes());
+		InputStream inContent = new ByteArrayInputStream(input.getBytes("UTF-8"));
 		System.setIn(inContent);
 		
-		AppMain.main(null);
+		String argv[] = new String[1];
+		argv[0] = "scacchi.jar";
+		
+		AppMain.main(argv);
 		
 		//after a move replaying we have the starting board
-		assertEquals(expectedOutput, outContent.toString());
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 		
 	}
 	
@@ -168,7 +184,7 @@ public class AppMainTest {
 	public void unsuccessfulRePlayCommandTest() throws UnsupportedEncodingException{
 	    
 		outContent.reset();
-		System.setOut(new PrintStream(outContent));
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
 
 		String expectedOutput = 
 		"Scrivi help per la lista dei comandi, play per iniziare una nuova partita. "+
@@ -208,13 +224,16 @@ public class AppMainTest {
 				+ "moves\n"
 				+ "quit\n"
 				+ "s\n";
-		InputStream inContent = new ByteArrayInputStream(input.getBytes());
+		InputStream inContent = new ByteArrayInputStream(input.getBytes("UTF-8"));
 		System.setIn(inContent);
 		
-		AppMain.main(null);
+		String argv[] = new String[1];
+		argv[0] = "scacchi.jar";
+		
+		AppMain.main(argv);
 		
 		//after a move replaying we have the starting board
-		assertEquals(expectedOutput, outContent.toString());
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
 		
 	}
 
