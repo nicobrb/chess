@@ -1,7 +1,7 @@
 # Report
 
 # 1. Introduzione
-La seguente relazione mira a rappresentare l'applicazione di scacchi sviluppata per il corso di Ingegneria del Software dal gruppo Diffie nell'A.A. 2019/2020 , composto da Barbaro Nicola, Cucinotta Nicolò, De Rosis Antonio e Porcelli Luigi. 
+La seguente relazione mira a rappresentare l'applicazione di scacchi sviluppata per il corso di Ingegneria del Software dal gruppo Diffie nell'A.A. 2019/2020, composto da Barbaro Nicola, Cucinotta Nicolò, De Rosis Antonio e Porcelli Luigi. 
 L'applicativo consente di giocare una partita di scacchi accettando in input mosse in notazione algebrica italiana (vedi paragrafo  **7. Manuale Utente**)
 
 # 2. Modello di Dominio
@@ -36,19 +36,19 @@ L'applicativo consente di giocare una partita di scacchi accettando in input mos
 	 - Attraverso una mossa in notazione algebrica abbreviata, il re deve potersi muovere e catturare secondo le regole degli scacchi. Il re non può muoversi in case minacciate da pezzi avversari. In caso di mossa illegale, viene stampato un messaggio e l'applicazione rimane in attesa di mossa valida. 
  - Come utente, voglio arroccare corto:
 	 - Attraverso una mossa in notazione algebrica abbreviata, devo poter arroccare secondo le regole degli scacchi ( come da esempio nel paragrafo **7. g. Mosse illegali**)
- - Come utente, voglio arroccare lungo
+ - Come utente, voglio arroccare lungo:
 	 - Attraverso una mossa in notazione algebrica abbreviata, devo poter arroccare secondo le regole degli scacchi ( come da esempio nel paragrafo **7. g. Mosse illegali**)
 
 ###  b. Requisiti non funzionali
 
- **Portabilità**: attraverso Docker si vuole utilizzare il programma su qualunque piattaforma, mantenendo un comportamento uniforme. Le shell supportate sono le seguenti, suddivise per sistema operativo :
+ **Portabilità**: attraverso Docker si vuole utilizzare il programma su qualunque piattaforma, mantenendo un comportamento uniforme. Le  shell supportate sono le seguenti, suddivise per sistema operativo:
  - ***Linux***:
-	-  Terminal
+	- Terminal
 - ***Mac OS***:
 	- Terminal
 - ***Windows***:
-	-  Terminal del sottosistema Windows per Linux
-	-   Git Bash (in questo caso il comando Docker ha come prefisso  `winpty`; es:  `winpty docker -it ....`)
+	- Terminal del sottosistema Windows per Linux
+	- Git Bash (in questo caso il comando Docker ha come prefisso  `winpty`; es:  `winpty docker -it ....`)
 	- Windows Terminal (Preview)
 		
  **Affidabilità**: se vengono immessi comandi non riconosciuti o mosse grammaticalmente/logicamente sbagliate, il programma continua il flusso di esecuzione in uno stato stabile.
