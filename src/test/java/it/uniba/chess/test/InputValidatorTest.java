@@ -131,6 +131,7 @@ public class InputValidatorTest {
         InputValidator.parseCommand("0-0-0");
         assertEquals(expectedOutput, outContent.toString("UTF-8"));
     }
+	
 	@Test
     @DisplayName("move during inactive game test")
     public void inactiveGameMoveTest() throws Exception{
@@ -148,8 +149,8 @@ public class InputValidatorTest {
 	
 	
 	@Test
-	@DisplayName("Check printing of moves")
-	public void movesPrintTest() throws Exception{
+	@DisplayName("Check printing of moves in active game")
+	public void movesActiveGamePrintTest() throws Exception{
 		
 		outContent.reset();
 		System.setOut(new PrintStream(outContent, true, "UTF-8"));
@@ -173,8 +174,8 @@ public class InputValidatorTest {
 	}
 	
 	@Test
-	@DisplayName("Check captures (Scandinavian defense)")
-	public void capturesPrintTest() throws Exception{
+	@DisplayName("Check captures (Scandinavian defense) in active game")
+	public void capturesPrintActiveGameTest() throws Exception{
 		
 		outContent.reset();
 		PrintStream ciccio = new PrintStream(outContent, true, "UTF-8");
@@ -207,7 +208,27 @@ public class InputValidatorTest {
 		//assertEquals("Mossa illegale", illegalmove.getMessage());
 	}
 	
+	@Test
+	@DisplayName("Check 'captures' command with inactive game")
+	public void capturesInactiveGameTest() throws Exception{
+		
+		outContent.reset();
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
+		
+		String expectedOutput = "Gioco non ancora avviato.\n";
+		InputValidator.parseCommand("captures");
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
+	}
 	
-	
-	
+	@Test
+	@DisplayName("Check 'moves' command with inactive game")
+	public void movesInactiveGameTest() throws Exception{
+		
+		outContent.reset();
+		System.setOut(new PrintStream(outContent, true, "UTF-8"));
+		
+		String expectedOutput = "Gioco non ancora avviato.\n";
+		InputValidator.parseCommand("moves");
+		assertEquals(expectedOutput, outContent.toString("UTF-8"));
+	}
 }
