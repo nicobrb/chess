@@ -5,7 +5,7 @@ La seguente relazione mira a rappresentare l'applicazione di scacchi sviluppata 
 L'applicativo consente di giocare una partita di scacchi accettando in input mosse in notazione algebrica italiana (vedi paragrafo  **7. Manuale Utente**)
 
 # 2. Modello di Dominio
-![ModelloDominio](./doc/drawings/modello_di_dominio.PNG)
+![ModelloDominio](./drawings/modello_di_dominio.PNG)
 
 # 3. Requisiti specifici
 
@@ -62,16 +62,16 @@ L'intero eseguibile è racchiuso in un singolo file .jar che non interagisce con
 
 ### a. Diagrammi delle classi e diagrammi di sequenza
 
- - ***Diagramma generale delle classi***:	 ![DiagrammaClassi](./doc/drawings/diagramma_inputvalidator.PNG)
- - ***Diagramma dei pezzi***:  ![DiagrammaPezzi](./doc/drawings/struttura_pezzi.PNG)
+ - ***Diagramma generale delle classi***:  ![DiagrammaClassi](./drawings/diagramma_inputvalidator.PNG)
+ - ***Diagramma dei pezzi***:  ![DiagrammaPezzi](./drawings/struttura_pezzi.PNG)
  ---
- - ***Diagramma di sequenza per movimento/cattura di un pezzo generico escluso il pedone***:  Riconosciuta in input una notazione algebrica valida, si invoca il metodo adatto per trovare la casa di partenza. Se trovata, si procede poi a effettuare la mossa, nel caso il pezzo non risultasse inchiodato, attraverso il metodo `swapIfNotInCheck()`. Infine si invoca `nextTurn()` per cambiare il turno e si aggiunge la mossa alla lista di quelle effettuate invocando `addPrintableMove()`. In caso di cattura, si aggiorna la lista delle catture.  ![DiagrammaMovimentoCatturaPezzo](./doc/drawings/muovere_un_pezzoPNG)
- - ***Movimento di un pedone***: Riconosciuta in input una mossa del pedone, cerchiamo la plausibile casa iniziale con `getPawnStartingSquareMove()` , il cui comportamento dipende dal turno corrente ottenibile con `getTurn()`. In caso di risoluzione positiva, si invoca `pawnMove()` che effettua la mossa se non è inchiodato. Si aggiunge poi la mossa alla lista di quelle effettuate e si cambia il turno.![DiagrammaMovimentoPedone](./doc/drawings/movimento_pedone.PNG)
- - ***Cattura di un pedone***:  Riconosciuta una cattura del pedone, cerchiamo una casa iniziale attraverso il metodo `checkPawnCapture()`. La chiamata a `pawnCapture()`  tenterà di effettuare una cattura in en-passant. In caso negativo, provvediamo a fare una cattura classica. In entrambi i casi essa avviene solo un controllo sul fatto che il pezzo non sia inchiodato e provvede, in caso positivo, ad aggiornare la lista delle catture, delle mosse effettuate e cambia il turno. ![DiagrammaCatturaPedone](./doc/drawings/cattura_pedone.PNG)
- - ***Arrocco lungo***: Riconosciuta una notazione valida per l'arrocco lungo, si procede con i controlli stabiliti dalle regole degli scacchi per effettuare lo stesso contenuti in `longCastle()`. In caso positivo, si effettua la mossa, si aggiunge alla lista delle mosse e si cambia il turno. ![ArroccoLungo](./doc/drawings/arrocco_lungo.PNG)
- - ***Mostrare la scacchiera***: Si richiama il metodo `print()` contenuto in `Board`.![MostrareScacchiera](./doc/drawings/stampa_board.PNG)
- - ***Mostrare le catture***:  Si invoca il metodo `capturedMaterial()` contenuto in `Game`![MostrareCatture](./doc/drawings/pezzi_catturati.PNG)
-  - ***Mostrare le mosse giocate***:  Si invoca il metodo `printListOfMoves()` in `Game`![MostrareMosse](./doc/drawings/mosse_giocate.PNG)
+ - ***Diagramma di sequenza per movimento/cattura di un pezzo generico escluso il pedone***:  Riconosciuta in input una notazione algebrica valida, si invoca il metodo adatto per trovare la casa di partenza. Se trovata, si procede poi a effettuare la mossa, nel caso il pezzo non risultasse inchiodato, attraverso il metodo `swapIfNotInCheck()`. Infine si invoca `nextTurn()` per cambiare il turno e si aggiunge la mossa alla lista di quelle effettuate invocando `addPrintableMove()`. In caso di cattura, si aggiorna la lista delle catture.  ![DiagrammaMovimentoCatturaPezzo](./drawings/muovere_un_pezzo.PNG)
+ - ***Movimento di un pedone***: Riconosciuta in input una mossa del pedone, cerchiamo la plausibile casa iniziale con `getPawnStartingSquareMove()` , il cui comportamento dipende dal turno corrente ottenibile con `getTurn()`. In caso di risoluzione positiva, si invoca `pawnMove()` che effettua la mossa se non è inchiodato. Si aggiunge poi la mossa alla lista di quelle effettuate e si cambia il turno.![DiagrammaMovimentoPedone](./drawings/movimento_pedone.PNG)
+ - ***Cattura di un pedone***:  Riconosciuta una cattura del pedone, cerchiamo una casa iniziale attraverso il metodo `checkPawnCapture()`. La chiamata a `pawnCapture()`  tenterà di effettuare una cattura in en-passant. In caso negativo, provvediamo a fare una cattura classica. In entrambi i casi essa avviene solo un controllo sul fatto che il pezzo non sia inchiodato e provvede, in caso positivo, ad aggiornare la lista delle catture, delle mosse effettuate e cambia il turno. ![DiagrammaCatturaPedone](./drawings/cattura_pedone.PNG)
+ - ***Arrocco lungo***: Riconosciuta una notazione valida per l'arrocco lungo, si procede con i controlli stabiliti dalle regole degli scacchi per effettuare lo stesso contenuti in `longCastle()`. In caso positivo, si effettua la mossa, si aggiunge alla lista delle mosse e si cambia il turno. ![ArroccoLungo](./drawings/arrocco_lungo.PNG)
+ - ***Mostrare la scacchiera***: Si richiama il metodo `print()` contenuto in `Board`.![MostrareScacchiera](./drawings/stampa_board.PNG)
+ - ***Mostrare le catture***:  Si invoca il metodo `capturedMaterial()` contenuto in `Game`![MostrareCatture](./drawings/pezzi_catturati.PNG)
+  - ***Mostrare le mosse giocate***:  Si invoca il metodo `printListOfMoves()` in `Game`![MostrareMosse](./drawings/mosse_giocate.PNG)
 
 ### b. Design pattern
 
@@ -102,8 +102,8 @@ L'intero eseguibile è racchiuso in un singolo file .jar che non interagisce con
 
 # 6. Riepilogo del test
 Sono stati effettuati 234 casi di test, per una copertura del codice sorgente pari al 100%. Non si è puntato al coverage totale come obiettivo primario, bensì si è prediletta l'ideazione di casi limite per massimizzare il requisito di affidabilità.
-![CasiTest](./res/img/relazione-finale/casiditest.png)
-![Coverage](./res/img/relazione-finale/percentuali.png)
+![CasiTest](../res/img/relazione-finale/casiditest.png)
+![Coverage](../res/img/relazione-finale/percentuali.png)
 
 # 7. Manuale utente
 - ### a. Introduzione 
