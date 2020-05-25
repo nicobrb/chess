@@ -217,11 +217,19 @@ public final class InputValidator {
 			return true;
 
 		case "captures":
-			Game.capturedMaterial();
+			if (Game.getGameStatus() == GameStatus.ACTIVE) {
+				Game.capturedMaterial();
+			} else {
+				System.out.print("Gioco non ancora avviato.\n");
+			}
 			return true;
 
 		case "moves":
-			Game.printListOfMoves();
+			if (Game.getGameStatus() == GameStatus.ACTIVE) {
+				Game.printListOfMoves();
+			} else {
+				System.out.print("Gioco non ancora avviato.\n");
+			}
 			return true;
 
 		case "play":

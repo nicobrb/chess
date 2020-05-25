@@ -144,7 +144,7 @@ public final class Move {
 		}
 
 <span class="fc bfc" id="L146" title="All 2 branches covered.">		if (finalsquare.isOccupied()) {</span>
-<span class="pc bpc" id="L147" title="1 of 4 branches missed.">			if (finalsquare.getPiece().getColor() != Game.getTurn() </span>
+<span class="pc bpc" id="L147" title="1 of 4 branches missed.">			if (finalsquare.getPiece().getColor() != Game.getTurn()</span>
 			&amp;&amp; isCapture) {
 <span class="fc" id="L149">				swapIfNotInCheck(piecetype, startingsquare, finalsquare, isCapture);</span>
 <span class="fc" id="L150">				return;</span>
@@ -173,7 +173,7 @@ public final class Move {
 <span class="fc" id="L173">		        startingsquare.setOccupied(false);</span>
 <span class="fc" id="L174">		        Square actualKingPosition = Game.getKingPosition(Game.getTurn());</span>
 
-<span class="fc bfc" id="L176" title="All 2 branches covered.">		        if(piecetype == King.class) {</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">		        if (piecetype == King.class) {</span>
 <span class="fc" id="L177">		            Game.setKingPosition(Game.getTurn(), finalsquare);</span>
 		        }
 
@@ -187,7 +187,7 @@ public final class Move {
 <span class="fc" id="L187">		            Game.addNewDestinationSquare(finalsquare);</span>
 
 <span class="fc" id="L189">		            finalsquare.getPiece().setHasMoved();</span>
-		            
+
 <span class="fc" id="L191">					return;</span>
 		        } else {
 
@@ -208,8 +208,8 @@ public final class Move {
 <span class="fc" id="L208">		            throw new IllegalMoveException();</span>
 		        }
 		    }
-	
-	
+
+
 	public static boolean shortCastle(final ChessColor wantedColor) throws IllegalMoveException {
 <span class="fc bfc" id="L214" title="All 2 branches covered.">		if (wantedColor == ChessColor.WHITE) {</span>
 <span class="fc" id="L215">			Square kingStSquare = Game.getBoard().getSquare(0, ParseFiles.getFileIntFromChar('e'));</span>
