@@ -63,7 +63,7 @@ L'intero eseguibile è racchiuso in un singolo file .jar che non interagisce con
 ### a. Diagrammi delle classi e diagrammi di sequenza
 
  - ***Diagramma generale delle classi***:  ![DiagrammaClassi](./drawings/diagramma_inputvalidator.PNG)
- - ***Diagramma dei pezzi***:  ![DiagrammaPezzi](./drawings/struttura_pezzi.PNG)
+ - ***Diagramma delle classi specifico per la struttura dei pezzi***: ![DiagrammaPezzi](./drawings/struttura_pezzi.PNG)
  ---
  - ***Diagramma di sequenza per movimento/cattura di un pezzo generico escluso il pedone***:  Riconosciuta in input una notazione algebrica valida, si invoca il metodo adatto per trovare la casa di partenza. Se trovata, si procede poi a effettuare la mossa, nel caso il pezzo non risultasse inchiodato, attraverso il metodo `swapIfNotInCheck()`. Infine si invoca `nextTurn()` per cambiare il turno e si aggiunge la mossa alla lista di quelle effettuate invocando `addPrintableMove()`. In caso di cattura, si aggiorna la lista delle catture.  ![DiagrammaMovimentoCatturaPezzo](./drawings/muovere_un_pezzo.PNG)
  - ***Movimento di un pedone***: Riconosciuta in input una mossa del pedone, cerchiamo la plausibile casa iniziale con `getPawnStartingSquareMove()` , il cui comportamento dipende dal turno corrente ottenibile con `getTurn()`. In caso di risoluzione positiva, si invoca `pawnMove()` che effettua la mossa se non è inchiodato. Si aggiunge poi la mossa alla lista di quelle effettuate e si cambia il turno.![DiagrammaMovimentoPedone](./drawings/movimento_pedone.PNG)
